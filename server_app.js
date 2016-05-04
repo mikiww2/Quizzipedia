@@ -13,4 +13,6 @@ app.get('/', function (req, res) {
   return res.redirect('/login');
 });*/
 
+app.use(express.static(__dirname));
+
 app.listen(8080);

@@ -7,11 +7,15 @@ app.route('/Quizzipedia/signup').get(function(req,res,next){
 	res.sendFile('./public/view/signup.html', {root: __dirname });
 });
 
+app.route('/Quizzipedia/home').get(function(req,res,next){
+	res.sendFile('./public/view/home.html', {root: __dirname });
+});
+
 //app.use('/register',require('./controllers/register'));
-/*
+
 app.get('/', function (req, res) {
-  return res.redirect('/login');
-});*/
+  return res.redirect('/Quizzipedia/home');
+});
 
 app.use(express.static(__dirname));
 

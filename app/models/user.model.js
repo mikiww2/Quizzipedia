@@ -4,6 +4,9 @@
 // IN var mongoose = require('mongoose');
 //OUT mongoose.model('User', userSchema);
 
+// use me like this
+// var User = require('./user.model', { root: __dirname })(mongoose);
+
 var utility = require('./utility', { root: __dirname }); 
 
 module.exports = function(mongoose) {

@@ -20,6 +20,10 @@ module.exports = function(mongoose) {
             ,required: [true, 'role is required']
             ,enum: ['Student','teacher']
         }
+        ,institution: {
+            type: Number
+            ,required: [true, 'institution is required']
+        }
     }, { strict: true });
 
     return  mongoose.model('RoleRequest', roleRequestSchema);

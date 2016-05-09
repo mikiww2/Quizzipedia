@@ -4,6 +4,9 @@ var app = express(); 						// create our app w/ express
 var mongoose = require('mongoose'); 				// mongoose for mongodb
 var port = process.env.PORT || 8080; 				// set the port
 var database = require('./config/database'); 			// load the database config
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var b_parser = require('body-parser');
 var morgan = require('morgan');
 
 // configuration ===============================================================
@@ -12,23 +15,25 @@ app.use('/Quizzipedia',express.static(__dirname + '/public'));  // statics resou
 
 app.use(morgan('dev')); // log every request to the console
 
+app.use(session({
+	secret: "cat",
+	resave: true,
+	saveUninitialized: true
+}));
+
+app.use(b_parser.json());
+app.use(b_parser.urlencoded({ extended: true}));
+app.use(cookieParser());
+
 // routes ======================================================================
-require('./app/routes.js')(app);  // RESTful requests
+require('./app/route/api_route/userApi.js')(app);  // RESTful requests
+require('./app/route/route.js')(app);  // PAGES requests
 
-app.route('/').get(function (req, res) {
-  res.redirect('/Quizzipedia/signup'); // load the single view file (angular will handle the page changes on the front-end)
-});
-
-app.route('/Quizzipedia').get(function (req, res) {
-  res.redirect('/Quizzipedia/signup'); // load the single view file (angular will handle the page changes on the front-end)
-});
-
-app.route('/Quizzipedia/users').get(function (req, res) {
-  res.sendFile(__dirname + '/public/view/users.html'); // load the single view file (angular will handle the page changes on the front-end)
-});
-
-app.route('/Quizzipedia/signup').get(function (req, res) {
-  res.sendFile(__dirname + '/public/view/signup.html'); // load the single view file (angular will handle the page changes on the front-end)
+app.get('/Quizzipedia/aut', function (req, res) {
+    if(req.session.user)
+        res.send('sei autenticato come: ' + req.session.user.firstName);
+    else 
+        res.send('non sei autenticato :(');
 });
 
 app.listen(port);

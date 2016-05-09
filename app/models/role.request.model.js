@@ -21,7 +21,7 @@ module.exports = function(mongoose) {
             ,enum: ['Student','teacher']
         }
         ,institution: {
-            type: Number
+            type: Schema.Types.ObjectId
             ,required: [true, 'institution is required']
         }
     }, { strict: true });

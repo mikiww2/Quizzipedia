@@ -11,7 +11,7 @@ var morgan = require('morgan');
 
 // configuration ===============================================================
 mongoose.connect(database.localUrl); 	// Connect to local MongoDB instance.
-app.use('/Quizzipedia',express.static(__dirname + '/public'));  // statics resources for all /Quizzipedia path
+app.use('/Quizzipedia',express.static(__dirname));  // statics resources for all /Quizzipedia path
 
 app.use(morgan('dev')); // log every request to the console
 

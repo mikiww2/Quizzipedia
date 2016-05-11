@@ -32,7 +32,7 @@ require('./app/route/route.js')(app);  // PAGES requests
 app.get('/Quizzipedia/aut', function (req, res) {
     if(req.session.user)
         res.send('sei autenticato come: ' + req.session.user.firstName);
-    else 
+    else
         res.send('non sei autenticato :(');
 });
 

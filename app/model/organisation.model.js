@@ -27,8 +27,9 @@ module.exports = function(mongoose) {
                 ,max: 2050
                 ,required: [true, 'academicYear is required']
             }
-            ,teachers: [String]
-            ,students: [String]
+            ,teachers: [String] //contiene gli ingegnanti autorizzati nella classe
+            ,students: [String] //contiene gli studenti autorizzati nella classe
+            ,classList: [String] //contiene gli utenti che hanno richiesto di essere autorizzati
     }, { strict: true });
 
     classSchema.index({academicYear: -1, name: 1}, {unique: true});
@@ -36,6 +37,20 @@ module.exports = function(mongoose) {
     classSchema.statics.findClass = function (name, year, cb) {
         return this.find({ name: name, academicYear: year }, cb);
     }
+    
+    var roleRequestSchema = new Schema({
+        user: {
+            type: String
+            ,required: [true, 'user is required']
+        }
+        ,role: {
+            type: String
+            ,required: [true, 'role is required']
+            ,enum: ['student','teacher']
+        }
+    }, { strict: true });
+    
+    roleRequestSchema.index({user: 1, role: 1}, {unique: true});
     
     var organisationSchema = new Schema({
         creationDate: {
@@ -52,8 +67,9 @@ module.exports = function(mongoose) {
             type: String
             ,required: [true, 'owner is required']
         }
-        ,teachers: [String]
-        ,students: [String]
+        ,teachers: [String] //contiene gli ingegnanti autorizzati nella istituzione
+        ,students: [String] //contiene gli studenti autorizzati nella istituzione
+        ,roleList: [roleRequestSchema] //contiene gli utenti che hanno richiesto di essere autorizzati
     }, { strict: true });
 
     return  mongoose.model('Organization', organisationSchema);

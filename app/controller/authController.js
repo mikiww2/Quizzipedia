@@ -1,15 +1,13 @@
-var mongoose = require('mongoose');
-
-var User = require('../model/user.model')(mongoose);
+var User = require('../model/user.model');
 
 exports.signin = function (req, res) {
 
     var email = req.body.email;
-    var pass = req.body.pass;
+    var pass = req.body.password;
     User.findOne({'_id': email}, function (err, user) {
         if (err) {
             console.log('error: ' + err);
-            res.redirect('/Quizzipedia/login');
+            res.redirect('/Quizzipedia/signin');
         }
         else {
             if (user) {  //SE TROVA UN UTENTE NEL DB
@@ -20,21 +18,15 @@ exports.signin = function (req, res) {
                 }
                 else {  //SE LA PASS NON CORRISPONDE
                     console.log('user trovato: ' + user._id + ' con pass errata');
-                    res.redirect('/Quizzipedia/login');
+                    res.redirect('/Quizzipedia/signin');
                 }
             }
             else {  //SE NON TROVA UN UTENTE NEL DB
                 console.log('user non trovato');
-                res.redirect('/Quizzipedia/login');
+                res.redirect('/Quizzipedia/signin');
             }
         }
     });
-};
-
-exports.logout = function (req, res) {
-    console.log('utente sloggato: ' + req.session.user);
-    delete req.session.user;
-    res.redirect('/');
 };
 
 exports.signup = function (req, res) {
@@ -43,21 +35,20 @@ exports.signup = function (req, res) {
     User.findOne({'_id': email}, function (err, user) {
         if (err) {
             console.log('error: ' + err);
-            res.redirect('/Quizzipedia/register');
+            res.redirect('/Quizzipedia/signup');
         }
         else {
             if (user) { //SE LA EMAIL è GIA PRESENTE NEL DB
                 console.log('user gia esistente: ' + user.email);
-                res.redirect('/Quizzipedia/register');
+                res.redirect('/Quizzipedia/signup');
             }
             else { //SE LA EMAIL NON è PRESENTE NEL DB
                 console.log('account disponibile ' + email);
                 var newUser = new User();
-                newUser.firstName = req.body.name;
-                newUser.lastName = req.body.surname;
+                newUser.firstName = req.body.firstName;
+                newUser.lastName = req.body.lastName;
                 newUser._id = req.body.email;
-                newUser.password = req.body.pass;
-                //newUser.typeUser = 'basic';
+                newUser.password = req.body.password;
                 newUser.save(function (err) {
                     if (err) {
                         console.log('errore nel salvataggio utente: ' + err);

@@ -27,8 +27,9 @@ module.exports = function(mongoose) {
                 ,max: 2050
                 ,required: [true, 'academicYear is required']
             }
-            ,teachers: [String]
-            ,students: [String]
+            ,teachers: [String] //contiene gli ingegnanti autorizzati nella classe
+            ,students: [String] //contiene gli studenti autorizzati nella classe
+            ,classList: [String] //contiene gli utenti che hanno richiesto di essere autorizzati
     }, { strict: true });
 
     classSchema.index({academicYear: -1, name: 1}, {unique: true});
@@ -66,9 +67,9 @@ module.exports = function(mongoose) {
             type: String
             ,required: [true, 'owner is required']
         }
-        ,teachers: [String]
-        ,students: [String]
-        ,roleList: [roleRequestSchema]
+        ,teachers: [String] //contiene gli ingegnanti autorizzati nella istituzione
+        ,students: [String] //contiene gli studenti autorizzati nella istituzione
+        ,roleList: [roleRequestSchema] //contiene gli utenti che hanno richiesto di essere autorizzati
     }, { strict: true });
 
     return  mongoose.model('Organization', organisationSchema);

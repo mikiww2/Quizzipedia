@@ -1,4 +1,3 @@
- 
 'use strict'; //will load js in strict mode
 
 //define the model for Organization using organisationSchema
@@ -39,11 +38,7 @@ module.exports = function(mongoose) {
     }
     
     var organisationSchema = new Schema({
-        _id: { // use with a getNextSequence() sequence for auto increment index
-            type: Number
-            ,required: [true, 'index is required']
-        }
-        ,creationDate: {
+        creationDate: {
             type: Date
             ,required: [true, 'date is required']
         }
@@ -55,8 +50,10 @@ module.exports = function(mongoose) {
         ,classes: [classSchema]
         ,owner: {
             type: String
-            ,required: [true, 'a Director user is required']
+            ,required: [true, 'owner is required']
         }
+        ,teachers: [String]
+        ,students: [String]
     }, { strict: true });
 
     return  mongoose.model('Organization', organisationSchema);

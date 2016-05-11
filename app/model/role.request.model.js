@@ -18,9 +18,15 @@ module.exports = function(mongoose) {
         ,role: {
             type: String
             ,required: [true, 'role is required']
-            ,enum: ['Student','teacher']
+            ,enum: ['student','teacher']
+        }
+        ,institution: {
+            type: Schema.Types.ObjectId
+            ,required: [true, 'institution is required']
         }
     }, { strict: true });
+    
+    roleRequestSchema.index({user: 1, role: 1, institution: 1}, {unique: true});
 
     return  mongoose.model('RoleRequest', roleRequestSchema);
 }

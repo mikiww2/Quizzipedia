@@ -37,6 +37,20 @@ module.exports = function(mongoose) {
         return this.find({ name: name, academicYear: year }, cb);
     }
     
+    var roleRequestSchema = new Schema({
+        user: {
+            type: String
+            ,required: [true, 'user is required']
+        }
+        ,role: {
+            type: String
+            ,required: [true, 'role is required']
+            ,enum: ['student','teacher']
+        }
+    }, { strict: true });
+    
+    roleRequestSchema.index({user: 1, role: 1}, {unique: true});
+    
     var organisationSchema = new Schema({
         creationDate: {
             type: Date
@@ -54,6 +68,7 @@ module.exports = function(mongoose) {
         }
         ,teachers: [String]
         ,students: [String]
+        ,roleList: [roleRequestSchema]
     }, { strict: true });
 
     return  mongoose.model('Organization', organisationSchema);

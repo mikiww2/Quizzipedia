@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../assets/img/favicon.ico.png">
+
+    <title>Settings</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+	<!-- quizzipedia.base.css -->
+	<link href="../../assets/css/quizzipedia.base.css" rel="stylesheet">
+	
+	<!-- Merge others eventually -->
+	<link href="../../assets/css/forms.css" rel="stylesheet">
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+  </head>
+
+  <body>
+	<div class="container">
+	<div id="role" class="tab-pane fade in active">
+			<div class="col-md-5"> <!-- form size -->
+			<div class="form-area">  
+				<form role="form">
+					<div class="text-center"> 
+						<h3 class="formTitle">Change Password</h3>
+					</div>
+					
+					<div class="form-group row">
+						<label for="inputOldPassword" class=" form-control-label small" style="width:auto">Old password</label>
+						<input type="password" class="form-control" id="inputOldPassword" placeholder="Old password" required>
+					</div>
+
+					<div class="form-group row">
+						<label for="inputConfirmOldPassword" class=" form-control-label small" style="width:auto">Confirm old password</label>
+						<input type="password" class="form-control" id="inputConfirmOldPassword" placeholder="Confirm old password" required>
+					</div>
+
+					<div class="form-group row">
+						<label for="inputNewPassword" class=" form-control-label small" style="width:auto">New password</label>
+						<input type="password" class="form-control" id="inputNewPassword" placeholder="New password" required>
+					</div>
+					
+					<!-- <span class="help-block"><p id="characterLeft" class="help-block ">Password must be [rules]</p></span> -->
+				<button type="button" id="submitPwd" name="submit" class="btn btn-primary pull-right">Confirm</button>
+				</form>
+			</div>
+		</div> <!-- end of form -->
+		
+	</div>
+  </body>
+</html>
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 angular.module('managerInstitution').factory('Institution', ['Class', 'Director', 'ClassList','RoleList','Topics',function (Class, Director,ClassList,RoleList,Topics) {
     function Institution() {
         //qui dobbiamo fare una chiamata al server
-        this.director = null;
+        this.director = null; //Director
         this.creationDate = null;
         this.name = null;
         this.classes = []; //array di classi
@@ -80,7 +80,7 @@ angular.module('managerInstitution').factory('Institution', ['Class', 'Director'
       return this.students;  
     };
     
-    Institution.prototype.getTeacher = function(){
+    Institution.prototype.getTeachers = function(){
       return this.teachers;  
     };
       

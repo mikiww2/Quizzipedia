@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../favicon.ico">
+
+    <title>Invio richiesta</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+	<!-- quizzipedia.base.css -->
+	<link href="../../css/quizzipedia.base.css" rel="stylesheet">
+	
+	<!-- Merge others eventually -->
+	<link href="../../css/forms.css" rel="stylesheet">
+	
+	<!-- select2.js -->
+	<link href="../../js/select2-4.0.2/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="../../js/select2-4.0.2/dist/js/select2.min.js"></script>
+	
+	<!-- chained.js -->
+	<script src="../../js/jquery.chained.min.js"></script>
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+  </head>
+
+  <body>
+	<div class="container"> 
+
+		<ul class="nav nav-pills">
+		  <li class="active"><a data-toggle="pill" href="#role">Ruolo</a></li>
+		  <li><a data-toggle="pill" href="#class">Classe</a></li>
+		</ul>
+
+		<div class="tab-content">
+		<!-- Role Request Tab -->
+		  <div id="role" class="tab-pane fade in active">
+				<div class="col-md-5">
+				<div class="form-area">  
+					<form role="form">
+					<br style="clear:both">
+						<div class="text-center"> <h3 class="formTitle">Invio richiesta di ruolo</h3></div>
+						
+						<fieldset class="form-group">
+						<label for="inst">Ente</label>
+						<!-- load all institutions -->
+						<select id="instSelectRole" name="instRole" class="form-control">
+						  <option value="inst1">Università degli Studi di Padova</option>
+						  <option value="inst2">NDLS Center</option>
+						  <option value="inst3">School Y</option>
+						</select>
+						</fieldset>
+						
+
+						<script type="text/javascript">
+						$(document).ready(function() {
+						  $("#instSelectRole").select2();
+						});
+						</script>
+							
+						<fieldset class="form-group">
+						<label for="role">Ruolo</label>
+						<select class="form-control" id="role">
+						  <option>Studente</option>
+						  <option>Docente</option>
+						</select>
+						</fieldset>
+						<div class="form-group">
+							<textarea class="form-control" type="textarea" id="message" placeholder="Optional message.." maxlength="140" rows="7"></textarea>
+							<!-- <span class="help-block"><p id="characterLeft" class="help-block ">You can't ask for this role (phrase better)</p></span> -->
+							</div>
+					<button type="button" id="submitRole" name="submit" class="btn btn-primary pull-right">Invia la richiesta</button>
+					</form>
+				</div>
+			</div> <!-- end of form -->
+		  </div> <!-- end of role request tab-->
+		  
+		<!-- Class Request Tab -->	  
+			<div id="class" class="tab-pane fade">
+			<div class="col-md-5">
+			<div class="form-area">  
+				<form role="form">
+				<br style="clear:both">
+					<div class="text-center"> <h3 class="formTitle">Invio richiesta di classe</h3></div>
+					
+					<fieldset class="form-group">
+					<label for="inst">Ente</label><br>
+					<!-- load all institutions the user has a role in -->
+					<select id="instSelectClass" name="instClass" class="form-control"><br>
+					  <option value="">--</option>
+					  <option value="inst1">Università degli Studi di Padova</option>
+					  <option value="inst2">NDLS Center</option>
+					</select>
+					</fieldset>
+					
+					<fieldset class="form-group">
+					<label for="class">Classe</label>
+					<!-- load classes for selected institution -->
+					<select id="classSelect" name="class" class="form-control">
+					  <option value="">--</option>
+					  <option value="art" class="inst1">Arte</option>
+					  <option value="maths" class="inst1">Matematica</option>
+					  <option value="dla" class="inst2">Driving Licence 'A'</option>
+					  <option value="dlb" class="inst2">Driving Licence 'B'</option>
+					</select>
+					</fieldset>
+					
+					<script>$("#classSelect").chained("#instSelectClass");</script>
+						
+					<fieldset class="form-group">
+					<label for="year">Anno scolastico</label>
+					<!-- load academic years for selected class -->
+					<select id="yearSelect" name="year" class="form-control">
+					  <option value="">--</option>
+					  <option value="2014" class="art">2014/2015</option>
+					  <option value="2015" class="art">2015/2016</option>
+					  <option value="2014" class="maths">2014/2015</option>
+					  <option value="2015" class="maths">2015/2016</option>
+					</select>
+					</fieldset>
+					
+					<script>$("#yearSelect").chained("#classSelect");</script>
+						
+					<fieldset class="form-group">
+					<label for="role">Ruolo</label>
+					<!-- change role according to selected institution -->
+					<select class="form-control" id="role" disabled>
+					  <option>@Role</option>
+					</select>
+					</fieldset>
+				<button type="button" id="submitClass" name="submit" class="btn btn-primary pull-right">Invia la richiesta</button>
+				</form>
+			</div>
+			</div> <!-- end of form -->
+			</div> <!-- end of class request tab-->
+		</div>
+		
+	</div>
+  </body>
+</html>
+
+
+
+
+
+

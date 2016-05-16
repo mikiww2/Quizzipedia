@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+    <title>Registrati</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+	<!-- quizzipedia.base.css -->
+	<link href="../../css/quizzipedia.base.css" rel="stylesheet">
+	
+	<!-- Merge others eventually -->
+    <link href="../../css/forms.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+	
+      <form class="form">
+        <h3 class="form-heading description text-center">Registrati</h3>
+		<div class="form-group row">
+			<label for="inputFirstName" class=" form-control-label small" style="width:auto">Nome</label>
+			<input type="text" class="form-control" id="inputFirstName" placeholder="Nome" required autofocus>
+		</div>
+		<div class="form-group row">
+			<label for="inputLastName" class=" form-control-label small" style="width:auto">Cognome</label>
+			<input type="text" class="form-control" id="inputLastName" placeholder="Cognome" required>
+		</div>
+		<div class="form-group row">
+			<label for="inputEmail" class=" form-control-label small" style="width:auto">Indirizzo email</label>
+			<input type="email" class="form-control" id="inputEmail" placeholder="Indirizzo email" required>
+		</div>
+		<div class="form-group row">
+			<label for="inputConfirmEmail" class=" form-control-label small" style="width:auto">Conferma l'indirizzo email</label>
+			<input type="email" class="form-control" id="inputConfirmEmail" placeholder="Conferma l'indirizzo email" required>
+		</div>
+		<div class="form-group row">
+			<label for="inputPassword" class=" form-control-label small" style="width:auto">Password</label>
+			<input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+		</div>
+		<div class="form-group row">
+			<label for="inputConfirmPassword" class=" form-control-label small" style="width:auto">Conferma la password</label>
+			<input type="password" class="form-control" id="inputConfirmPassword" placeholder="Conferma la password" required>
+		</div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="notARobot"> I'm not a robot
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Registrati</button>
+      </form>
+	  <div class="bottom text-center">
+		Hai già un account? <a href="#"><b>Accedi!</b></a>
+		</div>
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../favicon.ico">
+
+    <title>Creazione domanda</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+	<!-- quizzipedia.base.css -->
+	<link href="../../css/quizzipedia.base.css" rel="stylesheet">
+	
+	<!-- Merge others eventually -->
+	<link href="../../css/forms.css" rel="stylesheet">
+	
+	<!-- select2.js -->
+	<link href="../../js/select2-4.0.2/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="../../js/select2-4.0.2/dist/js/select2.min.js"></script>
+	
+	<!-- chained.js -->
+	<script src="../../js/jquery.chained.min.js"></script>
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+  </head>
+
+  <body>
+	<div class="container">        
+	<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
+      <form class="form">
+		<!-- title -->
+		<div class="form-group row">
+			<label for="inputTitle" class=" form-control-label">Titolo</label>
+			<input type="text" class="form-control" id="inputTitle" placeholder="Titolo" required autofocus>
+		</div>
+		<!-- description -->
+		<div class="form-group row">
+			<label for="inputDescription" class=" form-control-label">Descrizione</label>
+			<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" required></textarea>
+		</div>
+		<!-- missing upload thing here -->
+		<div class="form-group row">
+			<label for="inputDescription" class=" form-control-label">Carica</label><br>
+			<span class="btn btn-default btn-file">Cerca <input type="file"></span>
+		</div>
+		<!-- topic-->
+		<div class="form-group row">
+			<fieldset class="form-group">
+				<label for="topic">Materia</label>
+				<select class="form-control" id="topic">
+				<!-- load options from existing topics -->
+				  <option>Storia dell'arte</option>
+				  <option>Informatica</option>
+				  <option>Matematica</option>
+				  <option>Fisica</option>
+				</select>
+			</fieldset>
+		</div>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+			  $("#topic").select2();
+			});
+		</script>
+		
+		<!-- type - changes last part -->
+		<div class="form-group row">
+			<fieldset class="form-group">
+				<label for="qtype">Tipo</label>
+				<select class="form-control" id="qtype">
+				  <option value="mtch">Collegamenti</option>
+				  <option value="cmpl">Completamento</option>
+				  <option value="open">Risposta aperta</option>
+				  <option value="mult">Risposta multipla</option>
+				  <option value="trfs">Vero/Falso</option> 
+				</select>
+			</fieldset>
+		</div>
+		
+		<!-- diff level -->
+		<div class="form-group row">
+			<fieldset class="form-group">
+			<!-- idk the stars are cool, animate them w jquery if theres time -->
+				<label for="difficultyLevel">Livello di difficoltà <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i></label>
+				<select class="form-control" id="difficultyLevel">
+				  <option>Facile</option>
+				  <option>Media</option>
+				  <option>Difficile</option>
+				  <option>Molto difficile</option>
+				</select>
+			</fieldset>
+		</div>
+		
+		<div class="form-group row">
+			<fieldset class="form-group">
+			<label for="inputTags">Parole chiave</label>
+			<select id="inputTags" multiple="multiple" class="form-control">
+			</select><br><br>
+			<script>
+			$('#inputTags').select2({
+				tags: true,
+				tokenSeparators: [','], 
+				placeholder: "Add your tags here"
+			});
+			</script>
+			</fieldset>
+		</div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Conferma</button>
+      </form>
+    </div> <!-- /container -->
+  </body>
+</html>
+
+
+
+
+
+

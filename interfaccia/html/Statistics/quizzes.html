@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../favicon.ico">
+
+    <title>Quiz</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+	<!-- quizzipedia.base.css -->
+	<link href="../../css/quizzipedia.base.css" rel="stylesheet">
+	<link href="../../css/forms.css" rel="stylesheet">
+	
+	<!-- select2.js -->
+	<link href="../../js/select2-4.0.2/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="../../js/select2-4.0.2/dist/js/select2.min.js"></script>
+	
+	<!-- chained.js -->
+	<script src="../../js/jquery.chained.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+	<div class="container">
+		<h4 class="description text-center"><i class="glyphicon glyphicon-th-list"></i> <i class="glyphicon glyphicon-stats"></i> Statistiche dei quiz</h4>
+		<div class="pull-right dropOrder">
+			<span>Ordina:</span>
+			<span class="btn-group">
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  Popolari <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+				<li><a href="#">Recenti</a></li>
+				<li><a href="#">Autore</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a href="#">Pubblici</a></li>
+				<li><a href="#">Privati</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a href="#">Personali</a></li>
+			  </ul>
+			</span>
+		</div>
+		
+		<table class="table table-hover table-striped table-compact qTable">
+			<thead>
+			<tr>
+			<th class="text-center">Titolo</th>
+			<th class="text-center">Materia</th>
+			<th class="text-center">Livello</th>
+			<th class="text-center">Autore</th>
+			<th class="text-center">Permesso</th>
+			<th class="text-center">Svolgimenti</th>
+			<th class="text-center">% superamento</th>
+			<th class="text-center">Risultato medio</th>
+			</tr>
+			</thead>
+			<tbody class="text-center">
+			<!-- row -->
+			<tr>
+				<td>Struttura della materia</td>
+				<td>Chimica</td>
+				<td>2</td>
+				<td>John Doe</td>
+				<td>Privato</td>
+				<td>5</td>
+				<td>80%</td>
+				<td>25/30</td>
+			</tr>
+			<tr>
+				<td>Grammatica inglese</td>
+				<td>Inglese</td>
+				<td>1</td>
+				<td>Jane Doe</td>
+				<td>Pubblico</td>
+				<td>15</td>
+				<td>90%</td>
+				<td>27/30</td>
+			</tr>
+			<tr>
+				<td>Struttura della materia</td>
+				<td>Chimica</td>
+				<td>2</td>
+				<td>John Doe</td>
+				<td>Privato</td>
+				<td>5</td>
+				<td>80%</td>
+				<td>25/30</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+  </body>
+</html>

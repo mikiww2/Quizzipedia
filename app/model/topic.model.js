@@ -1,9 +1,10 @@
 'use strict';
 
+//declare required
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
 
+//topic
 var topicSchema = new Schema({
     _id: {
         type: String
@@ -14,4 +15,5 @@ var topicSchema = new Schema({
     strict: true
 });
 
+//export
 module.exports = mongoose.model('Topic', topicSchema);

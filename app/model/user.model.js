@@ -1,9 +1,10 @@
 'use strict'; //will load js in strict mode
 
+//declare required
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
 
+//user
 var userSchema = new Schema({
     _id: { // email
         type: String
@@ -25,25 +26,23 @@ var userSchema = new Schema({
         type: String
         ,required: [true, 'password is required']
     }
-    ,typeUser: {
-        type: String
-        ,enum: ['NoRole', 'Director', 'Student', 'Teacher']
-        ,default: 'NoRole'
-        ,required: [true, 'typeUser is required']
-    }
+    ,tmpPassword: String
 }, {
     strict: true
 });
 
+//get name surname
 userSchema.virtual('fullName').get(function () {
-    return this.name.first + ' ' + this.name.last;
+    return this.firstName + ' ' + this.lastName;
 });
 
-userSchema.methods.checkPassword = function (password) {
+//use for login
+userSchema.static.checkPassword = function (password) {
     if(this.password == password)
         return true;
     else
         return false;
 }
 
+//export
 module.exports = mongoose.model('User', userSchema);

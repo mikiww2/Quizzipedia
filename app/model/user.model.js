@@ -27,9 +27,7 @@ var userSchema = new Schema({
         ,required: [true, 'password is required']
     }
     ,tmpPassword: String
-}, {
-    strict: true
-});
+}, { strict: true });
 
 //get name surname
 userSchema.virtual('fullName').get(function () {

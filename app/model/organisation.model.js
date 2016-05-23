@@ -60,7 +60,10 @@ var classSchema = new Schema({
         ,users: [userClassSchema]
 }, { strict: true });
 
-classSchema.index({academicYear: -1, name: 1}, {unique: true});
+classSchema.index({
+    academicYear: -1
+    ,name: 1
+}, {unique: true});
 
 classSchema.statics.findClass = function (name, year) {
     return this.find({ name: name, academicYear: year });

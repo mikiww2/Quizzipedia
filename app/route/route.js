@@ -2,6 +2,7 @@ var path = require('path');
 
 module.exports = function (app) {
 
+    // BASIC -----------------------------------------------------------------------------------
     app.route('/').get(function (req, res) {
       res.redirect('/Quizzipedia/home');
     });
@@ -14,15 +15,19 @@ module.exports = function (app) {
       res.sendFile(path.resolve('./public/home/home.html'));
     });
 
-    app.route('/Quizzipedia/users').get(function (req, res) {
-      res.sendFile(path.resolve('./public/view/users.html'));
-    });
-
+    // AUTHENTICATION --------------------------------------------------------------------------
     app.route('/Quizzipedia/signin').get(function (req, res) {
       if (req.session.user)
         res.redirect('/');
       else
         res.sendFile(path.resolve('./public/authentic/signin.html'));
+    });
+
+    app.route('/Quizzipedia/signin_with_token').get(function (req, res) {
+      if (req.session.user)
+        res.redirect('/');
+      else
+        res.sendFile(path.resolve('./public/authentic/signin_with_token.html'));
     });
 
     app.route('/Quizzipedia/signup').get(function (req, res) {
@@ -39,5 +44,27 @@ module.exports = function (app) {
         console.log('utente sloggato: ' + user);
       }
       res.redirect('/');
+    });
+
+    // PROFILE -------------------------------------------------------------------------------------
+    app.route('/Quizzipedia/profile').get(function (req, res) {
+      if (req.session.user)
+        res.sendFile(path.resolve('./public/profile/profile.html'));
+      else
+        res.redirect('/Quizzipedia/home');
+    });
+
+    app.route('/Quizzipedia/recover_pswd').get(function (req, res) {
+      if (req.session.user)
+        res.redirect('/');
+      else
+        res.sendFile(path.resolve('./public/authentic/recover_pswd.html'));
+    });
+
+    app.route('/Quizzipedia/profile/change_pswd').get(function (req, res) {
+      if (req.session.user)
+        res.sendFile(path.resolve('./public/profile/changePswd.html'));
+      else
+        res.redirect('/Quizzipedia/home');
     });
 };

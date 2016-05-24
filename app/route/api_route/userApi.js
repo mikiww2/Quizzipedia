@@ -1,4 +1,5 @@
-var controller = require('../../controller/authController');
+var authenticationM = require('../../controller/authenticationManager');
+var profileM = require('../../controller/profileManager');
 var User = require('../../model/user.model');
 
 function getUsers(res) {
@@ -50,12 +51,35 @@ module.exports = function (app) {
 
     });
 */
-    app.post('/auth/signin',function (req, res, next) {
-      controller.signin(req, res);
-    });
 
-    app.post('/auth/signup',function (req, res, next) {
-      controller.signup(req, res);
-    });
+	//AUTENTICAZIONE--------------------------------------------------------
+  app.post('/api/auth/signin',function (req, res, next) {
+    authenticationM.signin(req, res);
+  });
 
+  app.post('/api/auth/signin_with_token',function (req, res, next) {
+    authenticationM.signin_with_token(req, res);
+  });
+
+  app.post('/api/auth/signup',function (req, res, next) {
+    authenticationM.signup(req, res);
+  });
+
+  app.post('/api/auth/recover_pswd',function (req, res, next) {
+    authenticationM.recoverPswd(req, res);
+  });
+
+  //PROFILO----------------------------------------------------------------
+  app.get('/api/profile/get_user',function (req, res, next) {
+    profileM.getUser(req, res);
+  });
+
+  app.post('/api/profile/set_pswd',function (req, res, next) {
+    profileM.setPassword(req, res);
+  });
+/*
+  app.get('/api/profile/get_pswd',function (req, res, next) {
+    profileM.getPassword(req, res);
+  });
+*/
 };

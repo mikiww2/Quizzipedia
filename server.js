@@ -12,13 +12,15 @@ var morgan = require('morgan');
 // configuration ===============================================================
 mongoose.connect(database.localUrl); 	// Connect to local MongoDB instance.
 app.use('/Quizzipedia',express.static(__dirname));  // statics resources for all /Quizzipedia path
+app.use('/Quizzipedia/profile',express.static(__dirname));  // statics resources for all /Quizzipedia/profile path
 
 app.use(morgan('dev')); // log every request to the console
 
 app.use(session({
 	secret: "cat",
 	resave: true,
-	saveUninitialized: true
+	saveUninitialized: true,
+	cookie: { maxAge: 3600000 } //1h session
 }));
 
 app.use(b_parser.json());

@@ -1,17 +1,27 @@
-angular.module().controller('CtrlUserManager',['NoRole','Student','Teacher','Director','$scope','$http',function(NoRole,Student,Teacher,Director,$scope,$http){
+angular.module('profilemanager',[]).controller('CtrlUserManager',['$scope','$http',function($scope,$http){
     
     $scope.user = {};
     
     $scope.oldPsw = null;
     $scope.newPsw = null;
-    $scope.cNewPsw = null;        
+    $scope.cNewPsw = null;
+    $scope.recovering = false;  //indica se è un cambio pswd normale o un recuperoPswd
+    $scope.emptystring = "";  //necessaria in caso cambio pswd normale
+
+    $http.get('/api/profile/get_user').success(function(response){
+        $scope.user = response;
+        if(response.tmpPassword)  //nel caso ci si trovi nella pagina recuperoPswd
+            $scope.recovering = true;
+    });
     
     $scope.changePsw = function(){
         
-        /*
-        Se la oldPsw è corretta allora invio al server una richiesta di 
-        cambio password passando al server la nuova psw e la mail dell'utente
-        */
+        $scope.tmp_pswd = null;
+
+    $http.get('/api/profile/get_pswd').success(function(response){
+        $scope.user = response;
+        $scope.recovering = false;
+    });
         
         
     };

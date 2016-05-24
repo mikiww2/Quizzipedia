@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="profilemanager">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="./node_modules/angular/angular.min.js"></script>
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../assets/img/favicon.ico.png">
+    <link rel="icon" href="./assets/img/favicon.ico">
 
-    <title>Profile</title>
+    <title>Profilo</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- <link href="./assets/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
 
 	<!-- quizzipedia.base.css -->
-	<link href="../../assets/css/quizzipedia.base.css" rel="stylesheet">
+	<link href="./assets/css/quizzipedia.base.css" rel="stylesheet">
 	
 	<!-- Merge others eventually -->
-	<link href="../../assets/css/profile.css" rel="stylesheet">
+	<link href="./assets/css/profile.css" rel="stylesheet">
+
+	<script type="text/javascript" src="./public/profile/CtrlUserManager.js" ></script>
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -33,19 +36,19 @@
   </head>
 
   <body>
-	<div class="container">
+	<div class="container" ng-controller="CtrlUserManager">
 	  <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div class="col-lg-12">
-          <h6 class="description">PROFILE</h6>
+          <h4 class="description text-center">PROFILO</h4>
           <div class="row pt-md">
           <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
               <div class="img-box">
-                <img src="../../assets/img/portraits/usr1.jpg" class="img-responsive">
+                <img src="./assets/img/portraits/usr2.jpg" class="img-responsive">
 				
 				<!-- only show if user is looking at OWN profile-->
 				<ul class="text-center" id="showText">
-				<a href="#" data-title="Change" data-toggle="modal" data-target="#change"><li><i class="glyphicon glyphicon-upload"></i></li></a><p class="hiddenText">Change</p>
+				<a href="#" data-title="Change" data-toggle="modal" data-target="#change"><li><i class="glyphicon glyphicon-upload"></i></li></a><p class="hiddenText">Cambia immagine</p>
 				</ul>
 				<!-- -->
 				
@@ -56,17 +59,18 @@
 				<!-- -->
 				
               </div>
-              <h1>John Doe</h1>
-			<p>Member since [date]</p>
+              <h1 class="text-center">{{ user.firstName }} {{ user.lastName }}</h1>
+			<p class="text-center">Membro dal 12/04/2016</p>
             </div>
-			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 profile">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 profile">
 			<ul>
-			<h6 class="description">AFFILIATIONS</h6>
+			<h6><i class="glyphicon glyphicon-education"></i> ENTI</h6>
 			<!-- dynamically load up institutions the user is part of -->
-			<li>Institution1 - Student</li>
-			<li>Institution2 - Student</li>
-			<li>Institution3 - Teacher</li>
-			</ul>
+			<div class="list-group">
+				<a href="#" class="list-group-item">Università X - Studente</a>
+				<a href="#" class="list-group-item">Istituto patente - Studente</a>
+				<a href="#" class="list-group-item">Scuola media Y - Docente</a>
+			</div>
 			</div>
 		</div>
 	</div>
@@ -78,22 +82,22 @@
 			<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button> <!-- dismiss popup button (x) -->
-				<h4 class="modal-title custom_align" id="Heading">Upload your profile picture</h4>
+				<h4 class="modal-title custom_align" id="Heading">Carica la tua immagine profilo</h4>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<span class="help-block"><p id="characterLeft" class="help-block ">The image must be under [max size].</p></span>
+					<span class="help-block"><p id="characterLeft" class="help-block ">L'immagine deve essere inferiore a [max size].</p></span>
 					<!-- upload image, layout kinda fcked up -->
 					<div class="fileupload fileupload-new" data-provides="fileupload">
 					  <div class="fileupload-preview thumbnail"></div>
 					  <div>
-						<span class="btn btn-default btn-file"><span>Select image</span><input type="file" /></span>
-						<a href="#" class="btn fileupload-exists" data-dismiss="fileupload"> Remove</a>
+						<span class="btn btn-default btn-file"><span>Seleziona l'immagine</span><input type="file" /></span>
+						<a href="#" class="btn fileupload-exists" data-dismiss="fileupload"> Rimuovi</a>
 					  </div>
 					  <!-- end of upload image -->
 					</div>
 				</div>
-				<div class=text-right><button type="submit" class="btn btn-primary">Save</button></div>
+				<div class=text-right><button type="submit" class="btn btn-primary">Salva</button></div>
 			</div>
 		</div>
 	</div>

@@ -28,6 +28,35 @@ var questionSchema = new Schema({
     
 }, { strict: true });
 
+//get Questions with topic
+questionSchema.methods.getQuestionsByTopic = function(topic) {
+  return this.find({ topic: this.topic });
+}
+
+//get Questions with title
+questionSchema.methods.getQuestionsByTitle = function(title) {
+  return this.find({ title: this.title });
+}
+
+//get Questions with keywords
+questionSchema.methods.getQuestionsByKeywords = function(keywords) {
+    var result = this.find();
+    keywords.forEach(function(entry) {
+        result = result.find({ keywords: {$in: entry}});
+    });
+    return result;
+}
+
+//get Questions with difficulty
+questionSchema.methods.getQuestionsByDifficulty = function (difficulty) {
+  return this.find({ difficulty: this.difficulty });
+}
+
+//get Questions with author
+questionSchema.methods.getQuestionsByAuthor = function (author) {
+  return this.find({ author: this.author });
+}
+
 //find Questions with topic
 questionSchema.methods.findQuestionsByTopic = function(topic) {
   return this.model('Question').find({ topic: this.topic });

@@ -51,7 +51,7 @@ resultQuizSchema.virtual('result').get(function () {
     };
 });
 
-//find mean results Question, return [total, passed]
+//get results Question, return [total, passed]
 resultQuizSchema.methods.findMeanResultsQuestion = function (question) {
     
     if(question.constructor.name != 'ObjectID')

@@ -1,4 +1,4 @@
-angular.module('registration',[]).controller('CtrlData',['$scope','$http','$window',function($scope,$http,$window){
+angular.module('Registration').controller('CtrlData',['$scope','$http','$window',function($scope,$http,$window){
     
     $scope.user = {
       

@@ -34,12 +34,22 @@ userSchema.virtual('fullName').get(function () {
     return this.firstName + ' ' + this.lastName;
 });
 
-//use for login
+//get email
+userSchema.virtual('mail').get(function () {
+    return _id;
+});
+
+//check user password
 userSchema.static.checkPassword = function (password) {
     if(this.password == password)
         return true;
     else
         return false;
+}
+
+//find user
+userSchema.methods.findUser = function (mail) {
+    return this.model('User').findOne({ _id: nale });
 }
 
 //export

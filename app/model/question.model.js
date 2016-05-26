@@ -11,6 +11,7 @@ var questionSchema = new Schema({
         ,required: [true, 'qml question is required']
         }
     ,topic: String
+    ,title: String
     ,keywords: [String]
     ,difficulty: {
         type: Number
@@ -28,12 +29,17 @@ var questionSchema = new Schema({
 }, { strict: true });
 
 //find Questions with topic
-questionSchema.methods.findQuestionsByTopic = function (topic) {
+questionSchema.methods.findQuestionsByTopic = function(topic) {
   return this.model('Question').find({ topic: this.topic });
 }
 
+//find Questions with title
+questionSchema.methods.findQuestionsByTitle = function(title) {
+  return this.model('Question').find({ title: this.title });
+}
+
 //find Questions with keywords
-questionSchema.methods.findQuestionsByKeywords = function (keywords) {
+questionSchema.methods.findQuestionsByKeywords = function(keywords) {
     var result = this.model('Question').find();
     keywords.forEach(function(entry) {
         result = result.find({ keywords: {$in: entry}});
@@ -50,12 +56,6 @@ questionSchema.methods.findQuestionsByDifficulty = function (difficulty) {
 questionSchema.methods.findQuestionsByAuthor = function (author) {
   return this.model('Question').find({ author: this.author });
 }
-
-// //find Questions with attibutes
-// questionSchema.methods.findQuestionsByAttribute = function (topic, keywords, difficulty, author) {
-//     //
-//   return this.model('Organization').find({ director: this.director });
-// }
 
 //export
 module.exports =  mongoose.model('Question', questionSchema);

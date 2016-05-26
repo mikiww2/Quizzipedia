@@ -34,9 +34,16 @@ userSchema.virtual('fullName').get(function () {
     return this.firstName + ' ' + this.lastName;
 });
 
-//get email
+//get mail
 userSchema.virtual('mail').get(function () {
-    return _id;
+    return this._id;
+});
+
+//set mail, call with xxx.set('mail', 'pipppppooooo');
+userSchema.virtual('mail').get(function () {
+    return this.user;
+}).set(function (mail) {
+  this.set('_id', mail);
 });
 
 //check user password

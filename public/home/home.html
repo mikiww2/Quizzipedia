@@ -76,7 +76,8 @@
         <home-page-teacher ng-show="currentHeader == 'loggedTeacher'"></home-page-teacher>
         
         <input type="button" name="viewpage" value="clicca" ng-click="loadCurrentHeader(index)">
-        {{index | json}}
+        <input type="button" name="carica" value="load" ng-click="loadUser()">
+        {{user | json}}
 	
 		</div>
   </body>

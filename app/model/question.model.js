@@ -16,7 +16,7 @@ var questionSchema = new Schema({
     ,difficulty: {
         type: Number
         ,min: 1
-        ,max: 5
+        ,max: 4
         ,required: [true, 'difficulty is required']
         
     }

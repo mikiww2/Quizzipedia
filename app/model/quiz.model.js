@@ -18,6 +18,13 @@ var quizSchema = new Schema({
     ,classes: [Schema.Types.ObjectId]
     ,topics: [String]
     ,description: [String]
+    ,difficulty: {
+        type: Number
+        ,min: 1
+        ,max: 4
+        ,required: [true, 'difficulty is required']
+        
+    }
     ,questions: [Schema.Types.ObjectId]
     ,keywords: [String]
     ,title: {
@@ -64,6 +71,11 @@ quizSchema.methods.getQuizByTitle = function(title) {
   return this.find({ title: this.title });
 }
 
+//get Quiz with difficulty
+quizSchema.methods.getQuizByDifficulty = function(difficulty) {
+  return this.find({ difficulty: this.difficulty });
+}
+
 //get Quiz with author
 quizSchema.methods.getQuizsByAuthor = function (author) {
   return this.find({ author: this.author });
@@ -90,6 +102,11 @@ quizSchema.methods.findQuizByKeywords = function(keywords) {
 //find Quiz with title
 quizSchema.methods.findQuizByTitle = function(title) {
   return this.model('Quiz').find({ title: this.title });
+}
+
+//find Quiz with difficulty
+quizSchema.methods.findQuizByDifficulty = function(difficulty) {
+  return this.model('Quiz').find({ difficulty: this.difficulty });
 }
 
 //find Quiz with author

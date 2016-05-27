@@ -67,4 +67,14 @@ module.exports = function (app) {
       else
         res.redirect('/Quizzipedia/home');
     });
+
+    //ABOUT US ---------------------------------------------------------------------------------------
+    app.route('/Quizzipedia/aboutUs').get(function (req, res) {
+      res.sendFile(path.resolve('./public/aboutUs.html'));
+    });
+
+    //SEARCH ---------------------------------------------------------------------------------------
+    app.route('/Quizzipedia/searchQuiz').get(function (req, res) {
+      res.sendFile(path.resolve('./public/search/searchQuizzes.html'));
+    });
 };

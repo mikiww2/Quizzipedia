@@ -25,13 +25,14 @@
 										 <form class="form" role="form" method="post" action="/api/auth/signin" accept-charset="UTF-8" id="login-nav">
 												<div class="form-group">
 													 <label class="sr-only" for="inputEmail">Indirizzo email</label>
-													 <input type="email" class="form-control" id="inputEmail" placeholder="Email address" required>
+													 <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email address" required>
 												</div>
 												<div class="form-group">
 													 <label class="sr-only" for="inputPassword">Password</label>
-													 <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
-													 <div class="help-block text-right"><a href="/Quizzipedia/recover_pswd">Hai dimenticato la tua password?</a></div>
+													 <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" required>
+													 <div class="help-block text-right"><a href="">Hai dimenticato la tua password?</a></div>
 												</div>
+												<input type="hidden" id="url" name="url" value="">
 												<div class="form-group">
 													 <button type="submit" class="btn btn-primary btn-block">Accedi</button>
 												</div>

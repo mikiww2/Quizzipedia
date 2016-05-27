@@ -1,133 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../favicon.ico">
-
-    <title>Create Question</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../../bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-	<!-- quizzipedia.base.css -->
-	<!-- quizzipedia.base.css -->
-	<link href="../../css/quizzipedia.base.css" rel="stylesheet">
-	
-	<!-- Merge others eventually -->
-	<link href="../../css/forms.css" rel="stylesheet">
-	
-	<!-- select2.js -->
-	<link href="../../js/select2-4.0.2/dist/css/select2.min.css" rel="stylesheet" />
-	<script src="../../js/select2-4.0.2/dist/js/select2.min.js"></script>
-	
-	<!-- chained.js -->
-	<script src="../../js/jquery.chained.min.js"></script>
-	
-	<!-- fabric.js -->
-	<script src="../../js/fabric.js-1.6.1/dist/fabric.min.js"></script>
-	
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	
-  </head>
-
-  <body>
-	<div class="container">        
-	<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Create a question</h2></div>
-      <form class="form">
-		<!-- title -->
-		<div class="form-group row">
-			<label for="inputTitle" class=" form-control-label">Title</label>
-			<input type="text" class="form-control" id="inputTitle" placeholder="Title" required autofocus>
-		</div>
-		<!-- description -->
-		<div class="form-group row">
-			<label for="inputDescription" class=" form-control-label">Description</label>
-			<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Description" maxlength="140" rows="7" required></textarea>
-		</div>
-		<!-- upload thing here -->
-		<div class="form-group row">
-			<label for="inputDescription" class=" form-control-label">Upload</label><br>
-			<span class="btn btn-default btn-file">Browse <input type="file"></span>
-		</div>
-		<!-- topic-->
-		<div class="form-group row">
-			<fieldset class="form-group">
-				<label for="topic">Topic</label>
-				<select class="form-control" id="topic">
-				<!-- load options from existing topics -->
-				  <option>Art</option>
-				  <option>Computer Science</option>
-				  <option>Maths</option>
-				  <option>Physics</option>
-				</select>
-			</fieldset>
-		</div>
-		
-		<script type="text/javascript">
-			$(document).ready(function() {
-			  $("#topic").select2();
-			});
-		</script>
-		
-			<!-- diff level -->
-		<div class="form-group row">
-			<fieldset class="form-group">
-			<!-- idk the stars are cool, animate them w jquery if theres time -->
-				<label for="difficultyLevel">Livello di difficoltà <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i></label>
-				<select class="form-control" id="difficultyLevel">
-				  <option>Facile</option>
-				  <option>Media</option>
-				  <option>Difficile</option>
-				  <option>Molto difficile</option>
-				</select>
-			</fieldset>
-		</div>
-		
-		<div class="form-group row">
-			<fieldset class="form-group">
-			<label for="inputTags">Parole chiave</label>
-			<select id="inputTags" multiple="multiple" class="form-control">
-			</select>
-			<script>
-			$('#inputTags').select2({
-				tags: true,
-				tokenSeparators: [','], 
-				placeholder: "Add your tags here"
-			});
-			</script>
-			</fieldset>
-		</div>
-		
-		
-		<!-- type - changes last part -->
-		<div class="form-group row">
-			<fieldset class="form-group">
-				<label for="qtype">Tipo</label>
-				<select class="form-control" id="qtype">
-				  <option value="mtch">Collegamenti</option>
-				  <option value="cmpl">Completamento</option>
-				  <option value="open">Risposta aperta</option>
-				  <option value="mult">Risposta multipla</option>
-				  <option value="trfs">Vero/Falso</option> 
-				</select>
-			</fieldset>
-		</div>
-		
-		<!-- answers -->
+<!-- answers -->
 		<div class="form-group row">
 			<label>Answers</label>
 				<!-- new upload -->
@@ -178,11 +49,14 @@
 				</script>
 		</div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Confirm</button>
-      </form>
-    </div> <!-- /container -->
-	
-	<!-- new viable answer popup -->
+
+
+
+
+
+
+
+<!-- new viable answer popup -->
 	<div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="new" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -202,12 +76,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- end of add popup --> 
-  </body>
-</html>
-
-
-
-
+	<!-- end of add popup -->
 
 

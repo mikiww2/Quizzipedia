@@ -24,31 +24,9 @@ var userClassSchema = new Schema({
 
 userClassSchema.index({user: 1}, {unique: true});
 
-//get allowed students
-userClassSchema.statics.getStudents = function () {
-    return this.find({ role: 'student', state: 'allowed' });
-}
-
-//get allowed teachers
-userClassSchema.statics.getTeachers = function () {
-    return this.find({ role: 'teacher', state: 'allowed' });
-}
-
-//get user requestClass
-userClassSchema.statics.getRequests = function () {
-    return this.find({ state: 'requested' });
-}
-
 //get mail
-userClassSchema.virtual('mail').get(function () {
+userClassSchema.virtual('mail').get(function() {
     return this.user;
-});
-
-//set mail, call with xxx.set('mail', 'pipppppooooo');
-userClassSchema.virtual('mail').get(function () {
-    return this.user;
-}).set(function (mail) {
-  this.set('_id', mail);
 });
 
 //class
@@ -77,40 +55,35 @@ classSchema.index({
     ,name: 1
 }, {unique: true});
 
-classSchema.statics.findClass = function (name, year) {
-    return this.find({ name: name, academicYear: year });
-}
-
 //students
-classSchema.virtual('students').get(function () {
-    return this.users.getStudents();
+classSchema.virtual('students').get(function() {
+    return this.users.find({ role: 'student', state: 'allowed' });
 });
 
 //teachers
-classSchema.virtual('teachers').get(function () {
-    return this.users.getTeachers();
+classSchema.virtual('teachers').get(function() {
+    return this.users.find({ role: 'teacher', state: 'allowed' });
 });
 
 //classRequests
-classSchema.virtual('classRequests').get(function () {
-    return this.users.getRequests();
+classSchema.virtual('classRequests').get(function() {
+    return this.users.find({ state: 'requested' });
 });
 
 //class has Student, return Boolean
-classSchema.methods.hasStudent = function (user_mail) {
-    if(this.findOne({ students: { $in: user_mail }}))
-        return true;
-    else
-        return false;
-}
+classSchema.methods.hasStudent = function(user_mail) {
+    return !!this.findOne({students: {$in: user_mail}});
+};
 
 //class has Teacher, return Boolean
-classSchema.methods.hasTeacher = function (user_mail) {
-    if(this.findOne({ teachers: { $in: user_mail }}))
-        return true;
-    else
-        return false;
-}
+classSchema.methods.hasTeacher = function(user_mail) {
+    return !!this.findOne({teachers: {$in: user_mail}});
+};
+
+//class has classRequests, return Boolean
+classSchema.methods.hasClassRequests = function(user_mail) {
+    return !!this.findOne({classRequests: {$in: user_mail}});
+};
 
 //user in institution
 var userIstitutionSchema = new Schema({
@@ -134,31 +107,9 @@ var userIstitutionSchema = new Schema({
 userIstitutionSchema.index({user: 1}, {unique: true});
 
 //get mail
-userIstitutionSchema.virtual('mail').get(function () {
+userIstitutionSchema.virtual('mail').get(function() {
     return this.user;
 });
-
-//set mail, call with xxx.set('mail', 'pipppppooooo');
-userIstitutionSchema.virtual('mail').get(function () {
-    return this.user;
-}).set(function (mail) {
-  this.set('_id', mail);
-});
-
-//get allowed students
-userIstitutionSchema.statics.getStudents = function () {
-    return this.find({ role: 'student', state: 'allowed' });
-}
-
-//get allowed teachers
-userIstitutionSchema.statics.getTeachers = function () {
-    return this.find({ role: 'teacher', state: 'allowed' });
-}
-
-//get user requestClass
-userIstitutionSchema.statics.getRequests = function () {
-    return this.find({ state: 'requested' });
-}
 
 //organisation
 var organisationSchema = new Schema({
@@ -182,65 +133,64 @@ var organisationSchema = new Schema({
 
 organisationSchema.index({director: 1}, {unique: true});
 
-//find Organization with a director
-organisationSchema.methods.findOrganisationByDirector = function (director_mail) {
-  return this.model('Organization').find({ director: this.director });
-}
+//find Organization with a director (scope = collection)
+organisationSchema.statics.findOrganisationByDirector = function(director_mail) {
+  return this.find({ director: director_mail });
+};
 
-//find Classes with a Student, return [istitution, class_year, class_name]
-organisationSchema.methods.findClassesWithStudent = function (student_mail) {
+//find Classes with a Student, return [istitution, class_year, class_name]  (scope = collection)
+organisationSchema.statics.findClassesWithStudent = function(student_mail) {
     var result = { };
-    
-    this.model('Organization').find().forEach(function(institution) {
-        if(institution.InstitutionhasStudent(student_mail)) {
+
+    this.find().forEach(function(institution) {
+        if(institution.hasStudent(student_mail)) {
             institution.classes.forEach(function(cls) {
                 if(cls.hasStudent(student_mail))
                     result.push({
                         istitution: institution
-                        , class_year: cls.academicYear
-                        , class_name: cls.name
+                        ,class_year: cls.academicYear
+                        ,class_name: cls.name
                     });
             });
         }
     });
     return result;
-}
+};
 
-//get class
-organisationSchema.methods.getClass = function (istitution, name, year) {
-    return this.findOne({ _id: istitution }).classes.findClass(name, year);
-}
+//find Organisations
+organisationSchema.statics.findOrganisations = function() {
+    return this.find({ });
+};
 
 //students
-organisationSchema.virtual('students').get(function () {
-    return this.users.getStudents();
+organisationSchema.virtual('students').get(function() {
+    return this.users.find({ role: 'student', state: 'allowed' });
 });
 
 //teachers
-organisationSchema.virtual('teachers').get(function () {
-    return this.users.getTeachers();
+organisationSchema.virtual('teachers').get(function() {
+    return this.users.find({ role: 'teacher', state: 'allowed' });
 });
 
 //classRequests
-organisationSchema.virtual('roleRequests').get(function () {
-    return this.users.getRequests();
+organisationSchema.virtual('roleRequests').get(function() {
+    return this.users.find({ state: 'requested' });
 });
 
 //Institution has Student, return Boolean
-organisationSchema.methods.hasStudent = function (user_mail) {
-    if(this.findOne({ students: { $in: user_mail }}))
-        return true;
-    else
-        return false;
-}
+organisationSchema.methods.hasStudent = function(user_mail) {
+    return !!this.findOne({students: {$in: user_mail}});
+};
 
 //Institution has Teacher, return Boolean
-organisationSchema.methods.hasTeacher = function (user_mail) {
-    if(this.findOne({ teachers: { $in: user_mail }}))
-        return true;
-    else
-        return false;
-}
+organisationSchema.methods.hasTeacher = function(user_mail) {
+    return !!this.findOne({teachers: {$in: user_mail}});
+};
+
+//Institution has RoleRequest, return Boolean
+organisationSchema.methods.hasRoleRequest = function(user_mail) {
+    return !!this.findOne({roleRequests: {$in: user_mail}});
+};
 
 //export
 module.exports = mongoose.model('Organization', organisationSchema);

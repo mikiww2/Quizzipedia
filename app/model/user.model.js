@@ -1,4 +1,4 @@
-'use strict'; //will load js in strict mode
+// 'use strict'; //will load js in strict mode
 
 //declare required
 var mongoose = require('mongoose');
@@ -47,17 +47,19 @@ userSchema.virtual('mail').get(function () {
 });
 
 //check user password
-userSchema.static.checkPassword = function (password) {
-    if(this.password == password)
-        return true;
-    else
-        return false;
-}
+userSchema.methods.checkPassword = function checkPassword(password) {
+    return password == this.password;
+};
 
 //find user
-userSchema.methods.findUser = function (mail) {
-    return this.model('User').findOne({ _id: nale });
-}
+userSchema.statics.findUser = function findUser(mail) {
+    return this.findOne({ _id: mail });
+};
+
+//has user
+userSchema.statics.hasUser = function hasUser(mail) {
+    return !!this.findOne({ _id: mail });
+};
 
 //export
 module.exports = mongoose.model('User', userSchema);

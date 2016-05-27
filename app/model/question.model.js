@@ -28,63 +28,34 @@ var questionSchema = new Schema({
     
 }, { strict: true });
 
-//get Questions with topic
-questionSchema.methods.getQuestionsByTopic = function(topic) {
-  return this.find({ topic: this.topic });
-}
+//find Questions with topic (scope = collection)
+questionSchema.statics.findQuestionsByTopic = function(topic) {
+  return this.find({ topic: topic });
+};
 
-//get Questions with title
-questionSchema.methods.getQuestionsByTitle = function(title) {
-  return this.find({ title: this.title });
-}
+//find Questions with title (scope = collection)
+questionSchema.statics.findQuestionsByTitle = function(title) {
+  return this.find({ title: title });
+};
 
-//get Questions with keywords
-questionSchema.methods.getQuestionsByKeywords = function(keywords) {
+//find Questions with keywords (scope = collection)
+questionSchema.statics.findQuestionsByKeywords = function(keywords) {
     var result = this.find();
     keywords.forEach(function(entry) {
         result = result.find({ keywords: {$in: entry}});
     });
     return result;
-}
+};
 
-//get Questions with difficulty
-questionSchema.methods.getQuestionsByDifficulty = function (difficulty) {
-  return this.find({ difficulty: this.difficulty });
-}
+//find Questions with difficulty (scope = collection)
+questionSchema.statics.findQuestionsByDifficulty = function(difficulty) {
+  return this.find({ difficulty: difficulty });
+};
 
-//get Questions with author
-questionSchema.methods.getQuestionsByAuthor = function (author) {
-  return this.find({ author: this.author });
-}
-
-//find Questions with topic
-questionSchema.methods.findQuestionsByTopic = function(topic) {
-  return this.model('Question').find({ topic: this.topic });
-}
-
-//find Questions with title
-questionSchema.methods.findQuestionsByTitle = function(title) {
-  return this.model('Question').find({ title: this.title });
-}
-
-//find Questions with keywords
-questionSchema.methods.findQuestionsByKeywords = function(keywords) {
-    var result = this.model('Question').find();
-    keywords.forEach(function(entry) {
-        result = result.find({ keywords: {$in: entry}});
-    });
-    return result;
-}
-
-//find Questions with difficulty
-questionSchema.methods.findQuestionsByDifficulty = function (difficulty) {
-  return this.model('Question').find({ difficulty: this.difficulty });
-}
-
-//find Questions with author
-questionSchema.methods.findQuestionsByAuthor = function (author) {
-  return this.model('Question').find({ author: this.author });
-}
+//find Questions with author (scope = collection)
+questionSchema.statics.findQuestionsByAuthor = function(author) {
+  return this.find({ author: author });
+};
 
 //export
 module.exports =  mongoose.model('Question', questionSchema);

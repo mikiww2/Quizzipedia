@@ -17,8 +17,8 @@ var userClassSchema = new Schema({
     }
     ,state: {
         type: String
-        ,default: 'request'
-        ,enum: ['request','allowed']
+        ,default: 'requested'
+        ,enum: ['requested','allowed']
     }
 }, { strict: true });
 
@@ -36,7 +36,7 @@ userClassSchema.statics.getTeachers = function () {
 
 //get user requestClass
 userClassSchema.statics.getRequests = function () {
-    return this.find({ state: 'request' });
+    return this.find({ state: 'requested' });
 }
 
 //get mail
@@ -126,8 +126,8 @@ var userIstitutionSchema = new Schema({
     ,message: String
     ,state: {
         type: String
-        ,default: 'request'
-        ,enum: ['request','allowed']
+        ,default: 'requested'
+        ,enum: ['requested','allowed']
     }
 }, { strict: true });
 
@@ -157,7 +157,7 @@ userIstitutionSchema.statics.getTeachers = function () {
 
 //get user requestClass
 userIstitutionSchema.statics.getRequests = function () {
-    return this.find({ state: 'request' });
+    return this.find({ state: 'requested' });
 }
 
 //organisation

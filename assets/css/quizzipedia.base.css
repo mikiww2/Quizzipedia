@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Quicksand:400,300);
+@import url(https://fonts.googleapis.com/css?family=Raleway);
 
 body{
     font-family: 'Quicksand', sans-serif;
@@ -7,11 +8,357 @@ body{
     padding:75px 0;
 }
 
-h6.description, h4.description{
+h1, h2, h3, h4, h5, h6 {
+	color: #22A7F0;
+	font-family: 'Raleway', sans-serif;
+	text-transform: uppercase;
 	font-weight: bold;
 	letter-spacing: 2px;
-	color: #999;
-	border-bottom: 1px solid rgba(0, 0, 0,0.1);
+}
+
+h6.description, h4.description, h3.description{
+	border-bottom: 1px solid rgba(0, 0, 0,0.3);
 	padding-bottom: 5px;
 }
 
+.btn {
+	border-radius: 0px;
+}
+
+.btn-wrap {
+	white-space: normal;
+}
+
+.btn-primary {
+	background-color: #22A7F0;
+	border-color: #22A7F0;
+}
+
+.btn-success{
+	background-color: #179917;
+	border-color: #179917;
+}
+
+.btn-danger{
+	background-color: #e14825;
+	border-color: #e14825;
+}
+
+.qTable {
+	margin-top: 10px;
+}
+
+.qTable tbody tr:hover td, .qTable tbody tr:hover th {
+  
+}
+
+/* row padding */
+.qTable>tbody>tr>td {
+	padding: 2px;
+	padding-left: 8px;
+}
+
+.qTable .btn {
+	padding:10px 15px;
+}
+
+.qTable thead{
+	background-color: #22A7F0; 
+	color: white;
+	text-transform: uppercase;
+}
+
+.btn-create {
+	margin-bottom: 10px;
+	padding:10px 15px;
+}
+
+.breadcrumb {
+     background-color: #22A7F0;
+     border-radius: 0;
+	 padding-left: 20px;
+     -moz-border-radius: 0;
+     -webkit-border-radius: 0;
+     -o-border-radius: 0;
+}
+
+.breadcrumb, .breadcrumb a {
+    color: #333333;
+}
+
+.breadcrumb a:hover {
+     text-decoration: none;
+	 color: white;
+}
+
+.breadcrumb > .active {
+     color: white;
+}
+
+.breadcrumb > li + li:before {
+     content: "\00BB";
+     color: #333333;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+	background-color:  #22A7F0;
+}
+ 
+ .panel-default i{
+	color: #22A7F0;
+}
+
+.panel-default .panel-footer{
+	background-image: none;
+    background-color: #22A7F0;
+	color: white;
+}
+
+.panel-default .panel-footer i {
+	color:white;
+}
+
+.panel-default .badge {
+	/* background-color: #22A7F0;*/
+}
+
+.huge{
+	font-family: 'Raleway', sans-serif;
+	font-weight: bold;
+	font-size: 1.5em;
+	color: #e14825;
+}
+
+.adminPanels .panel-default .label-danger{
+	background-color: #ffcb35;
+}
+
+.qPanel {
+	margin-top:20px;
+	max-width:800px;
+	margin: 10px auto;
+	max-height: 800px;
+	font-size: 1.1em;
+}
+
+.qPanel .panel-heading {
+	background-image: none;
+    background-color: #22A7F0;
+	color: white;
+}
+
+.panel-default .panel-heading i{
+	color: #ffcb35;
+}
+
+ .qPanel .panel-heading h6 {
+	 color: white;
+ }
+
+.qPanel a{
+	text-decoration: none;
+	color: #22A7F0;
+}
+
+.qPanel .panel-body {
+	background-color: #eeeeee;
+}
+
+.instClass {
+	padding: 5px 20px;
+	margin-bottom: 10px;
+}
+
+.tinybox {
+	width: 110px;
+	height: 80px;
+	border: 1px solid #d6d6d6;
+	border-radius: 5px;
+	margin-right: 20px;
+	box-shadow: 0 0 3px #eeeeee;
+	background-color: white;
+}
+
+.tinybox p{
+	padding-top: 10px;
+	font-family: 'Raleway', sans-serif;
+	letter-spacing: 2px;
+	color: #22A7F0;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.qPanel .panel-title {
+	padding-top: 15px;
+	font-size: 1.5em;
+}
+
+.quizDescr {
+	max-width: 400px;
+	margin: 20px auto;
+}
+
+.quizDescr .panel-body {
+	background-color: white;
+}
+
+#startQuiz{
+	width: 100px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.adminPanels {
+	margin: 0 auto;
+}
+
+.nextBtn {
+	margin-right: 20px;
+}
+
+.diffStars i {
+	color: #ffcb35;
+}
+
+.qPanel .well {
+	background-color: white;
+}
+
+/*
+.panel-blue > .panel-heading {
+    background-image: none;
+    background-color: #22A7F0;
+    color: white;
+}
+*/
+
+.nextBtn i, .prevBtn i  {
+	color: white;
+}
+
+.prevBtn {
+	margin-left: 5px;
+}
+
+.label-yellow {
+	background-color: #ffcb35;
+	font-size: 1.1em;
+}
+
+.carousel-inner img{
+	width: 100%;
+	height: 100%;
+}
+
+.carousel h1{
+	color: white;
+}
+
+.label-as-badge {
+	 border-radius: 1em;
+	 padding: 5px 10px ;
+}
+
+.font-fix {
+	color: #333333;
+}
+
+.qNumber {
+	font-size:1.1em;
+	padding: 10px;
+	margin-top: 5px;
+}
+
+.qFooting {
+	margin-top: 15px;
+	margin-bottom: 5px;
+}
+
+.qNumber .qCurrent {
+	color: #ffcb35;
+}
+
+.qCanvas {
+	background-color: white;
+	border-radius: 5px;
+}
+
+.success{
+	color: #179917;
+}
+
+#searchResults{
+	margin: 0 auto;
+}
+
+#searchBar{
+	margin-right: 40px;
+}
+
+.danger{
+	color: #e14825;
+}
+
+.dropOrder{
+	padding-bottom: 10px;
+}
+
+.qResult .panel-heading {
+	background-color: white;
+	color: #22A7F0;
+}
+
+.qResult .panel-body{
+	background-color: #ffcb35;
+}
+
+.qResult .panel-heading h3 {
+	padding-bottom: 15px;
+}
+
+.userMgmt, #topicList {
+	margin: 0 auto;
+}
+
+.answerBlock textarea {
+	max-width: 200px;
+	max-height: 100px;
+	resize: both;
+}
+
+#classes {
+	width:500px; margin:0 auto;
+}
+
+#classes .badge, #instList .badge {
+	background-color: #ffcb35;
+}
+
+ #instList > .list-group-item{
+	background-color: #22A7F0;
+	color:white;
+	padding-bottom: 20px;
+}
+
+#instList .important{
+	color:white;
+}
+
+
+#classes .btn, #instList .btn{
+	background-color: #e14825;
+}
+
+
+.space {
+	padding-left: 10px;
+}
+
+.important{
+		text-transform: uppercase;
+		font-weight: bold;
+}
+
+#instList {
+	width: 800px; margin: 0 auto;
+}

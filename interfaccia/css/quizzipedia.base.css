@@ -16,7 +16,6 @@ h1, h2, h3, h4, h5, h6 {
 	letter-spacing: 2px;
 }
 
-
 h6.description, h4.description, h3.description{
 	border-bottom: 1px solid rgba(0, 0, 0,0.3);
 	padding-bottom: 5px;
@@ -319,4 +318,47 @@ h6.description, h4.description, h3.description{
 
 .userMgmt, #topicList {
 	margin: 0 auto;
+}
+
+.answerBlock textarea {
+	max-width: 200px;
+	max-height: 100px;
+	resize: both;
+}
+
+#classes {
+	width:500px; margin:0 auto;
+}
+
+#classes .badge, #instList .badge {
+	background-color: #ffcb35;
+}
+
+ #instList > .list-group-item{
+	background-color: #22A7F0;
+	color:white;
+	padding-bottom: 20px;
+}
+
+#instList .important{
+	color:white;
+}
+
+
+#classes .btn, #instList .btn{
+	background-color: #e14825;
+}
+
+
+.space {
+	padding-left: 10px;
+}
+
+.important{
+		text-transform: uppercase;
+		font-weight: bold;
+}
+
+#instList {
+	width: 800px; margin: 0 auto;
 }

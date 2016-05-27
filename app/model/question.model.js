@@ -28,34 +28,34 @@ var questionSchema = new Schema({
     
 }, { strict: true });
 
-//find Questions with topic (scope = collection)
-questionSchema.methods.findQuestionsByTopic = function findQuestionsByTopic(topic) {
-  return this.model('Question').find({ topic: this.topic });
-}
-
-//find Questions with title (scope = collection)
-questionSchema.methods.findQuestionsByTitle = function findQuestionsByTitle(title) {
-  return this.model('Question').find({ title: this.title });
-}
-
-//find Questions with keywords (scope = collection)
-questionSchema.methods.findQuestionsByKeywords = function findQuestionsByKeywords(keywords) {
-    var result = this.model('Question').find();
-    keywords.forEach(function(entry) {
-        result = result.find({ keywords: {$in: entry}});
-    });
-    return result;
-}
-
-//find Questions with difficulty (scope = collection)
-questionSchema.methods.findQuestionsByDifficulty = function findQuestionsByDifficulty(difficulty) {
-  return this.model('Question').find({ difficulty: this.difficulty });
-}
-
-//find Questions with author (scope = collection)
-questionSchema.methods.findQuestionsByAuthor = function findQuestionsByAuthor(author) {
-  return this.model('Question').find({ author: this.author });
-}
+// //find Questions with topic (scope = collection)
+// questionSchema.static.findQuestionsByTopic = function findQuestionsByTopic(topic) {
+//   return this.find({ topic: this.topic });
+// }
+// 
+// //find Questions with title (scope = collection)
+// questionSchema.static.findQuestionsByTitle = function findQuestionsByTitle(title) {
+//   return this.find({ title: this.title });
+// }
+// 
+// //find Questions with keywords (scope = collection)
+// questionSchema.static.findQuestionsByKeywords = function findQuestionsByKeywords(keywords) {
+//     var result = this.find();
+//     keywords.forEach(function(entry) {
+//         result = result.find({ keywords: {$in: entry}});
+//     });
+//     return result;
+// }
+// 
+// //find Questions with difficulty (scope = collection)
+// questionSchema.static.findQuestionsByDifficulty = function findQuestionsByDifficulty(difficulty) {
+//   return this.find({ difficulty: this.difficulty });
+// }
+// 
+// //find Questions with author (scope = collection)
+// questionSchema.static.findQuestionsByAuthor = function findQuestionsByAuthor(author) {
+//   return this.find({ author: this.author });
+// }
 
 //export
 module.exports =  mongoose.model('Question', questionSchema);

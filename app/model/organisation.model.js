@@ -178,34 +178,34 @@ var organisationSchema = new Schema({
 
 organisationSchema.index({director: 1}, {unique: true});
 
-//find Organization with a director (scope = collection)
-organisationSchema.static.findOrganisationByDirector = function findOrganisationByDirector(director_mail) {
-  return this.find({ director: this.director });
-}
+// //find Organization with a director (scope = collection)
+// organisationSchema.static.findOrganisationByDirector = function findOrganisationByDirector(director_mail) {
+//   return this.find({ director: this.director });
+// }
 
-//find Classes with a Student, return [istitution, class_year, class_name]  (scope = collection)
-organisationSchema.static.findClassesWithStudent = function findClassesWithStudent(student_mail) {
-    var result = { };
-    
-    this.find().forEach(function(institution) {
-        if(institution.InstitutionhasStudent(student_mail)) {
-            institution.classes.forEach(function(cls) {
-                if(cls.hasStudent(student_mail))
-                    result.push({
-                        istitution: institution
-                        , class_year: cls.academicYear
-                        , class_name: cls.name
-                    });
-            });
-        }
-    });
-    return result;
-}
+// //find Classes with a Student, return [istitution, class_year, class_name]  (scope = collection)
+// organisationSchema.static.findClassesWithStudent = function findClassesWithStudent(student_mail) {
+//     var result = { };
+//     
+//     this.find().forEach(function(institution) {
+//         if(institution.InstitutionhasStudent(student_mail)) {
+//             institution.classes.forEach(function(cls) {
+//                 if(cls.hasStudent(student_mail))
+//                     result.push({
+//                         istitution: institution
+//                         , class_year: cls.academicYear
+//                         , class_name: cls.name
+//                     });
+//             });
+//         }
+//     });
+//     return result;
+// }
 
-//find Organisations
-organisationSchema.static.findOrganisations = function findOrganisations() {
-    return this.find({ });
-}
+// //find Organisations
+// organisationSchema.static.findOrganisations = function findOrganisations() {
+//     return this.find({ });
+// }
 
 //students
 organisationSchema.virtual('students').get(function () {

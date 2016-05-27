@@ -11,10 +11,10 @@
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
 
-    <title>Creazione domanda</title>
+    <title>Create Question</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="./assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">  
+    <link href="./assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="./assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -25,7 +25,7 @@
 	<!-- Merge others eventually -->
 	<link href="./assets/css/forms.css" rel="stylesheet">
       
-    <!-- Merge others eventually -->
+      <!-- Merge others eventually -->
     <link href="./assets/css/header.css" rel="stylesheet">
 	
 	<!-- select2.js -->
@@ -34,6 +34,9 @@
 	
 	<!-- chained.js -->
 	<script src="./assets/js/jquery.chained.min.js"></script>
+      
+    <!-- fabric.js -->
+	<script src="../../js/fabric.js-1.6.1/dist/fabric.min.js"></script>  
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -41,12 +44,19 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
       
-      <!-- AngularJS -->
+       <!-- AngularJS -->
       <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
       
       <script type="text/javascript" src="./public/core.js"></script>
       <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
       <script type="text/javascript" src="./public/question_creation/CtrlQuestion.js"></script>
+      
+      <!-- DIRECTIVE QUESTION CREATION -->
+      <script type="text/javascript" src="./public/question_creation/createQtf.js"></script>
+      <script type="text/javascript" src="./public/question_creation/createQcompletion.js"></script>
+      <script type="text/javascript" src="./public/question_creation/createQmultiple.js"></script>
+      <script type="text/javascript" src="./public/question_creation/createQmatch.js"></script>
+      <script type="text/javascript" src="./public/question_creation/createQopen.js"></script>
 	
   </head>
 
@@ -54,7 +64,6 @@
 	<div class="container" ng-controller="CtrlQuestion">
         
         <header-logged-teacher></header-logged-teacher>
-        
         
 	<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
       <form class="form">
@@ -93,20 +102,6 @@
 			});
 		</script>
 		
-		<!-- type - changes last part -->
-		<div class="form-group row">
-			<fieldset class="form-group">
-				<label for="qtype">Tipo</label>
-				<select class="form-control" id="qtype">
-				  <option value="mtch">Collegamenti</option>
-				  <option value="cmpl">Completamento</option>
-				  <option value="open">Risposta aperta</option>
-				  <option value="mult">Risposta multipla</option>
-				  <option value="trfs">Vero/Falso</option> 
-				</select>
-			</fieldset>
-		</div>
-		
 		<!-- diff level -->
 		<div class="form-group row">
 			<fieldset class="form-group">
@@ -125,7 +120,7 @@
 			<fieldset class="form-group">
 			<label for="inputTags">Parole chiave</label>
 			<select id="inputTags" multiple="multiple" class="form-control">
-			</select><br><br>
+			</select>
 			<script>
 			$('#inputTags').select2({
 				tags: true,
@@ -135,6 +130,34 @@
 			</script>
 			</fieldset>
 		</div>
+		
+		
+		<!-- type - changes last part -->
+		<div class="form-group row">
+			<fieldset class="form-group">
+				<label for="qtype">Tipo</label>
+				<select class="form-control" id="qtype">
+				  <option value="mtch">Collegamenti</option>
+				  <option value="cmpl">Completamento</option>
+				  <option value="open">Risposta aperta</option>
+				  <option value="mult">Risposta multipla</option>
+				  <option value="trfs">Vero/Falso</option> 
+				</select>
+			</fieldset>
+		</div>
+		
+		<!-- VARIABLE PART - correct answer -->
+          
+          <create-q-vf></create-q-vf>
+          <create-q-match></create-q-match>
+          <create-q-open></create-q-open>
+          <create-q-completion></create-q-completion>
+          
+          
+          
+          
+          
+		<!-- END VARIABLE PART -->
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Conferma</button>
       </form>

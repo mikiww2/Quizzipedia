@@ -30,6 +30,12 @@ app.use(cookieParser());
 // routes ======================================================================
 require('./app/route/api_route/authApi.js')(app);  // RESTful requests
 require('./app/route/api_route/profileApi.js')(app);  // RESTful requests
+require('./app/route/api_route/classApi.js')(app);  // RESTful requests
+require('./app/route/api_route/questionApi.js')(app);  // RESTful requests
+require('./app/route/api_route/quizApi.js')(app);  // RESTful requests
+require('./app/route/api_route/requestsApi.js')(app);  // RESTful requests
+require('./app/route/api_route/searchApi.js')(app);  // RESTful requests
+
 require('./app/route/route.js')(app);  // PAGES requests
 
 app.get('/Quizzipedia/aut', function (req, res) {

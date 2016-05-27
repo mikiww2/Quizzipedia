@@ -1,31 +1,30 @@
-
 var Quiz = require('../model/quiz.model');
 var Question = require('../model/question.model');
 
-export.findQuiz = function (req, res) {
+exports.findQuiz = function (req, res) {
     var title = req.body.title;
     var author = req.body.author;
     var selectedTopic = req.body.selectedTopic;
-    var selectedKeywords[] = req.body.selectedKeywords;
+    var selectedKeywords = req.body.selectedKeywords;
     var difficulty = req.body.difficulty;
     var permission = req.body.permission; //da fare
 
 };
 
-export.findQuestion = function (req, res) {
+exports.findQuestion = function (req, res) {
     var title = req.body.title;
     var author = req.body.author;
     var selectedTopic = req.body.selectedTopic;
-    var selectedKeywords[] = req.body.selectedKeywords;
+    var selectedKeywords = req.body.selectedKeywords;
     var difficulty = req.body.difficulty;
-    var result = Question.findQuestionsByTopic(selectedTopic);
+    var result = Question.getQuestionsByTopic(selectedTopic);
     if (author)
-        result = result.findQuestionsByAuthor(author);
+        result = result.getQuestionsByAuthor(author);
     if (title)
-        result = result.findQuestionsByTitle(title);
+        result = result.getQuestionsByTitle(title);
     if (selectedKeywords)
-        result = result.findQuestionsByKeywords(selectedKeywords);
+        result = result.getQuestionsByKeywords(selectedKeywords);
     if (difficulty)
-        result = result.findQuestionsByDifficulty(difficulty);
+        result = result.getQuestionsByDifficulty(difficulty);
     return result;
 };

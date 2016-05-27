@@ -51,16 +51,15 @@ resultQuizSchema.virtual('result').get(function () {
     };
 });
 
-//get results Question, return [total, passed]
-resultQuizSchema.methods.findMeanResultsQuestion = function (question) {
-    
+//find results Question, return [total, passed] (scope = collection)
+resultQuizSchema.static.findMeanResultsQuestion = function (question) {
     if(question.constructor.name != 'ObjectID')
         question = question._id;
     
     var result_q = 0;
     var tot_q = 0;
     
-    return this.model('ResultQuiz').find({}, 'answers').forEach(function(entry) {
+    return this.find({}, 'answers').forEach(function(entry) {
         entry.forEach(function(answer) {
             if(answer.question == question) {
                 tot_q++;
@@ -77,9 +76,9 @@ resultQuizSchema.methods.findMeanResultsQuestion = function (question) {
     };
 }
 
-//find Tot results Quiz, return number
-resultQuizSchema.methods.findTotResultsQuiz = function(quiz) {
-    return this.model('ResultQuiz').find({ quiz:  function() {
+//find Tot results Quiz, return number (scope = collection)
+resultQuizSchema.static.findTotResultsQuiz = function(quiz) {
+    return this.find({ quiz:  function() {
         if(quiz.constructor.name === 'ObjectID')
             return quiz;
         else
@@ -87,16 +86,15 @@ resultQuizSchema.methods.findTotResultsQuiz = function(quiz) {
     } }).lenght;
 }
 
-//find mean results Quiz, return [total, passed]
-resultQuizSchema.methods.findMeanResultsQuestion = function (quiz) {
-    
+//find mean results Quiz, return [total, passed] (scope = collection)
+resultQuizSchema.static.findMeanResultsQuestion = function (quiz) {
     if(quiz.constructor.name != 'ObjectID')
         quiz = quiz._id;
     
     var result_q = 0;
     var tot_q = 0;
     
-    return this.model('ResultQuiz').find({ quiz: quiz }, 'answers').forEach(function(entry) {
+    return this.find({ quiz: quiz }, 'answers').forEach(function(entry) {
         entry.forEach(function(answer) {
             tot_q++;
             
@@ -111,15 +109,14 @@ resultQuizSchema.methods.findMeanResultsQuestion = function (quiz) {
     };
 }
 
-//find Users mean Results Quiz, return [user, total, passed ]
-resultQuizSchema.methods.findUsersMeanResultsQuiz = function (quiz) {
-    
+//find Users mean Results Quiz, return [user, total, passed ] (scope = collection)
+resultQuizSchema.static.findUsersMeanResultsQuiz = function (quiz) {
     if(quiz.constructor.name != 'ObjectID')
         quiz = quiz._id;
     
     var results = {};
     
-    this.model('ResultQuiz').find({ quiz: quiz }).forEach(function(entry) {
+    this.find({ quiz: quiz }).forEach(function(entry) {
         var result_q = 0;
         var tot_q = 0;
         

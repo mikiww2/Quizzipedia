@@ -47,16 +47,24 @@ userSchema.virtual('mail').get(function () {
 });
 
 //check user password
-userSchema.static.checkPassword = function (password) {
-    if(this.password == password)
+userSchema.methods.checkPassword = function checkPassword(password) {
+    if(this.model('User').password == password)
         return true;
     else
         return false;
 }
 
 //find user
-userSchema.methods.findUser = function (mail) {
-    return this.model('User').findOne({ _id: nale });
+userSchema.static.findUser = function findUser(mail) {
+    return this.findOne({ _id: mail });
+}
+
+//has user
+userSchema.static.hasUser = function hasUser(mail) {
+     if(this.where('mail', mail).exec())
+        return true;
+    else
+        return false;
 }
 
 //export

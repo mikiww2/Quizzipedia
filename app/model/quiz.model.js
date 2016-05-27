@@ -38,9 +38,9 @@ quizSchema.virtual('countQuestions').get(function() {
     return this.questions.lenght;
 });
 
-//Count Quiz with Question
-quizSchema.methods.CountQuizWithQuestion = function(question) {
-    return this.model('Quiz').find({ questions: { $in: function() {
+//Count Quiz with Question (scope = collection)
+quizSchema.static.CountQuizWithQuestion = function CountQuizWithQuestion(question) {
+    return this.find({ questions: { $in: function() {
         if(question.constructor.name === 'ObjectID')
             return question;
         else
@@ -48,41 +48,8 @@ quizSchema.methods.CountQuizWithQuestion = function(question) {
     } } }).lenght;
 }
 
-//get Quiz with topics
-quizSchema.methods.getQuizByTopics = function(topics) {
-    var result = this.find();
-    topics.forEach(function(entry) {
-        result = result.find({ topics: {$in: entry}});
-    });
-    return result;
-}
-
-//get Quiz with keywords
-quizSchema.methods.getQuizByKeywords = function(keywords) {
-    var result = this.find();
-    keywords.forEach(function(entry) {
-        result = result.find({ keywords: {$in: entry}});
-    });
-    return result;
-}
-
-//get Quiz with title
-quizSchema.methods.getQuizByTitle = function(title) {
-  return this.find({ title: this.title });
-}
-
-//get Quiz with difficulty
-quizSchema.methods.getQuizByDifficulty = function(difficulty) {
-  return this.find({ difficulty: this.difficulty });
-}
-
-//get Quiz with author
-quizSchema.methods.getQuizsByAuthor = function (author) {
-  return this.find({ author: this.author });
-}
-
-//find Quiz with topics
-quizSchema.methods.findQuizByTopics = function(topics) {
+//find Quiz with topics (scope = collection)
+quizSchema.static.findQuizByTopics = function findQuizByTopics(topics) {
     var result = this.model('Quiz').find();
     topics.forEach(function(entry) {
         result = result.find({ topics: {$in: entry}});
@@ -90,8 +57,8 @@ quizSchema.methods.findQuizByTopics = function(topics) {
     return result;
 }
 
-//find Quiz with keywords
-quizSchema.methods.findQuizByKeywords = function(keywords) {
+//find Quiz with keywords (scope = collection)
+quizSchema.static.findQuizByKeywords = function findQuizByKeywords(keywords) {
     var result = this.model('Quiz').find();
     keywords.forEach(function(entry) {
         result = result.find({ keywords: {$in: entry}});
@@ -99,18 +66,18 @@ quizSchema.methods.findQuizByKeywords = function(keywords) {
     return result;
 }
 
-//find Quiz with title
-quizSchema.methods.findQuizByTitle = function(title) {
+//find Quiz with title (scope = collection)
+quizSchema.static.findQuizByTitle = function findQuizByTitle(title) {
   return this.model('Quiz').find({ title: this.title });
 }
 
-//find Quiz with difficulty
-quizSchema.methods.findQuizByDifficulty = function(difficulty) {
+//find Quiz with difficulty (scope = collection)
+quizSchema.static.findQuizByDifficulty = function findQuizByDifficulty(difficulty) {
   return this.model('Quiz').find({ difficulty: this.difficulty });
 }
 
-//find Quiz with author
-quizSchema.methods.findQuizsByAuthor = function (author) {
+//find Quiz with author (scope = collection)
+quizSchema.static.findQuizsByAuthor = function findQuizsByAuthor(author) {
   return this.model('Quiz').find({ author: this.author });
 }
 

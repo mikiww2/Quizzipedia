@@ -15,5 +15,18 @@ var topicSchema = new Schema({
     strict: true
 });
 
+//find topics
+organisationSchema.static.findTopics = function findTopics() {
+    return this.find({ });
+}
+
+//has topic
+organisationSchema.static.hasTopic = function hasTopic(topic) {
+    if(this.findOne({ _id: topic }))
+        return true;
+    else
+        return false;
+}
+
 //export
 module.exports = mongoose.model('Topic', topicSchema);

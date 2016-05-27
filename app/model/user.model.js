@@ -48,24 +48,18 @@ userSchema.virtual('mail').get(function () {
 
 //check user password
 userSchema.methods.checkPassword = function checkPassword(password) {
-    if(this.password == password)
-        return true;
-    else
-        return false;
-}
+    return password == this.password;
+};
 
-// //find user
-// userSchema.static.findUser = function(mail) {
-//     return this.findOne({ _id: mail });
-// }
-// 
-// //has user
-// userSchema.static.hasUser = function(mail) {
-//      if(this.where('mail', mail).exec())
-//         return true;
-//     else
-//         return false;
-// }
+//find user
+userSchema.statics.findUser = function findUser(mail) {
+    return this.findOne({ _id: mail });
+};
+
+//has user
+userSchema.statics.hasUser = function hasUser(mail) {
+    return !!this.findOne({ _id: mail });
+};
 
 //export
 module.exports = mongoose.model('User', userSchema);

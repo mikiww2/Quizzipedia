@@ -15,18 +15,15 @@ var topicSchema = new Schema({
     strict: true
 });
 
-// //find topics
-// organisationSchema.static.findTopics = function findTopics() {
-//     return this.find({ });
-// }
-// 
-// //has topic
-// organisationSchema.static.hasTopic = function hasTopic(topic) {
-//     if(this.findOne({ _id: topic }))
-//         return true;
-//     else
-//         return false;
-// }
+//find topics
+topicSchema.statics.findTopics = function findTopics() {
+    return this.find({ });
+};
+
+//has topic
+topicSchema.statics.hasTopic = function hasTopic(topic) {
+    return !!this.findOne({_id: topic});
+};
 
 //export
 module.exports = mongoose.model('Topic', topicSchema);

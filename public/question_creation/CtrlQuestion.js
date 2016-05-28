@@ -2,6 +2,8 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http', fu
     
     $scope.topics = []; //inizializzato dal server
     
+    $scope.typeQuestion = null;
+    
     $scope.MyGenericQ ={
         title: null,
         description: null,

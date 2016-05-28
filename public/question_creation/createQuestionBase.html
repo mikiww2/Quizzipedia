@@ -57,6 +57,7 @@
       
       <script type="text/javascript" src="./public/services/GenericQuestion.js"></script>
       <script type="text/javascript" src="./public/services/TrueFalseQ.js"></script>
+      <script type="text/javascript" src="./public/services/ShortAnswerQ.js"></script>
       
       
       <!-- DIRECTIVE QUESTION CREATION -->
@@ -88,7 +89,7 @@
 		<!-- missing upload thing here -->
 		<div class="form-group row">
 			<label for="inputDescription" class=" form-control-label">Carica</label><br>
-			<span class="btn btn-default btn-file">Cerca <input type="file"></span>
+			<span class="btn btn-default btn-file">Cerca <input type="file" ng-model="MyGenericQ.attachment"></span>
 		</div>
 		<!-- topic-->
 		<div class="form-group row">

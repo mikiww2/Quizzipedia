@@ -1,8 +1,9 @@
-angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http', function($scope, $http){ //dipendenze verso tutti i tipi di domande e Topics
+angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ', function($scope, $http, TrueFalseQ){ //dipendenze verso tutti i tipi di domande e Topics
     
     $scope.topics = []; //inizializzato dal server
     
-    $scope.typeQuestion = null;
+    $scope.domande = [];
+    $scope.teacher = "teacher@gmail.com"; //mi serve solo la mail che va recuperata dall'oggetto Teacher
     
     $scope.MyGenericQ ={
         title: null,
@@ -19,7 +20,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http', fu
     };
     
     $scope.MyShortAnswerQ = {
-        answer:null //String
+        answer: null //String
     };
     
     $scope.MyMultipleChoiceQ = {
@@ -64,8 +65,51 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http', fu
       }
     };
     
-    $scope.save = function(){
-      //salvo il quiz creato  
+    
+    $scope.createQuestion = function(typeQuestion){
+      
+        switch(typeQuestion){
+            case "mtch": $scope.saveMatchingQ($scope.MyGenericQ,$scope.MyMatchingQ); break;
+            case "cmpl": $scope.saveCompletionQ($scope.MyGenericQ,$scope.MyCompletionQ); break;
+            case "open": $scope.saveShortAnswerQ($scope.MyGenericQ,$scope.MyShortAnswerQ); break;
+            case "mult": $scope.saveMultipleChoiceQ($scope.MyGenericQ,$scope.MyMultipleChoiceQ); break;
+            case "trfs": $scope.saveTrueFalseQ($scope.MyGenericQ,$scope.MyTrueFalseQ); break;
+            default: console.log("This question type doesn't exist");
+        }
+        
+        
+    };
+    
+    
+    $scope.saveMatchingQ = function(generic,matching){
+       
+    };
+    
+    $scope.saveCompletionQ = function(generic,completion){
+       
+    };
+    
+    $scope.saveShortAnswerQ = function(generic,shortAnswer){
+       
+    };
+    
+    $scope.saveMultipleChoiceQ = function(generic,multipleChoice){
+       
+    };
+    
+    $scope.saveTrueFalseQ = function(generic,trueFalse){
+       
+        var questionTF = new TrueFalseQ();
+        console.log(questionTF);
+        
+        
+        
+    };
+    
+    $scope.save = function(question){
+      //salvo la domanda creata        
+        
+        
     };
     
     

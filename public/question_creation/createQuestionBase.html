@@ -50,6 +50,11 @@
       <script type="text/javascript" src="./public/core.js"></script>
       <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
       <script type="text/javascript" src="./public/question_creation/CtrlQuestion.js"></script>
+      >
+      
+      <script type="text/javascript" src="./public/services/GenericQuestion.js"></script>
+      <script type="text/javascript" src="./public/services/TrueFalseQ.js"></script>
+      
       
       <!-- DIRECTIVE QUESTION CREATION -->
       <script type="text/javascript" src="./public/question_creation/createQtf.js"></script>
@@ -66,16 +71,16 @@
         <header-logged-teacher></header-logged-teacher>
         
 	<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
-      <form class="form">
+      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)">
 		<!-- title -->
 		<div class="form-group row">
 			<label for="inputTitle" class=" form-control-label">Titolo</label>
-			<input type="text" class="form-control" id="inputTitle" placeholder="Titolo" required autofocus>
+			<input type="text" class="form-control" id="inputTitle" placeholder="Titolo" ng-model="MyGenericQ.title" required autofocus>
 		</div>
 		<!-- description -->
 		<div class="form-group row">
 			<label for="inputDescription" class=" form-control-label">Descrizione</label>
-			<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" required></textarea>
+			<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" ng-model="MyGenericQ.description" required></textarea>
 		</div>
 		<!-- missing upload thing here -->
 		<div class="form-group row">
@@ -86,8 +91,8 @@
 		<div class="form-group row">
 			<fieldset class="form-group">
 				<label for="topic">Materia</label>
-				<select class="form-control" id="topic">
-				<!-- load options from existing topics -->
+				<select class="form-control" id="topic" ng-model="MyGenericQ.topic">
+				<!-- load options from existing topics  RENDERE AUTOMATICA-->
 				  <option>Storia dell'arte</option>
 				  <option>Informatica</option>
 				  <option>Matematica</option>
@@ -107,7 +112,7 @@
 			<fieldset class="form-group">
 			<!-- idk the stars are cool, animate them w jquery if theres time -->
 				<label for="difficultyLevel">Livello di difficoltà <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i></label>
-				<select class="form-control" id="difficultyLevel">
+				<select class="form-control" id="difficultyLevel" ng-model="MyGenericQ.difficulty">
 				  <option>Facile</option>
 				  <option>Media</option>
 				  <option>Difficile</option>
@@ -119,7 +124,7 @@
 		<div class="form-group row">
 			<fieldset class="form-group">
 			<label for="inputTags">Parole chiave</label>
-			<select id="inputTags" multiple="multiple" class="form-control">
+			<select id="inputTags" multiple="multiple" class="form-control" ng-model="MyGenericQ.keywords">
 			</select>
 			<script>
 			$('#inputTags').select2({
@@ -136,7 +141,7 @@
 		<div class="form-group row">
 			<fieldset class="form-group">
 				<label for="qtype">Tipo</label>
-				<select class="form-control" id="qtype" ng-model="typeQuestion">
+				<select class="form-control" id="qtype" ng-model="MyGenericQ.questionType">
                   <option value="">--</option>
 				  <option value="mtch">Collegamenti</option>
 				  <option value="cmpl">Completamento</option>
@@ -149,12 +154,11 @@
 		
 		<!-- VARIABLE PART - correct answer -->
           
-          <create-qtf ng-show="typeQuestion == 'trfs'"></create-qtf>
-          <create-qmatch ng-show="typeQuestion == 'mtch'"></create-qmatch>
-          <create-qopen ng-show="typeQuestion == 'open'"></create-qopen>
-          <create-qcompletion ng-show="typeQuestion == 'cmpl'"></create-qcompletion>
-          <create-qmultiple ng-show="typeQuestion == 'mult'"></create-qmultiple>
-          
+          <create-qtf ng-show="MyGenericQ.questionType == 'trfs'"></create-qtf>
+          <create-qmatch ng-show="MyGenericQ.questionType == 'mtch'"></create-qmatch>
+          <create-qopen ng-show="MyGenericQ.questionType == 'open'"></create-qopen>
+          <create-qcompletion ng-show="MyGenericQ.questionType == 'cmpl'"></create-qcompletion>
+          <create-qmultiple ng-show="MyGenericQ.questionType == 'mult'"></create-qmultiple>
           
           
           

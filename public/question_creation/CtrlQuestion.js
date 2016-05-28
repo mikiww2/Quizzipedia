@@ -74,7 +74,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             case "open": $scope.saveShortAnswerQ($scope.MyGenericQ,$scope.MyShortAnswerQ); break;
             case "mult": $scope.saveMultipleChoiceQ($scope.MyGenericQ,$scope.MyMultipleChoiceQ); break;
             case "trfs": $scope.saveTrueFalseQ($scope.MyGenericQ,$scope.MyTrueFalseQ); break;
-            default: console.log("This question type doesn't exist");
+            default: alert("This question type doesn't exist");
         }
         
         
@@ -97,10 +97,25 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
        
     };
     
+    
+    
     $scope.saveTrueFalseQ = function(generic,trueFalse){
        
         var questionTF = new TrueFalseQ();
-        console.log(questionTF);
+        
+        questionTF.setAuthor($scope.teacher);
+        questionTF.setTitle(generic.title);
+        questionTF.setDescription(generic.description);
+        questionTF.setTopic(generic.topic);
+        questionTF.setDifficulty(generic.difficulty);
+        questionTF.setQuestionAttachment(generic.attachment);
+        questionTF.setKeyword(generic.keywords);
+        
+        questionTF.setCorrectAnswer(trueFalse.answer);
+        
+        
+        $scope.save(questionTF);
+        
         
         
         
@@ -109,7 +124,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     $scope.save = function(question){
       //salvo la domanda creata        
         
-        
+        $scope.domande.push(question);
     };
     
     

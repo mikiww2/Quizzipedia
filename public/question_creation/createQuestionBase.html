@@ -136,7 +136,8 @@
 		<div class="form-group row">
 			<fieldset class="form-group">
 				<label for="qtype">Tipo</label>
-				<select class="form-control" id="qtype">
+				<select class="form-control" id="qtype" ng-model="typeQuestion">
+                  <option value="">--</option>
 				  <option value="mtch">Collegamenti</option>
 				  <option value="cmpl">Completamento</option>
 				  <option value="open">Risposta aperta</option>
@@ -148,12 +149,11 @@
 		
 		<!-- VARIABLE PART - correct answer -->
           
-          <create-qtf></create-qtf>
-          <!--<create-qmatch></create-qmatch>-->
-          <!--<create-qopen></create-qopen>-->
-          <!-- <create-qcompletion></create-qcompletion> -->
-          <!-- <create-qmultiple></create-qmultiple> -->
-          
+          <create-qtf ng-show="typeQuestion == 'trfs'"></create-qtf>
+          <create-qmatch ng-show="typeQuestion == 'mtch'"></create-qmatch>
+          <create-qopen ng-show="typeQuestion == 'open'"></create-qopen>
+          <create-qcompletion ng-show="typeQuestion == 'cmpl'"></create-qcompletion>
+          <create-qmultiple ng-show="typeQuestion == 'mult'"></create-qmultiple>
           
           
           

@@ -74,7 +74,7 @@
         <header-logged-teacher></header-logged-teacher>
         
 	<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
-      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)">
+      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType);" novalidate>
 		<!-- title -->
 		<div class="form-group row">
 			<label for="inputTitle" class=" form-control-label">Titolo</label>
@@ -154,7 +154,7 @@
 				</select>
 			</fieldset>
 		</div>
-		</form>
+		
 		
 		<!-- VARIABLE PART - correct answer -->
           
@@ -169,6 +169,9 @@
 		<!-- END VARIABLE PART -->
 
         <button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button>
+          
+        </form>
+        {{tmpQuestion | json}}
         
       
     </div> <!-- /container -->

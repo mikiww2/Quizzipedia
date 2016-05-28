@@ -1,6 +1,6 @@
 <!-- answers -->
-		<div class="form-group row">
-			<label>Answers</label>
+		<div class="form-group row text-center">
+			<h4 class="text-center">Risposte</h4>
 				<!-- new upload -->
 				<div class="form-group row form">
 					<!-- <label for="inputDescription" class=" form-control-label"></label><br> -->
@@ -9,51 +9,46 @@
 					<span class="btn btn-default" type="button" id="newAText"><i class="glyphicon glyphicon-align-left"></i></span>
 				</div>
 				<!-- canvas -->
-				<canvas id="qCanvas" width="500" height="300"></canvas>
-				<!-- for each upload -->
-				<script>
-				var qCanvas = new fabric.Canvas("qCanvas");
-				fabric.Image.fromURL('./public/question_creation/test.png', function(img) {
-				  img.scale(0.5).set({
-					left: 150,
-					top: 150,
-					angle: -15
-				  });
-				  qCanvas.add(img).setActiveObject(img);
-				});
-
-				var info = document.getElementById('info');
-
-				qCanvas.on({
-				  'touch:gesture': function() {
-					var text = document.createTextNode(' Gesture ');
-					info.insertBefore(text, info.firstChild);
-				  },
-				  'touch:drag': function() {
-					var text = document.createTextNode(' Dragging ');
-					info.insertBefore(text, info.firstChild);
-				  },
-				  'touch:orientation': function() {
-					var text = document.createTextNode(' Orientation ');
-					info.insertBefore(text, info.firstChild);
-				  },
-				  'touch:shake': function() {
-					var text = document.createTextNode(' Shaking ');
-					info.insertBefore(text, info.firstChild);
-				  },
-				  'touch:longpress': function() {
-					var text = document.createTextNode(' Longpress ');
-					info.insertBefore(text, info.firstChild);
-				  }
-				});
-				</script>
+				<!-- <canvas id="qCanvas" width="500" height="300"></canvas> -->
+				
+				<div id="answContainer">
+					<div class="answerBlock">
+						<div class="drag">
+							<input type="checkbox" value="answ1">
+							<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="25" rows="4"></textarea>
+						</div>
+						<script language="javascript" type="text/javascript">
+						$(document).ready(function() {
+							$('.drag').draggable()
+						});
+						</script>
+					</div>
+					<div class="answerBlock">
+						<div class="drag">
+							<input type="checkbox" value="answ2">
+							<textarea type="textarea" placeholder="Answer..." name="ta2" id="ta2" cols="25" rows="4"></textarea>
+						</div>
+						<script language="javascript" type="text/javascript">
+						$(document).ready(function() {
+							$('.drag').draggable()
+						});
+						</script>
+					</div>
+					<div class="answerBlock">
+						<div class="drag">
+							<input type="checkbox" value="answ3"><video id="video1" height="140" style="padding-left: 5px;" autoplay="autoplay">
+							<source src="http://html5demos.com/assets/dizzy.mp4">
+							<source src="http://html5demos.com/assets/dizzy.ogv">
+						</video>
+						</div>
+						<script language="javascript" type="text/javascript">
+						$(document).ready(function() {
+							$('.drag').draggable()
+						});
+						</script>
+					</div>
+				</div>
 		</div>
-
-
-
-
-
-
 
 
 <!-- new viable answer popup -->

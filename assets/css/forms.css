@@ -63,20 +63,6 @@
   z-index: 2;
 }
 
-.form input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.form button[type="submit"] {
-	margin-top: 20px;
-}
-
-.form .text-muted {
-	margin-top:10px;
-}
-
 .btn-file {
     position: relative;
     overflow: hidden;

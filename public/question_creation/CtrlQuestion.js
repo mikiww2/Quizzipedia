@@ -1,9 +1,9 @@
-angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ', function($scope, $http, TrueFalseQ){ //dipendenze verso tutti i tipi di domande e Topics
+angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ','ShortAnswerQ', function($scope, $http, TrueFalseQ,ShortAnswerQ){ //dipendenze verso tutti i tipi di domande e Topics
     
     $scope.topics = []; //inizializzato dal server
     
     $scope.domande = [];
-    $scope.teacher = "teacher@gmail.com"; //mi serve solo la mail che va recuperata dall'oggetto Teacher
+    $scope.teacher = "teacher@gmail.com"; //mi serve solo la mail che va recuperata dal server
     
     $scope.MyGenericQ ={
         title: null,
@@ -81,6 +81,18 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     };
     
     
+    
+    var setGenericPart = function(generic,question){
+        question.setAuthor($scope.teacher);
+        question.setTitle(generic.title);
+        question.setDescription(generic.description);
+        question.setTopic(generic.topic);
+        question.setDifficulty(generic.difficulty);
+        question.setQuestionAttachment(generic.attachment);
+        question.setKeyword(generic.keywords);
+    };
+    
+    
     $scope.saveMatchingQ = function(generic,matching){
        
     };
@@ -90,6 +102,13 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     };
     
     $scope.saveShortAnswerQ = function(generic,shortAnswer){
+        
+        var questionShort = new ShortAnswerQ();
+        
+        setGenericPart(generic,questionShort);
+        questionShort.setCorrectAnswer(shortAnswer.answer);
+        
+        $scope.save(questionShort);
        
     };
     
@@ -103,13 +122,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
        
         var questionTF = new TrueFalseQ();
         
-        questionTF.setAuthor($scope.teacher);
-        questionTF.setTitle(generic.title);
-        questionTF.setDescription(generic.description);
-        questionTF.setTopic(generic.topic);
-        questionTF.setDifficulty(generic.difficulty);
-        questionTF.setQuestionAttachment(generic.attachment);
-        questionTF.setKeyword(generic.keywords);
+        setGenericPart(generic,questionTF);
         
         questionTF.setCorrectAnswer(trueFalse.answer);
         

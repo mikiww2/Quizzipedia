@@ -17,5 +17,7 @@ angular.module('CreateQuestion').factory('ShortAnswerQ',['GenericQuestion',funct
         this.correctAnswer = newCorrectAnswer;
     };
     
+    return ShortAnswer;
+    
     
 }]);

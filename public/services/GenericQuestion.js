@@ -13,7 +13,7 @@ angular.module('CreateQuestion').factory('GenericQuestion',[function(){
         
     };
     
-    GenericQuestion.prototypeù.setAuthor = function(mail_author){
+    GenericQuestion.prototype.setAuthor = function(mail_author){
        this.author = mail_author;  
     };
     

@@ -1,7 +1,7 @@
-angular.module().factory('TrueFalseQ',['GenericQuestion',function(){
+angular.module('CreateQuestion').factory('TrueFalseQ',['GenericQuestion',function(GenericQuestion){
     
     function TrueFalseQ(){
-       
+       GenericQuestion.call(this);
         this.correctAnswer = null; //bool       
     };
         
@@ -11,7 +11,10 @@ angular.module().factory('TrueFalseQ',['GenericQuestion',function(){
     
     TrueFalseQ.prototype.createAnswerQuestion = function(answer){ //answer:bool
         
-    };    
+    };
+    
+    
+    TrueFalseQ.prototype = GenericQuestion.prototype;
     
     return TrueFalseQ;
     

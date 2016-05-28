@@ -1,4 +1,4 @@
-angular.module().factory('GenericQuestion',['Teacher',function(){
+angular.module('CreateQuestion').factory('GenericQuestion',[function(){
     
     function GenericQuestion(){
       

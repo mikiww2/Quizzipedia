@@ -30,10 +30,10 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i>
-					<span class="visible-lg-inline visible-md-inline">Bentornato, <strong class="blue">John Doe</strong></span>	<b class="caret"></b></a>
+					<span class="visible-lg-inline visible-md-inline">Bentornato, <strong class="blue">{{user.firstName}} {{user.lastName}}</strong></span>	<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="glyphicon  glyphicon glyphicon-user"></i> Profilo</a>
+                            <a href="/Quizzipedia/profile"><i class="glyphicon  glyphicon glyphicon-user"></i> Profilo</a>
                         </li>
                         <li>
                             <a href="#"><i class="glyphicon  glyphicon glyphicon-envelope"></i> Gestione richieste</a>
@@ -53,7 +53,7 @@
                         </li>
 						<li class="divider"></li>
                         <li>
-                            <a href="#"><i class="glyphicon glyphicon-log-out"></i> Esci</a>
+                            <a href="/Quizzipedia/signout"><i class="glyphicon glyphicon-log-out"></i> Esci</a>
                         </li>
                     </ul>
                 </li>

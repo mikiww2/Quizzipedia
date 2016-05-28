@@ -54,31 +54,21 @@
   </head>
 
   <body onload="getUrl()">
-	<div class="container" ng-controller="CtrlHeader">
-        
-        
-        <header-not-logged ng-show="currentHeader == 'notLogged'"></header-not-logged> 
-        
-        <header-Logged ng-show="currentHeader == 'logged'"></header-Logged> 
-        
-        <header-logged-student ng-show="currentHeader == 'loggedStudent'"></header-logged-student>
-        
-        <header-logged-teacher ng-show="currentHeader == 'loggedTeacher'"></header-logged-teacher> 
-        
-        <header-logged-director ng-show="currentHeader == 'loggedDirector'"></header-logged-director>
-        
-        
-         <home-page-generic ng-show="currentHeader == 'notLogged' || currentHeader == 'logged'"></home-page-generic> 
-        
-        <home-page-director ng-show="currentHeader == 'loggedDirector'"></home-page-director> 
-        
-        <home-page-student ng-show="currentHeader == 'loggedStudent'"></home-page-student> 
-        
-        <home-page-teacher ng-show="currentHeader == 'loggedTeacher'"></home-page-teacher>
-        
-        <input type="button" name="viewpage" value="clicca" ng-click="loadCurrentHeader(index)">
-        <input type="button" name="carica" value="load" ng-click="loadUser()">
-        {{user | json}}
+	
+      <div class="container" ng-controller="CtrlHeader"> 
+          
+          <header-not-logged ng-if="user.role== null"></header-not-logged>          
+          <header-Logged ng-if="user.role == 'noRole'"></header-Logged>
+          <home-page-generic ng-if="user.role== null || user.role == 'noRole'"></home-page-generic>
+          
+          <header-logged-student ng-if="user.role == 'student'"></header-logged-student>
+          <home-page-student ng-if="user.role == 'student'"></home-page-student> 
+          
+          <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>
+          <home-page-teacher ng-if="user.role == 'teacher'"></home-page-teacher>
+          
+          <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
+          <home-page-director ng-if="user.role == 'director'"></home-page-director>        
 	
 		</div>
   </body>

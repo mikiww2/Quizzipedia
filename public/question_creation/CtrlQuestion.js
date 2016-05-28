@@ -12,15 +12,31 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         topic: null,
         questionType: null,
         difficulty: null,
-        keywords: []
+        keywords: [],
+        reset: function(){ //Non pulisce le keywords
+            this.title = null;
+            this.description = null;
+            this.attachment = null;
+            this.topic = null;
+            this.questionType = null;
+            this.difficulty = null;
+            this.keywords = [];
+        }
     };
     
     $scope.MyTrueFalseQ ={
-        answer: null //bool
+        answer: null, //bool
+        reset: function(){
+            this.answer = null;
+        }
+        
     };
     
     $scope.MyShortAnswerQ = {
-        answer: null //String
+        answer: null, //String
+        reset: function(){
+            this.answer = null;
+        }
     };
     
     $scope.MyMultipleChoiceQ = {
@@ -36,6 +52,10 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         },
         removeAnswer: function(text, check){ //check == true devo cerco la risposta dentro a correctAnswer altrimenti wrongAnswer
             
+        },
+        reset: function(){
+            this.correctAnswer = [];
+            this.wrongAnswer = [];
         }
         
     };
@@ -50,6 +70,11 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         },
         removeAnswer: function(name,correct){ //correct == true rimuovo la risposta da correctAnswer altrimenti wrongAnswer
             
+        },
+        reset: function(){
+            this.text = null;
+            this.correctAnswer = [];
+            this.wrongAnswer = [];
         }
         
     };    
@@ -62,6 +87,10 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
       },
       removeAnswer: function(answer){
           
+      },
+      reset: function(){
+          this.answer = [];
+          this.allAnswers = [];
       }
     };
     
@@ -109,6 +138,9 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         questionShort.setCorrectAnswer(shortAnswer.answer);
         
         $scope.save(questionShort);
+        
+        generic.reset();
+        shortAnswer.reset();
        
     };
     
@@ -129,7 +161,8 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         
         $scope.save(questionTF);
         
-        
+        generic.reset();
+        trueFalse.reset();
         
         
     };

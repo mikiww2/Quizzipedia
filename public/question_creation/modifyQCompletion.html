@@ -1,0 +1,61 @@
+<!-- VARIABLE PART - answers -->
+				<div class="form-group row text-center">
+			<h4 class="text-center">Testo</h4>
+			<div class="form-group row form">
+				<button class="btn btn-default" id="newgap"><i class="glyphicon glyphicon-plus"></i></button>
+			</div>
+			<div id="answContainer" class="row">
+				<div class="answerBlock lineGap">
+					<!-- <textarea type="textarea" placeholder="Text..." name="ta1" id="ta1" cols="250" rows="5"></textarea> --> 
+					lorem ipsum blabla fehfuyrf egeuy dijdisdj <span class="block"></span> 
+					lorem ipsum blabla fehfuyrf egeuy dijdisdj lorem ipsum blabla fehfuyrf egeuy dijdisdj <span class="block"></span>
+				</div>
+			</div>
+			<h4 class="text-center">Risposte</h4>
+				<!-- new upload -->
+				<div class="form-group row form">
+					<!-- <label for="inputDescription" class=" form-control-label"></label><br> -->
+					<span class="btn btn-default btn-file" id="newAttach"><i class="glyphicon glyphicon-upload"></i> <input type="file"></span>
+					<!-- <label for="inputDescription" class=" form-control-label"></label><br> -->
+					<span class="btn btn-default" type="button" id="newAText"><i class="glyphicon glyphicon-align-left"></i></span>
+				</div>
+				<!-- canvas -->
+				<!-- <canvas id="qCanvas" width="500" height="300"></canvas> -->
+				
+				<div id="answContainer" class="row">
+					<div class="answerBlock">
+						<!-- <textarea type="textarea" placeholder="Text..." name="ta1" id="ta1" cols="250" rows="5"></textarea> --> 
+					</div>
+				</div>
+				<script language="javascript" type="text/javascript">
+				$(document).ready(function() {
+					$('.drag').draggable()
+				});
+				</script>
+		</div>
+
+
+
+
+<!-- new viable answer popup -->
+	<div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="new" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+				<h4 class="modal-title custom_align" id="Heading">Aggiungi una risposta</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<input class="form-control " type="text" placeholder="Answer..">
+					</div>
+					<div class="checkbox">
+					  <label><input type="checkbox" value="correct">Corretta</label>
+					</div>
+					<div class=text-right><button type="button" class="btn btn-primary">Aggiungi</button></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end of add popup --> 
+

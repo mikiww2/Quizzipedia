@@ -26,6 +26,10 @@ angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$h
         $scope.modifyQuestion = question;
     };
     
+    $scope.checkTypeModifyQuestion = function(type){
+       //ritorna true o false
+    };
+    
     
     
 }]);

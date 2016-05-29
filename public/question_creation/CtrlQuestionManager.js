@@ -5,7 +5,7 @@ angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$h
     $scope.Questionlist =[{ "author": "teacher@gmail.com", "title": "AAAAAAAAAAA", "description": "descrizione domanda", "topic": "Informatica", "difficulty": "Facile", "questionAttachement": null, "keywords": [ "B" ], "correctAnswer": "true" }, { "author": "teacher@gmail.com", "title": "BBBBBBBBBB", "description": "descrizione domanda", "topic": "Informatica", "difficulty": "Media", "questionAttachement": null, "keywords": [], "correctAnswer": "booooooh" }];
     
     $scope.modifyQuestion = null;
-    $scope.typeQuestion = null;
+    $scope.typeQuestion = "mult";
     
         
     

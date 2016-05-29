@@ -1,33 +1,40 @@
 
-// formato JSON di question =
+// formato JSON di question che serve=
 // type = integer che indica il tipo
 // text = stringa col testo della domanda
 // answer = contiene le varie risposte ( da definire meglio in base al tipo di domanda )
-exports.parse(question){
-    var stringType = '<q?' + question.type + '#';
-    var stringQuestion = question.text + '#';
-    var stringAnswers = '';
-    //costruzione in base al tipo
-    if (question.type == 1){ // 1 = vero falso
+exports.generate = function (question){
+    var stringType = '|q?' + question.type + '#';
+    var stringQuestion = question.txt + '#';
+    var stringAnswers;
 
-    };
-    if (question.type == 2){ // 2 = risp multipla
+    switch (question.type){ // in base al tipo fa operare la funzione corrispondente nella stringa
+        case '1':
+            stringAnswers = question.ans + '#';
+            break;
+        case '2':
+            stringAnswers = question.ans + '#';
+            break;
+        case '3':
+            stringAnswers = question.ans + '#';
+            break;
+        case '4':
+            stringAnswers = question.ans + '#';
+            break;
+        case '5':
+            stringAnswers = question.ans + '#';
+            break;
+        default:
+            return 'error!';
+    }
 
-    };
-    if (question.type == 3){ // 3 = a completamento
+    var result = stringType + stringQuestion +stringAnswers + '|';
+    return result;
+};
 
-    };
-    if (question.type == 4){ // 4 = risp aperta
-
-    };
-    if (question.type == 5){ // 5 = a collegamento
-
-    };
-
+exports.parse(qml){
 
 };
 
-exports.generate(qml){
 
-};
 

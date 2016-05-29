@@ -42,6 +42,8 @@
     <script type="text/javascript" src="./public/home/homePageDirector.js"></script>
     <script type="text/javascript" src="./public/home/homePageStudent.js"></script>
     <script type="text/javascript" src="./public/home/homePageTeacher.js"></script>
+    <!--Directive angular (FOOTER)-->
+    <script type="text/javascript" src="./public/footer/pageFooter.js"></script> 
     
     
 
@@ -71,5 +73,7 @@
           <home-page-director ng-if="user.role == 'director'"></home-page-director>        
 	
 		</div>
+      
+      <page-footer></page-footer>
   </body>
 </html>

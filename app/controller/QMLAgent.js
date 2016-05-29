@@ -1,8 +1,8 @@
 
 // formato JSON di question che serve=
-// type = integer che indica il tipo
-// text = stringa col testo della domanda
-// answer = contiene le varie risposte ( da definire meglio in base al tipo di domanda )
+// type = integer che indica il tipo (manca dal form )
+// text = stringa col testo della domanda (title)
+// answer = contiene le varie risposte ( da definire meglio in base al tipo di domanda, manca)
 exports.generate = function (question){
     var stringType = '|q?' + question.type + '#';
     var stringQuestion = question.txt + '#';
@@ -36,27 +36,39 @@ exports.generate = function (question){
 };
 
 exports.parse(qml){
+    if (qml.startsWith('|') && qml.endsWith('|')) {
+        var type = qml.charAt(3);
+        var text;
+        var answer;
 
+        var qson = {'type': type};
+        return qson;
+    }
+    else
+        throw 'qml syntax error';
 };
 
 // funzioni per la creazione di stringa di risposta specifica per ogni tipo
 
-var answerTF = function (answer) {
+var answerTF = function (answer) { //teoricamente ok
     return answer + '#';
 }
 
-var answerRM = function (answer) {
+var answerRM = function (answer) { // da sistemare quando il form sarà funzionante
+    var stringAnswers = '';
+    for (var item of answer)
+        stringAnswers = '§' + stringAnswers + item;
+    return stringAnswers;
+}
+
+var answerCM = function (answer) { // da sistemare quando il form sarà funzionante
     return answer + '#';
 }
 
-var answerCM = function (answer) {
+var answerRA = function (answer) {  // teoricamente ok
     return answer + '#';
 }
 
-var answerRA = function (answer) {
-    return answer + '#';
-}
-
-var answerCL = function (answer) {
+var answerCL = function (answer) { // da sistemare quando il form sarà funzionante
     return answer + '#';
 }

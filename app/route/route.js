@@ -90,4 +90,11 @@ module.exports = function (app) {
   app.route('/Quizzipedia/createQuestion').get(function (req, res) {
     res.sendFile(path.resolve('./public/question_creation/createQuestionBase.html'));
   });
+    
+    
+//QUESTIONS MANAGE------------------------------------------------------------------------    
+    
+ app.route('/Quizzipedia/mgmtQuestion').get(function (req, res) {
+    res.sendFile(path.resolve('./public/question_creation/questionMgmt.html'));
+  });
 };

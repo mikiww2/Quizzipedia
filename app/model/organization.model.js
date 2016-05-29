@@ -111,8 +111,8 @@ userIstitutionSchema.virtual('mail').get(function() {
     return this.user;
 });
 
-//organisation
-var organisationSchema = new Schema({
+//organization
+var organizationSchema = new Schema({
     creationDate: {
         type: Date
         ,required: [true, 'date is required']
@@ -131,15 +131,15 @@ var organisationSchema = new Schema({
     ,topics: [String]
 }, { strict: true });
 
-organisationSchema.index({director: 1}, {unique: true});
+organizationSchema.index({director: 1}, {unique: true});
 
 //find Organization with a director (scope = collection)
-organisationSchema.statics.findOrganisationByDirector = function(director_mail) {
+organizationSchema.statics.findOrganizationByDirector = function(director_mail) {
   return this.find({ director: director_mail });
 };
 
 //find Classes with a Student, return [istitution, class_year, class_name]  (scope = collection)
-organisationSchema.statics.findClassesWithStudent = function(student_mail) {
+organizationSchema.statics.findClassesWithStudent = function(student_mail) {
     var result = { };
 
     this.find().forEach(function(institution) {
@@ -157,40 +157,40 @@ organisationSchema.statics.findClassesWithStudent = function(student_mail) {
     return result;
 };
 
-//find Organisations
-organisationSchema.statics.findOrganisations = function() {
+//find Organizations
+organizationSchema.statics.findOrganizations = function() {
     return this.find({ });
 };
 
 //students
-organisationSchema.virtual('students').get(function() {
+organizationSchema.virtual('students').get(function() {
     return this.users.find({ role: 'student', state: 'allowed' });
 });
 
 //teachers
-organisationSchema.virtual('teachers').get(function() {
+organizationSchema.virtual('teachers').get(function() {
     return this.users.find({ role: 'teacher', state: 'allowed' });
 });
 
 //classRequests
-organisationSchema.virtual('roleRequests').get(function() {
+organizationSchema.virtual('roleRequests').get(function() {
     return this.users.find({ state: 'requested' });
 });
 
 //Institution has Student, return Boolean
-organisationSchema.methods.hasStudent = function(user_mail) {
+organizationSchema.methods.hasStudent = function(user_mail) {
     return !!this.findOne({students: {$in: user_mail}});
 };
 
 //Institution has Teacher, return Boolean
-organisationSchema.methods.hasTeacher = function(user_mail) {
+organizationSchema.methods.hasTeacher = function(user_mail) {
     return !!this.findOne({teachers: {$in: user_mail}});
 };
 
 //Institution has RoleRequest, return Boolean
-organisationSchema.methods.hasRoleRequest = function(user_mail) {
+organizationSchema.methods.hasRoleRequest = function(user_mail) {
     return !!this.findOne({roleRequests: {$in: user_mail}});
 };
 
 //export
-module.exports = mongoose.model('Organization', organisationSchema);
+module.exports = mongoose.model('Organization', organizationSchema);

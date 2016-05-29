@@ -2,7 +2,7 @@ angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$h
     //Mancano queste dipendenze 'MatchingQ','MultipleChoiceQ','ShortAnswerQ','TrueFalseQ','CompletionQ','Teacher'
     
     $scope.teacher = null; //Teacher
-    $scope.Questionlist =[{ "author": "teacher@gmail.com", "title": "AAAAAAAAAAA", "description": "descrizione domanda", "topic": "Informatica", "difficulty": "Facile", "questionAttachement": null, "keywords": [ "B" ], "correctAnswer": "true" }, { "author": "teacher@gmail.com", "title": "BBBBBBBBBB", "description": "descrizione domanda", "topic": null, "difficulty": "Media", "questionAttachement": null, "keywords": [], "correctAnswer": "booooooh" }];
+    $scope.Questionlist =[{ "author": "teacher@gmail.com", "title": "AAAAAAAAAAA", "description": "descrizione domanda", "topic": "Informatica", "difficulty": "Facile", "questionAttachement": null, "keywords": [ "B" ], "correctAnswer": "true" }, { "author": "teacher@gmail.com", "title": "BBBBBBBBBB", "description": "descrizione domanda", "topic": "Informatica", "difficulty": "Media", "questionAttachement": null, "keywords": [], "correctAnswer": "booooooh" }];
     
     
     

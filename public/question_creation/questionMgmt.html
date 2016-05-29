@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="QuestionManager">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,13 +14,15 @@
     <title>Gestione domande</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="./assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
 	<!-- questionzipedia.base.css -->
-	<link href="../../css/quizzipedia.base.css" rel="stylesheet">
+	<link href="./assets/css/quizzipedia.base.css" rel="stylesheet">
+      
+      <link href="./assets/css/header.css" rel="stylesheet">
 	
 	<!-- Merge others eventually -->
 	
@@ -29,10 +31,25 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+      
+      <!-- ANGULAR -->
+      <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
+      
+      <!--  HEADER -->
+      <script type="text/javascript" src="./public/core.js"></script>
+      <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
+      
+      <!-- CTRLQUESTIONMANAGER -->
+      <script type="text/javascript" src="./public/question_creation/CtrlQuestionManager.js"></script>
+      
   </head>
 
   <body>
-	<div class="container">
+	<div class="container" ng-controller="CtrlQuestionManager">
+        
+        <header-logged-teacher></header-logged-teacher>
+        
+        
 		<h4 class="text-center description"><i class="glyphicon glyphicon-question-sign"></i> Le tue domande</h4><br>
 		<div class="text-right">
 			<span data-placement="top" data-toggle="tooltip" title="Create New"><button type="button" class="btn btn-primary btn-create " data-title="New" data-toggle="modal" data-target="#new"><i class="glyphicon glyphicon-plus"></i> </button></span>
@@ -80,6 +97,13 @@
 		  <li><a href="#">3</a></li>
 		  <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
 		</ul>
+        
+        
+        
+        
+        {{Questionlist | json}}
+        
+        
 	</div>
   </body>
 </html>

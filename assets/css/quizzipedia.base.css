@@ -122,6 +122,43 @@ h6.description, h4.description, h3.description{
 	/* background-color: #22A7F0;*/
 }
 
+.hiddenText {
+  position: absolute;
+  top: -25px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-in-out 0s;
+	-moz-transition: all 0.3s ease-in-out 0s;
+	transition: all 0.3s ease-in-out 0s;
+}
+
+#showText:hover .hiddenText {
+  visibility: visible;
+  opacity: 1;
+}
+.hiddenText {
+  position: absolute;
+  top: -25px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-in-out 0s;
+	-moz-transition: all 0.3s ease-in-out 0s;
+	transition: all 0.3s ease-in-out 0s;
+}
+
+#showText:hover .hiddenText {
+  visibility: visible;
+  opacity: 1;
+}
+
 .huge{
 	font-family: 'Raleway', sans-serif;
 	font-weight: bold;
@@ -320,12 +357,33 @@ h6.description, h4.description, h3.description{
 	margin: 0 auto;
 }
 
+
+.answerBlock {
+	display: block;
+}
+
+.answerBlock img{
+	max-width: 140px; 
+	height: auto;
+	overflow: hidden;
+	display:inline;
+}
+
+.answerBlock button {
+	vertical-align: top;
+	border-radius: 10px;
+}
+
+.answerBlock input[type="checkbox"] {
+	vertical-align: top;
+}
+
 .answerBlock textarea {
 	max-width: 200px;
 	max-height: 100px;
 	resize: both;
 	min-width: 20px;
-	min-height: 20px;
+	min-height: 10px;
 }
 
 #classes {
@@ -384,6 +442,37 @@ h6.description, h4.description, h3.description{
 	box-shadow: 0 0 3px #d3d3d3;
 }
 
+
 .lineGap {
-		line-height: 300%;
+	line-height: 300%;
 }
+
+.drag {
+	display: inline-block;
+	border: 1px solid #d3d3d3;
+	background-color: white;
+	padding: 5px;
+	margin-top: 10px;
+	border-radius: 10px;
+}
+
+.drag i{
+	font-size: 20px;
+	letter-spacing: 10px;
+}
+
+.drag a{
+	display: inline-block;
+	vertical-align: top;
+	color:#e14825;
+	-webkit-transition: all 0.5s ease-in-out 0s;
+    -moz-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
+}
+
+.drag a:hover{
+    text-decoration:none;
+    color:#590000;
+}
+
+

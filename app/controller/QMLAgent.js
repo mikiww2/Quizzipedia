@@ -4,27 +4,46 @@
 // text = stringa col testo della domanda (title)
 // answer = contiene le varie risposte ( da definire meglio in base al tipo di domanda, manca)
 // mancano le regole per allegati e simili
+var extract = function(string, start, end){ // estrae una data sottostringa tramite sentinelle
+    var lenght = start.length;
+    return string.slice(string.indexOf(start) + lenght, string.indexOf(end));
+}
+
+var appendAttached = function (question) { // si occupa della gestione allegati
+    if (question.txtattached) {
+        var attachedtype = question.txtattached.type + ':';
+        var attachedpath = question.txtattached.path;
+        var attachedcoord = '';
+        if (question.txtattached.x && question.txtattached.y){
+            var attachedcoordX = ':x.' + question.txtattached.x;
+            var attachedcoordY = ':y.' + question.txtattached.y;
+            attachedcoord = attachedcoordX + attachedcoordY;
+        }
+        return '{' + attachedtype + question.txtattached.path + attachedcoord + '}';
+    }
+    else return '';
+}
 
 exports.generate = function (question){
     var stringType = '|q?' + question.type + '#t#';
-    var stringQuestion = question.txt + '#a#'; // da aggiungere nelle funzioni specifiche
-    var stringAnswers;
+    //var stringQuestion = question.txt + '#a#'; // da aggiungere nelle funzioni specifiche
+    var stringTextAndAnswers;
 
     switch (question.type){ // in base al tipo fa operare la funzione corrispondente nella stringa
         case '1': // tipo vero/falso
-            stringAnswers = generateTF(question);
+            stringTextAndAnswers = generateTF(question);
             break;
         case '2': // tipo risp multipla
-            stringAnswers = generateRM(question);
+            stringTextAndAnswers = generateRM(question);
             break;
         case '3': // tipo a completamento
-            stringAnswers = generateCM(question);
+            stringTextAndAnswers = generateCM(question);
             break;
         case '4': // tipo risp aperta
-            stringAnswers = generateRA(question);
+            stringTextAndAnswers = generateRA(question);
             break;
         case '5': // tipo a collegamenti
-            stringAnswers = generateCL(question);
+            stringTextAndAnswers = generateCL(question);
             break;
 
         // INSERIRE QUI I CASE PER LE NUOVE DOMANDE
@@ -33,7 +52,7 @@ exports.generate = function (question){
             return 'error! question type not supported by generator';
     }
 
-    var result = stringType + stringQuestion + stringAnswers + '|';
+    var result = stringType + stringTextAndAnswers + '|';
     return result;
 };
 
@@ -73,7 +92,8 @@ exports.parse = function (qml){
 // funzioni per la generazione di stringa di risposta specifica per ogni tipo
 
 var generateTF = function (question) { //teoricamente ok
-    return question.ans + '#e#';
+    var attached = appendAttached(question);
+    return question.txt + attached + '#a#' + question.ans + '#e#';
 };
 
 var generateRM = function (question) { // da sistemare quando il form sarà funzionante
@@ -99,8 +119,8 @@ var generateCL = function (question) { // da sistemare quando il form sarà funz
 
 var parserTF = function (qml) { // teoricamente ok
     var type = qml.charAt(qml.indexOf('q?')+2);
-    var text = qml.slice(qml.indexOf('#t#') + 3, qml.indexOf('#a#'));
-    var answer = qml.slice(qml.indexOf('#a#') + 3, qml.indexOf('#e#'));
+    var text = extract(qml, '#t#', '#a#');
+    var answer = extract(qml, '#a#', '#e#');
     return {'type': type, 'txt': text, 'ans': answer};
 };
 
@@ -114,8 +134,8 @@ var parserCM = function (qml) { // // da sistemare con form funzionante
 
 var parserRA = function (qml) { // teoricamente ok
     var type = qml.charAt(qml.indexOf('q?')+2);
-    var text = qml.slice(qml.indexOf('#t#') + 3, qml.indexOf('#a#'));
-    var answer = qml.slice(qml.indexOf('#a#') + 3, qml.indexOf('#e#'));
+    var text = extract(qml, '#t#', '#a#');
+    var answer = extract(qml, '#a#', '#e#');
     return {'type': type, 'txt': text, 'ans': answer};
 };
 

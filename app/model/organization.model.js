@@ -40,7 +40,7 @@ var classSchema = new Schema({
 classSchema.index({
     academicYear: -1
     ,name: 1
-}, { unique: true });
+}, { unique: true, sparse: true});
 
 //students
 classSchema.virtual('students').get(function() {
@@ -100,7 +100,7 @@ var classAccessSchema = new Schema({
     }
 }, { strict: true });
 
-classAccessSchema.index({class: 1}, {unique: true});
+classAccessSchema.index({class: 1}, {unique: true, sparse: true });
 
 //user in institution
 var userIstitutionSchema = new Schema({
@@ -122,17 +122,13 @@ var userIstitutionSchema = new Schema({
         ,default: 'requested'
         ,enum: ['requested','allowed']
     }
-<<<<<<< HEAD
     ,classes: {
         type: [classAccessSchema]
         ,required: false
     }
-=======
-    ,classes: [classAccessSchema]
->>>>>>> branch 'master' of https://github.com/devsoft91/Quizzipedia.git
 }, { strict: true });
 
-userIstitutionSchema.index({ user: 1 }, { unique: true });
+userIstitutionSchema.index({ user: 1 }, { unique: true, sparse: true });
 
 //get mail
 userIstitutionSchema.virtual('mail').get(function() {
@@ -168,7 +164,7 @@ var organizationSchema = new Schema({
     }
 }, { strict: true });
 
-organizationSchema.index({ director: 1 }, { unique: true });
+organizationSchema.index({ director: 1 }, { unique: true, sparse: true });
 
 //students
 organizationSchema.virtual('students').get(function() {

@@ -1,4 +1,4 @@
-var TFQuestion = require('../model/trueflase.question.model');
+var TFQuestion = require('../model/truefalse.question.model');
 
 exports.save = function (req, res) {
 

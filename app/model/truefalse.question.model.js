@@ -22,8 +22,7 @@ var questionSchema = new Schema({
     }
     ,questionAttachement: String
     ,keywords: [String]
-    ,correctAnswer: boolean
-    }
+    ,correctAnswer: Boolean
 
 }, { strict: true });
 

@@ -10,9 +10,18 @@ var questionSchema = new Schema({
         type: String
         ,required: [true, 'qml question is required']
         }
-    ,topic: String
-    ,title: String
-    ,keywords: [String]
+    ,topic: {
+        type: String
+        ,required: false
+    }
+    ,title: {
+        type: String
+        ,required: [true, 'title question is required']
+    }
+    ,keywords: {
+        type: [String]
+        ,required: false
+    }
     ,difficulty: {
         type: Number
         ,min: 1

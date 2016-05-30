@@ -26,7 +26,10 @@ var userSchema = new Schema({
         type: String
         ,required: [true, 'password is required']
     }
-    ,tmpPassword: String
+    ,tmpPassword: {
+        type: String
+        ,required: false
+    }
 }, { strict: true });
 
 //get name surname

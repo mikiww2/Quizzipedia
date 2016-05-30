@@ -171,6 +171,12 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
       //salvo la domanda creata        
         
         $scope.domande.push(question);
+        $http.post('/api/question/save',question).success(function(response){
+            
+            $scope.domande.push(question);
+        
+        
+        });
     };
     
     

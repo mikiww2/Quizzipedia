@@ -48,7 +48,7 @@
 					<div class="answerBlock">
 						<div class="drag">
 							<input type="checkbox" value="answ4">
-							<img src="test.png" class="resizable" id="img1"/>
+							<img src="./public/question_creation/test.png" class="resizable" id="img1"/>
 							<a href="#" ><i class="glyphicon glyphicon-remove"></i></a>
 							<script>
 							  $(function() {
@@ -62,14 +62,13 @@
 				</div>
 
 		</div>
-
         <!--<a href="qMultipleNext.html" class="btn tent-center"><i class="glyphicon glyphicon-chevron-left"></i>Previous</a><br>
         <button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button> -->
 <!--</div>--> <!-- /container -->
 	
   	<script language="javascript" type="text/javascript">
 	$(document).ready(function() {
-		$('.drag').draggable()
+		$('.drag').draggable(); //aggiunto
 	});
 	// fullscreen toggle for video
 	function toggleFullScreen() {
@@ -83,11 +82,11 @@
 		} else if (elem.webkitRequestFullscreen) {
 		  elem.webkitRequestFullscreen();
 		}
-	}
+	};//aggiunto
 
 	function createTextarea() {
 		$("#newBlock").append($('<div class="drag"><input type="checkbox" value="answ0"><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15 rows="1"></textarea><a href="#"><i class="glyphicon glyphicon-remove"></i></a></div>'));
-	   }
+	   }; //aggiunto
 	var loadFile = function(event) {
 		$("#newBlock").append($( '<div class="drag" id="drag1"><input type="checkbox" value="answ0"><img id="output1" class="img-responsive"/>'));
 		var reader = new FileReader();

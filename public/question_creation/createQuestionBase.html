@@ -53,7 +53,7 @@
       <script type="text/javascript" src="./public/core.js"></script>
       <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
       <script type="text/javascript" src="./public/question_creation/CtrlQuestion.js"></script>
-      >
+      
       
       <script type="text/javascript" src="./public/services/GenericQuestion.js"></script>
       <script type="text/javascript" src="./public/services/TrueFalseQ.js"></script>
@@ -75,7 +75,7 @@
         <header-logged-teacher></header-logged-teacher>
         
 	<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
-      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType);" novalidate>
+      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)" novalidate>
 		<!-- title -->
 		<div class="form-group row">
 			<label for="inputTitle" class=" form-control-label">Titolo</label>
@@ -159,20 +159,25 @@
 		
 		<!-- VARIABLE PART - correct answer -->
           
+          <!--<create-qmultiple ng-show="MyGenericQ.questionType == 'mult'"></create-qmultiple>-->
           <create-qtf ng-show="MyGenericQ.questionType == 'trfs'"></create-qtf>
           <create-qmatch ng-show="MyGenericQ.questionType == 'mtch'"></create-qmatch>
           <create-qopen ng-show="MyGenericQ.questionType == 'open'"></create-qopen>
           <create-qcompletion ng-show="MyGenericQ.questionType == 'cmpl'"></create-qcompletion>
-          <create-qmultiple ng-show="MyGenericQ.questionType == 'mult'"></create-qmultiple>
+          
           
           
           
 		<!-- END VARIABLE PART -->
 
+          
+          {{MyGenericQ | json}}
+          
+          
         <button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button>
           
         </form>
-        {{domande | json}}
+        
         
       
     </div> <!-- /container -->

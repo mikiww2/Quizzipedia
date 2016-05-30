@@ -157,7 +157,38 @@ organizationSchema.statics.findClassesWithStudent = function(student_mail) {
     return result;
 };
 
-//find Organizations
+//find istitutions with a User role, return [istitution, istitution_name, role(director/student/teacher)]  (scope = collection)
+organizationSchema.statics.findClassesWithStudent = function(user_mail) {
+    var result = { };
+
+    this.find().forEach(function(institution) {
+        if(istitution.director == user_mail)
+            result.push({
+                istitution: institution._id
+                ,istitution_name: institution.name
+                ,role : 'director'
+            });
+        else {
+            if(institution.hasStudent(user_mail)) {
+                result.push({
+                    istitution: institution
+                    ,istitution_name: institution.name
+                    ,role: 'student'
+                });
+            }
+            if(institution.hasTeacher(user_mail)) {
+                result.push({
+                    istitution: institution
+                    ,istitution_name: institution.name
+                    ,role: 'teacher'
+                });
+            }
+        }
+    });
+    return result;
+};
+
+//find Organizations, return [organisation]
 organizationSchema.statics.findOrganizations = function() {
     return this.find({ });
 };

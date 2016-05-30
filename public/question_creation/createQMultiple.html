@@ -13,7 +13,7 @@
 						<i class="glyphicon glyphicon-align-left"></i>
 					</span>
 				</div>
-				<div id="answContainer">
+				<div id="answContainer"> 
 					<!-- CREAZIONE HTML NUOVI ELEMENTI CARICATI: <div class="answerBlock"><div class="drag"><checkbox><allegato><pulsante X></div></div> -->
 				
 					<div class="answerBlock" id="newBlock">
@@ -48,28 +48,17 @@
 					<div class="answerBlock">
 						<div class="drag">
 							<input type="checkbox" value="answ4">
-							<img src="./public/question_creation/test.png" class="resizable" id="img1"/>
+							<img src="./public/question_creation/test.png" class="resize" id="img1"/>
 							<a href="#" ><i class="glyphicon glyphicon-remove"></i></a>
-							<script>
-							  $(function() {
-								$( ".resizable" ).resizable(
-									containment: ".drag"
-									);
-							  });
-							  </script>
 						</div>
 					</div>
-				</div>
-
+				</div> 
 		</div>
-        <!--<a href="qMultipleNext.html" class="btn tent-center"><i class="glyphicon glyphicon-chevron-left"></i>Previous</a><br>
-        <button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button> -->
-<!--</div>--> <!-- /container -->
 	
   	<script language="javascript" type="text/javascript">
-	$(document).ready(function() {
+	/*$(document).ready(function() {
 		$('.drag').draggable(); //aggiunto
-	});
+	});*/
 	// fullscreen toggle for video
 	function toggleFullScreen() {
 		var elem = document.getElementById("video1");
@@ -86,6 +75,7 @@
 
 	function createTextarea() {
 		$("#newBlock").append($('<div class="drag"><input type="checkbox" value="answ0"><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15 rows="1"></textarea><a href="#"><i class="glyphicon glyphicon-remove"></i></a></div>'));
+		$('.drag').draggable(); //ogni nuovo elemento è reso draggable
 	   }; //aggiunto
 	var loadFile = function(event) {
 		$("#newBlock").append($( '<div class="drag" id="drag1"><input type="checkbox" value="answ0"><img id="output1" class="img-responsive"/>'));
@@ -96,6 +86,7 @@
 		};
 		reader.readAsDataURL(event.target.files[0]);
 		$("#drag1").append($( '<a href="#"><i class="glyphicon glyphicon-remove"></i></a></div>'));
+		$('.drag').draggable(); //ogni nuovo elemento è reso draggable
 	  };
 
 	</script>

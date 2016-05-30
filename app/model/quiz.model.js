@@ -15,9 +15,18 @@ var quizSchema = new Schema({
         type: Date
         ,required: [true, 'date is required']
     }
-    ,classes: [Schema.Types.ObjectId]
-    ,topics: [String]
-    ,description: [String]
+    ,classes: {
+        type: [Schema.Types.ObjectId]
+        ,required: false
+    }
+    ,topics: {
+        type: [String]
+        ,required: false
+    }
+    ,description: {
+        type: [String]
+        ,required: false
+    }
     ,difficulty: {
         type: Number
         ,min: 1
@@ -25,8 +34,14 @@ var quizSchema = new Schema({
         ,required: [true, 'difficulty is required']
         
     }
-    ,questions: [Schema.Types.ObjectId]
-    ,keywords: [String]
+    ,questions: {
+        type: [Schema.Types.ObjectId]
+        ,required: [true, 'quiz must have at least one question']
+    }
+    ,keywords: {
+        type: [String]
+        ,required: false
+    }
     ,title: {
         type: String
         ,required: [true, 'title is required']

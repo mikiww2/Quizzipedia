@@ -69,9 +69,17 @@ module.exports = function (app) {
       res.sendFile(path.resolve('./public/authentic/recover_pswd.html'));
   });
 
-  app.route('/Quizzipedia/profile/change_pswd').get(function (req, res) {
+  app.route('/Quizzipedia/profile/changePswd').get(function (req, res) {
     if (req.session.user)
       res.sendFile(path.resolve('./public/profile/changePswd.html'));
+    else
+      res.redirect('/Quizzipedia/home');
+  });
+
+   // REQUESTS -------------------------------------------------------------------------------------
+  app.route('/Quizzipedia/sendRequest').get(function (req, res) {
+    if (req.session.user)
+      res.sendFile(path.resolve('./public/requests/sendRequest.html'));
     else
       res.redirect('/Quizzipedia/home');
   });

@@ -122,10 +122,14 @@ var userIstitutionSchema = new Schema({
         ,default: 'requested'
         ,enum: ['requested','allowed']
     }
+<<<<<<< HEAD
     ,classes: {
         type: [classAccessSchema]
         ,required: false
     }
+=======
+    ,classes: [classAccessSchema]
+>>>>>>> branch 'master' of https://github.com/devsoft91/Quizzipedia.git
 }, { strict: true });
 
 userIstitutionSchema.index({ user: 1 }, { unique: true });

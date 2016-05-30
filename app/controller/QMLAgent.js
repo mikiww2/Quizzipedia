@@ -9,7 +9,7 @@ var extract = function(string, start, end){ // estrae una data sottostringa tram
     return string.slice(string.indexOf(start) + lenght, string.indexOf(end));
 }
 
-var appendAttached = function (question) { // si occupa della gestione allegati
+var generateAttached = function (question) { // funzione che gestisce gli allegati del generator
     if (question.txtattached) {
         var attachedtype = question.txtattached.type + ':';
         var attachedpath = question.txtattached.path;
@@ -22,6 +22,14 @@ var appendAttached = function (question) { // si occupa della gestione allegati
         return '{' + attachedtype + question.txtattached.path + attachedcoord + '}';
     }
     else return '';
+}
+
+var appendAttached = function (attached){ // funzione che gestisce gli allegati del parser
+    var attachedtype = extract(attached, '', ':');
+    var attachedpath = extract(attached, ':', ':x');
+    var attachedcoordX = extract(attached, ':x.', ':y');
+    var attachedcoordY = attached.substr(attached.indexOf(':y.') + 3);
+    return {'type': attachedtype, 'path': attachedpath, 'x': attachedcoordX, 'y': attachedcoordY};
 }
 
 exports.generate = function (question){
@@ -58,7 +66,7 @@ exports.generate = function (question){
 
 exports.parse = function (qml){
     if (qml.startsWith('|') && qml.endsWith('|')) {
-        var type = qml.charAt(qml.indexOf('q?')+2);
+        var type = extract(qml, 'q?', '#t#');
         var qson;
         switch (type){ // in base al tipo fa operare la funzione corrispondente nella stringa
             case '1': // tipo vero/falso
@@ -92,7 +100,7 @@ exports.parse = function (qml){
 // funzioni per la generazione di stringa di risposta specifica per ogni tipo
 
 var generateTF = function (question) { //teoricamente ok
-    var attached = appendAttached(question);
+    var attached = generateAttached(question);
     return question.txt + attached + '#a#' + question.ans + '#e#';
 };
 
@@ -108,7 +116,8 @@ var generateCM = function (question) { // da sistemare quando il form sarà funz
 };
 
 var generateRA = function (question) {  // teoricamente ok
-    return question.ans + '#e#';
+    var attached = generateAttached(question);
+    return question.txt + attached + '#a#' + question.ans + '#e#';
 };
 
 var generateCL = function (question) { // da sistemare quando il form sarà funzionante
@@ -118,10 +127,17 @@ var generateCL = function (question) { // da sistemare quando il form sarà funz
 // funzioni per il parsing del qml specifico per tipo
 
 var parserTF = function (qml) { // teoricamente ok
-    var type = qml.charAt(qml.indexOf('q?')+2);
+    var type = extract(qml, 'q?', '#t#');
     var text = extract(qml, '#t#', '#a#');
+    var attached = extract(text, '{', '}');
+    var textwoattached = extract(text, '', '{');
     var answer = extract(qml, '#a#', '#e#');
-    return {'type': type, 'txt': text, 'ans': answer};
+    return {
+        'type': type,
+        'txt': textwoattached,
+       // 'text': attached,
+        'txtattached': appendAttached(attached),
+        'ans': answer};
 };
 
 var parserRM = function (qml) { // da sistemare con form funzionante

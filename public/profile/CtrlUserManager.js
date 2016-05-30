@@ -23,7 +23,7 @@ angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http',
     
     $scope.loadInstitutions = function() {//chiediamo al server un oggetto contenente le affiliazioni dell'utente
         $http.get('/api/institution/fetch_user_inst').success(function(response) {
-            $scope.institutions = repsponse;
+            $scope.institutions = response;
         })        
    };
     

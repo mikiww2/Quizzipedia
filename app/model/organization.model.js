@@ -108,7 +108,7 @@ var userIstitutionSchema = new Schema({
         ,default: 'requested'
         ,enum: ['requested','allowed']
     }
-    classes: [classAccessSchema]
+    ,classes: [classAccessSchema]
 }, { strict: true });
 
 userIstitutionSchema.index({user: 1}, {unique: true});

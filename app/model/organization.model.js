@@ -128,7 +128,7 @@ var userInstitutionSchema = new Schema({
     }
 }, { strict: true });
 
-userInstitutionSchema.index({ user: 1 }, { unique: true, sparse: true });
+//userInstitutionSchema.index({ user: 1 }, { unique: true, sparse: true });
 
 //get mail
 userInstitutionSchema.virtual('mail').get(function() {
@@ -192,9 +192,19 @@ organizationSchema.methods.hasStudent = function(userMail) {
     return !!this.students.findOne({ user: { $in: userMail } });
 };
 
+//Institution has Student, return Student
+organizationSchema.methods.hasAcceptedStudent = function(userMail) {
+    return !!this.students.findOne({ user: { $in: userMail }, state: { $in: 'allowed'} });
+};
+
 //Institution has Teacher, return Boolean
 organizationSchema.methods.hasTeacher = function(userMail) {
     return !!this.teachers.findOne({ user: { $in: userMail } });
+};
+
+//Institution has Student, return Student
+organizationSchema.methods.hasAcceptedTeacher = function(userMail) {
+    return !!this.teachers.findOne({ user: { $in: userMail }, state: { $in: 'allowed'} });
 };
 
 //Institution has RoleRequest, return Boolean
@@ -262,8 +272,9 @@ organizationSchema.statics.findClassesWithStudent = function(studentMail) {
 };
 
 //find institutions with a User role, return [institution_name, role(director/student/teacher)]  (scope = collection)
-organizationSchema.statics.findInstitutionsWithUser = function(userMail) {
+organizationSchema.statics.findInstitutionsWithAcceptedUser = function(userMail) {
     var result = { };
+    var user = { };
 
     this.find().forEach(function(institution) {
         if(institution.director == userMail)
@@ -272,13 +283,13 @@ organizationSchema.statics.findInstitutionsWithUser = function(userMail) {
                 ,role : 'director'
             });
         else {
-            if(institution.hasStudent(userMail)) {
+            if(institution.hasAcceptedStudent(usermail)){
                 result.push({
                     institution_name: institution.name
                     ,role: 'student'
                 });
             }
-            if(institution.hasTeacher(userMail)) {
+            if(institution.hasAcceptedTeacher(userMail)) {
                 result.push({
                     institution_name: institution.name
                     ,role: 'teacher'

@@ -103,7 +103,7 @@ var classAccessSchema = new Schema({
 classAccessSchema.index({class: 1}, {unique: true, sparse: true });
 
 //user in institution
-var userIstitutionSchema = new Schema({
+var userInstitutionSchema = new Schema({
     user: {
         type: String
         ,required: [true, 'user is required']
@@ -128,10 +128,10 @@ var userIstitutionSchema = new Schema({
     }
 }, { strict: true });
 
-userIstitutionSchema.index({ user: 1 }, { unique: true, sparse: true });
+userInstitutionSchema.index({ user: 1 }, { unique: true, sparse: true });
 
 //get mail
-userIstitutionSchema.virtual('mail').get(function() {
+userInstitutionSchema.virtual('mail').get(function() {
     return this.user;
 });
 
@@ -155,7 +155,7 @@ var organizationSchema = new Schema({
         ,required: false
     }
     ,users: {
-        type: [userIstitutionSchema]
+        type: [userInstitutionSchema]
         ,required: false
     }
     ,topics: {
@@ -242,7 +242,7 @@ organizationSchema.statics.findOrganizationByDirector = function(directorMail) {
   return this.findOne({ director: directorMail });
 };
 
-//find Classes with a Student, return [istitution, class]  (scope = collection)
+//find Classes with a Student, return [institution, class]  (scope = collection)
 organizationSchema.statics.findClassesWithStudent = function(studentMail) {
     var result = { };
 
@@ -251,7 +251,7 @@ organizationSchema.statics.findClassesWithStudent = function(studentMail) {
             institution.classes.forEach(function(cls) {
                 if(cls.hasStudent(studentMail))
                     result.push({
-                        istitution: institution
+                        institution: institution
                         ,class_year: cls.academicYear
                         ,class_name: cls.name
                     });
@@ -261,26 +261,26 @@ organizationSchema.statics.findClassesWithStudent = function(studentMail) {
     return result;
 };
 
-//find istitutions with a User role, return [istitution_name, role(director/student/teacher)]  (scope = collection)
-organizationSchema.statics.findIstitutionsWithUser = function(userMail) {
+//find institutions with a User role, return [institution_name, role(director/student/teacher)]  (scope = collection)
+organizationSchema.statics.findInstitutionsWithUser = function(userMail) {
     var result = { };
 
     this.find().forEach(function(institution) {
-        if(istitution.director == userMail)
+        if(institution.director == userMail)
             result.push({
-                istitution_name: institution.name
+                institution_name: institution.name
                 ,role : 'director'
             });
         else {
             if(institution.hasStudent(userMail)) {
                 result.push({
-                    istitution_name: institution.name
+                    institution_name: institution.name
                     ,role: 'student'
                 });
             }
             if(institution.hasTeacher(userMail)) {
                 result.push({
-                    istitution_name: institution.name
+                    institution_name: institution.name
                     ,role: 'teacher'
                 });
             }

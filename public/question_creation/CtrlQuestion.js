@@ -3,6 +3,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     $scope.topics = []; //inizializzato dal server
     
     $scope.domande = [];
+    
     $scope.teacher = "teacher@gmail.com"; //mi serve solo la mail che va recuperata dal server
     
     $scope.MyGenericQ ={
@@ -171,10 +172,13 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
       //salvo la domanda creata        
         
         $scope.domande.push(question);
+        $scope.testo.push(question);
         $http.post('/api/question/save',question).success(function(response){
             
-            $scope.domande.push(question);
-        
+            /*$http.get('/api/question/fetch').success(function(response){
+                $scope.domande.push(response);
+            });
+        */
         
         });
     };

@@ -117,10 +117,10 @@
 			<!-- idk the stars are cool, animate them w jquery if theres time -->
 				<label for="difficultyLevel">Livello di difficoltà <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i></label>
 				<select class="form-control" id="difficultyLevel" ng-model="MyGenericQ.difficulty">
-				  <option>Facile</option>
-				  <option>Media</option>
-				  <option>Difficile</option>
-				  <option>Molto difficile</option>
+				  <option value="1">Facile</option>
+				  <option value="2">Media</option>
+				  <option value="3">Difficile</option>
+				  <option value="4">Molto difficile</option>
 				</select>
 			</fieldset>
 		</div>
@@ -171,7 +171,7 @@
 		<!-- END VARIABLE PART -->
 
           
-          {{MyGenericQ | json}}
+          {{domande | json}}
           
           
         <button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button>

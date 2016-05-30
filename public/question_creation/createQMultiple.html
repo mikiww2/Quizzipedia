@@ -4,12 +4,12 @@
 				<!-- new upload -->
 				<div class="form-group row form">
 					<!-- <label for="inputDescription" class=" form-control-label"></label><br> -->
-					<span class="btn btn-default btn-file">
-						<i class="glyphicon glyphicon-upload"></i> <input type="file" id="newAttach"  multiple accept="image/*" 
+					<span class="btn btn-default btn-file" data-placement="top" data-toggle="tooltip" title="Upload attachment">
+						<i class="glyphicon glyphicon-upload"></i> <input type="file" id="newAttach"  multiple accept="media_type" 
 						onchange="loadFile(event)">
 					</span>
 					<!-- <label for="inputDescription" class=" form-control-label"></label><br> -->
-					<span class="btn btn-default" type="button" id="newAText" onclick="createTextarea()">
+					<span class="btn btn-default" type="button" id="newAText" onclick="createTextarea()" data-placement="top" data-toggle="tooltip" title="New textarea">
 						<i class="glyphicon glyphicon-align-left"></i>
 					</span>
 				</div>

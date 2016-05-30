@@ -475,4 +475,19 @@ h6.description, h4.description, h3.description{
     color:#590000;
 }
 
+.matching .answerBlock {
+	padding: 10px 0;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	background-color: #22A7F0;
+}
 
+.rowTitle{
+	width:150px;
+	padding-left: 5px;
+	border-radius: 5px;
+}
+
+.droppable {
+	width: 150px; height: 150px;
+}

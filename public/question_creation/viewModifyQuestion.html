@@ -2,17 +2,17 @@
 
 
   <!-- INSERIRE DIRETTIVA PER LA PARTE GENERALE-->
-    <div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
+    <div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Modifica domanda</h2></div>
       <form class="form" novalidate>
 		<!-- title -->
 		<div class="form-group row">
 			<label for="inputTitle" class=" form-control-label">Titolo</label>
-			<input type="text" class="form-control" id="inputTitle" placeholder="Titolo" required autofocus>
+			<input type="text" class="form-control" id="inputTitle" placeholder="Titolo" required autofocus ng-model="modifyQuestion.title">
 		</div>
 		<!-- description -->
 		<div class="form-group row">
 			<label for="inputDescription" class=" form-control-label">Descrizione</label>
-			<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" required></textarea>
+			<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" required ng-model="modifyQuestion.description"></textarea>
 		</div>
 		<!-- missing upload thing here -->
 		<div class="form-group row">
@@ -23,12 +23,12 @@
 		<div class="form-group row">
 			<fieldset class="form-group">
 				<label for="topic">Materia</label>
-				<select class="form-control" id="topic" >
+				<select class="form-control" id="topic" ng-model="modifyQuestion.topic">
 				<!-- load options from existing topics  RENDERE AUTOMATICA-->
-				  <option>Storia dell'arte</option>
-				  <option>Informatica</option>
-				  <option>Matematica</option>
-				  <option>Fisica</option>
+				  <option value="Storia dell'arte">Storia dell'arte</option>
+				  <option value="Informatica">Informatica</option>
+				  <option value="Matematica">Matematica</option>
+				  <option value="Fisica">Fisica</option>
 				</select>
 			</fieldset>
 		</div>
@@ -44,11 +44,11 @@
 			<fieldset class="form-group">
 			<!-- idk the stars are cool, animate them w jquery if theres time -->
 				<label for="difficultyLevel">Livello di difficoltà <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i></label>
-				<select class="form-control" id="difficultyLevel" >
-				  <option>Facile</option>
-				  <option>Media</option>
-				  <option>Difficile</option>
-				  <option>Molto difficile</option>
+				<select class="form-control" id="difficultyLevel" ng-model="modifyQuestion.difficulty">
+				  <option value="1">Facile</option>
+				  <option value="2">Media</option>
+				  <option value="3">Difficile</option>
+				  <option value="4">Molto difficile</option>
 				</select>
 			</fieldset>
 		</div>
@@ -56,7 +56,7 @@
 		<div class="form-group row">
 			<fieldset class="form-group">
 			<label for="inputTags">Parole chiave</label>
-			<select id="inputTags" multiple="multiple" class="form-control" >
+			<select id="inputTags" multiple="multiple" class="form-control" ng-model="modifyQuestion.keywords" >
 			</select>
 			<script>
 			$('#inputTags').select2({
@@ -73,7 +73,7 @@
 		<div class="form-group row">
 			<fieldset class="form-group">
 				<label for="qtype">Tipo</label>
-				<select class="form-control" id="qtype">
+				<select class="form-control" id="qtype" ng-model="typeQuestion">
                   <option value="">--</option>
 				  <option value="mtch">Collegamenti</option>
 				  <option value="cmpl">Completamento</option>
@@ -97,6 +97,8 @@
           
 		<!-- END VARIABLE PART -->
 
+          {{modifyQuestion | json}}
+          
         <button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button>
           
         </form>

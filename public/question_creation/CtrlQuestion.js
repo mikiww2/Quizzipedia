@@ -171,14 +171,13 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     $scope.save = function(question){
       //salvo la domanda creata        
         
-        $scope.domande.push(question);
-        $scope.testo.push(question);
+
         $http.post('/api/question/save',question).success(function(response){
             
-            /*$http.get('/api/question/fetch').success(function(response){
-                $scope.domande.push(response);
+            $http.get('/api/question/fetch').success(function(response){
+                $scope.domande = response;
             });
-        */
+        
         
         });
     };

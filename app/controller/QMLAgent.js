@@ -1,13 +1,26 @@
+/*
+ * Nome del file: QMLAgent.js
+ * Percorso: app/controller/QMLAgent.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ * Questo file contiene i metodi per generazione e parsing QML <-> JSON
+ *
+ * * Diario delle modifiche:
+ *
+ */
 
-// formato JSON di question che serve=
+// formato JSON di question attualmente funzionante =
 // type = integer che indica il tipo (manca dal form )
-// text = stringa col testo della domanda (title)
-// answer = contiene le varie risposte ( da definire meglio in base al tipo di domanda, manca)
-// mancano le regole per allegati e simili
-var extract = function(string, start, end){ // estrae una data sottostringa tramite sentinelle
+// txt = stringa col testo della domanda (title)
+// txtattached = json con campi type, path, x, y per gli allegati della domanda
+// ans = contiene le varie risposte ( da definire meglio in base al tipo di domanda, manca). array ?
+
+var extract = function(string, start, end){ // estrae una data sottostringa tramite sentinelle, usare con attenzione
     var lenght = start.length;
     return string.slice(string.indexOf(start) + lenght, string.indexOf(end));
-}
+};
 
 var generateAttached = function (question) { // funzione che gestisce gli allegati del generator
     if (question.txtattached) {
@@ -22,7 +35,7 @@ var generateAttached = function (question) { // funzione che gestisce gli allega
         return '{' + attachedtype + question.txtattached.path + attachedcoord + '}';
     }
     else return '';
-}
+};
 
 var appendAttached = function (attached){ // funzione che gestisce gli allegati del parser
     var attachedtype = extract(attached, '', ':');
@@ -30,10 +43,10 @@ var appendAttached = function (attached){ // funzione che gestisce gli allegati 
     var attachedcoordX = extract(attached, ':x.', ':y');
     var attachedcoordY = attached.substr(attached.indexOf(':y.') + 3);
     return {'type': attachedtype, 'path': attachedpath, 'x': attachedcoordX, 'y': attachedcoordY};
-}
+};
 
 exports.generate = function (question){
-    var stringType = '|q?' + question.type + '#t#';
+    var stringType = 'q?' + question.type + '#t#';
     //var stringQuestion = question.txt + '#a#'; // da aggiungere nelle funzioni specifiche
     var stringTextAndAnswers;
 
@@ -59,8 +72,7 @@ exports.generate = function (question){
         default:
             return 'error! question type not supported by generator';
     }
-
-    var result = stringType + stringTextAndAnswers + '|';
+    var result = '|' + stringType + stringTextAndAnswers + '|';
     return result;
 };
 

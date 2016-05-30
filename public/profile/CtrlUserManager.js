@@ -21,11 +21,13 @@ angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http',
         });        
     };
     
-   $scope.loadInstitutions = function() {//chiediamo al server un oggetto contenente le affiliazioni dell'utente
-        $scope.institutions = {'Scuola Guida Montello' : 'Studente', 'Liceo Pigafetta' : 'Docente'};
+    $scope.loadInstitutions = function() {//chiediamo al server un oggetto contenente le affiliazioni dell'utente
+        $http.get('/api/institution/fetch_user_inst').success(function(response) {
+            $scope.institutions = repsponse;
+        })        
    };
-
-    $scope.changePsw = function(){
+    
+   $scope.changePsw = function(){
         
         $scope.tmp_pswd = null;
         

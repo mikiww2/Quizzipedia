@@ -4,8 +4,14 @@ exports.save = function (req, res) {
 
 		var author = 'tmpauthor@gmail.com';  //poi da prendere dalla sessione (al momento test)
 		var newTFQ = new TFQuestion();
-		newTFQ = req.body;
-		newTFQ.author = author;
+    newTFQ.author = author;
+    newTFQ.title = req.body.title;
+    newTFQ.description = req.body.description;
+    newTFQ.topic = req.body.topic;
+    newTFQ.difficulty = req.body.difficulty;
+    newTFQ.questionAttachement = req.body.questionAttachement;
+    newTFQ.keywords = req.body.keywords;
+    newTFQ.correctAnswer = req.body.correctAnswer;
 		newTFQ.save(function (err) {
       if (err) {
           console.log('errore nel salvataggio domanda: ' + err);

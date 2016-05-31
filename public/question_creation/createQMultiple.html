@@ -6,10 +6,10 @@
 					<!-- <label for="inputDescription" class=" form-control-label"></label><br> -->
 					<span class="btn btn-default btn-file" data-placement="top" data-toggle="tooltip" title="Upload attachment">
 						<i class="glyphicon glyphicon-upload"></i> <input type="file" id="newAttach"  multiple accept="media_type" 
-						onchange="loadFile(event)">
+						ng-click="$root.callWindowMethod('loadFile',window.event)"> <!--onchange="loadFile(event)" -->
 					</span>
 					<!-- <label for="inputDescription" class=" form-control-label"></label><br> -->
-					<span class="btn btn-default" type="button" id="newAText" onclick="createTextarea()" data-placement="top" data-toggle="tooltip" title="New textarea">
+					<span class="btn btn-default" type="button" id="newAText" ng-click="MyMultipleChoiceQ.create(MyMultipleChoiceQ.size); $root.callWindowMethod('createTextarea', MyMultipleChoiceQ.size); MyMultipleChoiceQ.size = MyMultipleChoiceQ.size+1 "  data-placement="top" data-toggle="tooltip" title="New textarea">
 						<i class="glyphicon glyphicon-align-left"></i>
 					</span>
 				</div>
@@ -21,7 +21,12 @@
 					<!--  upload sballato se si aggiungono + elementi senza ricaricare perchè gli id non sono incrementati -->
 					</div>
 				
-					<div class="answerBlock">
+                    
+                    
+                    
+                    
+                    {{MyMultipleChoiceQ.question.answers[0] | json}}
+					<!--<div class="answerBlock">
 						<div class="drag">
 							<input type="checkbox" value="answ1">
 							<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1"></textarea>
@@ -51,7 +56,7 @@
 							<img src="./public/question_creation/test.png" class="resize" id="img1"/>
 							<a href="#" ><i class="glyphicon glyphicon-remove"></i></a>
 						</div>
-					</div>
+					</div> -->
 				</div> 
 		</div>
 	
@@ -73,10 +78,12 @@
 		}
 	};//aggiunto
 
-	function createTextarea() {
-		$("#newBlock").append($('<div class="drag"><input type="checkbox" value="answ0"><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15 rows="1"></textarea><a href="#"><i class="glyphicon glyphicon-remove"></i></a></div>'));
+	function createTextarea(index) { //value="answ0"
+		$("#newBlock").append($('<div class="answerBlock"><div class="drag" id="index"><input type="checkbox" ng-model="MyGenericQ.title"><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="$scope.MyMultipleChoiceQ.question.answers[0]"></textarea><a href="#"><i class="glyphicon glyphicon-remove"></i></a></div></div>'));
 		$('.drag').draggable(); //ogni nuovo elemento è reso draggable
+        
 	   }; //aggiunto
+        
 	var loadFile = function(event) {
 		$("#newBlock").append($( '<div class="drag" id="drag1"><input type="checkbox" value="answ0"><img id="output1" class="img-responsive"/>'));
 		var reader = new FileReader();
@@ -84,8 +91,10 @@
 		  var output = document.getElementById('output1');
 		  output.src = reader.result;
 		};
-		reader.readAsDataURL(event.target.files[0]);
-		$("#drag1").append($( '<a href="#"><i class="glyphicon glyphicon-remove"></i></a></div>'));
+        
+        reader.readAsDataURL(event.target.files[0]);
+		$("#drag1").append($( '<a href="#"><i class="glyphicon glyphicon-remove"></i></a></div>'));    
+		
 		$('.drag').draggable(); //ogni nuovo elemento è reso draggable
 	  };
 

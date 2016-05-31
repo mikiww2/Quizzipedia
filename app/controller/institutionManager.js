@@ -54,7 +54,7 @@ exports.fetchUserInst = function (req, res) {
 
 exports.changeInst = function (req, res) {
 
-		var institution = req.body.name;
+		var institution = req.body.organizationName;
 
 		Organization.findOne({'name': institution}, function (err, org) {
         if (err) {
@@ -64,7 +64,7 @@ exports.changeInst = function (req, res) {
         else {
             if (org) {  //SE TROVA UN UTENTE NEL DB
                 org.users.forEach(function(result,index){
-                    if(result['user'] === session.user._id) {
+                    if(result['user'] === req.session.user._id) {
                         req.session.user.role = result['role'];
                         req.session.user.institution = institution;
                         res.redirect('/');

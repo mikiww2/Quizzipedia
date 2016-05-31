@@ -32,7 +32,7 @@ exports.setPassword = function (req, res) {
 
     var email = req.session.user._id;
     var new_pswd = req.body.newPswd1;
-    User.findOne({'_id': email}, function (err, user) {
+    User.findOne({'_id': email, 'password': req.body.oldPswd}, function (err, user) {
         if (err) {
             console.log('error: ' + err);
             res.redirect('/Quizzipedia/signin');
@@ -47,7 +47,7 @@ exports.setPassword = function (req, res) {
             		});
             }
             else {  //SE NON TROVA UN UTENTE NEL DB
-                console.log('user non trovato');
+                console.log('user non trovato o pswd errata');
                 res.redirect('/Quizzipedia/signin');
             }
         }

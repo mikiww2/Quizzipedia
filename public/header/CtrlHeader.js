@@ -18,7 +18,9 @@ angular.module('Quizzipedia').controller('CtrlHeader',['$scope','$http',function
         })        
    };
     
-    $scope.changeInst = function(name){
+    $scope.changeInst = function(orgName){
+      console.log(orgName);
+      var name = { organizationName : orgName};
         $http.post('/api/institution/change_inst', name); 
         
         /*.success(function(response) {

@@ -11,13 +11,15 @@ exports.fetchUserInst = function (req, res) {
 	      }
 	      else{
 	       	if(orgs){
+	       		console.log('sto cercando nelle organizzazioni');
 	       		for(var i=0;i<orgs.length;i++){
         			var org = orgs[i];
-							if(org.director == req.session.user._id)
-			            results.push({
-			                institution_name: org.name
-			                ,role : 'director'
-			            });
+							if(org.director == req.session.user._id){
+		            results.push({
+		                institution_name: org.name
+		                ,role : 'director'
+		            });
+			         }
 			        else {
 			        	org.users.forEach(function(result,index){
                   if(result['user'] === req.session.user._id && result['state'] === 'allowed' && result['role'] === 'student') {
@@ -25,7 +27,7 @@ exports.fetchUserInst = function (req, res) {
 	                    institution_name: org.name
 	                    ,role: 'student'
 	                	});
-                	};
+                	}
 			        	});
 		            org.users.forEach(function(result,index){
                   if(result['user'] === req.session.user._id && result['state'] === 'allowed' && result['role'] === 'teacher') {
@@ -33,10 +35,11 @@ exports.fetchUserInst = function (req, res) {
 	                    institution_name: org.name
 	                    ,role: 'teacher'
 	                	});
-                	};
+                	}
 		          	});
 			        }
-			      }
+			      } //fine ciclo for
+						res.send(results);
 			    }
 			    else{
        			console.log('error no istitutions found');
@@ -45,7 +48,6 @@ exports.fetchUserInst = function (req, res) {
        	}	       		
 	    });
 		}
-		res.send(results);
 };
 
 

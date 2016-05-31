@@ -173,13 +173,13 @@ exports.parse = function (qml){
             jsonAnswer = {"answer": ansTxt, "isTrue": ansIsTrue};
             arrayjsonans.push(jsonAnswer);
         }
-        console.log('prova ' + arrayjsonans);
+        //console.log('prova ' + arrayjsonans);
         return {
             'type': type,
             'txt': textwoattached,
             // 'text': attached,
             //'txtattached': appendAttached(attached),
-            'ans': answer
+            'ans': arrayjsonans
         };
     };
 

@@ -1,4 +1,4 @@
-angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ','ShortAnswerQ', function($scope, $http, TrueFalseQ,ShortAnswerQ){ //dipendenze verso tutti i tipi di domande e Topics
+angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$rootScope','$http','TrueFalseQ','ShortAnswerQ','MultipleChoiceQ', function($scope,$rootScope, $http, TrueFalseQ,ShortAnswerQ,MultipleChoiceQ){ //dipendenze verso tutti i tipi di domande e Topics
     
     $scope.topics = []; //inizializzato dal server
     
@@ -30,8 +30,30 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     $scope.MyShortAnswerQ = new ShortAnswerQ();
     
-    
     $scope.MyMultipleChoiceQ = {
+      
+        question: new MultipleChoiceQ(),
+        size: 0,
+        create: function(index){
+            this.question.answers.push("ciaooooooo");
+            this.question.answerAttachment.push(null);
+            this.question.correctAnswer.push("");
+        }
+    };
+    
+    $scope.tmp = null;
+    
+    $rootScope.callWindowMethod = function(methodName, parameter){
+        if(typeof window[methodName] !== 'function'){
+            console.log('Internal Error');
+            return;
+        }
+        return window[methodName](parameter);
+    };
+    
+    
+    
+    /*$scope.MyMultipleChoiceQ = {
         correctAnswer: [],
         wrongAnswer: [],
         insertAnswer: function(text, check){//name:String della risposta  check:bool memorizza se corretto (se true faccio il push in correctAnswer)
@@ -50,7 +72,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             this.wrongAnswer = [];
         }
         
-    };
+    };*/
     
     $scope.MyCompletionQ ={
       

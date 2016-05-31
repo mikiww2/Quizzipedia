@@ -25,20 +25,11 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         }
     };
     
-    $scope.MyTrueFalseQ ={
-        answer: null, //bool
-        reset: function(){
-            this.answer = null;
-        }
-        
-    };
     
-    $scope.MyShortAnswerQ = {
-        answer: null, //String
-        reset: function(){
-            this.answer = null;
-        }
-    };
+    $scope.MyTrueFalseQ = new TrueFalseQ();
+    
+    $scope.MyShortAnswerQ = new ShortAnswerQ();
+    
     
     $scope.MyMultipleChoiceQ = {
         correctAnswer: [],
@@ -133,15 +124,15 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     $scope.saveShortAnswerQ = function(generic,shortAnswer){
         
-        var questionShort = new ShortAnswerQ();
+        //var questionShort = new ShortAnswerQ();
         
-        setGenericPart(generic,questionShort);
-        questionShort.setCorrectAnswer(shortAnswer.answer);
+        setGenericPart(generic,shortAnswer);
+        //questionShort.setCorrectAnswer(shortAnswer.answer);
         
-        $scope.save(questionShort);
+        $scope.save(shortAnswer);
         
         generic.reset();
-        shortAnswer.reset();
+        $scope.MyShortAnswerQ = new ShortAnswerQ();
        
     };
     
@@ -153,17 +144,13 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     $scope.saveTrueFalseQ = function(generic,trueFalse){
        
-        var questionTF = new TrueFalseQ();
+        setGenericPart(generic,trueFalse);
         
-        setGenericPart(generic,questionTF);
-        
-        questionTF.setCorrectAnswer(trueFalse.answer);
-        
-        
-        $scope.save(questionTF);
+            
+        $scope.save(trueFalse);
         
         generic.reset();
-        trueFalse.reset();
+        $scope.MyTrueFalseQ = new TrueFalseQ();
         
         
     };

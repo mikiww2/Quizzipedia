@@ -56,6 +56,9 @@
       <script type="text/javascript" src="./public/core.js"></script>
       <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
       
+      <script type="text/javascript" src="./public/services/GenericQuestion.js"></script>
+      <script type="text/javascript" src="./public/services/TrueFalseQ.js"></script>
+      
       <!-- CTRLQUESTIONMANAGER -->
       <script type="text/javascript" src="./public/question_creation/CtrlQuestionManager.js"></script>
       
@@ -64,21 +67,17 @@
       
   </head>
 
-  <body ng-controller="CtrlQuestionManager">
+  <body ng-controller="CtrlQuestionManager" ng-init="loadQuestionList()">
 	<div class="container" ng-include="modifyQuestion && './public/question_creation/viewModifyQuestion.html' || './public/question_creation/viewListQuestion.html' ">
-        
-        
-        
-        
-		
-        
+            
         
         
         
         
         
-        
+    
 	</div>
+      
   </body>
 </html>
 

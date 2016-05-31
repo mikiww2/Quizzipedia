@@ -142,18 +142,19 @@ var generateCL = function (question) { // da sistemare quando il form sarà funz
 
 // funzioni per il parsing del qml specifico per tipo
 
-var parserTF = function (qml) { // teoricamente ok
+var parserTF = function (qml) { // teoricamente ok , da riordinare un po gli statement
     var type = extract(qml, 'q?', '#t#');
     var text = extract(qml, '#t#', '#a#');
-    var attached = extract(text, '{', '}');
     var textwoattached = extract(text, '', '{');
     var answer = extract(qml, '#a#', '#££#');
-    return {
+    var qson = {
         'type': type,
         'txt': textwoattached,
-       // 'text': attached,
-        'txtattached': appendAttached(attached),
-        'ans': answer};
+        'ans': answer
+    }
+    if (text.endsWith('}'))
+        qson.txtattached = appendAttached(extract(text, '{', '}'));
+    return qson;
 };
 
 var parserRM = function (qml) { // da sistemare con form funzionante, versione SPERIMENTALE

@@ -1,17 +1,21 @@
-angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$http',function($scope,$http){
+angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$http','TrueFalseQ',function($scope,$http,TrueFalseQ){
     //Mancano queste dipendenze 'MatchingQ','MultipleChoiceQ','ShortAnswerQ','TrueFalseQ','CompletionQ','Teacher'
     
     $scope.teacher = null; //Teacher
-    $scope.Questionlist =[{ "author": "teacher@gmail.com", "title": "AAAAAAAAAAA", "description": "descrizione domanda", "topic": "Informatica", "difficulty": "Facile", "questionAttachement": null, "keywords": [ "B" ], "correctAnswer": "true" }, { "author": "teacher@gmail.com", "title": "BBBBBBBBBB", "description": "descrizione domanda", "topic": "Informatica", "difficulty": "Media", "questionAttachement": null, "keywords": [], "correctAnswer": "booooooh" }];
+    $scope.Questionlist =[];
     
     $scope.modifyQuestion = null;
-    $scope.typeQuestion = "mult";
+    $scope.typeQuestion = "";
     
         
     
     $scope.loadQuestionList = function(){
         //chiedo al server di inviarmi tutte le domande create dal teacher loggato
-        
+        $http.get('/api/question/fetch').success(function(response){
+            $scope.Questionlist = response;
+            
+            
+        });
     };
     
     $scope.loadTeacher = function(){
@@ -24,13 +28,32 @@ angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$h
     };
     
     $scope.setModifyQuestion = function(question){ //GenericQuestion
-        $scope.modifyQuestion = question;
+        //$scope.modifyQuestion = question;
+        
+        var tmp = new TrueFalseQ();
+        
+        tmp.setAuthor(question.author);
+        tmp.setTitle(question.title);
+        tmp.setDescription(question.description);
+        tmp.setTopic(question.topic);
+        tmp.setDifficulty(question.difficulty);
+        tmp.setQuestionAttachment(question.questionAttachment);
+        tmp.setKeyword(question.keywords);
+        tmp.setCorrectAnswer(question.correctAnswer);
+        
+        $scope.modifyQuestion = tmp;
+        $scope.typeQuestion = 'trfs';
+        
+        
     };
     
     $scope.checkTypeModifyQuestion = function(type){
        //ritorna true o false
     };
     
+    $scope.save = function(){
+        //chiedere al server di salvare tutto
+    };
     
     
 }]);

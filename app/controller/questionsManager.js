@@ -25,8 +25,8 @@ exports.save = function (req, res) {
 
 exports.fetch = function (req, res) {
 
-		var email = req.session.user._id;
-		TFQuestion.findAll(function (err, questions) {  //poi da filtrare secondo l'email della sessione (al momento test)
+		//var email = req.session.user._id;
+		TFQuestion.find(function (err, questions) {  //poi da filtrare secondo l'email della sessione (al momento test)
         if (err) {
             console.log('error: ' + err);
             res.redirect('/');

@@ -13,19 +13,14 @@
             </div>
 			
             <ul class="nav navbar-right top-nav pull-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Jane Doe <span class="label label-default">Nuona richiesta</span></a>
+                 <li class="userDropdown"> 
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-education"></i> <span class="visible-lg-inline visible-md-inline"> {{currentInstitution}}</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu">                        
+                        <li  ng-repeat = "name in institutions">
+                            <span ng-click="changeInst(name, role)">{{name}}</span>
                         </li>
-                        <li>
-                            <a href="#">Bob the Admin <span class="label label-success">Nuova richiesta</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
+                         <li class="divider"></li>
+                        <li> <a href = "/Quizzipedia/sendRequest"><span class="blue"> Entra in un nuovo ente</span></a></li>                       
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -37,9 +32,6 @@
                         </li>
                         <li>
                             <a href="#"><i class="glyphicon  glyphicon glyphicon-envelope"></i> Gestione richieste</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-cog"></i> Opzioni</a>
                         </li>
                         <li class="divider"></li>
 						<li>
@@ -62,17 +54,14 @@
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a>
+                        <a href="/Quizzipedia/home"><i class="glyphicon glyphicon-home"></i> Home</a>
                     </li>
                     <li>
                         <a href="#"><i class="glyphicon glyphicon-list-alt"></i> Quiz</a>
                     </li>
                     <li>
                         <a href="#"><i class="glyphicon glyphicon-th-list"></i> Materie</a>
-                    </li>
-					<li>
-                        <a href="#"><i class="glyphicon glyphicon-education"></i> Enti</a>
-                    </li>
+                    </li>					
 					<!-- <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-education"></i> Institutions <b class="caret"></b></a>
                     <ul class="dropdown-menu">

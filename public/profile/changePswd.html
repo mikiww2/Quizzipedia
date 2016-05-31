@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="profilemanager">
+<html lang="en" ng-app="ProfileManager">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" href="./assets/img/favicon.ico">
 
     <title>Cambio Password</title>
 
@@ -24,9 +23,23 @@
 	<link href="./assets/css/quizzipedia.base.css" rel="stylesheet">
 	
 	<!-- Merge others eventually -->
+    <link href="./assets/css/header.css" rel="stylesheet">
 	<link href="./assets/css/forms.css" rel="stylesheet">
+      
+    <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./assets/js/urlGetter.js"></script>
 
+	<script type="text/javascript" src="./public/core.js"></script>
 	<script type="text/javascript" src="./public/profile/CtrlUserManager.js" ></script>
+    <script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
+      
+    <!-- Directive angular (HEADER)-->
+    <script type="text/javascript" src="./public/header/headerLogged.js"></script>
+    <script type="text/javascript" src="./public/header/headerLoggedStudent.js"></script>
+    <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
+    <script type="text/javascript" src="./public/header/headerLoggedDirector.js"></script>
+    <!--Directive angular (FOOTER)-->
+    <script type="text/javascript" src="./public/footer/pageFooter.js"></script> 
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -36,8 +49,16 @@
 	
   </head>
 
-  <body>
-	<div class="container" ng-controller="CtrlUserManager"> 
+  <body onload="getUrl()">
+	<div class="container">
+        
+        <div ng-controller="CtrlHeader">        
+          <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
+          <header-logged-student ng-if="user.role == 'student'"></header-logged-student>         
+          <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>         
+          <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
+	</div>
+        
 		<form class="form" action="/api/profile/set_pswd" method="post">
 			<div class="text-center"> 
 				<h3 class="formTitle description">Modifica la tua password</h3>
@@ -63,5 +84,6 @@
 		</form>
  <!-- end of form -->
 	</div>
+      <page-footer></page-footer>
   </body>
 </html>

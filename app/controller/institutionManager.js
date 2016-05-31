@@ -42,11 +42,10 @@ exports.fetchUserInst = function (req, res) {
        			console.log('error no istitutions found');
        			res.redirect('/');
        		}
-       		res.send(orgs);
        	}	       		
 	    });
 		}
-		return results;
+		res.send(results);
 };
 
 

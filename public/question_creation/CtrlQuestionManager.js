@@ -42,7 +42,7 @@ angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$h
         tmp.setTitle(question.title);
         tmp.setDescription(question.description);
         tmp.setTopic(question.topic);
-        tmp.setDifficulty(question.difficulty);
+        tmp.setDifficulty(question.difficulty.toString());
         tmp.setQuestionAttachment(question.questionAttachment);
         tmp.setKeyword(question.keywords);
         tmp.setCorrectAnswer(question.correctAnswer);

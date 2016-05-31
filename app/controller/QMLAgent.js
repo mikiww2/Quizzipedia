@@ -198,3 +198,19 @@ exports.parse = function (qml){
 
     };
 }
+
+/*
+ script x testing
+
+ var agent = require('./QMLAgent');
+
+ var qml = '|q?2#t#cave#a#god[true]§bronzo[false]#££#|';
+ var qson = { type: '4', txt: 'cave', ans: 'god' };
+
+ console.log(agent.parse(qml));
+ console.log(agent.generate(qson));
+
+ var jsonAnswer = [];
+ jsonAnswer.push({"answer": "prova", "isTrue": "prova2"});
+ jsonAnswer.push({"answer": "prova1", "isTrue": "prova3"});
+ */

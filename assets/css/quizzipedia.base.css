@@ -475,6 +475,17 @@ h6.description, h4.description, h3.description{
     color:#590000;
 }
 
+.drag .label {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 7px;
+	margin-right: 5px;
+}
+
+.matching {
+	margin: 0 auto;
+}
+
 .matching .answerBlock {
 	padding: 10px 0;
 	margin-bottom: 10px;
@@ -489,5 +500,21 @@ h6.description, h4.description, h3.description{
 }
 
 .droppable {
-	width: 150px; height: 150px;
+	width: 100px; height: 100px;
+	margin-left: 5px;
+	background-color: #ffcb35;
+		padding: 10px 0;
+	margin-bottom: 10px;
+	border-radius: 10px;
 }
+
+#linkAnswers {
+	margin-bottom: 20px;
+}
+
+#linksList {
+	clear:both;
+	background-color: #ffcb35;
+}
+
+.answerBlock a{text-decoration: none;}

@@ -10,6 +10,13 @@ module.exports = function (app) {
       res.sendFile(path.resolve('./public/test_user/userDetails.html'));
   });
 
+  app.route('/Quizzipedia/institutionsWithUser').get(function (req, res) {
+    if (!req.session.user)
+      res.redirect('/');
+    else
+      res.sendFile(path.resolve('./public/test_institution/institutionDetails.html'));
+  });
+
   // BASIC -----------------------------------------------------------------------------------
   app.route('/').get(function (req, res) {
     res.redirect('/Quizzipedia/home');

@@ -158,11 +158,16 @@ exports.parse = function (qml){
         return qson;
     };
 
-    var parserRM = function (qml) { // da sistemare con form funzionante, versione SPERIMENTALE
+    var parserRM = function (qml) { // da sistemare con form funzionante, fixare in caso di alleg mancante
         var type = extract(qml, 'q?', '#t#');
+        var qson = {'type': type};
         var text = extract(qml, '#t#', '#a#');
-        //var attached = extract(text, '{', '}');
-        var textwoattached = extract(text, '', '{');
+        if (text.endsWith('}')) {
+            qson.txtattached = appendAttached(extract(text, '{', '}'));
+            qson.txt = extract(text, '', '{');
+        }
+        else
+            qson.txt = text;
         var answer = extract(qml, '#a#', '#££#');
         var arrayAns = answer.split('§');
         var jsonAnswer;
@@ -172,16 +177,13 @@ exports.parse = function (qml){
             var ansIsTrue = extract(item, '[', ']');
             jsonAnswer = {"answer": ansTxt, "isTrue": ansIsTrue};
             arrayjsonans.push(jsonAnswer);
-        }
-        //console.log('prova ' + arrayjsonans);
-        return {
-            'type': type,
-            'txt': textwoattached,
-            // 'text': attached,
-            //'txtattached': appendAttached(attached),
-            'ans': arrayjsonans
         };
-    };
+        //console.log('prova ' + textwoattached);
+        qson.txt = text;
+        qson.ans = arrayjsonans;
+        return qson;
+        };
+
 
     var parserCM = function (qml) { // // da sistemare con form funzionante
 

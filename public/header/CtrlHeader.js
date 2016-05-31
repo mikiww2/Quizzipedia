@@ -9,13 +9,13 @@ angular.module('Quizzipedia').controller('CtrlHeader',['$scope','$http',function
       //assegno l'oggetto utente ricevuto dal server a $scope.user  
         $http.get('/api/profile/get_full_info_user').success(function(response){
             $scope.user = response;            
-            })    
+            }); 
     };
     
     $scope.loadInstitutions = function() {//chiediamo al server un oggetto contenente le affiliazioni dell'utente
         $http.get('/api/institution/fetch_user_inst').success(function(response) {
             $scope.institutions = response;
-        })        
+        });
    };
     
     $scope.changeInst = function(name){

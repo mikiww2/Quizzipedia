@@ -65,8 +65,8 @@ exports.changeInst = function (req, res) {
             if (org) {  //SE TROVA UN UTENTE NEL DB
                 org.users.forEach(function(result,index){
                     if(result['user'] === session.user._id) {
-                        session.user.role = result['role'];
-                        session.user.institution = institution;
+                        req.session.user.role = result['role'];
+                        req.session.user.institution = institution;
                         res.redirect('/');
                     }
                 });

@@ -16,7 +16,14 @@ exports.signin = function (req, res) {
             if (user) {  //SE TROVA UN UTENTE NEL DB
                 if (user.password == pass) {  //SE LA PASS CORRISPONDE
                     console.log('user trovato: ' + user._id + ' con pass corretta');
-                    req.session.user = user;
+                    req.session.user = { };
+                    req.session.user._id = user._id;
+                    req.session.user.firstName = user.firstName;
+                    req.session.user.lastName = user.lastName;
+                    req.session.user.password = user.password;
+                    req.session.user.institution = 'none';
+                    req.session.user.role = 'noRole';
+                    console.log(user);
                     res.redirect('/');
                 }
                 else {  //SE LA PASS NON CORRISPONDE

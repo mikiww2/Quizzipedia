@@ -110,88 +110,91 @@ exports.parse = function (qml){
 };
 
 // funzioni per la generazione di stringa di risposta specifica per ogni tipo
+{
+    var generateTF = function (question) { //teoricamente ok
+        var attached = generateAttached(question);
+        return question.txt + attached + '#a#' + question.ans + '#££#';
+    };
 
-var generateTF = function (question) { //teoricamente ok
-    var attached = generateAttached(question);
-    return question.txt + attached + '#a#' + question.ans + '#££#';
-};
+    var generateRM = function (question) { // da sistemare quando il form sarà funzionante
+        var attached = generateAttached(question);
+        var stringAnswers = '';
+        for (var item of question.ans) {
+            stringAnswers = stringAnswers + item.answer + '[' + item.isTrue + ']§';
+        }
+        if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
+            stringAnswers = stringAnswers.substr(0, stringAnswers.length - 1);
+        return question.txt + attached + '#a#' + stringAnswers + '#££#';
+    };
 
-var generateRM = function (question) { // da sistemare quando il form sarà funzionante
-    var attached = generateAttached(question);
-    var stringAnswers = '';
-    for (var item of question.ans) {
-        stringAnswers = stringAnswers + item.answer + '[' + item.isTrue + ']§';
-    }
-    if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
-        stringAnswers = stringAnswers.substr(0,stringAnswers.length-1);
-    return question.txt + attached + '#a#' + stringAnswers + '#££#';
-};
+    var generateCM = function (question) { // da sistemare quando il form sarà funzionante
+        return question.ans + '#';
+    };
 
-var generateCM = function (question) { // da sistemare quando il form sarà funzionante
-    return question.ans + '#';
-};
+    var generateRA = function (question) {  // teoricamente ok
+        var attached = generateAttached(question);
+        return question.txt + attached + '#a#' + question.ans + '#££#';
+    };
 
-var generateRA = function (question) {  // teoricamente ok
-    var attached = generateAttached(question);
-    return question.txt + attached + '#a#' + question.ans + '#££#';
-};
-
-var generateCL = function (question) { // da sistemare quando il form sarà funzionante
-    return question.ans + '#';
-};
+    var generateCL = function (question) { // da sistemare quando il form sarà funzionante
+        return question.ans + '#';
+    };
+}
 
 // funzioni per il parsing del qml specifico per tipo
+{
+    var parserTF = function (qml) { // teoricamente ok , da riordinare un po gli statement
+        var type = extract(qml, 'q?', '#t#');
+        var text = extract(qml, '#t#', '#a#');
+        var textwoattached = extract(text, '', '{');
+        var answer = extract(qml, '#a#', '#££#');
+        var qson = {
+            'type': type,
+            'txt': textwoattached,
+            'ans': answer
+        }
+        if (text.endsWith('}'))
+            qson.txtattached = appendAttached(extract(text, '{', '}'));
+        return qson;
+    };
 
-var parserTF = function (qml) { // teoricamente ok , da riordinare un po gli statement
-    var type = extract(qml, 'q?', '#t#');
-    var text = extract(qml, '#t#', '#a#');
-    var textwoattached = extract(text, '', '{');
-    var answer = extract(qml, '#a#', '#££#');
-    var qson = {
-        'type': type,
-        'txt': textwoattached,
-        'ans': answer
-    }
-    if (text.endsWith('}'))
-        qson.txtattached = appendAttached(extract(text, '{', '}'));
-    return qson;
-};
+    var parserRM = function (qml) { // da sistemare con form funzionante, versione SPERIMENTALE
+        var type = extract(qml, 'q?', '#t#');
+        var text = extract(qml, '#t#', '#a#');
+        //var attached = extract(text, '{', '}');
+        var textwoattached = extract(text, '', '{');
+        var answer = extract(qml, '#a#', '#££#');
+        var arrayAns = answer.split('§');
+        var jsonAnswer;
+        var arrayjsonans = [];
+        for (var item of arrayAns) {
+            var ansTxt = extract(item, '', '[');
+            var ansIsTrue = extract(item, '[', ']');
+            jsonAnswer = {"answer": ansTxt, "isTrue": ansIsTrue};
+            arrayjsonans.push(jsonAnswer);
+        }
+        console.log('prova ' + arrayjsonans);
+        return {
+            'type': type,
+            'txt': textwoattached,
+            // 'text': attached,
+            //'txtattached': appendAttached(attached),
+            'ans': answer
+        };
+    };
 
-var parserRM = function (qml) { // da sistemare con form funzionante, versione SPERIMENTALE
-    var type = extract(qml, 'q?', '#t#');
-    var text = extract(qml, '#t#', '#a#');
-    //var attached = extract(text, '{', '}');
-    var textwoattached = extract(text, '', '{');
-    var answer = extract(qml, '#a#', '#££#');
-    var arrayAns = answer.split('§');
-    var jsonAnswer;
-    var arrayjsonans = [];
-    for (var item of arrayAns){
-        var ansTxt = extract(item, '', '[');
-        var ansIsTrue = extract(item, '[', ']');
-        jsonAnswer = {"answer": ansTxt, "isTrue": ansIsTrue};
-        arrayjsonans.push(jsonAnswer);
-    }
-    console.log('prova ' + arrayjsonans);
-    return {
-        'type': type,
-        'txt': textwoattached,
-        // 'text': attached,
-        //'txtattached': appendAttached(attached),
-        'ans': answer};
-};
+    var parserCM = function (qml) { // // da sistemare con form funzionante
 
-var parserCM = function (qml) { // // da sistemare con form funzionante
+    };
 
-};
+    var parserRA = function (qml) { // teoricamente ok
+        var type = qml.charAt(qml.indexOf('q?') + 2);
+        var text = extract(qml, '#t#', '#a#');
+        var answer = extract(qml, '#a#', '#££#');
+        return {'type': type, 'txt': text, 'ans': answer};
+    };
 
-var parserRA = function (qml) { // teoricamente ok
-    var type = qml.charAt(qml.indexOf('q?')+2);
-    var text = extract(qml, '#t#', '#a#');
-    var answer = extract(qml, '#a#', '#££#');
-    return {'type': type, 'txt': text, 'ans': answer};
-};
+    var parserCL = function (qml) { // da sistemare con form funzionante
 
-var parserCL = function (qml) { // da sistemare con form funzionante
-
-};
+    };
+}

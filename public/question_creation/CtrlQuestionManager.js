@@ -2,7 +2,7 @@ angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$h
     //Mancano queste dipendenze 'MatchingQ','MultipleChoiceQ','ShortAnswerQ','TrueFalseQ','CompletionQ','Teacher'
     
     $scope.teacher = null; //Teacher
-    $scope.Questionlist =[];
+    $scope.Questionlist = [];
     
     $scope.modifyQuestion = null;
     $scope.typeQuestion = "";
@@ -24,7 +24,13 @@ angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$h
     
     $scope.removeQuestion = function(indexOfQuestion){ //int
         //rimuovo la domanda localmente e invio una richiesta al server per eliminare definitivamente la domanda
-        $scope.Questionlist.splice(indexOfQuestion,1);
+        var id = $scope.Questionlist[indexOfQuestion]._id;
+        
+        /*$http.post('',id).success(function(response){
+            $scope.Questionlist.splice(indexOfQuestion,1);    
+        });*/
+        
+        
     };
     
     $scope.setModifyQuestion = function(question){ //GenericQuestion
@@ -53,6 +59,11 @@ angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$h
     
     $scope.save = function(){
         //chiedere al server di salvare tutto
+        $http.post('/api/question/save',$scope.modifyQuestion).success(function(response){
+            alert("Domanda salvata");
+            $scope.modifyQuestion = null;
+            $scope.loadQuestionList();
+        });
     };
     
     

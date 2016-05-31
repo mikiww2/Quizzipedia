@@ -2,13 +2,13 @@ angular.module('Quizzipedia').controller('CtrlHeader',['$scope','$http',function
     
     $scope.user = null;
     $scope.institutions = { 'Ancora in nessun ente' : 'Nessun ruolo assegnato' };
-    $scope.currentInstitution = "Nessun ente selezionato";
+    $scope.noInstitution = "Nessun ente selezionato";
     $scope.currentHeader = null; 
     
     $scope.loadUser = function() {
       //assegno l'oggetto utente ricevuto dal server a $scope.user  
         $http.get('/api/profile/get_full_info_user').success(function(response){
-            $scope.user = response;            
+            $scope.user = response;  
             })    
     };
     
@@ -21,7 +21,7 @@ angular.module('Quizzipedia').controller('CtrlHeader',['$scope','$http',function
     $scope.changeInst = function(orgName){
       console.log(orgName);
       var name = { organizationName : orgName};
-        $http.post('/api/institution/change_inst', name); 
+        $http.post('/api/institution/change_inst', name);       
         
         /*.success(function(response) {
             $route.reload();

@@ -1,0 +1,26 @@
+.thumb {
+
+    width: 100px;
+    height: 100px;
+    float: none;
+    position: relative;
+    top: 7px;
+
+
+}
+
+form .progress {
+    line-height: 15px;
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div{
+    font-size: 10px;
+    background: orange;
+    width: 0;
+}

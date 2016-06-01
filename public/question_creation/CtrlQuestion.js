@@ -1,4 +1,4 @@
-angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$rootScope','$http','TrueFalseQ','ShortAnswerQ','MultipleChoiceQ', function($scope,$rootScope, $http, TrueFalseQ,ShortAnswerQ,MultipleChoiceQ){ //dipendenze verso tutti i tipi di domande e Topics
+angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ','ShortAnswerQ','MultipleChoiceQ','Upload','$timeout', function($scope, $http, TrueFalseQ,ShortAnswerQ,MultipleChoiceQ,Upload,$timeout){ //dipendenze verso tutti i tipi di domande e Topics
     
     $scope.topics = []; //inizializzato dal server
     
@@ -38,6 +38,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$rootScope
             this.question.answers.push("");
             this.question.answerAttachment.push(null);
             this.question.correctAnswer.push(false);
+            this.size = this.size +1;
         },
         remove: function(index){
             if(index>= 0 && index < this.question.answers.length){
@@ -46,9 +47,36 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$rootScope
                 this.question.correctAnswer.splice(index,1);
                 this.size = this.size - 1;
             }
+        },
+        preUpload: function(index){
+            this.question.answers.push(null);
+            this.question.answerAttachment.push("");
+            this.question.correctAnswer.push(false);
+            this.size = this.size + 1;
         }
     };
     
+    
+    $scope.uploadPic = function(file){
+      
+        file.upload = Upload.upload({
+            url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+            data: {file: file},
+        });
+        
+        file.upload.then(function(response){
+            $timeout(function(){
+                file.result = response.data;
+            });
+        }, function(response){
+            if (response.status > 0){
+                $scope.errorMsg = response.status + ': ' + response.data;
+            }
+        }, function(evt){
+            file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        });
+        
+    };
     
     
     /*$rootScope.callWindowMethod = function(methodName, parameter){

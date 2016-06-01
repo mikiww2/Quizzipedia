@@ -15,13 +15,13 @@
 								<a href="#"><span class="label-as-badge label-yellow text-center">A</span></a> <!-- # riga, variabile -->
 								<input class="rowTitle" type="text" name="rowtitle1" placeholder="Titolo riga.." > <!-- titolo riga (non c'è nell'ar ma potenzialmente utile, ignoratelo se volete) -->
 							</div>
-							<div class="drag">
+							<div class="drag ui-widget-content">
 								<span class="label label-danger">1</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 							</div>
-							<div class="drag">
+							<div class="drag ui-widget-content">
 								<span class="label label-danger">2</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 							</div>
-							<div class="drag">
+							<div class="drag ui-widget-content">
 								<span class="label label-danger">3</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 							</div>
 						</div>
@@ -36,13 +36,13 @@
 								<a href="#"><span class="label-as-badge label-yellow text-center">B</span></a>
 								<input class="rowTitle" type="text" name="rowtitle1" placeholder="Titolo riga.." > 
 							</div>
-							<div class="drag">
+							<div class="drag ui-widget-content">
 								<span class="label label-danger">1</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 							</div>
-							<div class="drag">
+							<div class="drag ui-widget-content">
 								<span class="label label-danger">2</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 							</div>
-							<div class="drag">
+							<div class="drag ui-widget-content">
 								<span class="label label-danger">3</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 							</div>
 						</div>
@@ -57,13 +57,13 @@
 								<a href="#"><span class="label-as-badge label-yellow text-center">C</span></a>
 								<input class="rowTitle" type="text" name="rowtitle1" placeholder="Titolo riga.." > 								
 							</div>
-							<div class="drag">
+							<div class="drag ui-widget-content">
 								<span class="label label-danger">1</span><img src="./assets/img/portraits/usr1.jpg" style="width: 80px; height: auto;"/>
 							</div>
-							<div class="drag">
+							<div class="drag ui-widget-content">
 								<span class="label label-danger">2</span><img src="./assets/img/portraits/usr2.jpg" style="width: 80px; height: auto;"/>
 							</div>
-							<div class="drag">
+							<div class="drag ui-widget-content">
 								<span class="label label-danger">3</span><img src="./assets/img/portraits/usr3.jpg" style="width: 80px; height: auto;"/>
 							</div>
 						</div>
@@ -95,18 +95,20 @@
 				<script language="javascript" type="text/javascript">
 				$(document).ready(function() { 
 					$('.drag').draggable({ 
-					revert: false, helper: "clone" 
+					revert: false, 
+					stack: ".drag"
 					}); //ogni nuovo elemento creato deve essere reso draggable
 					$( ".droppable" ).droppable({
-						  drop: function( event, ui ) {
-							$( this )
-							  .addClass( "ui-state-highlight" )
-							  .find( "p" )
-								.html( "Dropped!" );
+					hoverClass: 'drop-hover',
+							accept: '.drag',
+							hoverClass: "ui-state-active",
+							drop: function( event, ui ) {
+								$( this )
+								.addClass( "ui-state-highlight" ).find( "p" ).html( "Accettato!" );
 						  }
 						});
 				});
 				</script>
 		</div>
-
+</div>
 

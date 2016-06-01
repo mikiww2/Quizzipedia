@@ -23,16 +23,19 @@
     "karma-firefox-launcher": "^1.0.0",
     "karma-ie-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
+    "karma-mocha": "^1.0.1",
     "karma-opera-launcher": "^1.0.0",
-    "karma-safari-launcher": "^1.0.0"
+    "karma-safari-launcher": "^1.0.0",
+    "mocha": "^2.5.3",
+    "should": "^9.0.0"
   },
   "scripts": {
     "start": "node server.js",
     "pre-test": "npm install",
     "test": "npm run testDb && npm run testClient && npm run testServer && npm run testIntegration",
-    "testDb": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --color --verbose --forceexit --noStack tests/unit/db/",
-    "testClient": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --color --verbose --forceexit --noStack tests/unit/client/",
-    "testServer": "node node_modules/jasmine-node/lib/jasmine-node/cli.js --color --verbose --forceexit --noStack tests/unit/server/",
+    "testDb": "node node_modules/mocha/bin/mocha --colors --recursive tests/unit/db/",
+    "testClient": "echo \"devi settare per i test in tests/unit/client/\" && exit 1",
+    "testServer": "echo \"devi settareper i test in tests/unit/server/\" && exit 1",
     "testIntegration": "karma start karma.conf.js"
   },
   "repository": {

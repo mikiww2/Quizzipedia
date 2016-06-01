@@ -22,17 +22,17 @@ var extract = function(string, start, end){ // estrae una data sottostringa tram
     return string.slice(string.indexOf(start) + lenght, string.indexOf(end));
 };
 
-var generateAttached = function (question) { // funzione che gestisce gli allegati del generator
-    if (question.attachment) {
-        var attachedtype = question.attachment.type + ':';
-        var attachedpath = question.attachment.path;
+var generateAttached = function (item) { // funzione che gestisce gli allegati del generator
+    if (item.attachment) {
+        var attachedtype = item.attachment.type + ':';
+        var attachedpath = item.attachment.path;
         var attachedcoord = '';
-        if (question.attachment.x && question.attachment.y){
-            var attachedcoordX = ':x.' + question.attachment.x;
-            var attachedcoordY = ':y.' + question.attachment.y;
+        if (item.attachment.x && item.attachment.y){
+            var attachedcoordX = ':x.' + item.attachment.x;
+            var attachedcoordY = ':y.' + item.attachment.y;
             attachedcoord = attachedcoordX + attachedcoordY;
         }
-        return '{' + attachedtype + question.attachment.path + attachedcoord + '}';
+        return '{' + attachedtype + attachedpath + attachedcoord + '}';
     }
     else return '';
 };
@@ -112,19 +112,16 @@ exports.parse = function (qml){
 // funzioni per la generazione di stringa di risposta specifica per ogni tipo
 {
     var generateTF = function (question) { //teoricamente ok
-        var attached = generateAttached(question);
-        return question.title + attached + '#a#' + question.ans + '#££#';
+        var stringAttached = generateAttached(question);
+        return question.title + stringAttached + '#a#' + question.ans + '#££#';
     };
 
-    var generateRM = function (question) { // da sistemare quando il form sarà funzionante
+    var generateRM = function (question) { // teoricamente ok
         var attached = generateAttached(question);
         var stringAnswers = '';
         for (var item of question.ans) {
-            stringAnswers = stringAnswers + item.answer + '[' + item.isTrue + ']';
-            if (item.attached){
-                stringAnswers = stringAnswers + generateAttached(item);
-                console.log(item);}
-            stringAnswers = stringAnswers + '§';
+            var stringAttached = generateAttached(item);
+            stringAnswers = stringAnswers + item.answer + '[' + item.isTrue + ']' + stringAttached + '§';
         }
         if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
             stringAnswers = stringAnswers.substr(0, stringAnswers.length - 1);
@@ -136,8 +133,8 @@ exports.parse = function (qml){
     };
 
     var generateRA = function (question) {  // teoricamente ok
-        var attached = generateAttached(question);
-        return question.title + attached + '#a#' + question.ans + '#££#';
+        var stringAttached = generateAttached(question);
+        return question.title + stringAttached + '#a#' + question.ans + '#££#';
     };
 
     var generateCL = function (question) { // da sistemare quando il form sarà funzionante

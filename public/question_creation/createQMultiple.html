@@ -21,13 +21,13 @@
 					<!--  upload sballato se si aggiungono + elementi senza ricaricare perchè gli id non sono incrementati -->
                         
                         <div class="answerBlock" ng-repeat="q in MyMultipleChoiceQ.question.answers track by $index"> <!-- METTERE UN BEL NG-REPEAT-->
-                                
-                            <!--<textarea type="textarea" name="ta1" id="{{'ta'+ $index}}" ng-model="MyMultipleChoiceQ.question.answers[$index]"></textarea>
-                            -->
+                                <!-- ng-repeat="q in MyMultipleChoiceQ.question.answers track by $index" -->
+                            
                             <div class="drag" id="index">
                                 <input type="checkbox" ng-model="MyMultipleChoiceQ.question.correctAnswer[$index]">
                                 <textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="MyMultipleChoiceQ.question.answers[$index]"></textarea>
-                                <a href="#"><i class="glyphicon glyphicon-remove"></i></a>
+                                <!--a href="#"><i class="glyphicon glyphicon-remove"></i></a>-->
+                                <button class="btn" style="display:inline;"><i class="glyphicon glyphicon-remove"></i></button>
                             </div>
                         </div>
                         
@@ -92,11 +92,11 @@
 		}
 	};//aggiunto
 
-	function createTextarea() { //value="answ0"
-		/*$("#newBlock").append($('<div class="answerBlock"><div class="drag" id="index"><input type="checkbox" ng-model="MyMultipleChoiceQ.question.correctAnswer[0]"><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="MyMultipleChoiceQ.question.answers[0]"></textarea><a href="#"><i class="glyphicon glyphicon-remove"></i></a></div></div>'));*/
+	/*function createTextarea() { //value="answ0"
+		$("#newBlock").append($('<div class="answerBlock"><div class="drag" id="index"><input type="checkbox" ng-model="MyMultipleChoiceQ.question.correctAnswer[0]"><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="MyMultipleChoiceQ.question.answers[0]"></textarea><a href="#"><i class="glyphicon glyphicon-remove"></i></a></div></div>'));
 		$('.drag').draggable(); //ogni nuovo elemento è reso draggable
         
-	   }; //aggiunto
+	   }; //aggiunto*/
         
 	var loadFile = function(event) {
 		$("#newBlock").append($( '<div class="drag" id="drag1"><input type="checkbox" value="answ0"><img id="output1" class="img-responsive"/>'));

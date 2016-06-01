@@ -20,10 +20,13 @@
 					<!--  creare dinamicamente answerBlock con id newBlock# e stampare contenuti usando createTextArea() e loadFile() -->
 					<!--  upload sballato se si aggiungono + elementi senza ricaricare perchè gli id non sono incrementati -->
                         
-                        <div class="answerBlock" ng-repeat="(index,answer) in MyMultipleChoiceQ.question.correctAnswer"> <!-- METTERE UN BEL NG-REPEAT-->
+                        <div class="answerBlock" ng-repeat="q in MyMultipleChoiceQ.question.answers track by $index"> <!-- METTERE UN BEL NG-REPEAT-->
+                                
+                            <!--<textarea type="textarea" name="ta1" id="{{'ta'+ $index}}" ng-model="MyMultipleChoiceQ.question.answers[$index]"></textarea>
+                            -->
                             <div class="drag" id="index">
-                                <input type="checkbox" ng-model="answer">
-                                <textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="MyMultipleChoiceQ.question.answers[0]"></textarea>
+                                <input type="checkbox" ng-model="MyMultipleChoiceQ.question.correctAnswer[$index]">
+                                <textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="MyMultipleChoiceQ.question.answers[$index]"></textarea>
                                 <a href="#"><i class="glyphicon glyphicon-remove"></i></a>
                             </div>
                         </div>

@@ -37,3 +37,6 @@ fabric.properties
 
 # node modules
 node_modules/**
+
+#npm
+npm-debug.log

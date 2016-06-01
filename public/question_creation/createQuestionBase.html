@@ -58,6 +58,7 @@
       <script type="text/javascript" src="./public/services/GenericQuestion.js"></script>
       <script type="text/javascript" src="./public/services/TrueFalseQ.js"></script>
       <script type="text/javascript" src="./public/services/ShortAnswerQ.js"></script>
+      <script type="text/javascript" src="./public/services/MultipleChoiceQ.js"></script>
       
       
       <!-- DIRECTIVE QUESTION CREATION -->
@@ -171,7 +172,7 @@
 		<!-- END VARIABLE PART -->
 
           
-          {{MyGenericQ.keywords | json}}
+          {{MyMultipleChoiceQ| json}}
           
           
         <button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button>

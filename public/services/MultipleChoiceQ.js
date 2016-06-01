@@ -1,4 +1,4 @@
-angular.module().factory('MultipleChoiceQ',['GenericQuestion',function(){
+angular.module('CreateQuestion').factory('MultipleChoiceQ',['GenericQuestion',function(){
     
     function MultipleChoiceQ(){
         

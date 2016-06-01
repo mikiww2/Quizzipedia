@@ -35,22 +35,30 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$rootScope
         question: new MultipleChoiceQ(),
         size: 0,
         create: function(index){
-            this.question.answers.push("ciaooooooo");
+            this.question.answers.push("");
             this.question.answerAttachment.push(null);
-            this.question.correctAnswer.push("");
+            this.question.correctAnswer.push(false);
+        },
+        remove: function(index){
+            if(index>= 0 && index < this.question.answers.length){
+                this.question.answers.splice(index,1);
+                this.question.answerAttachment.splice(index,1);
+                this.question.correctAnswer.splice(index,1);
+                this.size = this.size - 1;
+            }
         }
     };
     
-    $scope.tmp = null;
     
-    $rootScope.callWindowMethod = function(methodName, parameter){
+    
+    /*$rootScope.callWindowMethod = function(methodName, parameter){
         if(typeof window[methodName] !== 'function'){
             console.log('Internal Error');
             return;
         }
         return window[methodName](parameter);
     };
-    
+    */
     
     
     /*$scope.MyMultipleChoiceQ = {

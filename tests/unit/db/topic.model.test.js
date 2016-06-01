@@ -4,7 +4,7 @@ var should = require('should');
 var mongoose = require('mongoose');
 var Topic = require('../../../app/model/topic.model');
 var database = require('../../config/database.test');
-mongoose.connect(database.localUrl);
+mongoose.createConnection(database.localUrl);
 
 var topic,
     name = 'pippo',
@@ -14,6 +14,7 @@ var topic,
 describe('topic.model.js unit tests :', function() {
 
     beforeEach(function() {
+        Topic.remove().exec();
         topic = new Topic({ _id: name });
         topic.save();
     });
@@ -85,35 +86,31 @@ describe('topic.model.js unit tests :', function() {
                     should.not.exist(err);
                     should.exist(t);
                     t.should.be.exactly(name);
-                });
 
-                var topic1 = new Topic({ _id: name });
-                topic1.save(function(err, t, nRow) {
-                    should.exist(err);
-                    should.not.exist(t);
-                    should.exist(nRow);
-                    nRow.should.be.a.Number().and.be.exactly(0);
+                    new Topic({ _id: name }).save(function(err, t, nRow) {
+                        should.exist(err);
+                        should.not.exist(t);
+                        should.exist(nRow);
+                        nRow.should.be.a.Number().and.be.exactly(0);
+                    });
                 });
             });
         });
     });
 
     describe('advanced functions :', function() {
-
         describe('getName', function() {
             it('return ' + name, function() {
-                topic.getName().should.be.exactly(name).and.be.a.String();
+                topic.getName().should.be.a.String().and.be.exactly(name);
             });
 
-            it('return ' + name + ' with findOne', function(done) {
+            it('return ' + name + ' with findOne', function() {
                 Topic.findOne({}, function(err, cb) {
                     should.not.exist(err);
                     should.exist(cb);
-                    cb.getName().should.be.exactly(name).and.be.a.String();
-                    done();
+                    cb.getName().should.be.a.String().and.be.exactly(name)
                 });
             });
-
         });
 
         describe('hasTopic', function() {
@@ -136,7 +133,6 @@ describe('topic.model.js unit tests :', function() {
                 });
             });
 
-
             it('return true with a new topic ' + name2, function() {
                 new Topic({ _id: name2 }).save();
 
@@ -150,7 +146,6 @@ describe('topic.model.js unit tests :', function() {
         });
 
         describe('findTopics', function() {
-
             describe('return exactly find()', function() {
                 it('test with ' + name +' asyncrony', function() {
                     Topic.findTopics(function(err, t) {
@@ -238,23 +233,4 @@ describe('topic.model.js unit tests :', function() {
     });
 });
 
-
-    //     it('findTopics returns all the topics', function() {
-    //         Topic.findTopics().count({}, function(c) {
-    //             expect(c).toEqual(1);
-    //         });
-    //
-    //         topic = new Topic({ _id: 'pluto' });
-    //         topic.save();
-    //
-    //         Topic.findTopics().count({}, function(c) {
-    //             expect(c).toEqual(2);
-    //         });
-    //
-    //         topic = new Topic({ _id: 'paperino' });
-    //         topic.save();
-    //
-    //         Topic.findTopics().count({}, function(c) {
-    //             expect(c).toEqual(3);
-    //         });
-    //     });
+mongoose.connection.close();

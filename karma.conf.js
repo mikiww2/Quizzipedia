@@ -10,7 +10,8 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha'],
+//     frameworks: ['mocha'],
+    frameworks: ['jasmine', 'mocha'],
 
 
     // list of files / patterns to load in the browser
@@ -25,9 +26,9 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-        'tests/unit/db/*.spec.js',
-        'tests/unit/client/*.spec.js',
-        'tests/unit/server/*.spec.js'
+        'tests/unit/db/*',
+        'tests/unit/client/*',
+        'tests/unit/server/*'
     ],
 
 
@@ -42,7 +43,7 @@ module.exports = function(config) {
         reporter: 'html', // change Karma's debug.html to the mocha web reporter
         ui: 'tdd'
       }
-    }
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'

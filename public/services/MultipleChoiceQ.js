@@ -5,7 +5,15 @@ angular.module('CreateQuestion').factory('MultipleChoiceQ',['GenericQuestion',fu
         this.answers = []; //String
         this.answerAttachment = []; //String
         this.correctAnswer = []; //bool
-        
+
+        /* sarebbe molto meglio un array singolo di json con questa forma:
+        {'risposta': 'blabla', 'isTrue': 'true/false', 'attachment': json}
+
+        il json degli allegati è uguale per risposte e domande ed è fatto cosi:
+        {'type': 'img/aud/vid', 'path': '/dff/asd.jpg', 'x': '230', 'y': '70'}
+
+        è il formato che io uso e se lo cambiate dimmelo perche mi tocca modificare tutto
+        */
     };
     
     

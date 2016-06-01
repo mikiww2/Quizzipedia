@@ -44,7 +44,7 @@
                                 <textarea ng-if="MyMultipleChoiceQ.question.answers[$index] !== null " type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="MyMultipleChoiceQ.question.answers[$index]"></textarea>
                                 
                                 
-                                <form ng-if="MyMultipleChoiceQ.question.answerAttachment[$index] !== null" name="uploadForm">
+                                <!--<form ng-if="MyMultipleChoiceQ.question.answerAttachment[$index] !== null" name="uploadForm">
                                     <input type="file" ngf-select ng-model="picFile" name="file" accept="img/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
                                     
                                     <i ng-show="uploadForm.file.$error.required">* required</i>
@@ -59,11 +59,11 @@
                                     <span ng-show="picFile.result">Upload completato</span>
                                     <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
                                     
-                                    {{picFile.result[0]| json}}
+                                    {{picFile.result.result.name| json}}
                                         
                                     
                                     
-                                </form>
+                                </form>-->
                                 
                                 
                                 

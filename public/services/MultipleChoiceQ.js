@@ -1,12 +1,7 @@
-angular.module('CreateQuestion').factory('MultipleChoiceQ',['GenericQuestion',function(){
+angular.module('CreateQuestion').factory('MultipleChoiceQ',['GenericQuestion','AnswerMultipleChoice',function(GenericQuestion,AnswerMultipleChoice){
     
-    function MultipleChoiceQ(){
-        
-        this.answers = []; //String
-        this.answerAttachment = []; //String
-        this.correctAnswer = []; //bool
-
-        /* sarebbe molto meglio un array singolo di json con questa forma:
+    
+    /* sarebbe molto meglio un array singolo di json con questa forma:
         {'risposta': 'blabla', 'isTrue': 'true/false', 'attachment': json}
 
         il json degli allegati è uguale per risposte e domande ed è fatto cosi:
@@ -14,29 +9,27 @@ angular.module('CreateQuestion').factory('MultipleChoiceQ',['GenericQuestion',fu
 
         è il formato che io uso e se lo cambiate dimmelo perche mi tocca modificare tutto
         */
-    };
     
     
-    MultipleChoiceQ.prototype.getAttachment = function(){
-        return this.answerAttachment;
-    };
-    
-    MultipleChoiceQ.prototype.setAttachment = function(position,attachment){
-        this.answerAttachment.splice(position,1,attachment);
-        //elimino l'elemento in posizione position e subito dopo aggiungo il nuovo elmento
-    };
-    
-    MultipleChoiceQ.prototype.setAnswer = function(position,answer){
-        this.answers.splice(position,1,answer);
-    };
-    
-    MultipleChoiceQ.prototype.createAnswerQuestion = function(answer){ //answer:bool[]
+    function MultipleChoiceQ(){
+        
+        GenericQuestion.call(this); //Chiamo il costruttore del padre
+        this.arrayAnswer = []; //arrayAnswer: AnswerMultipleChoice --> memorizzo tutte le risposte
+
         
     };
     
-    MultipleChoiceQ.prototype.setCorrectAnswer = function(correctAnswer){//bool[]
-        this.correctAnswer = correctAnswer;
+    
+    
+    MultipleChoiceQ.prototype.removeAnswer = function(position){
+        this.arrayAnswer.splice(position,1);
     };
+    
+    MultipleChoiceQ.prototype.getArrayAnswer = function(){
+        return this.arrayAnswer;  
+    };
+    
+    
     
     return MultipleChoiceQ;
     

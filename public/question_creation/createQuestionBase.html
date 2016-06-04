@@ -50,6 +50,12 @@
        <!-- AngularJS -->
       <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
       
+      <!-- SCRIPT PER ng-file-upload-->
+      <script src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload-shim.min.js"></script>
+      <script src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload.min.js"></script>
+      <link rel="stylesheet" href="./assets/ng-file-upload-bower-12.0.4/ng-file-upload.css">
+      
+      
       <script type="text/javascript" src="./public/core.js"></script>
       <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
       <script type="text/javascript" src="./public/question_creation/CtrlQuestion.js"></script>
@@ -58,6 +64,8 @@
       <script type="text/javascript" src="./public/services/GenericQuestion.js"></script>
       <script type="text/javascript" src="./public/services/TrueFalseQ.js"></script>
       <script type="text/javascript" src="./public/services/ShortAnswerQ.js"></script>
+      <script type="text/javascript" src="./public/services/MultipleChoiceQ.js"></script>
+      <script type="text/javascript" src="./public/services/AnswerMultipleChoiceQ.js"></script>
       
       
       <!-- DIRECTIVE QUESTION CREATION -->
@@ -171,7 +179,7 @@
 		<!-- END VARIABLE PART -->
 
           
-          {{domande | json}}
+          {{MyMultipleChoiceQ| json}}
           
           
         <button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button>

@@ -3,83 +3,112 @@
 			<h4 class="text-center">Risposte</h4>
 				<!-- new upload -->
 				<div class="form-group row form">
-					<span class="btn btn-default" type="button" id="newColumn" data-placement="top" data-toggle="tooltip" title="New row"><i class="glyphicon glyphicon-plus"></i></span> <!-- nuova riga di risposte -->
-					<span class="btn btn-default btn-file" id="newAttach" data-placement="top" data-toggle="tooltip" title="Upload attachment"><i class="glyphicon glyphicon-upload"></i> <input type="file"></span>
-					<span class="btn btn-default" type="button" id="newAText" data-placement="top" data-toggle="tooltip" title="New textarea"><i class="glyphicon glyphicon-align-left"></i></span>
+					<span class="btn btn-default" type="button" id="newColumn" data-placement="top" data-toggle="tooltip" title="Nuova riga"><i class="glyphicon glyphicon-plus"></i></span> <!-- nuova riga di risposte -->
+					<span class="btn btn-default btn-file" id="newAttach" data-placement="top" data-toggle="tooltip" title="Carica allegato"><i class="glyphicon glyphicon-upload"></i> <input type="file"></span>
+					<span class="btn btn-default" type="button" id="newAText" data-placement="top" data-toggle="tooltip" title="Nuova casella di testo"><i class="glyphicon glyphicon-align-left"></i></span>
 				</div>
 				
-				<div id="answContainer" class="row matching">
-						<div class="answerBlock"> <!-- riga di elementi della stessa categoria-->
+				<div id="answContainer" class="matching">
+					<div class="row">
+						<div class="answerBlock col-md-8"> <!-- riga di elementi della stessa categoria-->
 							<div>
-								<span class="label-as-badge label-yellow text-center">1</span> <!-- # riga, variabile -->
+								<a href="#"><span class="label-as-badge label-yellow text-center">A</span></a> <!-- # riga, variabile -->
 								<input class="rowTitle" type="text" name="rowtitle1" placeholder="Titolo riga.." > <!-- titolo riga (non c'è nell'ar ma potenzialmente utile, ignoratelo se volete) -->
 							</div>
-							<div class="drag">
-								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
+							<div class="drag ui-widget-content">
+								<span class="label label-danger">1</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 							</div>
-							<div class="drag">
-								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
+							<div class="drag ui-widget-content">
+								<span class="label label-danger">2</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 							</div>
-							<div class="drag">
-								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
-							</div>
-						</div>
-						
-						<div class="answerBlock">
-							<div>
-								<span class="label-as-badge label-yellow text-center">2</span> 
-								<input class="rowTitle" type="text" name="rowtitle1" placeholder="Titolo riga.." > 
-							</div>
-							<div class="drag">
-								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
-							</div>
-							<div class="drag">
-								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
-							</div>
-							<div class="drag">
-								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
+							<div class="drag ui-widget-content">
+								<span class="label label-danger">3</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 							</div>
 						</div>
-						
-						<div class="answerBlock">
-							<div>
-								<span class="label-as-badge label-yellow text-center">3</span>
-								<input class="rowTitle" type="text" name="rowtitle1" placeholder="Titolo riga.." > 								
-							</div>
-							<div class="drag">
-								<img src="./assets/img/portraits/usr1.jpg" style="width: 80px; height: auto;"/>
-							</div>
-							<div class="drag">
-								<img src="./assets/img/portraits/usr2.jpg" style="width: 80px; height: auto;"/>
-							</div>
-							<div class="drag">
-								<img src="./assets/img/portraits/usr3.jpg" style="width: 80px; height: auto;"/>
-							</div>
+						<div class="col-md-4 droppable ui-widget-header">
+							<span class="badge">A</span><p>Trascinare qui</p>
 						</div>
-						
-					<!-- drop test-->
-					<div class="droppable answerBlock" class="ui-widget-header">
-					  <p>Trascinare qui gli elementi collegati</p>
-					</div>
-					<div class="droppable answerBlock" class="ui-widget-header">
-					  <p>Trascinare qui gli elementi collegati</p>
 					</div>
 					
+					<div class="row">					
+						<div class="answerBlock col-md-8">
+							<div>
+								<a href="#"><span class="label-as-badge label-yellow text-center">B</span></a>
+								<input class="rowTitle" type="text" name="rowtitle1" placeholder="Titolo riga.." > 
+							</div>
+							<div class="drag ui-widget-content">
+								<span class="label label-danger">1</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
+							</div>
+							<div class="drag ui-widget-content">
+								<span class="label label-danger">2</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
+							</div>
+							<div class="drag ui-widget-content">
+								<span class="label label-danger">3</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
+							</div>
+						</div>
+						<div class="col-md-4 droppable ui-widget-header">
+							<span class="badge">B</span><p>Trascinare qui</p>
+						</div>
+					</div>
+						
+					<div class="row">
+						<div class="answerBlock col-md-8">
+							<div>
+								<a href="#"><span class="label-as-badge label-yellow text-center">C</span></a>
+								<input class="rowTitle" type="text" name="rowtitle1" placeholder="Titolo riga.." > 								
+							</div>
+							<div class="drag ui-widget-content">
+								<span class="label label-danger">1</span><img src="./assets/img/portraits/usr1.jpg" style="width: 80px; height: auto;"/>
+							</div>
+							<div class="drag ui-widget-content">
+								<span class="label label-danger">2</span><img src="./assets/img/portraits/usr2.jpg" style="width: 80px; height: auto;"/>
+							</div>
+							<div class="drag ui-widget-content">
+								<span class="label label-danger">3</span><img src="./assets/img/portraits/usr3.jpg" style="width: 80px; height: auto;"/>
+							</div>
+						</div>
+						<div class="col-md-4 droppable ui-widget-header">
+							<span class="badge">C</span><p>Trascinare qui</p>
+						</div>
+					</div>
+					
+					<div class="col-md-4 col-md-offset-8">
+					<button class="btn btn-default btn-success" type="button" id="linkAnswers" data-placement="top" data-toggle="tooltip" title="Collega le risposte"><i class="glyphicon glyphicon-ok"></i></button> <!-- collega, compaiono sotto -->
+					</div><br>
+					
+					<div class="row text-center" id="linksList">
+					<h6 class="text-center">Collegamenti:</h6>
+						<div class="list-group">
+							<div class="list-group-item">
+								<span class="label label-danger">A1</span> - 
+								<span class="label label-danger">B2</span> - 
+								<span class="label label-danger">C3</span>
+							</div>
+							<div class="list-group-item">
+								<span class="label label-danger">A2</span> - 
+								<span class="label label-danger">B1</span> - 
+								<span class="label label-danger">C1</span>
+							</div>
+						</div>
+					</div>
+
 				<script language="javascript" type="text/javascript">
 				$(document).ready(function() { 
 					$('.drag').draggable({ 
-					revert: true, helper: "clone" 
+					revert: false, 
+					stack: ".drag"
 					}); //ogni nuovo elemento creato deve essere reso draggable
 					$( ".droppable" ).droppable({
-						  drop: function( event, ui ) {
-							$( this )
-							  .addClass( "ui-state-highlight" )
-							  .find( "p" )
-								.html( "Dropped!" );
+					hoverClass: 'drop-hover',
+							accept: '.drag',
+							hoverClass: "ui-state-active",
+							drop: function( event, ui ) {
+								$( this )
+								.addClass( "ui-state-highlight" ).find( "p" ).html( "Accettato!" );
 						  }
 						});
 				});
 				</script>
 		</div>
-
+</div>
 

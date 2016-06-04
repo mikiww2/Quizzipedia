@@ -1,0 +1,44 @@
+<!-- Class Request Tab -->	
+
+<div ng-if = "user.institution == 'none'"> 
+    <p>Per poter entrare in una classe, devi prima avere un ruolo all'interno di un ente. Se sei già in un ente, selezionane uno dal menu in alto a destra, oppure effettua una richiesta.</p>
+</div>
+
+<div ng-if = "user.institution != 'none'">
+    <div class="col-md-5">
+        <div class="form-area">  
+            <form role="form">
+                <br style="clear:both">
+                <div class="text-center"> <h3 class="formTitle">Invia richiesta di classe</h3></div> 
+                
+                <fieldset class="form-group">
+                    <label for="inst">Ente</label><br>
+                    <p>{{user.institution}}</p>                    
+                </fieldset>
+                
+                <fieldset class="form-group">
+                    <label for="role">Ruolo</label>
+                    <!-- change role according to selected institution -->
+                    <p>{{user.role}}</p>
+                </fieldset>
+					
+				<fieldset class="form-group">
+                    <label for="class">Classe</label>
+                    <!-- load classes for selected institution -->
+                    <select id="classSelect" name="class" class="form-control">
+                        <option>Inserire classi dell'ente</option>                        
+                    </select>
+                </fieldset>
+					
+				<script>$("#classSelect").chained("#instSelectClass");</script>			
+                
+				<button type="button" id="submitClass" name="submit" class="btn btn-primary pull-right">Invia richiesta</button>
+            </form>
+        </div>
+    </div> <!-- end of form -->
+</div>
+<!-- end of class request tab-->
+		
+
+
+

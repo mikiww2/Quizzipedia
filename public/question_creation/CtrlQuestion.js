@@ -1,4 +1,4 @@
-angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ','ShortAnswerQ', function($scope, $http, TrueFalseQ,ShortAnswerQ){ //dipendenze verso tutti i tipi di domande e Topics
+angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ','ShortAnswerQ','MultipleChoiceQ','AnswerMultipleChoice','Upload','$timeout', function($scope, $http, TrueFalseQ,ShortAnswerQ,MultipleChoiceQ,AnswerMultipleChoice,Upload,$timeout){ //dipendenze verso tutti i tipi di domande e Topics
     
     $scope.topics = []; //inizializzato dal server
     
@@ -30,8 +30,66 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     $scope.MyShortAnswerQ = new ShortAnswerQ();
     
-    
     $scope.MyMultipleChoiceQ = {
+      
+        question: new MultipleChoiceQ(),
+        size: 0,
+        create: function(index){
+            this.question.answers.push("");
+            this.question.answerAttachment.push(null);
+            this.question.correctAnswer.push(false);
+            this.size = this.size +1;
+        },
+        remove: function(index){
+            if(index>= 0 && index < this.question.answers.length){
+                this.question.answers.splice(index,1);
+                this.question.answerAttachment.splice(index,1);
+                this.question.correctAnswer.splice(index,1);
+                this.size = this.size - 1;
+            }
+        },
+        preUpload: function(index){
+            this.question.answers.push(null);
+            this.question.answerAttachment.push("");
+            this.question.correctAnswer.push(false);
+            this.size = this.size + 1;
+        }
+    };
+    
+    
+    $scope.uploadPic = function(file){
+      
+        file.upload = Upload.upload({
+            url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+            data: {file: file},
+        });
+        
+        file.upload.then(function(response){
+            $timeout(function(){
+                file.result = response.data;
+            });
+        }, function(response){
+            if (response.status > 0){
+                $scope.errorMsg = response.status + ': ' + response.data;
+            }
+        }, function(evt){
+            file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        });
+        
+    };
+    
+    
+    /*$rootScope.callWindowMethod = function(methodName, parameter){
+        if(typeof window[methodName] !== 'function'){
+            console.log('Internal Error');
+            return;
+        }
+        return window[methodName](parameter);
+    };
+    */
+    
+    
+    /*$scope.MyMultipleChoiceQ = {
         correctAnswer: [],
         wrongAnswer: [],
         insertAnswer: function(text, check){//name:String della risposta  check:bool memorizza se corretto (se true faccio il push in correctAnswer)
@@ -50,7 +108,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             this.wrongAnswer = [];
         }
         
-    };
+    };*/
     
     $scope.MyCompletionQ ={
       

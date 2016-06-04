@@ -15,14 +15,19 @@ var topicSchema = new Schema({
     strict: true
 });
 
-//find topics
-topicSchema.statics.findTopics = function findTopics() {
-    return this.find({ });
+//get topic name
+topicSchema.methods.getName = function() {
+    return this._id;
+};
+
+//find topics, usable only like find
+topicSchema.statics.findTopics = function() {
+    return this.find();
 };
 
 //has topic
-topicSchema.statics.hasTopic = function hasTopic(topic) {
-    return !!this.findOne({_id: topic});
+topicSchema.statics.hasTopic = function(topic) {
+    return !!this.findOne({ _id: topic });
 };
 
 //export

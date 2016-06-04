@@ -6,5 +6,9 @@ module.exports = function (app) {
     requestsM.addInstitutionRoleRequest(req, res);
   });
 
+  app.get('/api/requests/view_role_requests', function (req, res, next) {
+    requestsM.viewRoleRequests(req, res);
+  });
+
 }; 
  

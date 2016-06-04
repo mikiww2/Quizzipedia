@@ -93,6 +93,7 @@ exports.fetchNoUserInst = function (req, res) {
 exports.changeInst = function (req, res) {
 
 		var institution = req.body.organizationName;
+		var normalUser = false;
 
 		Organization.findOne({'name': institution}, function (err, org) {
         if (err) {
@@ -103,14 +104,21 @@ exports.changeInst = function (req, res) {
             if (org) {  //SE TROVA UN UTENTE NEL DB
                 org.users.forEach(function(result,index){
                     if(result['user'] === req.session.user._id) {
+                    		normalUser = true;
                         req.session.user.role = result['role'];
                         req.session.user.institution = institution;
                         res.redirect('/');
                     }
                 });
+
+                if(normalUser == false && org.director === req.session.user._id) {
+		                req.session.user.role = 'director';
+		                req.session.user.institution = institution;
+		                res.redirect('/');
+	              }
             }
             else {  //SE NON TROVA UN UTENTE NEL DB
-                console.log('errore: user non trovato');
+	              console.log('errore: user non trovato');
                 res.redirect('/');
             }
         }

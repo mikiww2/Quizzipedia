@@ -10,5 +10,8 @@ module.exports = function (app) {
     requestsM.viewRoleRequests(req, res);
   });
 
-}; 
- 
+  app.post('/api/requests/add_class_insert_request', function (req, res, next) {
+    requestsM.addInstitutionRoleRequest(req, res);
+  });
+
+};

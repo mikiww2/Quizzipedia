@@ -282,6 +282,19 @@ h6.description, h4.description, h3.description{
 	font-size: 1.1em;
 }
 
+.label-blue {
+	background-color: #22A7F0;
+	color: white;
+	padding: 1px 5px;
+}
+
+.label-blue:hover {
+	background-color: #87CEEB;
+	-webkit-transition: all 0.5s ease-in-out 0s;
+    -moz-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
+}
+
 .carousel-inner img{
 	width: 100%;
 	height: 100%;
@@ -363,7 +376,7 @@ h6.description, h4.description, h3.description{
 }
 
 .answerBlock img{
-	max-width: 140px; 
+	max-width: 100px; 
 	height: auto;
 	overflow: hidden;
 	display:inline;
@@ -431,7 +444,7 @@ h6.description, h4.description, h3.description{
 	width: 800px; margin: 0 auto;
 }
 
-#answContainer{
+.answContainer{
 	padding: 20px;
 	max-width: 530px;
 	margin: 0 auto;
@@ -442,10 +455,10 @@ h6.description, h4.description, h3.description{
 	box-shadow: 0 0 3px #d3d3d3;
 }
 
-
+/*
 .lineGap {
 	line-height: 300%;
-}
+}*/
 
 .drag {
 	display: inline-block;
@@ -456,12 +469,8 @@ h6.description, h4.description, h3.description{
 	border-radius: 10px;
 }
 
-.drag i{
-	font-size: 20px;
-	letter-spacing: 10px;
-}
 
-.drag a{
+.drag .btn, #complText .btn, #linksList .btn{
 	display: inline-block;
 	vertical-align: top;
 	color:#e14825;
@@ -470,7 +479,12 @@ h6.description, h4.description, h3.description{
     transition: all 0.5s ease-in-out 0s;
 }
 
-.drag a:hover{
+#linksList button {
+	margin-left: 10px;
+	box-shadow: 0 0 3px #d6d6d6;
+}
+
+.drag .btn:hover, #complText .btn:hover, #linksList .btn:hover{
     text-decoration:none;
     color:#590000;
 }
@@ -481,6 +495,16 @@ h6.description, h4.description, h3.description{
 	margin-top: 7px;
 	margin-right: 5px;
 }
+
+.drag .btn i {
+	font-size: 1.1em;
+}
+
+
+.drag input[type="number"]{
+	display: inline-block; 
+	vertical-align: top;
+} 
 
 .matching {
 	margin: 0 auto;
@@ -493,6 +517,10 @@ h6.description, h4.description, h3.description{
 	background-color: #22A7F0;
 }
 
+.matching img {
+	width: 80px; height: auto;
+}
+
 .rowTitle{
 	width:150px;
 	padding-left: 5px;
@@ -500,12 +528,22 @@ h6.description, h4.description, h3.description{
 }
 
 .droppable {
-	width: 100px; height: 100px;
+	width: 100px; 
+	height: 100px;
 	margin-left: 5px;
 	background-color: #ffcb35;
-		padding: 10px 0;
+	padding: 10px 0;
 	margin-bottom: 10px;
 	border-radius: 10px;
+}
+
+.smallDroppable {
+	width: 80px; 
+	height: 30px;
+	margin: 0 5px;
+	background-color: white;
+	padding: 10px 0;
+	display: inline-block;
 }
 
 #linkAnswers {
@@ -518,3 +556,12 @@ h6.description, h4.description, h3.description{
 }
 
 .answerBlock a{text-decoration: none;}
+
+
+.badgeWrap {
+	padding: 10px 0;
+}
+
+.bluebg {
+	background-color: #22A7F0;
+}

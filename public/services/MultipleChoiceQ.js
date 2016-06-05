@@ -19,6 +19,17 @@ angular.module('CreateQuestion').factory('MultipleChoiceQ',['GenericQuestion','A
         
     };
     
+    MultipleChoiceQ.prototype.addAnswer = function(answer){ //answer: AnswerMultipleChoice
+      this.arrayAnswer.push(answer);  
+    };
+    
+    MultipleChoiceQ.prototype.setEmptyAttachment = function(index){
+        this.arrayAnswer[index].setEmptyAttachment();
+    };
+    
+    MultipleChoiceQ.prototype.getSize = function(){
+      return this.arrayAnswer.length;  
+    };
     
     
     MultipleChoiceQ.prototype.removeAnswer = function(position){

@@ -370,6 +370,13 @@ h6.description, h4.description, h3.description{
 	margin: 0 auto;
 }
 
+#topicList .list-group {
+	margin: 0 auto;
+}
+
+#newTopic {
+	margin-top: 10px;
+}
 
 .answerBlock {
 	display: block;

@@ -9,7 +9,7 @@
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" href="./assets/img/favicon.ico">
 
     <title>Create Question</title>
 
@@ -53,20 +53,20 @@
       <!-- SCRIPT PER ng-file-upload-->
       <script src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload-shim.min.js"></script>
       <script src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload.min.js"></script>
-      <link rel="stylesheet" href="./assets/ng-file-upload-bower-12.0.4/ng-file-upload.css">
-      
+      <!--<link rel="stylesheet" href="./assets/ng-file-upload-bower-12.0.4/ng-file-upload.css">-->
+      <script type="text/javascript" src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload.js"></script>
       
       <script type="text/javascript" src="./public/core.js"></script>
       <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
-      <script type="text/javascript" src="./public/question_creation/CtrlQuestion.js"></script>
+      
       
       
       <script type="text/javascript" src="./public/services/GenericQuestion.js"></script>
       <script type="text/javascript" src="./public/services/TrueFalseQ.js"></script>
       <script type="text/javascript" src="./public/services/ShortAnswerQ.js"></script>
+      <script type="text/javascript" src="./public/services/Attachment.js"></script>
+      <script type="text/javascript" src="./public/services/AnswerMultipleChoice.js"></script>
       <script type="text/javascript" src="./public/services/MultipleChoiceQ.js"></script>
-      <script type="text/javascript" src="./public/services/AnswerMultipleChoiceQ.js"></script>
-      
       
       <!-- DIRECTIVE QUESTION CREATION -->
       <script type="text/javascript" src="./public/question_creation/createQtf.js"></script>
@@ -75,6 +75,7 @@
       <script type="text/javascript" src="./public/question_creation/createQmatch.js"></script>
       <script type="text/javascript" src="./public/question_creation/createQopen.js"></script>
 	
+      <script type="text/javascript" src="./public/question_creation/CtrlQuestion.js"></script>
   </head>
 
   <body>
@@ -83,7 +84,7 @@
         <header-logged-teacher></header-logged-teacher>
         
 	<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
-      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)" novalidate>
+      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)" name="CtrlQuestion.upload_form" novalidate>
 		<!-- title -->
 		<div class="form-group row">
 			<label for="inputTitle" class=" form-control-label">Titolo</label>
@@ -97,7 +98,10 @@
 		<!-- missing upload thing here -->
 		<div class="form-group row">
 			<label for="inputDescription" class=" form-control-label">Carica</label><br>
-			<span class="btn btn-default btn-file">Cerca <input type="file" ng-model="MyGenericQ.attachment"></span>
+			<span class="btn btn-default btn-file">Cerca <input type="file" title="file" accept="image/*" ngf-select="uploadFiles($files)"></span>
+            
+            <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+            
 		</div>
 		<!-- topic-->
 		<div class="form-group row">
@@ -179,7 +183,9 @@
 		<!-- END VARIABLE PART -->
 
           
-          {{MyMultipleChoiceQ| json}}
+          
+          {{result | json}}
+          
           
           
         <button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button>

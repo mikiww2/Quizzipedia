@@ -32,8 +32,44 @@ exports.fetchNoUserClass = function (req, res) {
 	       				}
 	       			}
 	       		});
-	       		console.log(noUserClass);
+
 	       		res.send(noUserClass);
+	       	}      		
+	    	}
+			});
+		}
+}
+
+exports.createClass = function (req, res) {
+
+		if(req.session.user && req.session.user.role == 'director'){
+			var organization = req.session.user.institution;
+			var fulldate = new Date();
+			var year = fulldate.getFullYear();
+			var classs = {
+				description : req.body.description,
+				name : req.body.name,
+				academicYear : year
+			}
+
+			Organization.findOne({ 'name': organization }, function (err,org){
+				if (err) {
+	            console.log('error: ' + err);
+	            res.redirect('/');
+	      }
+	      else{
+	       	if(org){
+	       		org.classes.push(classs);
+	       		org.save( function (err) {
+                if (err) {
+                    console.log('errore nell\'inserimento della classe: ' + err);
+                    res.send('/');
+                }
+                else {
+                    console.log('classe inserita correttamente');
+                    res.send('/');
+                }
+            });
 	       	}      		
 	    	}
 			});

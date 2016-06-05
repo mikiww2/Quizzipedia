@@ -6,4 +6,8 @@ module.exports = function (app) {
     classM.fetchNoUserClass(req, res);
   });
 
+  app.post('/api/class/create_class',function (req, res, next) {
+    classM.createClass(req, res);
+  });
+
 };

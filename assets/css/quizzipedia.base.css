@@ -484,6 +484,12 @@ h6.description, h4.description, h3.description{
 	box-shadow: 0 0 3px #d6d6d6;
 }
 
+
+.btn-primary a {
+	color: white;
+	text-decoration: none;
+}
+
 .drag .btn:hover, #complText .btn:hover, #linksList .btn:hover{
     text-decoration:none;
     color:#590000;

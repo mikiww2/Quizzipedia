@@ -36,3 +36,8 @@ exports.fetch = function (req, res) {
         }
     });
 };
+
+exports.test = function (req, res) {
+
+    res.send(req.body);
+};

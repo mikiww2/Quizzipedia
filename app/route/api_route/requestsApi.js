@@ -6,5 +6,16 @@ module.exports = function (app) {
     requestsM.addInstitutionRoleRequest(req, res);
   });
 
-}; 
- 
+  app.get('/api/requests/view_role_requests', function (req, res, next) {
+    requestsM.viewRoleRequests(req, res);
+  });
+
+  app.post('/api/requests/add_class_insert_request', function (req, res, next) {
+    requestsM.addClassInsertRequest(req, res);
+  });
+
+  app.get('/api/requests/view_class_requests', function (req, res, next) {
+    requestsM.viewClassRequests(req, res);
+  });
+
+};

@@ -1,7 +1,8 @@
-angular.module('managerInstitution').factory('Class', [function() {
+angular.module('InstitutionManager').factory('Class', [function() {
+
     function Class() {
-        this.description = "Nessuna descrizione aggiunta";
         this.name = null;
+        this.description = "Nessuna descrizione aggiunta";
         this.academicYear = null;
         this.teachers = []; //array stringhe
         this.students = []; // array stringhe           
@@ -18,7 +19,7 @@ angular.module('managerInstitution').factory('Class', [function() {
     };
     
     Class.prototype.getAcademicYear = function () {
-        return this.academicyear;
+        return this.academicYear;
     };
     
     Class.prototype.getTeachers = function () {
@@ -50,7 +51,7 @@ angular.module('managerInstitution').factory('Class', [function() {
     Class.prototype.edit = function(newDescription, newName, newYear){
         this.description = newDescription;
         this.name = newName;
-        this.academicyear = newYear;
+        this.academicYear = newYear;
         
     };
     

@@ -36,6 +36,9 @@ angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http',
         })        
    };
     
+    
+    //Da commentare? La relativa API è commentata!!!
+    
    $scope.changePsw = function(){
         
         $scope.tmp_pswd = null;
@@ -43,9 +46,7 @@ angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http',
         $http.get('/api/profile/get_pswd').success(function(response){
             $scope.user = response;
             $scope.recovering = false;
-        });
-        
-        
+        });  
     };
     
     $scope.loadUser();    

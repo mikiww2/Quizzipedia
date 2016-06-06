@@ -52,7 +52,7 @@ describe('Class test', function(){
         expect(mock_class.getStudents()).toEqual([]);
     });
 
-    it('test methods addTeacher(String) and removeTeacher(String) ', function(){
+    it('test methods addTeacher() and removeTeacher() ', function(){
         mock_class.addTeacher("vania.strada@gmail.com");
         mock_class.addTeacher("Salvatore_Passaro@hotmail.it");
         mock_class.addTeacher("AnnaTurra@gmail.com");
@@ -65,7 +65,7 @@ describe('Class test', function(){
 
     });
 
-    it('test methods addStudent(String) and removeStudent(String) ', function(){
+    it('test methods addStudent() and removeStudent() ', function(){
         mock_class.addStudent("marco.rubin@gmail.com");
         mock_class.addStudent("fabioPavanello@gmail.com");
         mock_class.addStudent("elena.DeSalvador@gmail.com");
@@ -78,7 +78,7 @@ describe('Class test', function(){
         //console.log(mock_class.getStudents());
     });
 
-    it('test method edit(String,String,String)', function(){
+    it('test method edit()', function(){
         mock_class.edit("Classe composta da 21 studenti della scuola statate G.Dal Piaz","5A Scientifico","2015");
         expect(mock_class.getDescription()).toBe("Classe composta da 21 studenti della scuola statate G.Dal Piaz");
         expect(mock_class.getName()).toBe("5A Scientifico");

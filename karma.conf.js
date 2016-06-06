@@ -18,18 +18,24 @@ module.exports = function(config) {
         'node_modules/angular/angular.js',
         'node_modules/angular-mocks/angular-mocks.js',
         'public/core.js',
+
 //         'public/services/*.js',
         'public/services/AuthenticationData.js',
         'public/profile/CtrlUserManager.js',
         'public/services/Class.js',
         'public/services/User.js',
         'public/services/Director.js',
+        'public/services/Student.js',
+        'public/services/RequestClass.js',
+
 //         'tests/unit/client/*.js',
-        'tests/unit/client/AuthenticationDataTest.js', //funziona
-        'tests/unit/client/CtrlUserManagerTest.js', //funziona
-        'tests/unit/client/ClassTest.js', //funziona
-        'tests/unit/client/UserTest.js', //funziona
-        'tests/unit/client/DirectorTest.js'
+        'tests/unit/client/AuthenticationDataTest.js', //ok
+        'tests/unit/client/CtrlUserManagerTest.js', //ok
+        'tests/unit/client/ClassTest.js', //ok
+        'tests/unit/client/UserTest.js', //ok
+        'tests/unit/client/DirectorTest.js', //ok
+        'tests/unit/client/StudentTest.js', //DA FINIRE
+        'tests/unit/client/RequestClassTest.js' //ok
 //         'tests/integration/*.js'
     ],
 

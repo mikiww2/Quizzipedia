@@ -1,15 +1,15 @@
-module.factory('RequestClass',['Class', function(Class){
-    function RequestClass (mail, class){
+angular.module('RequestsManager').factory('RequestClass',['Class', function(Class){
+    function RequestClass (mail, classs){
         this.mail = mail;
-        this.class = class; //tipo Class             
+        this.classs = classs; //tipo Class
     };
     
-    Request.prototype.getMail = function(){
+    RequestClass.prototype.getMail = function(){
         return this.mail;  
     };
     
-    Request.prototype.getNameClass = function(){
-        return this.class;
+    RequestClass.prototype.getNameClass = function(){
+        return this.classs;
     };  
     
     return RequestClass;

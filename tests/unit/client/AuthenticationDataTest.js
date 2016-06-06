@@ -1,5 +1,5 @@
 /*
- * Name: tests/unit/client/AuthenticationData.spec.js
+ * Name: tests/unit/client/AuthenticationDataTest.js
  * Author: Vault-Tech
  * Email: vaulttech.swe@gmail.com
  * Referring to: public/services/AuthenticationData.js

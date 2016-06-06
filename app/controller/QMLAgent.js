@@ -88,13 +88,13 @@ exports.parse = function (qml){
                 qson = parserRM(qml);
                 break;
             case 'cmpl': // tipo a completamento
-
+                qson = parserCM(qml);
                 break;
             case 'open': // tipo risp aperta
                 qson = parserRA(qml);
                 break;
             case 'mtch': // tipo a collegamenti
-
+                qson = parserCL(qml);
                 break;
 
             // INSERIRE QUI I CASE PER LE NUOVE DOMANDE
@@ -128,8 +128,29 @@ exports.parse = function (qml){
         return question.title + attached + '#a#' + stringAnswers + '#££#';
     };
 
-    var generateCM = function (question) { // da sistemare quando il form sarà funzionante
-        return question.ans + '#';
+    var generateCM = function (question) { // teoricamente ok, da testare casi particolari
+        var stringTitle = '';
+        for (var item of question.title) {
+            if (item.type == 'txt') {
+                stringTitle = stringTitle + item.value;
+            }
+            if (item.type == 'id') {
+                stringTitle = stringTitle + '[' + item.value + ']';
+            }
+            stringTitle = stringTitle + '§';
+        }
+        var stringAnswers = '';
+        for (var item of question.ans){
+            if (item.text)
+                stringAnswers = stringAnswers + item.text + '[' + item.id + ']§';
+            if (item.attachment)
+                stringAnswers = stringAnswers + generateAttached(item) + '[' + item.id + ']§';
+        }
+        if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
+            stringAnswers = stringAnswers.substr(0, stringAnswers.length - 1);
+        if (stringTitle.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
+            stringTitle = stringTitle.substr(0, stringTitle.length - 1);
+        return stringTitle + '#a#' + stringAnswers + '#££#';
     };
 
     var generateRA = function (question) {  // teoricamente ok
@@ -138,7 +159,13 @@ exports.parse = function (qml){
     };
 
     var generateCL = function (question) { // da sistemare quando il form sarà funzionante
-        return question.ans + '#';
+      /*  var stringAttached = generateAttached(question);
+        var stringAnswers = '';
+        for (var item of question.ans) {
+            var stringAttached = generateAttached(item);
+            stringAnswers = stringAnswers + item. + '[' + item.isTrue + ']' + stringAttached + '§';
+        }
+        return question.title + stringAttached + '#a#';*/
     };
 }
 
@@ -169,12 +196,11 @@ exports.parse = function (qml){
             qson.title = text;
         var answer = extract(qml, '#a#', '#££#');
         var arrayAns = answer.split('§');
-        var jsonAnswer;
         var arrayJsonAns = []; //contiene le stringhe per ogni risposta da parsare
         for (var item of arrayAns) {
             var ansTxt = extract(item, '', '['); // estrae il testo della risposta
             var ansIsTrue = extract(item, '[', ']'); // estrate la soluzione della risposta
-            jsonAnswer = {"answer": ansTxt, "isTrue": ansIsTrue};
+            var jsonAnswer = {"answer": ansTxt, "isTrue": ansIsTrue};
             if (item.endsWith('}')){ // se presente allegato nella stringa
                 jsonAnswer.attached = appendAttached(extract(item, '{', '}')); //estrae l'allegato della risposta
                 //console.log(jsonAnswer.attached);
@@ -187,8 +213,38 @@ exports.parse = function (qml){
         };
 
 
-    var parserCM = function (qml) { // // da sistemare con form funzionante
-
+    var parserCM = function (qml) { // teoricamente ok, da testare casi particolari
+        var qson = {'questionType': 'cmpl'};
+        var text = extract(qml, '#t#', '#a#');
+        var arrayTitles = text.split('§');
+        var arrayJsonTitle = [];
+        for (var item of arrayTitles){
+            var jsonTitle;
+            if (item.startsWith('[') && item.endsWith(']')){
+                jsonTitle = {'type': 'id', 'value': extract(item, '[', ']')};
+            }
+            else {
+                jsonTitle = {'type': 'txt', 'value': item};
+            }
+            arrayJsonTitle.push(jsonTitle);
+        }
+        qson.title = arrayJsonTitle;
+        var answer = extract(qml, '#a#', '#££#');
+        var arrayAnswers = answer.split('§');
+        var arrayJsonAns = [];
+        for (var item of arrayAnswers){
+            var answerId = extract(item, '[', ']');
+            var jsonAns = {'id': answerId};
+            var answerValue = extract(item, '', '[');
+            if (answerValue.startsWith('{') && answerValue.endsWith('}')){
+                jsonAns.attachment = appendAttached(answerValue);
+            }
+            else
+                jsonAns.text = answerValue;
+            arrayJsonAns.push(jsonAns);
+        }
+        qson.ans = arrayJsonAns;
+        return qson;
     };
 
     var parserRA = function (qml) { // teoricamente ok, da testare nei casi particolari

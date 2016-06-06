@@ -17,7 +17,7 @@
     <link href="./assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="./assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 	
 	<!-- quizzipedia.base.css -->
 	<link href="./assets/css/quizzipedia.base.css" rel="stylesheet">
@@ -68,14 +68,14 @@
 					</ul>
 				</div>
 			<h1>{{request.firstName}} {{request.lastName}}</h1>
-			<p>chiede di diventare <strong>docente</strong></p>
+			<p>chiede di diventare <strong>{{request.role}}</strong></p>
             <p>Messaggio: </p>
 			<div class="btn-group">
 				<button type="button" class="btn btn-success">
-					<span data-placement="top" data-toggle="tooltip" title="Accept"><i class="glyphicon glyphicon-ok"></i> </span>
+					<span data-placement="top" data-toggle="tooltip" title="Accept"><i class="glyphicon glyphicon-ok" ng-click="acceptRoleRequest(request._id)"></i> </span>
 				</button>
 				<button type="button" class="btn btn-danger">
-					<span data-placement="top" data-toggle="tooltip" title="Refuse"><i class="glyphicon glyphicon-remove"></i> </span>
+					<span data-placement="top" data-toggle="tooltip" title="Refuse"><i class="glyphicon glyphicon-remove" ng-click="discardRoleRequest(request._id)"></i> </span>
 				</button>		
 			</div>
 			</div>

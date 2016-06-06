@@ -49,7 +49,7 @@ exports.createClass = function (req, res) {
 			var classs = {
 				description : req.body.description,
 				name : req.body.name,
-				academicYear : year
+				academicYear : req.body.year
 			}
 
 			Organization.findOne({ 'name': organization }, function (err,org){

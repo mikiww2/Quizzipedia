@@ -18,4 +18,12 @@ module.exports = function (app) {
     requestsM.viewClassRequests(req, res);
   });
 
+  app.post('/api/requests/accept_role_request', function (req, res, next) {
+    requestsM.acceptRoleRequest(req, res);
+  });
+
+  app.post('/api/requests/discard_role_request', function (req, res, next) {
+    requestsM.discardRoleRequest(req, res);
+  });
+
 };

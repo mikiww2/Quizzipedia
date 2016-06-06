@@ -1,4 +1,4 @@
-angular.module('RequestsManager').controller ('CtrlPendingRR',['$scope', '$http', function($scope, $http){
+angular.module('RequestsManager').controller ('CtrlPendingRR',['$scope', '$http','$window', function($scope, $http, $window){
     
     //$scope.user = null;
     $scope.institution = "Nessun ente selezionato";
@@ -22,12 +22,24 @@ angular.module('RequestsManager').controller ('CtrlPendingRR',['$scope', '$http'
         });
     };  
             
-    $scope.acceptRoleRequest = function () {
-        //invia al server la richiesta che si intende accettare
+    $scope.acceptRoleRequest = function (email) {
+        var value = { email: email};
+        $http.post('/api/requests/accept_role_request',value)
+                .success(function(response){
+                    $window.location.href = '/Quizzipedia/viewPendingRequests';
+                }).error(function(response){
+                    alert("Errore");
+                });
     };
     
-    $scope.discardRoleRequest = function () {
-        //invia al server l richiesta che si intende rifiutare
+    $scope.discardRoleRequest = function (email) {
+        var value = { email: email};
+        $http.post('/api/requests/discard_role_request',value)
+                .success(function(response){
+                    $window.location.href = '/Quizzipedia/viewPendingRequests';
+                }).error(function(response){
+                    alert("Errore");
+                });
     };
     
     //$scope.loadUser();

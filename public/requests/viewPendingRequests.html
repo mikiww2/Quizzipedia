@@ -1,30 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="RequestsManager">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="./assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../assets/img/favicon.ico">
+    <link rel="icon" href="./assets/img/favicon.ico">
 
-    <title>View Requests</title>
+    <title>Visualizzazione richieste</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 	
 	<!-- quizzipedia.base.css -->
-	<link href="../../assets/css/quizzipedia.base.css" rel="stylesheet">
+	<link href="./assets/css/quizzipedia.base.css" rel="stylesheet">
 	
 	<!-- Merge others eventually -->
-	<link href="../../assets/css/requests.css" rel="stylesheet">
+    <link href="./assets/css/header.css" rel="stylesheet">
+	<link href="./assets/css/profile.css" rel="stylesheet">
 	
+    <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./assets/js/urlGetter.js"></script>
+      
+    <script type="text/javascript" src="./public/core.js"></script>	
+    <script type="text/javascript"  src="./public/requests/CtrlPendingRR.js" ></script>
+    <script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
+      
+    <!-- Directive angular (HEADER)-->
+    <script src="./public/header/headerLoggedDirector.js"></script>
+    <!--Directive angular (FOOTER)-->
+    <script type="text/javascript" src="./public/footer/pageFooter.js"></script>
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -33,74 +45,44 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body onload="getUrl()">
 	<div class="container">
-		<div> <!-- make modal. LATER -->
-			<h6 class="description">VIEW PENDING REQUESTS</h6>
-			<div class="row pt-md">
-			<!-- for each here -->
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 request text-center">
+        
+        <div ng-controller="CtrlHeader">        
+          <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
+	  </div>
+        
+		<div ng-controller = "CtrlPendingRR"> <!-- make modal. LATER -->
+			<h4 class="description text-center">Richieste in sospeso</h4>
+            
+            <div ng-if= "pendingRR == null">Nessuna richiesta pendente</div>
+            
+			<div class="row pt-md" ng-if="pendingRR != []">
+                
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userbox text-center" ng-repeat = "request in pendingRR">
 				<div class="img-box">
-					<img src="../../assets/img/portraits/usr1.jpg" class="img-rounded" width="100" height="auto" />
+					<img src="./assets/img/portraits/usr1.jpg" class="img-rounded" width="100" height="auto" />
 					<ul class="text-center">
 					<a href="#profile"><li><i class="glyphicon glyphicon-user"></i></li></a>
 					</ul>
 				</div>
-			<h1>John Doe</h1>
-			<p>is requesting to be <strong>[@role]</strong> of the class <br> <strong>"[@className]"</strong></p>
-			<div class="btn-group btn-group-sx">
-				  <button type="button" class="btn btn-success">Accept</button>
-				  <button type="button" class="btn btn-danger">Refuse</button>
-				</div>
+			<h1>{{request.firstName}} {{request.lastName}}</h1>
+			<p>chiede di diventare <strong>docente</strong></p>
+            <p>Messaggio: </p>
+			<div class="btn-group">
+				<button type="button" class="btn btn-success">
+					<span data-placement="top" data-toggle="tooltip" title="Accept"><i class="glyphicon glyphicon-ok"></i> </span>
+				</button>
+				<button type="button" class="btn btn-danger">
+					<span data-placement="top" data-toggle="tooltip" title="Refuse"><i class="glyphicon glyphicon-remove"></i> </span>
+				</button>		
 			</div>
-			<!-- end of single request -->
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 request text-center">
-				<div class="img-box">
-					<img src="../../assets/img/portraits/usr2.jpg" class="img-rounded" width="100" height="auto" />
-					<ul class="text-center">
-					<a href="#profile"><li><i class="glyphicon glyphicon-user"></i></li></a>
-					</ul>
-				</div>
-			<h1>Jane Doe</h1>
-			<p>is requesting to be <strong>[@role]</strong> of the class <br> <strong>"[@className]"</strong></p>
-			<div class="btn-group btn-group-sx">
-				  <button type="button" class="btn btn-success">Accept</button>
-				  <button type="button" class="btn btn-danger">Refuse</button>
-				</div>
 			</div>
-			<!-- end of single request -->
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 request text-center">
-				<div class="img-box">
-					<img src="../../assets/img/portraits/usr3.jpg" class="img-rounded" width="100" height="auto" />
-					<ul class="text-center">
-					<a href="#profile"><li><i class="glyphicon glyphicon-user"></i></li></a>
-					</ul>
-				</div>
-			<h1>John Doe</h1>
-			<p>is requesting to be <strong>[@role]</strong> of the class <br> <strong>"[@className]"</strong></p>
-			<div class="btn-group btn-group-sx">
-				  <button type="button" class="btn btn-success">Accept</button>
-				  <button type="button" class="btn btn-danger">Refuse</button>
-				</div>
-			</div>
-			<!-- end of single request -->
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 request text-center">
-				<div class="img-box">
-					<img src="../../assets/img/portraits/usr4.jpg" class="img-rounded" width="100" height="auto" />
-					<ul class="text-center">
-					<a href="#profile"><li><i class="glyphicon glyphicon-user"></i></li></a>
-					</ul>
-				</div>
-			<h1>Jane Doe</h1>
-			<p>is requesting to be <strong>[@role]</strong> of the class <br> <strong>"[@className]"</strong></p>
-			<div class="btn-group btn-group-sx">
-				  <button type="button" class="btn btn-success">Accept</button>
-				  <button type="button" class="btn btn-danger">Refuse</button>
-				</div>
-			</div>
-			<!-- end of single request -->
+			<!-- end of single userbox -->	
+                
 			</div>
 		</div>
 	</div>
+      <page-footer></page-footer>
   </body>
 </html>

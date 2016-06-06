@@ -28,13 +28,14 @@ angular.module('RequestsManager').directive('requestClass',function(){
           
           $scope.loadUser();
           
-          /*$scope.loadClasses = function () {
-          $http.get('/api/institution/fetch_no_user_inst').success(function(response) {
-          $scope.institutions = response;
-          })
+          $scope.loadClasses = function () {
+              $http.get('/api/class/fetch_no_user_class').success(function(response) {
+                  $scope.classes = response;
+                  })
           }; 
           
-          //$scope.loadClasses();*/        
+          
+          $scope.loadClasses();   
           
           
            /*$scope.sendRoleRequest = function () {                

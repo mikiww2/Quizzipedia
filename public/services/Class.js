@@ -1,8 +1,8 @@
-angular.module('InstitutionManager').factory('Class', [function() {
+angular.module('InstClassManager').factory('Class', [function() {
 
     function Class() {
         this.name = null;
-        this.description = "Nessuna descrizione aggiunta";
+        this.description = null;
         this.academicYear = null;
         this.teachers = []; //array stringhe
         this.students = []; // array stringhe           

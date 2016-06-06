@@ -25,8 +25,8 @@
 				<fieldset class="form-group">
                     <label for="class">Classe</label>
                     <!-- load classes for selected institution -->
-                    <select id="classSelect" name="class" class="form-control">
-                        <option>Inserire classi dell'ente</option>                        
+                    <select id="classSelect" name="class" class="form-control" ng-repeat = "class in classes">
+                        <option>{{class.name}} - a.s. {{class.academicYear}}</option>                        
                     </select>
                 </fieldset>
 					

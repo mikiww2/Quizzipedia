@@ -78,6 +78,21 @@ module.exports = function (app) {
       res.redirect('/Quizzipedia/home');
   });
 
+ app.route('/Quizzipedia/viewPendingRequests').get(function (req, res) {
+    if (req.session.user)
+      res.sendFile(path.resolve('./public/requests/viewPendingRequests.html'));
+    else
+      res.redirect('/Quizzipedia/home');
+  });
+    
+  // INST & CLASSES MANAGER -------------------------------------------------------------------------------------
+  app.route('/Quizzipedia/instClassesMgmt').get(function (req, res) {
+    if (req.session.user)
+      res.sendFile(path.resolve('./public/orgManager/instClassesMgmt.html'));
+    else
+      res.redirect('/Quizzipedia/home');
+  });
+
   //ABOUT US ---------------------------------------------------------------------------------------
   app.route('/Quizzipedia/aboutUs').get(function (req, res) {
     res.sendFile(path.resolve('./public/aboutUs.html'));

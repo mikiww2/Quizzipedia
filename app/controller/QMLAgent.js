@@ -11,12 +11,6 @@
  *
  */
 
-// formato JSON di question attualmente funzionante =
-// type = stringa che indica il tipo (manca dal form )
-// title = stringa col testo della domanda (title)
-// attachment = json con campi type, path, x, y per gli allegati della domanda
-// ans = contiene le varie risposte ( da definire meglio in base al tipo di domanda, manca). array ?
-
 var extract = function(string, start, end){ // estrae una data sottostringa tramite sentinelle, usare con attenzione
     var lenght = start.length;
     return string.slice(string.indexOf(start) + lenght, string.indexOf(end));
@@ -77,7 +71,7 @@ exports.generate = function (question){
 };
 
 exports.parse = function (qml){
-    if (qml.startsWith('|') && qml.endsWith('|')) {
+    if (qml.startsWith('|') && qml.endsWith('|') && qml.includes('#t#') && qml.includes('#a#') && qml.includes('#££#')) {
         var type = extract(qml, 'q?', '#t#');
         var qson;
         switch (type){ // in base al tipo fa operare la funzione corrispondente nella stringa
@@ -109,7 +103,7 @@ exports.parse = function (qml){
         throw 'qml syntax error';
 };
 
-// funzioni per la generazione di stringa di risposta specifica per ogni tipo
+// funzioni per la generazione di stringa qml specifica per ogni tipo
 {
     var generateTF = function (question) { //teoricamente ok
         var stringAttached = generateAttached(question);
@@ -237,7 +231,7 @@ exports.parse = function (qml){
             var jsonAns = {'id': answerId};
             var answerValue = extract(item, '', '[');
             if (answerValue.startsWith('{') && answerValue.endsWith('}')){
-                jsonAns.attachment = appendAttached(answerValue);
+                jsonAns.attachment = appendAttached(extract(answerValue, '{', '}'));
             }
             else
                 jsonAns.text = answerValue;
@@ -265,19 +259,3 @@ exports.parse = function (qml){
 
     };
 }
-
-/*
- script x testing
-
- var agent = require('./QMLAgent');
-
- var qml = '|q?2#t#cave#a#god[true]§bronzo[false]#££#|';
- var qson = { type: '4', txt: 'cave', ans: 'god' };
-
- console.log(agent.parse(qml));
- console.log(agent.generate(qson));
-
- var jsonAnswer = [];
- jsonAnswer.push({"answer": "prova", "isTrue": "prova2"});
- jsonAnswer.push({"answer": "prova1", "isTrue": "prova3"});
- */

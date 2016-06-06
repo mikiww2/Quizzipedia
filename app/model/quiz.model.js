@@ -50,7 +50,9 @@ var quizSchema = new Schema({
 
 //countQuestions
 quizSchema.virtual('countQuestions').get(function() {
-    return this.questions.lenght;
+    this.questions.count({}, function(err, number) {
+        return number;
+    });
 });
 
 //Count Quiz with Question (scope = collection)
@@ -58,7 +60,9 @@ quizSchema.statics.CountQuizWithQuestion = function(question) {
     if(question.constructor.name !== 'ObjectID')
         question = question._id;
 
-    return this.find({ questions: {$in: question} }).lenght;
+    return this.count({ questions: {$in: question} }, function(err, number) {
+        return number;
+    });
 };
 
 //find Quiz with topics (scope = collection)

@@ -59,14 +59,16 @@ resultQuizSchema.statics.findMeanResultsQuestion = function(question) {
     var result_q = 0;
     var tot_q = 0;
     
-    this.find({}, 'answers').forEach(function(entry) {
-        entry.forEach(function(answer) {
-            if(answer.question == question) {
-                tot_q++;
+    this.find({}, 'answers', function(err, answers) {
+        answers.forEach(function(entry) {
+            entry.forEach(function(answer) {
+                if(answer.question == question) {
+                    tot_q++;
 
-                if(answer.question == true)
-                    result_q++;
-            }
+                    if(answer.question == true)
+                        result_q++;
+                }
+            });
         });
     });
     return {
@@ -79,7 +81,9 @@ resultQuizSchema.statics.findMeanResultsQuestion = function(question) {
 resultQuizSchema.statics.findTotResultsQuiz = function(quiz) {
     if (quiz.constructor.name !== 'ObjectID')
         quiz = quiz._id;
-    return this.find({ quiz: quiz }).lenght;
+    this.count({ quiz: quiz }, function(err, number) {
+        return number;
+    });
 };
 
 //find mean results Quiz, return [total, passed] (scope = collection)
@@ -90,14 +94,17 @@ resultQuizSchema.statics.findMeanResultsQuestion = function (quiz) {
     var result_q = 0;
     var tot_q = 0;
 
-    this.find({ quiz: quiz }, 'answers').forEach(function(entry) {
-        entry.forEach(function(answer) {
-            tot_q++;
+    this.find({ quiz: quiz }, 'answers', function(err, answers) {
+        answers.forEach(function(entry) {
+            entry.forEach(function(answer) {
+                tot_q++;
 
-            if(answer.question == true)
-                result_q++;
+                if(answer.question == true)
+                    result_q++;
+            });
         });
     });
+
     return {
         total: tot_q
         ,passed: result_q
@@ -110,22 +117,24 @@ resultQuizSchema.statics.findUsersMeanResultsQuiz = function(quiz) {
         quiz = quiz._id;
 
     var results = {};
-    this.find({ quiz: quiz }).forEach(function(entry) {
-        var result_q = 0;
-        var tot_q = 0;
+    this.find({ quiz: quiz }, function(err, quizs) {
+        quizs.forEach(function(entry) {
+            var result_q = 0;
+            var tot_q = 0;
 
-        entry.answers.forEach(function(entry) {
-            entry.forEach(function(answer) {
-            tot_q++;
-            if(answer.question == true)
-                result_q++;
+            entry.answers.forEach(function(entry) {
+                entry.forEach(function(answer) {
+                    tot_q++;
+                    if(answer.question == true)
+                        result_q++;
+                });
             });
-        });
 
-        results.push({
-            user: entry.user
-            ,total: tot_q
-            ,passed: result_q
+            results.push({
+                user: entry.user
+                ,total: tot_q
+                ,passed: result_q
+            });
         });
     });
     return results;

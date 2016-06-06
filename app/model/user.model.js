@@ -38,22 +38,22 @@ userSchema.virtual('fullName').get(function () {
 });
 
 //get mail
-userSchema.virtual('mail').get(function () {
+userSchema.methods.getMail = function() {
     return this._id;
-});
+};
 
 //check user password
-userSchema.methods.checkPassword = function checkPassword(password) {
+userSchema.methods.checkPassword = function(password) {
     return password == this.password;
 };
 
-//find user
-userSchema.statics.findUser = function findUser(mail) {
+//find user, usable only like find
+userSchema.statics.findUser = function(mail) {
     return this.findOne({ _id: mail });
 };
 
 //has user
-userSchema.statics.hasUser = function hasUser(mail) {
+userSchema.statics.hasUser = function(mail) {
     return !!this.findOne({ _id: mail });
 };
 

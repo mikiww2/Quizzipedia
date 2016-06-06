@@ -30,9 +30,8 @@ var classSchema = new Schema({
             ,required: [true, 'name is required']
         }
         ,academicYear: {
-            type: Number
-            ,min: 1900
-            ,max: 2050
+            type: String
+            ,trim: true
             ,required: [true, 'academicYear is required']
         }
 }, { strict: true });
@@ -256,17 +255,19 @@ organizationSchema.statics.findOrganizationByDirector = function(directorMail) {
 organizationSchema.statics.findClassesWithStudent = function(studentMail) {
     var result = { };
 
-    this.find().forEach(function(institution) {
-        if(institution.hasStudent(studentMail)) {
-            institution.classes.forEach(function(cls) {
-                if(cls.hasStudent(studentMail))
-                    result.push({
-                        institution: institution
-                        ,class_year: cls.academicYear
-                        ,class_name: cls.name
-                    });
-            });
-        }
+    this.find({}, function(err, institutions) {
+        institutions.forEach(function(institution) {
+            if(institution.hasStudent(studentMail)) {
+                institution.classes.forEach(function(cls) {
+                    if(cls.hasStudent(studentMail))
+                        result.push({
+                            institution: institution
+                            ,class_year: cls.academicYear
+                            ,class_name: cls.name
+                        });
+                });
+            }
+        });
     });
     return result;
 };
@@ -274,29 +275,31 @@ organizationSchema.statics.findClassesWithStudent = function(studentMail) {
 //find institutions with a User role, return [institution_name, role(director/student/teacher)]  (scope = collection)
 organizationSchema.statics.findInstitutionsWithAcceptedUser = function(userMail) {
     var result = { };
-    var user = { };
 
-    this.find().forEach(function(institution) {
-        if(institution.director == userMail)
-            result.push({
-                institution_name: institution.name
-                ,role : 'director'
-            });
-        else {
-            if(institution.hasAcceptedStudent(usermail)){
+    this.find({}, function(err, instituions) {
+        instituions.forEach(function(institution) {
+            if(institution.director == userMail)
                 result.push({
                     institution_name: institution.name
-                    ,role: 'student'
+                    ,role : 'director'
                 });
+            else {
+                if(institution.hasAcceptedStudent(usermail)){
+                    result.push({
+                        institution_name: institution.name
+                        ,role: 'student'
+                    });
+                }
+                if(institution.hasAcceptedTeacher(userMail)) {
+                    result.push({
+                        institution_name: institution.name
+                        ,role: 'teacher'
+                    });
+                }
             }
-            if(institution.hasAcceptedTeacher(userMail)) {
-                result.push({
-                    institution_name: institution.name
-                    ,role: 'teacher'
-                });
-            }
-        }
+        });
     });
+
     return result;
 };
 

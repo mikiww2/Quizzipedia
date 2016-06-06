@@ -71,7 +71,7 @@ exports.generate = function (question){
 };
 
 exports.parse = function (qml){
-    if (qml.startsWith('|') && qml.endsWith('|')) {
+    if (qml.startsWith('|') && qml.endsWith('|') && qml.includes('#t#') && qml.includes('#a#') && qml.includes('#££#')) {
         var type = extract(qml, 'q?', '#t#');
         var qson;
         switch (type){ // in base al tipo fa operare la funzione corrispondente nella stringa
@@ -231,7 +231,7 @@ exports.parse = function (qml){
             var jsonAns = {'id': answerId};
             var answerValue = extract(item, '', '[');
             if (answerValue.startsWith('{') && answerValue.endsWith('}')){
-                jsonAns.attachment = appendAttached(answerValue);
+                jsonAns.attachment = appendAttached(extract(answerValue, '{', '}'));
             }
             else
                 jsonAns.text = answerValue;

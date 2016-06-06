@@ -10,25 +10,33 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-//     frameworks: ['mocha'],
     frameworks: ['jasmine', 'mocha'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/angular/angular.min.js',   
-      'public/core.js',
-//       'public/services/AuthenticationData.js',
-//       'test/AuthenticationData.test.js'
-      'tests/integration/*.js'
-      ],
+        'node_modules/angular/angular.js',
+        'node_modules/angular-mocks/angular-mocks.js',
+        'public/core.js',
+//         'public/services/*.js',
+        'public/services/AuthenticationData.js',
+        'public/profile/CtrlUserManager.js',
+        'public/services/Class.js',
+        'public/services/User.js',
+        'public/services/Director.js',
+//         'tests/unit/client/*.js',
+        'tests/unit/client/AuthenticationDataTest.js', //funziona
+        'tests/unit/client/CtrlUserManagerTest.js', //funziona
+        'tests/unit/client/ClassTest.js', //funziona
+        'tests/unit/client/UserTest.js', //funziona
+        'tests/unit/client/DirectorTest.js'
+//         'tests/integration/*.js'
+    ],
 
 
     // list of files to exclude
     exclude: [
-        'tests/unit/db/*',
-        'tests/unit/client/*',
-        'tests/unit/server/*'
+        'tests/unit/db/*'
     ],
 
 

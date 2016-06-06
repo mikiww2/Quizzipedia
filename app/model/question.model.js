@@ -14,10 +14,6 @@ var questionSchema = new Schema({
         type: String
         ,required: false
     }
-    ,title: {
-        type: String
-        ,required: [true, 'title question is required']
-    }
     ,keywords: {
         type: [String]
         ,required: false
@@ -40,11 +36,6 @@ var questionSchema = new Schema({
 //find Questions with topic (scope = collection)
 questionSchema.statics.findQuestionsByTopic = function(topic) {
   return this.find({ topic: topic });
-};
-
-//find Questions with title (scope = collection)
-questionSchema.statics.findQuestionsByTitle = function(title) {
-  return this.find({ title: title });
 };
 
 //find Questions with keywords (scope = collection)

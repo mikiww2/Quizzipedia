@@ -3,6 +3,7 @@
 
 ### linux ###
 .directory
+.*~
 
 ### Kate ###
 # Swap Files #

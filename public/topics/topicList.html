@@ -27,10 +27,12 @@
 	<link href="./assets/css/forms.css" rel="stylesheet">
       
     <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
-    <script type="text/javascript" src="./assets/js/urlGetter.js"></script>
+
       
     <script type="text/javascript" src="./public/core.js"></script>	
     <script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
+    <script type="text/javascript" src="./public/services/Topics.js"></script>
+    <script type="text/javascript" src="./public/topics/CtrlTopics.js"></script>
       
     <!-- Directive angular (HEADER)-->
     <script type="text/javascript" src="./public/header/headerLogged.js"></script>
@@ -47,7 +49,7 @@
     <![endif]-->
   </head>
 
-  <body onload="getUrl()">
+  <body >
 	<div class="container">
         
         <div ng-controller="CtrlHeader">        
@@ -58,14 +60,10 @@
 	</div>
         
 		<h4 class="description text-center"><i class="glyphicon glyphicon-book"></i> Argomenti</h4>
-		<div class="row">
+		<div class="row" ng-controller="CtrlTopics">
 			<div class="list-group form text-center important">
-			  <a href="#" class="list-group-item">Biologia</a>
-			  <a href="#" class="list-group-item">Chimica</a>
-			  <a href="#" class="list-group-item">Informatica</a>
-			  <a href="#" class="list-group-item">Storia </a>
-			  <a href="#" class="list-group-item">Matematica </a>
-			  <a href="#" class="list-group-item">Filosofia </a>
+			  <a href="#" class="list-group-item" ng-repeat="topic in topicsList.topics track by $index">{{topic}}</a>
+			  
 			</div>
 		</div>
 	</div>

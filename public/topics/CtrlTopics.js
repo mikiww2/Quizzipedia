@@ -1,6 +1,8 @@
-angular.module().controller('CtrlTopics',['Topics','$scope','$http',function(Topics,$scope,$http){
+angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$http',function(Topics,$scope,$http){
     
-    $scope.topicsList = [];
+    $scope.topicsList = new Topics();
+    
+    $scope.eraseTopic = null; //index topic
     
     $scope.topicName = null; //variabile che si ricorda il nome del topic inserito nella form
     
@@ -10,12 +12,26 @@ angular.module().controller('CtrlTopics',['Topics','$scope','$http',function(Top
     };
     
      $scope.addTopic = function(name){
-         
          //inseriamo il nuovo topic dentro a listTopics e invio una richiesta al server
+         
+         $scope.topicsList.addTopic(name);
+         /*
+         $http.post('',name).success(function(response){
+             
+         });*/
      };
     
-     $scope.removeTopic = function(indexOfTopic){
+     $scope.removeTopic = function(index){
          //rimuovo il topic in locale e invio una richiesta al serve
+         
+         $scope.topicsList.removeTopic(index);
+         
+         
      };
+    
+    
+    $scope.setEraseTopic = function(index){
+      $scope.eraseTopic = index;  
+    };
     
 }]);

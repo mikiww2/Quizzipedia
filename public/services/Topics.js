@@ -1,4 +1,4 @@
-angular.module().factory('Topics',[function(){
+angular.module('TopicsManager').factory('Topics',[function(){
     
     function Topics(){
       
@@ -19,6 +19,8 @@ angular.module().factory('Topics',[function(){
         }
         
     };
+    
+    return Topics;
     
     
 }]);

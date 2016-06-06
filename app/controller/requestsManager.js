@@ -96,7 +96,47 @@ exports.addInstitutionRoleRequest = function (req, res) {
        	}	       		
 	    });
 		}
-};
+}
+
+exports.addClassInsertRequest = function (req, res) {
+
+		if(req.session.user){
+			Organization.findOne({ 'name': req.body.institution }, function (err,org){
+				if (err) {
+	            console.log('error: ' + err);
+	            res.redirect('/');
+	      }
+	      else{
+	       	if(org){
+	       			org.users.forEach(function(result,index){
+                if(result['user'] === req.session.user._id){
+                	var classs = {
+                		state: 'requested',
+                		class: req.body.name
+                	};
+                	org.users[index].classes.push(classs);
+                }
+
+		        		org.save( function (err) {
+                    if (err) {
+                        console.log('errore nella richiesta di inserimento nella classe: ' + err);
+                        res.send('/');
+                    }
+                    else {
+                        console.log('richiesta di inserimento nella classe inserita correttamente');
+                        res.send('/');
+                    }
+                });
+		        	});
+	       		}
+	        	else{
+	        		console.log('utente già presente');
+	        		res.send('/');
+	        	}
+	        }	       		
+	    });
+		}
+}
 
 exports.acceptRoleRequest = function (req, res) {
 

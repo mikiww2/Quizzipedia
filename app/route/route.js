@@ -85,10 +85,44 @@ module.exports = function (app) {
       res.redirect('/Quizzipedia/home');
   });
     
-  // INST & CLASSES MANAGER -------------------------------------------------------------------------------------
+  // INST & CLASSES -------------------------------------------------------------------------------------
   app.route('/Quizzipedia/instClassesMgmt').get(function (req, res) {
     if (req.session.user)
       res.sendFile(path.resolve('./public/orgManager/instClassesMgmt.html'));
+    else
+      res.redirect('/Quizzipedia/home');
+  });
+ 
+  app.route('/Quizzipedia/classList').get(function (req, res) {
+    if (req.session.user)
+      res.sendFile(path.resolve('./public/orgManager/classList.html'));
+    else
+      res.redirect('/Quizzipedia/home');
+  });
+    
+ app.route('/Quizzipedia/instList').get(function (req, res) {
+    res.sendFile(path.resolve('./public/orgManager/instList.html'));   
+  });
+    
+  // TOPICS -------------------------------------------------------------------------------------
+  app.route('/Quizzipedia/topicList').get(function (req, res) {
+    if (req.session.user)
+      res.sendFile(path.resolve('./public/topics/topicList.html'));
+    else
+      res.redirect('/Quizzipedia/home');
+  });
+    
+   app.route('/Quizzipedia/topicMgmt').get(function (req, res) {
+    if (req.session.user)
+      res.sendFile(path.resolve('./public/topics/topicMgmt.html'));
+    else
+      res.redirect('/Quizzipedia/home');
+  });
+    
+  // TOPICS -------------------------------------------------------------------------------------
+  app.route('/Quizzipedia/removeUser').get(function (req, res) {
+    if (req.session.user)
+      res.sendFile(path.resolve('./public/users/removeUser.html'));
     else
       res.redirect('/Quizzipedia/home');
   });
@@ -106,12 +140,40 @@ module.exports = function (app) {
   //QUESTIONS ---------------------------------------------------------------------------------------
   app.route('/Quizzipedia/createQuestion').get(function (req, res) {
     res.sendFile(path.resolve('./public/question_creation/createQuestionBase.html'));
-  });
-    
+  });    
     
 //QUESTIONS MANAGE------------------------------------------------------------------------    
     
  app.route('/Quizzipedia/mgmtQuestion').get(function (req, res) {
     res.sendFile(path.resolve('./public/question_creation/questionMgmt.html'));
+  });
+
+// STATISTICS -------------------------------------------------------------------------------------
+  app.route('/Quizzipedia/questionStats').get(function (req, res) {
+    if (req.session.user)
+      res.sendFile(path.resolve('./public/statistics/viewQuestionStats.html'));
+    else
+      res.redirect('/Quizzipedia/home');
+  });
+
+app.route('/Quizzipedia/quizStats').get(function (req, res) {
+    if (req.session.user)
+      res.sendFile(path.resolve('./public/statistics/viewQuizStats.html'));
+    else
+      res.redirect('/Quizzipedia/home');
+  });
+
+app.route('/Quizzipedia/studentsStats').get(function (req, res) {
+    if (req.session.user)
+      res.sendFile(path.resolve('./public/statistics/viewStudentsStats.html'));
+    else
+      res.redirect('/Quizzipedia/home');
+  });
+
+app.route('/Quizzipedia/teachersStats').get(function (req, res) {
+    if (req.session.user)
+      res.sendFile(path.resolve('./public/statistics/viewTeachersStats.html'));
+    else
+      res.redirect('/Quizzipedia/home');
   });
 };

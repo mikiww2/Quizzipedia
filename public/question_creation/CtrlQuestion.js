@@ -162,7 +162,6 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         
     };
     
-    $scope.localfiles = [];
     
     /*$scope.onFileSelect = function($files){
         for(var i = 0; i< $files.length; i++){
@@ -177,14 +176,18 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         $scope.files = files;
         if (files && files.length){
             Upload.upload({
-                url:'/api/question/test',
+                url:'https://angular-file-upload-cors-srv.appspot.com/upload',
                 data: {files: files}
             }).then(function(response){
                 $timeout(function(){
-                    $scope.result = response;
+                    $scope.result = response.data;
                 });
-            }, function(evt){
-                $scope.progress = Math.min(100,parseInt(100.0 * evt.loaded / evt.total));
+            }, function(response){
+                if(response.status >0){
+                    $scope.errorMsg = response.status +':'+ response.data;
+                }
+            },function(evt){
+                $scope.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
         }
         

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="CreateQuestion">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -76,31 +76,58 @@
       <script type="text/javascript" src="./public/question_creation/createQopen.js"></script>
 	
       <script type="text/javascript" src="./public/question_creation/CtrlQuestion.js"></script>
+      <script type="text/javascript" src="./public/question_creation/main.js"></script>
   </head>
 
-  <body>
-	<div class="container" ng-controller="CtrlQuestion">
+  <body ng-app="CreateQuestion" ng-controller="CtrlQuestion">
+	<div class="container">
         
         <header-logged-teacher></header-logged-teacher>
         
 	<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
+        
+        
+        <!--
+         <h4>Upload on file select</h4>
+        
+        <button ngf-select="uploadFiles($files)" multiple accept="image/*">Files</button>
+        <br><br>Files:
+        <ul>
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
+        </ul>
+        <span ng-show="progress >= 0">
+            <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+        </span>
+        {{result | json}}
+        {{errorMsg}}
+        -->
+
+        
+        
+        
+        
       <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)" name="CtrlQuestion.upload_form" novalidate>
-		<!-- title -->
+		
 		<div class="form-group row">
 			<label for="inputTitle" class=" form-control-label">Titolo</label>
 			<input type="text" class="form-control" id="inputTitle" placeholder="Titolo" ng-model="MyGenericQ.title" required autofocus>
 		</div>
-		<!-- description -->
+		<!-- description-->
 		<div class="form-group row">
 			<label for="inputDescription" class=" form-control-label">Descrizione</label>
 			<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" ng-model="MyGenericQ.description" required></textarea>
 		</div>
 		<!-- missing upload thing here -->
 		<div class="form-group row">
-			<label for="inputDescription" class=" form-control-label">Carica</label><br>
-			<span class="btn btn-default btn-file">Cerca <input type="file" title="file" accept="image/*" ngf-select="uploadFiles($files)"></span>
+			<label for="up" class=" form-control-label">Carica</label><br>
+			 <button id="up" ngf-select="uploadFiles($files)" multiple accept="image/*">Select Files</button>
+             <ul>
+                 <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
+                 <img ng-src="{{f.src}}"/>
+            </ul>
             
             <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+            {{errorMsg}}
             
 		</div>
 		<!-- topic-->
@@ -123,7 +150,7 @@
 			});
 		</script>
 		
-		<!-- diff level -->
+		<!-- diff level-->
 		<div class="form-group row">
 			<fieldset class="form-group">
 			<!-- idk the stars are cool, animate them w jquery if theres time -->
@@ -179,18 +206,15 @@
           
           
           
-          
-		<!-- END VARIABLE PART -->
+         
 
           
-          
-          {{result | json}}
           
           
           
         <button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button>
           
-        </form>
+        </form>-->
         
         
       

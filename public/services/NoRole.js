@@ -1,4 +1,4 @@
-angular.module('managerRequests').factory('NoRole',['User'. 'AnswerQuiz',function(User, AnswerQuiz){
+angular.module('Quizzipedia').factory('NoRole',['User', 'AnswerQuiz',function(User, AnswerQuiz){
     
     function NoRole(firstName,lastName,mail,password){
         User.call(this,firstName,lastName,mail,password);

@@ -1,4 +1,4 @@
-module.factory('ClassList',['Request',function(Request){
+angular.module('').factory('ClassList',['Request',function(Request){
     function ClassList(){
         this.classRequests = [];
     };

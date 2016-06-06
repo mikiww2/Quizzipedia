@@ -6,7 +6,7 @@ exports.viewRoleRequests = function (req, res) {
 		var newuser = {};
 		var userlist = [];
 
-		if(req.session.user && req.session.user.role === 'director'){
+		if(req.session.user && req.session.user.role == 'director'){
 			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 				if (err) {
 	            console.log('error: ' + err);
@@ -22,6 +22,9 @@ exports.viewRoleRequests = function (req, res) {
               			newuser._id = user._id;
 	              		newuser.firstName = user.firstName;
 	              		newuser.lastName = user.lastName;
+	              		if(result['role'] == 'student')
+	              			newuser.role = 'studente';
+	              		else newuser.role = 'docente';
 	              		userlist.push(newuser);
 	              		console.log(newuser);
 	              		newuser = { };
@@ -45,8 +48,8 @@ exports.viewRoleRequests = function (req, res) {
 
 	    });
 		}
+		else res.redirect('/');
 }
-
 
 
 exports.addInstitutionRoleRequest = function (req, res) {

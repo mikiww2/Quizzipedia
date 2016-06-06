@@ -97,3 +97,65 @@ exports.addInstitutionRoleRequest = function (req, res) {
 	    });
 		}
 };
+
+exports.acceptRoleRequest = function (req, res) {
+
+		if(req.session.user && req.session.user.role == 'director'){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+				if (err) {
+	            console.log('error: ' + err);
+	            res.redirect('/');
+	      }
+	      else{
+	       	if(org){
+	       		for(var i=0;i<org.users.length;i++){
+	       			if(org.users[i].user == req.body.email){
+	       				console.log('CAMBIO RUOLO');
+	       				org.users[i].state = 'allowed';
+	       			}
+	       		}
+	       		org.save( function (err) {
+                    if (err) {
+                        console.log('errore nell\'accettazione della richiesta di ruolo: ' + err);
+                        res.redirect('/');
+                    }
+                    else {
+                        console.log('richiesta di ruolo accettata correttamente');
+                        res.redirect('/');
+                    }
+                });
+	       	}
+	      }
+	    });
+	  }
+}
+
+exports.discardRoleRequest = function (req, res) {
+
+		if(req.session.user && req.session.user.role == 'director'){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+				if (err) {
+	            console.log('error: ' + err);
+	            res.redirect('/');
+	      }
+	      else{
+	       	if(org){
+	       		for(var i=0;i<org.users.length;i++){
+	       			if(org.users[i].user == req.body.email)
+	       				org.users.splice(i,1);
+	       		}
+	       		org.save( function (err) {
+                    if (err) {
+                        console.log('errore nella negazione della richiesta di ruolo: ' + err);
+                        res.send('error');
+                    }
+                    else {
+                        console.log('richiesta di ruolo negata correttamente');
+                        res.send('ok');
+                    }
+                });
+	       	}
+	      }
+	    });
+	  }
+}

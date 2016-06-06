@@ -128,7 +128,7 @@ exports.parse = function (qml){
         return question.title + attached + '#a#' + stringAnswers + '#££#';
     };
 
-    var generateCM = function (question) { // manca gestione allegati
+    var generateCM = function (question) { // teoricamente ok, da testare casi particolari
         var stringTitle = '';
         for (var item of question.title) {
             if (item.type == 'txt') {
@@ -141,7 +141,10 @@ exports.parse = function (qml){
         }
         var stringAnswers = '';
         for (var item of question.ans){
-            stringAnswers = stringAnswers + item.value + '[' + item.id + ']§';
+            if (item.text)
+                stringAnswers = stringAnswers + item.text + '[' + item.id + ']§';
+            if (item.attachment)
+                stringAnswers = stringAnswers + generateAttached(item) + '[' + item.id + ']§';
         }
         if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
             stringAnswers = stringAnswers.substr(0, stringAnswers.length - 1);
@@ -210,7 +213,7 @@ exports.parse = function (qml){
         };
 
 
-    var parserCM = function (qml) { // // manca gestione allegati
+    var parserCM = function (qml) { // teoricamente ok, da testare casi particolari
         var qson = {'questionType': 'cmpl'};
         var text = extract(qml, '#t#', '#a#');
         var arrayTitles = text.split('§');
@@ -230,9 +233,14 @@ exports.parse = function (qml){
         var arrayAnswers = answer.split('§');
         var arrayJsonAns = [];
         for (var item of arrayAnswers){
-            var answerValue = extract(item, '', '[');
             var answerId = extract(item, '[', ']');
-            var jsonAns = {'value': answerValue, 'id': answerId};
+            var jsonAns = {'id': answerId};
+            var answerValue = extract(item, '', '[');
+            if (answerValue.startsWith('{') && answerValue.endsWith('}')){
+                jsonAns.attachment = appendAttached(answerValue);
+            }
+            else
+                jsonAns.text = answerValue;
             arrayJsonAns.push(jsonAns);
         }
         qson.ans = arrayJsonAns;

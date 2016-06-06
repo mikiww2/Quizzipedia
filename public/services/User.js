@@ -1,4 +1,4 @@
-angular.module('managerRequests').factory('User',['AuthenticationData',function(AuthenticationData){
+angular.module('RequestsManager').factory('User',['AuthenticationData',function(AuthenticationData){
   
   function User(firstName,lastName,mail,password){
     

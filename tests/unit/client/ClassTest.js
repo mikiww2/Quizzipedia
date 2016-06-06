@@ -1,5 +1,5 @@
 /*
- * Name: tests/unit/client/Class.spec.js
+ * Name: tests/unit/client/ClassTest.js
  * Author: Vault-Tech
  * Email: vaulttech.swe@gmail.com
  * Referring to: public/services/Class.js
@@ -11,18 +11,18 @@
  *
  */
 
-'use strict'
+'use strict';
 
 describe('Class test', function(){
     var classInj;
     var mock_class;
 
     beforeEach(function() {
-        angular.module('InstitutionManager');
+        angular.module('InstClassManager');
     });
 
     beforeEach(inject(function() {
-        var $injector = angular.injector(['InstitutionManager']);
+        var $injector = angular.injector(['InstClassManager']);
         classInj=$injector.get('Class');
         mock_class = new classInj();
     }));
@@ -33,7 +33,7 @@ describe('Class test', function(){
     });
 
     it('test method getDescription()',function(){
-        expect(mock_class.getDescription()).toBe("Nessuna descrizione aggiunta");
+        expect(mock_class.getDescription()).toBeNull();
     });
 
     it('test method getName()', function(){

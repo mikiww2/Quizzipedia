@@ -1,5 +1,5 @@
 /*
- * Name: tests/unit/client/CtrlUserManager.spec.js
+ * Name: tests/unit/client/CtrlUserManagerTest.js
  * Author: Vault-Tech
  * Email: vaulttech.swe@gmail.com
  * Referring to: public/profile/CtrlUserManager.js
@@ -36,11 +36,6 @@ describe("CtrlUserManager test", function(){
          /** Per simulare la richiesta fatta dal metodo loadInstitutions() */
          request2= httpBackend.when('GET', '/api/institution/fetch_user_inst')
 					.respond({'Scuola guida' : 'Studente', 'Scuola superiore G.Dal Piaz':'Docente'});
-         
-         //~ /** Per simulare la richiesta fatta dal metodo changePsw() */
-         //~ request3= httpBackend.when('GET','/api/profile/get_pswd').respond();
-         //~ 
-         //~ /**/   
         
         scope = $rootScope.$new();
                  

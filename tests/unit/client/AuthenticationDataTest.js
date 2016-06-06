@@ -1,10 +1,13 @@
 /*
- * Name: AuthenticationData.spec.js
+ * Name: tests/unit/client/AuthenticationData.spec.js
  * Author: Vault-Tech
- * Path: tests/unit/client
+ * Email: vaulttech.swe@gmail.com
  * Referring to: public/services/AuthenticationData.js
  * Creation date : 10.05.2016
- * Last modify date: 31.05.2016
+ *
+ * ** Diary **
+ * 	12.05 2016 Test superato - Rudy Berton
+ * 	10.05.2016 Creazione del test - Rudy Berton
  *
  */
 
@@ -14,7 +17,7 @@
   describe('AuthenticationData test', function() {
 
     var autData;
-    var user;
+    var mock_autData;
 
     beforeEach(function() {
       angular.module('RequestsManager');
@@ -23,30 +26,30 @@
     beforeEach(inject(function() {
       var $injector = angular.injector(['RequestsManager']);
       autData = $injector.get('AuthenticationData');
-      user = new autData("Paolo", "Rossi", "paolo.rossi@gmail.com", "paolorossi");
+      mock_autData = new autData("Paolo", "Rossi", "paolo.rossi@gmail.com", "paolorossi");
     }));
     
-    it('test if user is defined', function(){
-      expect(user).toBeDefined();
-      //console.log(user);
+    it('test if mock_autData is defined', function(){
+      expect(mock_autData).toBeDefined();
+      //console.log(mock_autData);
     }); 
     
-    it('test method getFirstName', function(){
-		expect(user.getFirstName()).toBe("Paolo");
+    it('test method getFirstName()', function(){
+		expect(mock_autData.getFirstName()).toBe("Paolo");
 	});
 
-	it('test method getLastName', function(){
-		expect(user.getLastName()).toBe("Rossi");
+	it('test method getLastName()', function(){
+		expect(mock_autData.getLastName()).toBe("Rossi");
 	});
 	
-	it('test method getMail', function(){
-		expect(user.getMail()).toBe("paolo.rossi@gmail.com");
+	it('test method getMail()', function(){
+		expect(mock_autData.getMail()).toBe("paolo.rossi@gmail.com");
 	});
 	
-	it('test method setPassword', function(){
-		user.setPassword("paolorossi","rossi12345");
-		expect(user.password).toBe("rossi12345");
-		//console.log(user.password);
+	it('test method setPassword()', function(){
+        mock_autData.setPassword("paolorossi","rossi12345");
+		expect(mock_autData.password).toBe("rossi12345");
+		//console.log(mock_autData.password);
 	});
 	
   });

@@ -1,4 +1,4 @@
-angular.module().factory('Director',['User',function(User){
+angular.module('RequestsManager').factory('Director',['User',function(User){
     
     function Director(firstName,lastName,mail,password){
         User.call(this,firstName,lastName,mail,password);        

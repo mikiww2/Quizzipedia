@@ -41,3 +41,7 @@ node_modules/**
 
 #npm
 npm-debug.log
+
+#quizzipedia
+upload/**
+upload_tmp/**

@@ -172,15 +172,14 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     
     $scope.uploadFiles = function(files){
-        console.log(files);
-        $scope.files = files;
+        console.log(files[0]);
         if (files && files.length){
             console.log("porco diosfhduhfdsuhfuidhsufihdsuihfdsui");
             Upload.upload({
                 url:'/api/upload/save',
-                data: {file: files}
+                data: {file: files[0]}
             }).then(function(response){
-                alert(response);
+                console.log(response);
             });
         }
         
@@ -192,13 +191,8 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     $scope.save = function(question){
       //salvo la domanda creata        
         
-        var json = {
-          domanda: question,
-            file: $scope.localfiles
-        };
-        
 
-       $http.post('/api/question/test',json).success(function(response){
+       $http.post('/api/question/test',question).success(function(response){
             
             //$http.get('/api/question/fetch').success(function(response){
               //  $scope.domande = response;

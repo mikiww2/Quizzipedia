@@ -172,22 +172,15 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     
     $scope.uploadFiles = function(files){
-        
+        console.log(files);
         $scope.files = files;
         if (files && files.length){
+            console.log("porco diosfhduhfdsuhfuidhsufihdsuihfdsui");
             Upload.upload({
                 url:'/api/upload/save',
                 data: {file: files}
             }).then(function(response){
-                $timeout(function(){
-                    $scope.result = response.data;
-                });
-            }, function(response){
-                if(response.status >0){
-                    $scope.errorMsg = response.status +':'+ response.data;
-                }
-            },function(evt){
-                $scope.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                alert(response);
             });
         }
         

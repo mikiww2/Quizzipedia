@@ -54,9 +54,10 @@
       <script src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload-shim.min.js"></script>
       <script src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload.min.js"></script>
       <!--<link rel="stylesheet" href="./assets/ng-file-upload-bower-12.0.4/ng-file-upload.css">-->
-      <script type="text/javascript" src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload.js"></script>
+      <!--<script type="text/javascript" src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload.js"></script>-->
       
       <script type="text/javascript" src="./public/core.js"></script>
+      <script type="text/javascript" src="./public/header/CtrlHeader.js"></script>
       <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
       
       
@@ -102,10 +103,10 @@
       
   </head>
 
-  <body ng-app="CreateQuestion" ng-controller="CtrlQuestion">
+  <body ng-app="CreateQuestion" > 
 	<div class="container">
         
-        <header-logged-teacher></header-logged-teacher>
+        <header-logged-teacher ng-controller="CtrlHeader"></header-logged-teacher>
         
 	<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
         
@@ -129,7 +130,7 @@
         
         
         
-      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)" name="CtrlQuestion.upload_form" novalidate>
+      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)" name="CtrlQuestion.upload_form" novalidate ng-controller="CtrlQuestion">
 		
 		<div class="form-group row">
 			<label for="inputTitle" class=" form-control-label">Titolo</label>

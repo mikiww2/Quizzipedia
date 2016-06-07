@@ -25,7 +25,9 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
          
          $scope.topicsList.addTopic(name);
          
-         $http.post('/api/topic/save',name);
+       
+         
+         $http.post('/api/topic/save',{name: name});
      };
     
      $scope.removeTopic = function(index){

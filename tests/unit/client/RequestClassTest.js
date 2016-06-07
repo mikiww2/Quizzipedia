@@ -25,20 +25,8 @@ describe('RequestClass test', function () {
 
     beforeEach(inject(function() {
         var $injector = angular.injector(['RequestsManager','InstClassManager']);
-        Classs=$injector.get('Class');
         RequestClass=$injector.get('RequestClass');
-        mock_class= new Classs();
-        mock_class.edit("Classe composta da 21 studenti della scuola statate G.Dal Piaz","5A Scientifico","2015");
-        mock_class.addTeacher("vania.strada@gmail.com");
-        mock_class.addTeacher("Salvatore_Passaro@hotmail.it");
-        mock_class.addTeacher("AnnaTurra@gmail.com");
-        mock_class.addStudent("marco.rubin@gmail.com");
-        mock_class.addStudent("fabioPavanello@gmail.com");
-        mock_class.addStudent("elena.DeSalvador@gmail.com");
-        mock_class.addStudent("SilviaTonin@gmail.com");
-        //console.log(mock_class);
-
-        mock_requestClass= new RequestClass("filippoMagnin@gmail.com",mock_class);
+        mock_requestClass= new RequestClass("filippoMagnin@gmail.com","Classe 5A Liceo Scientifico G. Dal Piaz", "2015-2016");
 
     }));
     
@@ -52,7 +40,11 @@ describe('RequestClass test', function () {
     });
 
     it('test getNameClass() method', function () {
-       expect(mock_requestClass.getNameClass()).toEqual(mock_class);
+       expect(mock_requestClass.getNameClass()).toEqual("Classe 5A Liceo Scientifico G. Dal Piaz");
+    });
+
+    it('test getYear() method', function () {
+        expect(mock_requestClass.getYear()).toBe("2015-2016");
     });
 
 

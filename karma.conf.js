@@ -27,6 +27,9 @@ module.exports = function(config) {
         'public/services/Director.js',
         'public/services/Student.js',
         'public/services/RequestClass.js',
+        'public/services/RequestRole.js',
+        'public/services/RoleList.js',
+        'public/services/ClassList.js',
 
 //         'tests/unit/client/*.js',
         'tests/unit/client/AuthenticationDataTest.js', //ok
@@ -34,8 +37,13 @@ module.exports = function(config) {
         'tests/unit/client/ClassTest.js', //ok
         'tests/unit/client/UserTest.js', //ok
         'tests/unit/client/DirectorTest.js', //ok
-        'tests/unit/client/StudentTest.js', //DA FINIRE
-        'tests/unit/client/RequestClassTest.js' //ok
+        'tests/unit/client/StudentTest.js', //DA FINIRE!!!!!!!!!!!!!!!
+        'tests/unit/client/RequestClassTest.js', //ok
+        'tests/unit/client/RequestRoleTest.js', //ok
+        'tests/unit/client/RoleListTest.js',
+        'tests/unit/client/ClassListTest.js'
+
+
 //         'tests/integration/*.js'
     ],
 

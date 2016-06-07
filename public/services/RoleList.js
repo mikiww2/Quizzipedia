@@ -1,17 +1,17 @@
-angular.module('managerRequests').factory('RoleList',['RequestRole', function(RequestRole){
+angular.module('RequestsManager').factory('RoleList',['RequestRole', function(RequestRole){
     
     function RoleList(){        
         this.students = []; //array RequestRole
         this.teacher = []; //array RequestRole
     };
     
-    RoleList.prototype.addRoleList = function(mailUser, message, role){
+    RoleList.prototype.addRoleList = function(mailUser, nameOfInstitution, message, role){
         
         if(role == "Student"){
-            this.students.push(new RequestRole(mailUser, message));    
+            this.students.push(new RequestRole(mailUser, nameOfInstitution, message));
         }
-        else{
-            this.teacher.push(new RequestRole(mailUser, message));
+        else{ //allora è un Teacher
+            this.teacher.push(new RequestRole(mailUser, nameOfInstitution, message));
         }       
         
     };    
@@ -20,6 +20,7 @@ angular.module('managerRequests').factory('RoleList',['RequestRole', function(Re
         
         if(indexOfStudent >= 0 && indexOfStudent < this.students.length){
             this.students.splice(indexOfStudent,1);
+
             //faccio la richiesta al server?
         }
     };
@@ -27,7 +28,7 @@ angular.module('managerRequests').factory('RoleList',['RequestRole', function(Re
     RoleList.prototype.removeTeacher = function(indexOfTeacher){
         
         if(indexOfTeacher >= 0 && indexOfTeacher < this.teacher.length){
-            this.students.splice(indexOfTeacher,1);
+            this.teacher.splice(indexOfTeacher,1);
             
             //faccio la richiesta al server?
         }

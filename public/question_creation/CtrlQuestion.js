@@ -1,4 +1,4 @@
-angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ','ShortAnswerQ','MultipleChoiceQ','AnswerMultipleChoice','Attachment','Upload','$window','$timeout', function($scope, $http, TrueFalseQ,ShortAnswerQ,MultipleChoiceQ,AnswerMultipleChoice,Attachment,Upload,$window,$timeout){ //dipendenze verso tutti i tipi di domande e Topics
+angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ','ShortAnswerQ','MultipleChoiceQ','AnswerMultipleChoice','Attachment','Upload','$window', function($scope, $http, TrueFalseQ,ShortAnswerQ,MultipleChoiceQ,AnswerMultipleChoice,Attachment,Upload,$window){ //dipendenze verso tutti i tipi di domande e Topics
     
     $scope.topics = []; //inizializzato dal server
     
@@ -154,7 +154,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         setGenericPart(generic,trueFalse);
         
             
-        $scope.save(trueFalse);
+        $scope.save(trueFalse,generic.questionType);
         
         generic.reset();
         $scope.MyTrueFalseQ = new TrueFalseQ();
@@ -172,15 +172,14 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     
     $scope.uploadFiles = function(files){
-        console.log(files);
-        $scope.files = files;
+        console.log(files[0]);
+        $scope.files = files[0];
         if (files && files.length){
-            console.log("porco diosfhduhfdsuhfuidhsufihdsuihfdsui");
             Upload.upload({
                 url:'/api/upload/save',
-                data: {file: files}
+                data: {file: files[0]}
             }).then(function(response){
-                alert(response);
+                console.log(response);
             });
         }
         
@@ -189,15 +188,12 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     
     
-    $scope.save = function(question){
+    $scope.save = function(question, type){
       //salvo la domanda creata        
         
-        var json = {
-          domanda: question,
-            file: $scope.localfiles
-        };
-        
 
+        var json = {type: type, question: question};
+        
        $http.post('/api/question/test',json).success(function(response){
             
             //$http.get('/api/question/fetch').success(function(response){

@@ -5,32 +5,33 @@ var config = require('../../config/upload'); // path delle cartelle upload
 var multer = require('multer'); // si occupa del salvataggio
 var glob = require("glob"); // pattern matching su fs
 var mkdirp = require('mkdirp'); // crea la cartella se manca
-    
+
+
+
+
 //set storage configuration
-var storageTmp = function(cp) {
-    mkdirp(config.pathTmpFiles, function(err) {
-        console.log(err);
-        cp( multer.diskStorage({ //multers disk storage settings
-            destination: function (req, file, cb) {
-                mkdirp(config.pathTmpFiles, function(err) {
-                    if (err)
-                        console.log(err);
-                    cb(null, config.pathTmpFiles);
-                });
-            }
-            ,filename: function (req, file, cb) {
-                cb(null, req.session.user._id + '_' + file.originalname); // + '.' +  mime.extension(file.mimetype)
-            }
-        }) );
-    });
-}; 
+var storageTmp = multer.diskStorage({ //multers disk storage settings
+    destination: function (req, file, cb) {
+            cb(null, config.pathTmpFiles);
+    }
+    , filename: function (req, file, cb) {
+        // cb(null, req.session.user._id + '_' + file.originalname); // + '.' +  mime.extension(file.mimetype)
+        cb(null, "nome.utente" + '_' + file.originalname);
+    }
+});
 
 exports.upload = function (req, res) {
+    mkdirp(config.pathTmpFiles, function(err) {
+        if(err)
+            console.log(err);
+    });
     multer({storage: storageTmp}).single('file');
+    res.send("done");
 };
 
 exports.remove = function (req, res) {
-    var user = req.session._id;
+    // var user = req.session._id;
+    var user = "nome.utente";
     var pattern = config.pathTmpFiles + user + "_*";
     console.log("path glob : " + pattern);
 
@@ -44,6 +45,8 @@ exports.remove = function (req, res) {
             });
         });
     });
+
+    res.send("done");
 };
 
 // funzione usata da questionManager per salvare un allegato
@@ -56,10 +59,11 @@ exports.save = function(user, filename, questionId) {
     mkdirp(config.pathFiles, function(err) {
         if (err)
             console.log(err);
-        return fs.renameSync(pathFile, newPathFile, function(err) {
-            if (err)
-                return console.log(err);
-        });
+    });
+
+    fs.renameSync(pathFile, newPathFile, function(err) {
+        if (err)
+            return console.log(err);
     });
 
     return newPathFile;

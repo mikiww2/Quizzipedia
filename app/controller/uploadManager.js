@@ -3,16 +3,20 @@
 var config = require('../../config/upload'); // path delle cartelle upload
 
 var multer = require('multer'); // si occupa del salvataggio
-var glob = require("glob"); //pattern matching su fs
+var glob = require("glob"); // pattern matching su fs
+var mkdirp = require('mkdirp'); // crea la cartella se manca
     
 //set storage configuration
 var storageTmp = multer.diskStorage({ //multers disk storage settings
     destination: function (req, file, cb) {
-        cb(null, config.pathTmpFiles)
-    },
-    filename: function (req, file, cb) {
+        mkdirp(config.pathTmpFiles, function(err) {
+            if (err)
+                console.log(err);
+            return cb(null, config.pathTmpFiles);
+        });
+    }
+    ,filename: function (req, file, cb) {
         cb(null, req.session.user._id + '_' + file.originalname);
-        //nome del file "user.mail"+"_"+"nome originale del file"
     }
 });
 
@@ -44,9 +48,13 @@ exports.save = function(user, filename, questionId) {
     console.log("old path file : " + pathFile);
     console.log("new path file : " + newPathFile);
 
-    fs.renameSync(pathFile, newPathFile, function(err) {
-        if(err)
-            return console.log(err);
+    mkdirp(config.pathFiles, function(err) {
+        if (err)
+            console.log(err);
+        return fs.renameSync(pathFile, newPathFile, function(err) {
+            if (err)
+                return console.log(err);
+        });
     });
 
     return newPathFile;

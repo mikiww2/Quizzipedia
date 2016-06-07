@@ -29,8 +29,11 @@ var questionSchema = new Schema({
         type: String
         ,required: [true, 'author is required']
     }
-    
-    
+    ,description: {
+        type: String
+        ,required: [false]
+    }
+
 }, { strict: true });
 
 //find Questions with topic (scope = collection)

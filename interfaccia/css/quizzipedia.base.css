@@ -489,6 +489,8 @@ h6.description, h4.description, h3.description{
 
 .qComplContainer .answerBlock{
 	line-height: 200%;
+	border-radius: 10px;
+	padding: 20px;
 }
 
 
@@ -595,7 +597,7 @@ h6.description, h4.description, h3.description{
 }
 
 .drop {
-	width: 100px; height: 20px;
+	width: 100px; height: 30px;
 	margin: 0 5px;
 	background-color: white;
 	padding: 10px 0;

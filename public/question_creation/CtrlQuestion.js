@@ -136,7 +136,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         setGenericPart(generic,shortAnswer);
         //questionShort.setCorrectAnswer(shortAnswer.answer);
         
-        $scope.save(shortAnswer);
+        $scope.save(shortAnswer,generic.questionType);
         
         generic.reset();
         $scope.MyShortAnswerQ = new ShortAnswerQ();

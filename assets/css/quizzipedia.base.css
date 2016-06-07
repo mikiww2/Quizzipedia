@@ -462,6 +462,27 @@ h6.description, h4.description, h3.description{
 	box-shadow: 0 0 3px #d3d3d3;
 }
 
+.qtfContainer {
+	width: 150px;
+	background-color: white;
+	margin: 0 auto;
+}
+
+.qOpenContainer {
+	width: 370px;
+	background-color: white;
+	margin: 0 auto;
+}
+
+.qOpenContainer .form-group{
+	padding: 0 20px;
+}
+
+.matching .drag {
+	margin: 10px;
+}
+
+
 /*
 .lineGap {
 	line-height: 300%;
@@ -477,7 +498,7 @@ h6.description, h4.description, h3.description{
 }
 
 
-.drag .btn, #complText .btn, #linksList .btn{
+.answerBlock .btn, #complText .btn, #linksList .btn{
 	display: inline-block;
 	vertical-align: top;
 	color:#e14825;
@@ -497,7 +518,7 @@ h6.description, h4.description, h3.description{
 	text-decoration: none;
 }
 
-.drag .btn:hover, #complText .btn:hover, #linksList .btn:hover{
+.answerBlock .btn:hover, #complText .btn:hover, #linksList .btn:hover{
     text-decoration:none;
     color:#590000;
 }
@@ -509,7 +530,11 @@ h6.description, h4.description, h3.description{
 	margin-right: 5px;
 }
 
-.drag .btn i {
+.drag .label-exec {
+	margin-top: 2px;
+} 
+
+.answerBlock .btn i {
 	font-size: 1.1em;
 }
 
@@ -524,7 +549,7 @@ h6.description, h4.description, h3.description{
 }
 
 .matching .answerBlock {
-	padding: 10px 0;
+	padding: 20px 0 10px 10px;
 	margin-bottom: 10px;
 	border-radius: 10px;
 	background-color: #22A7F0;
@@ -534,10 +559,21 @@ h6.description, h4.description, h3.description{
 	width: 80px; height: auto;
 }
 
+.matching .label-as-badge {
+	margin-left: 10px;
+}
+
+.matching h4 {
+	color: white;
+	display: inline;
+	margin-bottom: 10px;
+}
+
 .rowTitle{
 	width:150px;
 	padding-left: 5px;
 	border-radius: 5px;
+	margin-bottom: 10px;
 }
 
 .droppable {

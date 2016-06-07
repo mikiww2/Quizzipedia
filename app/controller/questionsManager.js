@@ -1,5 +1,6 @@
 var TFQuestion = require('../model/truefalse.question.model');
 var upload = require('../controller/uploadManager'); // usata per salvare gli allegati
+var agent = require('./QMLAgent');
 
 exports.save = function (req, res) {
     var author = 'tmpauthor@gmail.com';  //poi da prendere dalla sessione (al momento test)
@@ -40,6 +41,6 @@ exports.fetch = function (req, res) {
 };
 
 exports.test = function (req, res) {
-
-    res.send(req.body);
+    console.log(req.body);
+    console.log('QML = ' + agent.generate(req.body));
 };

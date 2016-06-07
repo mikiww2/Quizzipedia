@@ -40,25 +40,25 @@ var appendAttached = function (attached){ // funzione che gestisce gli allegati 
 };
 
 exports.generate = function (question){
-    var stringType = 'q?' + question.questionType + '#t#';
+    var stringType = 'q?' + question.type + '#t#';
     //var stringQuestion = question.txt + '#a#'; // da aggiungere nelle funzioni specifiche
     var stringTextAndAnswers;
 
-    switch (question.questionType){ // in base al tipo fa operare la funzione corrispondente nella stringa
+    switch (question.type){ // in base al tipo fa operare la funzione corrispondente nella stringa
         case 'trfs': // tipo vero/falso
-            stringTextAndAnswers = generateTF(question);
+            stringTextAndAnswers = generateTF(question.question);
             break;
         case 'mult': // tipo risp multipla
-            stringTextAndAnswers = generateRM(question);
+            stringTextAndAnswers = generateRM(question.question);
             break;
         case 'cmpl': // tipo a completamento
-            stringTextAndAnswers = generateCM(question);
+            stringTextAndAnswers = generateCM(question.question);
             break;
         case 'open': // tipo risp aperta
-            stringTextAndAnswers = generateRA(question);
+            stringTextAndAnswers = generateRA(question.question);
             break;
         case 'mtch': // tipo a collegamenti
-            stringTextAndAnswers = generateCL(question);
+            stringTextAndAnswers = generateCL(question.question);
             break;
 
         // INSERIRE QUI I CASE PER LE NUOVE DOMANDE
@@ -107,7 +107,7 @@ exports.parse = function (qml){
 {
     var generateTF = function (question) { //teoricamente ok
         var stringAttached = generateAttached(question);
-        return question.title + stringAttached + '#a#' + question.ans + '#££#';
+        return question.title + stringAttached + '#a#' + question.correctAnswer + '#££#';
     };
 
     var generateRM = function (question) { // teoricamente ok
@@ -166,28 +166,31 @@ exports.parse = function (qml){
 // funzioni per il parsing del qml specifico per tipo
 {
     var parserTF = function (qml) { // teoricamente ok , da testare nei casi particolari
-        var qson = {'questionType': 'trfs'};
+        var qson = {'type': 'trfs'};
+        var question = {};
         var text = extract(qml, '#t#', '#a#');
         if (text.includes('{') && text.endsWith('}')) {  // se presente allegato nella stringa
-            qson.title = extract(text, '', '{');
-            qson.attachment = appendAttached(extract(text, '{', '}'));
+            question.title = extract(text, '', '{');
+            question.attachment = appendAttached(extract(text, '{', '}'));
         }
         else
-            qson.title = text;
+            question.title = text;
         var answer = extract(qml, '#a#', '#££#');
-        qson.ans = answer;
+        question.ans = answer;
+        qson.question = question;
         return qson;
     };
 
     var parserRM = function (qml) { // teoricamente ok, da testare nei casi particolari
-        var qson = {'questionType': 'mult'};
+        var qson = {'type': 'mult'};
+        var question = {};
         var text = extract(qml, '#t#', '#a#');
         if (text.includes('{') && text.endsWith('}')) {  // se presente allegato nella stringa
-            qson.title = extract(text, '', '{');
-            qson.attachment = appendAttached(extract(text, '{', '}'));
+            question.title = extract(text, '', '{');
+            question.attachment = appendAttached(extract(text, '{', '}'));
         }
         else
-            qson.title = text;
+            question.title = text;
         var answer = extract(qml, '#a#', '#££#');
         var arrayAns = answer.split('§');
         var arrayJsonAns = []; //contiene le stringhe per ogni risposta da parsare
@@ -202,13 +205,15 @@ exports.parse = function (qml){
             arrayJsonAns.push(jsonAnswer);
         }
         //console.log('prova ' + textwoattached);
-        qson.ans = arrayJsonAns;
+        question.ans = arrayJsonAns;
+        qson.question = question;
         return qson;
         };
 
 
     var parserCM = function (qml) { // teoricamente ok, da testare casi particolari
-        var qson = {'questionType': 'cmpl'};
+        var qson = {'type': 'cmpl'};
+        var question = {};
         var text = extract(qml, '#t#', '#a#');
         var arrayTitles = text.split('§');
         var arrayJsonTitle = [];
@@ -222,7 +227,7 @@ exports.parse = function (qml){
             }
             arrayJsonTitle.push(jsonTitle);
         }
-        qson.title = arrayJsonTitle;
+        question.title = arrayJsonTitle;
         var answer = extract(qml, '#a#', '#££#');
         var arrayAnswers = answer.split('§');
         var arrayJsonAns = [];
@@ -237,20 +242,23 @@ exports.parse = function (qml){
                 jsonAns.text = answerValue;
             arrayJsonAns.push(jsonAns);
         }
-        qson.ans = arrayJsonAns;
+        question.ans = arrayJsonAns;
+        qson.question = question;
         return qson;
     };
 
     var parserRA = function (qml) { // teoricamente ok, da testare nei casi particolari
-        var qson = {'questionType': 'open'};
+        var qson = {'type': 'open'};
+        var question = {};
         var text = extract(qml, '#t#', '#a#');
         if (text.includes('{') && text.endsWith('}')) {  // se presente allegato nella stringa
-            qson.title = extract(text, '', '{');
-            qson.attachment = appendAttached(extract(text, '{', '}'));
+            question.title = extract(text, '', '{');
+            question.attachment = appendAttached(extract(text, '{', '}'));
         }
         else
-            qson.title = text;
-        qson.ans = extract(qml, '#a#', '#££#');
+            question.title = text;
+        question.ans = extract(qml, '#a#', '#££#');
+        qson.question = question;
         return qson;
     };
 

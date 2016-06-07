@@ -22,12 +22,24 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
     
      $scope.addTopic = function(name){
          //inseriamo il nuovo topic dentro a listTopics e invio una richiesta al server
+         var value = { topicName: name};
          
+<<<<<<< HEAD
          $scope.topicsList.addTopic(name);
          
        
          
          $http.post('/api/topic/save',{name: name});
+=======
+         //$scope.topicsList.addTopic(name);
+
+         $http.post('/api/topic/save',value)
+                .success(function(response){
+                    $window.location.href = '/Quizzipedia/topicMgmt';
+                }).error(function(response){
+                    alert("Errore");
+                });
+>>>>>>> e151bf000cd11d75d22a47a0e391f0494c050226
      };
     
      $scope.removeTopic = function(index){

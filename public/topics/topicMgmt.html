@@ -68,6 +68,7 @@
 			  <a href="#" class="list-group-item" ng-repeat="topic in topicsList.topics track by $index">{{topic}} <button class="btn btn-danger btn-xs pull-right" data-title="Delete" data-toggle="modal" ng-click="setEraseTopic($index)" data-target="#delete" ><span class="glyphicon glyphicon-remove"></span></button></a>
                 
 			</div>
+            {{topicsList | json}}
 		</div>
         <!--</div>-->
 	<!-- delete topic popup -->

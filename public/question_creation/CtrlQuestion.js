@@ -174,7 +174,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     $scope.uploadFiles = function(files){
         console.log(files[0]);
         $scope.files = files[0];
-        if (files && files.length){
+        if (files[0]){
             Upload.upload({
                 url:'/api/upload/save',
                 data: {file: files[0]}

@@ -11,29 +11,36 @@ var mkdirp = require('mkdirp'); // crea la cartella se manca
 
 //set storage configuration
 var storageTmp = multer.diskStorage({ //multers disk storage settings
-    destination: function (req, file, cb) {
+        destination: function (req, file, cb) {
             cb(null, config.pathTmpFiles);
-    }
-    , filename: function (req, file, cb) {
-        // cb(null, req.session.user._id + '_' + file.originalname); // + '.' +  mime.extension(file.mimetype)
-        cb(null, "nome.utente" + '_' + file.originalname);
-    }
-});
-
-exports.upload = function (req, res) {
-    mkdirp(config.pathTmpFiles, function(err) {
-        if(err)
-            console.log(err);
+        }
+        , filename: function (req, file, cb) {
+            // req.session.user._id
+            cb(null, "nome.utente" + '_' + Date.now() + "_" + file.originalname);
+        }
     });
-    multer({storage: storageTmp}).single('file');
-    res.send("done");
+
+exports.upload = function (req, res, next) {
+    mkdirp(config.pathTmpFiles, function(err) {
+        if(err) {
+            console.log(err);
+            res.send({ result: "error" });
+        }
+        else {
+            multer({storage: storageTmp
+                // , fileFilter: function(req, file, cb) {
+                //     cb(null, true);
+                // }
+            }).single('file')(req, res, next);
+            res.send({ result: "done" });
+        }
+    });
 };
 
 exports.remove = function (req, res) {
     // var user = req.session._id;
     var user = "nome.utente";
     var pattern = config.pathTmpFiles + user + "_*";
-    console.log("path glob : " + pattern);
 
     glob(pattern, { nodir: true }, function (err, files) {
         if(err)
@@ -51,19 +58,25 @@ exports.remove = function (req, res) {
 
 // funzione usata da questionManager per salvare un allegato
 exports.save = function(user, filename, questionId) {
-    var pathFile = config.pathTmpFiles + user + "_" + filename;
-    var newPathFile = config.pathFiles + questionId + "_" + filename;
-    console.log("old path file : " + pathFile);
+    var newPathFile = config.pathFiles + questionId + "_" + Date.now() + "_" + filename;
+    var pattern = config.pathTmpFiles + user + "_*_" + filename;
+
+    console.log("old pattern file : " + pattern);
     console.log("new path file : " + newPathFile);
 
     mkdirp(config.pathFiles, function(err) {
         if (err)
             console.log(err);
-    });
 
-    fs.renameSync(pathFile, newPathFile, function(err) {
-        if (err)
-            return console.log(err);
+        glob(pattern, { nodir: true }, function (err, files) {
+            if(err)
+                return console.log(err);
+
+            fs.renameSync(files[0], newPathFile, function(err) {
+                if (err)
+                    return console.log(err);
+            });
+        });
     });
 
     return newPathFile;

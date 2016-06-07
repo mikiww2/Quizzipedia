@@ -181,12 +181,43 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             }).then(function(response){
                 console.log(response);
             });
-        }
-        
-        
+        }       
     };
     
     
+    
+    /*
+        var message = 'Sure you want to leave?';
+  if (typeof event == 'undefined') {
+    event = window.event;
+  }
+  if (event) {
+    event.returnValue = message;
+  }
+  return message;
+}
+    
+    
+    
+    
+    
+    */
+    
+    
+/*$window.onbeforeunload = function (event) {
+  var answer = confirm('Sei sicura di voler uscire dalla creazione della domanda?');
+    if(typeof event == 'undefined'){
+        event = $window.event;
+    }
+    if(event){
+        $http.get('api/upload/remove');
+    }
+    
+    return answer;
+  
+}*/
+    
+ 
     
     $scope.save = function(question, type){
       //salvo la domanda creata        

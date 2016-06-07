@@ -7,21 +7,26 @@ var glob = require("glob"); // pattern matching su fs
 var mkdirp = require('mkdirp'); // crea la cartella se manca
     
 //set storage configuration
-var storageTmp = multer.diskStorage({ //multers disk storage settings
-    destination: function (req, file, cb) {
-        mkdirp(config.pathTmpFiles, function(err) {
-            if (err)
-                console.log(err);
-            return cb(null, config.pathTmpFiles);
-        });
-    }
-    ,filename: function (req, file, cb) {
-        cb(null, req.session.user._id + '_' + file.originalname); // + '.' +  mime.extension(file.mimetype)
-    }
-});
+var storageTmp = function(cp) {
+    mkdirp(config.pathTmpFiles, function(err) {
+        console.log(err);
+        cp( multer.diskStorage({ //multers disk storage settings
+            destination: function (req, file, cb) {
+                mkdirp(config.pathTmpFiles, function(err) {
+                    if (err)
+                        console.log(err);
+                    cb(null, config.pathTmpFiles);
+                });
+            }
+            ,filename: function (req, file, cb) {
+                cb(null, req.session.user._id + '_' + file.originalname); // + '.' +  mime.extension(file.mimetype)
+            }
+        }) );
+    });
+}; 
 
 exports.upload = function (req, res) {
-    multer({storage: storage}).single('file');
+    multer({storage: storageTmp}).single('file');
 };
 
 exports.remove = function (req, res) {

@@ -76,7 +76,30 @@
       <script type="text/javascript" src="./public/question_creation/createQopen.js"></script>
 	
       <script type="text/javascript" src="./public/question_creation/CtrlQuestion.js"></script>
-      <script type="text/javascript" src="./public/question_creation/main.js"></script>
+      <!--script type="text/javascript" src="./public/question_creation/main.js"></script>-->
+      
+       
+        <script>
+        
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
+      
+      
+      
+      
   </head>
 
   <body ng-app="CreateQuestion" ng-controller="CtrlQuestion">
@@ -102,7 +125,7 @@
         {{errorMsg}}
         -->
 
-        
+      
         
         
         
@@ -120,11 +143,27 @@
 		<!-- missing upload thing here -->
 		<div class="form-group row">
 			<label for="up" class=" form-control-label">Carica</label><br>
-			 <button id="up" ngf-select="uploadFiles($files)" multiple accept="image/*">Select Files</button>
+			 <!--<button id="up" ngf-select="uploadFiles($files)" multiple accept="image/*">Select Files</button>-->
+            <input 
+               type="file" 
+               ngf-select ="uploadFiles($files)"
+               ng-model="files" 
+               name="file" 
+               ngf-pattern="'image/*'"
+               accept="image/*" 
+               ngf-max-size="20MB" 
+                   onchange="readURL(this)"
+               />
+            
+            <img id ="blah" src="#"/>
              <ul>
                  <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
-                 <img ng-src="{{f.src}}"/>
+                 
             </ul>
+            
+            {{files | json}}
+            
+            
             
             <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
             {{errorMsg}}

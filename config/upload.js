@@ -1,7 +1,7 @@
 
 //change here
-var pathUpload = "./upload/",
-    pathUploadTemp = "./upload_tmp";
+var pathUpload = "../../upload/",
+    pathUploadTemp = "../../upload_tmp";
 //
 
 module.exports = {

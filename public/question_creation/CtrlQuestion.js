@@ -176,8 +176,8 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         $scope.files = files;
         if (files && files.length){
             Upload.upload({
-                url:'https://angular-file-upload-cors-srv.appspot.com/upload',
-                data: {files: files}
+                url:'/api/upload/save',
+                data: {file: files}
             }).then(function(response){
                 $timeout(function(){
                     $scope.result = response.data;

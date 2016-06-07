@@ -3,7 +3,6 @@ var Organization = require('../model/organization.model');
 exports.fetch = function (req, res) {
 
 		var response = [];
-		var exist = false;
 
 		if(req.session.user && req.session.user.role == 'director'){
 			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
@@ -14,25 +13,9 @@ exports.fetch = function (req, res) {
 	      else{
 	       	if(org){
 	       		for(var i=0;i<org.topics.length;i++){
-	       			if(org.topics.type == req.body.topicName)
-	       				exist = true;
+	       			response.push(org.topics[i]);
 	       		}
-	       		if(exist){
-	       			console.log('Il topic esiste già');
-	       		}
-	       		else{ //aggiunge topic
-	       			org.topics.push({ type: req.body.topicName});
-	       			org.save( function (err) {
-	                if (err) {
-	                    console.log('errore nell\'inserimento del topic: ' + err);
-	                    res.send('ok');
-	                }
-	                else {
-	                    console.log('topic inserito correttamente');
-	                    res.send('ok');
-	                }
-	            });
-	       		}
+	       		res.send(response);
 	       	}
 	       	else console.log('Nessuna organizzazione trovata');      		
 	    	}

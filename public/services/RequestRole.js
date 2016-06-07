@@ -1,4 +1,4 @@
-angular.module('managerRequests').factory('RequestRole',[function(){
+angular.module('RequestsManager').factory('RequestRole',[function(){
     
     function RequestRole(mail,nameOfInstitution,message){
       

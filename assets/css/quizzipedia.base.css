@@ -21,6 +21,11 @@ h6.description, h4.description, h3.description{
 	padding-bottom: 5px;
 }
 
+.spacer {
+	height: 20px;
+	width: 100%;
+}
+
 .btn {
 	border-radius: 0px;
 }
@@ -482,11 +487,10 @@ h6.description, h4.description, h3.description{
 	margin: 10px;
 }
 
+.qComplContainer .answerBlock{
+	line-height: 200%;
+}
 
-/*
-.lineGap {
-	line-height: 300%;
-}*/
 
 .drag {
 	display: inline-block;
@@ -555,11 +559,15 @@ h6.description, h4.description, h3.description{
 	background-color: #22A7F0;
 }
 
+.matching input[type="text"] {
+    max-width: 110px;
+}
+
 .matching img {
 	width: 80px; height: auto;
 }
 
-.matching .label-as-badge {
+.matching .label-margin{
 	margin-left: 10px;
 }
 
@@ -586,13 +594,13 @@ h6.description, h4.description, h3.description{
 	border-radius: 10px;
 }
 
-.smallDroppable {
-	width: 80px; 
-	height: 30px;
+.drop {
+	width: 100px; height: 20px;
 	margin: 0 5px;
 	background-color: white;
 	padding: 10px 0;
 	display: inline-block;
+	vertical-align: bottom;
 }
 
 #linkAnswers {

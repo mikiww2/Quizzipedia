@@ -5,7 +5,9 @@ angular.module('InstClassManager').controller('CtrlInstManager',['Class', '$scop
     $scope.myClass = new Class();
     
     $scope.loadClasses = function() {
-        //richiede al server tutte le classi dell'ente
+        $http.get('/api/class/fetch_inst_classes').success(function(response) {
+            $scope.classes = response;
+        });
     };
     
     $scope.createClass = function() {

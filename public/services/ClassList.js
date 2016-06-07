@@ -1,16 +1,16 @@
-angular.module('').factory('ClassList',['Request',function(Request){
+angular.module('RequestsManager').factory('ClassList',['RequestClass',function(RequestClass){
     function ClassList(){
-        this.classRequests = [];
+        this.classRequests = []; // array di RequestClass
     };
     
-    ClassList.prototype.addClassRequest = function(mail,nameClass,year){
+    ClassList.prototype.addClassRequest = function(mail,className,year){
         
-        this.classRequests.push(new Request(mail,nameClass,year));
+        this.classRequests.push(new RequestClass(mail,className,year));
         
     };
     
     ClassList.prototype.removeClassRequest = function(indexOfRequest){
-        if(indexOfrequest >= 0 && indexOfRequest < this.classRequests.length){
+        if(indexOfRequest >= 0 && indexOfRequest < this.classRequests.length){
             this.classRequests.splice(indexOfRequest,1);
         }
     };
@@ -24,8 +24,7 @@ angular.module('').factory('ClassList',['Request',function(Request){
             this.removeClassRequest(indexOfRequest);
         }
     };
-    
-    
+
     return ClassList;
     
 }]);

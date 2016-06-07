@@ -1,7 +1,8 @@
-angular.module('RequestsManager').factory('RequestClass',['Class', function(Class){
-    function RequestClass (mail, classs){
+angular.module('RequestsManager').factory('RequestClass',[function(){
+    function RequestClass (mail, className, year){
         this.mail = mail;
-        this.classs = classs; //tipo Class
+        this.className = className;
+        this.year =year;
     };
     
     RequestClass.prototype.getMail = function(){
@@ -9,8 +10,12 @@ angular.module('RequestsManager').factory('RequestClass',['Class', function(Clas
     };
     
     RequestClass.prototype.getNameClass = function(){
-        return this.classs;
+        return this.className;
     };  
-    
+
+    RequestClass.prototype.getYear = function() {
+        return this.year;
+    };
+
     return RequestClass;
 }]);

@@ -24,7 +24,7 @@ angular.module('RequestsManager').controller ('CtrlPendingRR',['$scope', '$http'
             
     $scope.acceptRoleRequest = function (email) {
         var value = { email: email};
-        $http.post('/api/requests/accept_role_request',value)
+        $http.post('/api/requests/accept_role_request', value)
                 .success(function(response){
                     $window.location.href = '/Quizzipedia/viewPendingRequests';
                 }).error(function(response){
@@ -34,7 +34,7 @@ angular.module('RequestsManager').controller ('CtrlPendingRR',['$scope', '$http'
     
     $scope.discardRoleRequest = function (email) {
         var value = { email: email};
-        $http.post('/api/requests/discard_role_request',value)
+        $http.post('/api/requests/discard_role_request', value)
                 .success(function(response){
                     $window.location.href = '/Quizzipedia/viewPendingRequests';
                 }).error(function(response){

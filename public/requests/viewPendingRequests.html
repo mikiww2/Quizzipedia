@@ -23,9 +23,8 @@
 	<link href="./assets/css/quizzipedia.base.css" rel="stylesheet">
 	
 	<!-- Merge others eventually -->
-    <link href=".assets/css/profile.css" rel="stylesheet">
-    <link href="./assets/css/header.css" rel="stylesheet">
-	<link href="./assets/css/profile.css" rel="stylesheet">
+    <link href="./assets/css/profile.css" rel="stylesheet">
+    <link href="./assets/css/header.css" rel="stylesheet">	
 	
     <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
     <script type="text/javascript" src="./assets/js/urlGetter.js"></script>
@@ -54,11 +53,11 @@
 	  </div>
         
 		<div ng-controller = "CtrlPendingRR"> <!-- make modal. LATER -->
-			<h4 class="description text-center">Richieste in sospeso</h4>
+			<h4 class="description text-center">Richieste in sospeso</h4>           
             
-            <div ng-if= "pendingRR == null">Nessuna richiesta pendente</div>
+            <div ng-if= "pendingRR.length == 0">Nessuna richiesta pendente</div>
             
-			<div class="row pt-md" ng-if="pendingRR != []">
+			<div class="row pt-md" ng-if="pendingRR.length != 0">
                 
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userbox text-center" ng-repeat = "request in pendingRR">
 				<div class="img-box">
@@ -66,7 +65,7 @@
 					<ul class="text-center">
 					<a href="#profile"><li><i class="glyphicon glyphicon-user"></i></li></a>
 					</ul>
-				</div>
+				</div>               
 			<h1>{{request.firstName}} {{request.lastName}}</h1>
 			<p>chiede di diventare <strong>{{request.role}}</strong></p>
             <p>Messaggio: </p>

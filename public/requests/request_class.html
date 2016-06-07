@@ -23,14 +23,14 @@
                 </fieldset>
 					
 				<fieldset class="form-group">
-                    <label for="class">Classe</label>
+                    <label for="class">Seleziona classe</label>
                     <!-- load classes for selected institution -->
                     <select id="classSelect" name="class" class="form-control">
                         <option ng-repeat = "class in classes">{{class.name}} - a.s. {{class.academicYear}}</option>           
                     </select>
                 </fieldset>
 					
-				<script>$("#classSelect").chained("#instSelectClass");</script>			
+				<script type="text/javascript"> $("#classSelect").chained("#instSelectClass");</script>			
                 
 				<button type="button" id="submitClass" name="submit" class="btn btn-primary pull-right">Invia richiesta</button>
             </form>

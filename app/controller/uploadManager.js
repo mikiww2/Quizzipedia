@@ -16,7 +16,7 @@ var storageTmp = multer.diskStorage({ //multers disk storage settings
         });
     }
     ,filename: function (req, file, cb) {
-        cb(null, req.session.user._id + '_' + file.originalname);
+        cb(null, req.session.user._id + '_' + file.originalname); // + '.' +  mime.extension(file.mimetype)
     }
 });
 

@@ -50,6 +50,7 @@
       
       <!--  HEADER -->
       <script type="text/javascript" src="./public/core.js"></script>
+      
       <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
       
       <script type="text/javascript" src="./public/services/GenericQuestion.js"></script>
@@ -61,9 +62,16 @@
       <!-- DIRETTIVE PER LA MODIFICA DELLE DOMANDE-->
       <script type="text/javascript" src="./public/question_creation/directiveModify.js"></script>
       
+      <!-- SCRIPT PER ng-file-upload-->
+      <script src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload-shim.min.js"></script>
+      <script src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload.min.js"></script>
+      
   </head>
 
   <body ng-controller="CtrlQuestionManager" ng-init="loadQuestionList()">
+      
+      <header-logged-teacher></header-logged-teacher>
+      
 	<div class="container"  ng-include="modifyQuestion && './public/question_creation/viewModifyQuestion.html' || './public/question_creation/viewListQuestion.html' ">
             
         

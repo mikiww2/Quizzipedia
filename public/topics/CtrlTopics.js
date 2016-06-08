@@ -5,7 +5,7 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
         
        $http.get('/api/topic/fetch').success(function(response){
            
-           console.log(response);
+           
            
            var topics = new Topics();
            
@@ -41,7 +41,16 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
 
          $http.post('/api/topic/save',value)
                 .success(function(response){
-                    $window.location.href = '/Quizzipedia/topicMgmt';
+                    //$window.location.href = '/Quizzipedia/topicMgmt';
+                    //res_code res_msg
+             
+                    switch(response.res_code){
+                        case 0: alert(response.res_msg); break;
+                        case 1: $scope.topicsList.addTopic(name); break;
+                        default: $window.location.href= response.res_msg;
+                    }
+             
+             
                 }).error(function(response){
                     alert("Errore");
                 });
@@ -59,7 +68,16 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
 
          $http.post('/api/topic/erase',value)
                 .success(function(response){
-                    $window.location.href = '/Quizzipedia/topicMgmt';
+             
+                    //$window.location.href = '/Quizzipedia/topicMgmt';
+             
+             
+                    switch(response.res_code){
+                        case 0: alert(response.res_msg); break;
+                        case 1: $scope.topicsList.removeTopic(index); break;
+                        default: $window.location.href= response.res_msg; break;
+                    }
+             
                 }).error(function(response){
                     alert("Errore");
                 });

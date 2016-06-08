@@ -10,10 +10,6 @@ module.exports = function (app) {
     topicM.save(req, res);
   });
 
-  app.post('/api/topic/update',function (req, res, next) {
-    topicM.update(req, res);
-  });
-
   app.post('/api/topic/erase',function (req, res, next) {
     topicM.erase(req, res);
   });

@@ -13,7 +13,7 @@
 			
             <ul class="nav navbar-right top-nav pull-right inline">
                  <li class="userDropdown"> 
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-education"></i> <span class="visible-lg-inline visible-md-inline"> {{user.institution}}</span><b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-education"></i> <span class="visible-lg-inline visible-inline"> {{user.institution}}</span><b class="caret"></b></a>
                     <ul class="dropdown-menu">                        
                         <li  ng-repeat = "institution in institutions">
                             <a href="/Quizzipedia/home" ng-click="changeInst(institution.institution_name)">{{institution.institution_name}}</a>

@@ -1,10 +1,9 @@
 <!-- Role Request Tab -->
 
-    <div class="col-md-5">
+    <div>
         <div class="form-area">
-            <form role="form">
-                <br style="clear:both">
-                <div class="text-center"> <h3 class="formTitle">Invia richiesta di ruolo</h3></div>
+		<h3 class="text-center">Invia richiesta di ruolo</h3>
+            <form class="form">
                 <fieldset class="form-group">
                     <label for="inst">Seleziona ente</label>
                     <!-- load all institutions -->
@@ -29,13 +28,12 @@
                 
                 <div class="form-group">
                     <textarea class="form-control" type="textarea" id="message" placeholder="Messaggio opzionale.." maxlength="140" rows="7" ng-model="message"></textarea>
-                    
-                    <!-- <span class="help-block"><p id="characterLeft" class="help-block ">You can't ask for this role (phrase better)</p></span> -->
                 </div>
                 
                 <button type="button" id="submitRole" name="submit" class="btn btn-primary pull-right" ng-click="sendRoleRequest()">Invia richiesta</button>
             </form>
         </div>
+		<div class="spacer"></div>
     </div> <!-- end of form -->
 <!-- end of role request tab-->
 		  

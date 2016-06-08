@@ -1,7 +1,7 @@
 		<div class="header">
 		<div class="container">
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="navbar-header">
+            <div class="navbar-header inline">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -12,7 +12,7 @@
 
             </div>
 			
-            <ul class="nav navbar-right top-nav pull-right">
+            <ul class="nav navbar-right top-nav pull-right inline">
 				<li>
                     <a href="/Quizzipedia/signup">Registrati</a>
                 </li>
@@ -60,18 +60,12 @@
                     <li>
                         <a href="/Quizzipedia/searchQuiz"><i class="glyphicon glyphicon-list-alt"></i> Quiz pubblici</a>
                     </li>
-                    <li>
+                    <li class="hidden-sm hidden-md">
                         <a href="/Quizzipedia/instList"><i class="glyphicon glyphicon-education"></i> Enti iscritti al nostro sistema</a>
                     </li>
-					<!-- <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-education"></i> Institutions <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-book"></i> Classes</a>
-                        </li>
-                    </ul>
-					</li>-->
-					
+					 <li class="visible-sm visible-md">
+                        <a href="/Quizzipedia/instList"><i class="glyphicon glyphicon-education"></i> Enti iscritti</a>
+                    </li>					
                     <li>
                         <a href="/Quizzipedia/aboutUs"><i class="glyphicon glyphicon-sunglasses"></i> Chi siamo</a>
                     </li>

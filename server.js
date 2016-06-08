@@ -37,6 +37,7 @@ require('./app/route/api_route/requestsApi.js')(app);  // RESTful requests
 require('./app/route/api_route/searchApi.js')(app);  // RESTful requests
 require('./app/route/api_route/institutionApi.js')(app);  // RESTful requests
 require('./app/route/api_route/uploadApi.js')(app);  // RESTful requests
+require('./app/route/api_route/topicApi.js')(app);  // RESTful requests
 
 require('./app/route/route.js')(app);  // PAGES requests
 

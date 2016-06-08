@@ -10,7 +10,7 @@ module.exports = function (app) {
         // res.status(204).end();
     });
 
-    app.post('/api/upload/remove', function (req, res, next) {
+    app.get('/api/upload/remove', function (req, res, next) {
         uploadM.remove(req, res);
     });
 

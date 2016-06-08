@@ -5,10 +5,15 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
         
        $http.get('/api/topic/fetch').success(function(response){
            
-           //var topics = new Topics();
            console.log(response);
            
-           return null;
+           var topics = new Topics();
+           
+           for(var i =0; i< response.length; i++){
+               topics.addTopic(response[i]);
+           }
+           
+           $scope.topicsList = topics;
            
            
        });
@@ -45,8 +50,19 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
     
      $scope.removeTopic = function(index){
          //rimuovo il topic in locale e invio una richiesta al serve
+
          
-         $scope.topicsList.removeTopic(index);
+         var value = { topicName: $scope.topicsList.topics[index]};
+         
+
+         //$scope.topicsList.addTopic(name);
+
+         $http.post('/api/topic/erase',value)
+                .success(function(response){
+                    $window.location.href = '/Quizzipedia/topicMgmt';
+                }).error(function(response){
+                    alert("Errore");
+                });
          
          
      };

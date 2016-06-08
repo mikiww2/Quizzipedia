@@ -68,7 +68,7 @@
 			  <a href="#" class="list-group-item" ng-repeat="topic in topicsList.topics track by $index">{{topic}} <button class="btn btn-danger btn-xs pull-right" data-title="Delete" data-toggle="modal" ng-click="setEraseTopic($index)" data-target="#delete" ><span class="glyphicon glyphicon-remove"></span></button></a>
                 
 			</div>
-            {{topicsList | json}}
+            {{eraseTopic | json}}
 		</div>
         <!--</div>-->
 	<!-- delete topic popup -->
@@ -77,7 +77,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-				<h4 class="modal-title custom_align" id="Heading">Elimina la materia "{{topicsList[eraseTopic]}}"</h4>
+				<h4 class="modal-title custom_align" id="Heading">Elimina la materia "{{topicsList.topics[eraseTopic]}}"</h4>
 			  </div>
 			<div class="modal-body">
 			<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Sei sicuro di volere eliminare questa materia?</div>

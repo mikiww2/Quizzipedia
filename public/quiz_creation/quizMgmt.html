@@ -8,7 +8,7 @@
 	 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
      <script src="./assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="Autore" content="">
     <link rel="icon" href="../favicon.ico">
 
     <title>Gestione quiz</title>
@@ -44,14 +44,14 @@
 
   <body onload="getUrl()">
       
-	<div class="container">
+	<div class="container pagewrap">
         
-        <div ng-controller="CtrlHeader">        
-          <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
-          <header-logged-student ng-if="user.role == 'student'"></header-logged-student>         
-          <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>         
-          <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
-	</div>
+		<div ng-controller="CtrlHeader">        
+			  <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
+			  <header-logged-student ng-if="user.role == 'student'"></header-logged-student>         
+			  <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>         
+			  <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
+		</div>
         
 		<h4 class="text-center description"><i class="glyphicon glyphicon-list-alt"></i> I tuoi quiz</h4><br>
 		<div class="text-right">
@@ -115,15 +115,16 @@
 		  <!-- edit of delete popup --> 
 		</div>
 		<!-- end of table -->
-		<div class="clearfix"></div>
-		<ul class="pagination pull-right">
-		  <!-- disabled in first page -->
-		  <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-		  <li class="active"><a href="#">1</a></li>
-		  <li><a href="#">2</a></li>
-		  <li><a href="#">3</a></li>
-		  <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-		</ul>
+		<div class="text-center">
+			<ul class="pagination">
+			  <!-- disabled in first page -->
+			  <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+			  <li class="active"><a href="#">1</a></li>
+			  <li><a href="#">2</a></li>
+			  <li><a href="#">3</a></li>
+			  <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+			</ul>
+		</div>
 	</div>
       <page-footer></page-footer>
   </body>

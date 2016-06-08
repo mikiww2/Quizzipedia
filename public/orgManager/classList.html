@@ -30,6 +30,7 @@
     
     <!-- Directive angular (HEADER)-->
     <script src="./public/header/headerLoggedStudent.js"></script>
+	<script src="./public/header/headerLoggedTeacher.js"></script>
     <!--Directive angular (FOOTER)-->
     <script type="text/javascript" src="./public/footer/pageFooter.js"></script> 
 
@@ -41,9 +42,9 @@
   </head>
 
   <body>
-	<div class="container">
+	<div class="container pagewrap">
         
-        <div ng-controller="CtrlHeader">        
+    <div ng-controller="CtrlHeader">        
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
           <header-logged-student ng-if="user.role == 'student'"></header-logged-student>         
           <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>         
@@ -51,7 +52,7 @@
 	</div>
         
 	<div class="list-group" id="classes">
-			 <a href="#" class="list-group-item"><span class="important">Biologia </span>
+			 <a href="#" class="list-group-item"><span class="important">Biologia </span> <!-- linkare a viewClassMembers -->
 				<span class="pull-right">
 					<i class="glyphicon glyphicon-education"></i>
 					<span class="badge">5</span> Docenti 

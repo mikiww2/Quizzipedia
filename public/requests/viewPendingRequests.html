@@ -31,6 +31,7 @@
       
     <!-- Directive angular (HEADER)-->
     <script src="./public/header/headerLoggedDirector.js"></script>
+	<script src="./public/header/headerLoggedTeacher.js"></script>
     <!--Directive angular (FOOTER)-->
     <script type="text/javascript" src="./public/footer/pageFooter.js"></script>
 	
@@ -45,10 +46,11 @@
 	<div class="container pagewrap">
         
         <div ng-controller="CtrlHeader">        
+		  <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>
           <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
 	  </div>
         
-		<div ng-controller = "CtrlPendingRR"> <!-- make modal. LATER -->
+		<div ng-controller = "CtrlPendingRR">
 			<h4 class="description text-center">Richieste in sospeso</h4>           
             
             <div ng-if= "pendingRR.length == 0">Nessuna richiesta pendente</div>

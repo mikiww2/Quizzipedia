@@ -179,6 +179,10 @@ h6.description, h4.description, h3.description{
   opacity: 1;
 }
 
+.inline {
+	display: inline-block;
+}
+
 .huge{
 	font-family: 'Raleway', sans-serif;
 	font-weight: bold;
@@ -876,11 +880,6 @@ ul.alert-dropdown {
 	padding-bottom:50px;
 }
 
-@media (max-width: 768px) {
-  .header {
-	padding-bottom: 101px;
-  }
-}
 
 @media (max-width: 830px) {
   .qIcon {

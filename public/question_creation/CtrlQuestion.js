@@ -185,38 +185,39 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     };
     
     
-    
     /*
-        var message = 'Sure you want to leave?';
-  if (typeof event == 'undefined') {
-    event = window.event;
-  }
-  if (event) {
-    event.returnValue = message;
-  }
-  return message;
-}
-    
-    
-    
-    
-    
+    $scope.$on('$locationChangeStart', function(event){
+        console.log("sono stato chiamato");
+        var answer = confirm("Sicuro di voler interrompere la creazione delle domanda?");
+        
+        if(!answer){
+            event.preventDefault();
+        }
+    });
     */
     
     
-/*$window.onbeforeunload = function (event) {
-  var answer = confirm('Sei sicura di voler uscire dalla creazione della domanda?');
+   
+/*window.onbeforeunload = function (event) {
+  console.log(event);
+    var answer = confirm('Sei sicura di voler uscire dalla creazione della domanda?');
     if(typeof event == 'undefined'){
-        event = $window.event;
+        event = window.event;
     }
     if(event){
-        $http.get('api/upload/remove');
+        event.returnValue = answer;
     }
     
+    console.log(event);
     return answer;
   
 }*/
+   
     
+    $scope.resetQuestion = function(){
+        console.log("resetQuestion");
+        $http.get('/api/upload/remove');
+    };
  
     
     $scope.save = function(question, type){
@@ -234,40 +235,6 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             alert(response.toJson);
         });
     };
-    
-    
-     //GESTIONE UPLOAD FILE
-    
-   /* $scope.submit = function(){
-      
-        if($scope.upload_form.file.$valid && $scope.file){
-            $scope.upload($scope.file);
-        }
-        
-    };*/
-    
-    /*$scope.upload = function(file){
-        Upload.upload({
-            url: 'http://localhost:8080/upload', //API
-            data: {file: file},
-            
-        }).then(function(response){
-            if(response.data.error_code === 0){
-                $window.alert('Success' + response.config.data.file.name + 'uploaded. Response: ');
-            }
-            else {
-                $window.alert('an error accured');
-            }
-        },function(response){
-            console.log('Error status: '+ response.status);
-            $window.alert('Error status: '+ response.status);
-        },function(evt){
-            console.log(evt);
-            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            console.log('progress: '+ progressPercentage + '%'+ evt.config.data.file.name);
-            $scope.progress = 'progress: '+ progressPercentage + '%';
-        });
-    };*/
     
     
     

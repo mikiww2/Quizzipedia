@@ -1,4 +1,28 @@
-var Topic = require('../model/topic.model');
+var Organization = require('../model/organization.model');
+
+exports.fetch = function (req, res) {
+
+		var response = [];
+
+		if(req.session.user && req.session.user.role == 'director'){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+				if (err) {
+	            console.log('error: ' + err);
+	            res.redirect('/');
+	      }
+	      else{
+	       	if(org){
+	       		for(var i=0;i<org.topics.length;i++){
+	       				response.push(org.topics[i]);
+	       		}
+	       		res.send(response);
+	       	}
+	       	else console.log('Nessuna organizzazione trovata');      		
+	    	}
+			});
+		}
+		else res.redirect('/');
+}
 
 exports.save = function (req, res) {
 

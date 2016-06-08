@@ -1,9 +1,8 @@
 angular.module('InstClassManager').controller('CtrlInstManager',['Class', '$scope', '$http', function (Class, $scope, $http){
     
-    $scope.institution = 'prova'; 
     $scope.classes = [];
     $scope.myClass = new Class();
-    $scope.class_id = null;
+    $scope.index = null; 
     
     $scope.loadClasses = function() {
         $http.get('/api/class/fetch_inst_classes').success(function(response) {
@@ -18,22 +17,24 @@ angular.module('InstClassManager').controller('CtrlInstManager',['Class', '$scop
     };
     
     $scope.delete = function() {
-        var request = {_id : $scope.class_id};
+        var request = {_id : $scope.classes[$scope.index]._id};
         $http.post('/api/class/remove_class', request);
+        $scope.classes.splice($scope.index, 1);
         $scope.myClass = new Class();
-        $scope.class_id = null;        
+        $scope.index = null;        
     };
     
     $scope.edit = function (){
-        var request = {_id : $scope.class_id, description : $scope.myClass.getDescription()};
+        var request = {_id : $scope.classes[$scope.index]._id, description : $scope.myClass.getDescription()};
         $http.post('/api/class/update_class', request);
+        $scope.classes[$scope.index].description = $scope.myClass.getDescription();
         $scope.myClass = new Class();
         $scope.class_id = null;
     };
     
-    $scope.selectClass = function (classs, id) {
-        $scope.myClass.edit(classs.description, classs.name, classs.academicYear);    
-        $scope.class_id = id;
+    $scope.selectClass = function (indexOfClass) {
+        $scope.myClass.edit($scope.classes[indexOfClass].description, $scope.classes[indexOfClass].name, $scope.classes[indexOfClass].academicYear);    
+        $scope.index = indexOfClass;
     };
     
     $scope.loadClasses();

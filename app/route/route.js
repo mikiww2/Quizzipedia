@@ -144,7 +144,7 @@ module.exports = function (app) {
     
 //QUESTIONS MANAGE------------------------------------------------------------------------    
     
- app.route('/Quizzipedia/mgmtQuestion').get(function (req, res) {
+ app.route('/Quizzipedia/questionMgmt').get(function (req, res) {
     res.sendFile(path.resolve('./public/question_creation/questionMgmt.html'));
   });
     
@@ -152,6 +152,13 @@ module.exports = function (app) {
   app.route('/Quizzipedia/quizMgmt').get(function (req, res) {
       if (req.session.user)
           res.sendFile(path. resolve('./public/quiz_creation/quizMgmt.html'));
+      else
+         res.redirect('/Quizzipedia/home'); 
+  });
+    
+app.route('/Quizzipedia/createQuiz').get(function (req, res) {
+      if (req.session.user)
+          res.sendFile(path. resolve('./public/quiz_creation/createQuiz.html'));
       else
          res.redirect('/Quizzipedia/home'); 
   });

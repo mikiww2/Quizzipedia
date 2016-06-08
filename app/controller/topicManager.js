@@ -33,7 +33,7 @@ exports.save = function (req, res) {
 			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 				if (err) {
 	            console.log('error: ' + err);
-	            res.redirect('/');
+	            res.send({ res_code: -1, res_msg: '/' });
 	      }
 	      else{
 	       	if(org){
@@ -49,20 +49,20 @@ exports.save = function (req, res) {
 	       			org.save( function (err) {
 	                if (err) {
 	                    console.log('errore nell\'inserimento del topic: ' + err);
-	                    res.send('error');
+	                    res.send({ res_code: 0, res_msg: 'Errore nell\'inserimento dell\'argomento!' });
 	                }
 	                else {
 	                    console.log('topic inserito correttamente');
-	                    res.send('ok');
+	                    res.send({ res_code: 1, res_msg: 'Argomento inserito correttamente!' });
 	                }
 	            });
 	       		}
 	       	}
-	       	else console.log('Nessuna organizzazione trovata');      		
+	       	else console.log('Nessuna organizzazione trovata');
 	    	}
 			});
 		}
-		else res.redirect('/');
+		else res.send({ res_code: -1, res_msg: '/' });
 } 
 
 exports.erase = function (req, res) {

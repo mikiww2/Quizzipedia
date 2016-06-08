@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <meta name="description" content="">
+    <meta name="Autore" content="">
+    <link rel="icon" href="../favicon.ico">
+
+    <title>Svolgimento quiz</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+	<!-- quizzipedia.base.css -->
+	<link href="../../css/quizzipedia.base.css" rel="stylesheet">
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+	<div class="container">
+		<!-- first page panel -->
+		<div class="panel panel-default qPanel">
+			<!-- panel heading -->
+			<div class="panel-heading">
+				<!-- if quiz is private -->
+				<div class="row instClass">
+					<p class="col-md-6 col-sm-6 col-xs-6">Ente</p>
+					<p class="col-md-6 col-sm-6 col-xs-6 text-right">Classe</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-2 col-xs-6 col-xs-offset-1 quizTitle">
+						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> Titolo del quiz</h3>
+						<p class="text-center">Autore</p>
+					</div>
+					<div class="col-md-2 col-sm-2 col-xs-2 tinybox">
+						<p class="text-center">Materia</p>
+						<!-- custom stars according to difficulty -->
+						<span class="diffStars">
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star-empty"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+			<!-- end of panel heading -->
+			<!-- beginning of body -->
+			<div class="panel-body">
+				<!-- description -->
+				<div class="panel panel-default quizDescr">
+					<div class="panel-heading">
+						<h6 class="text-center">Descrizione</h6>
+					</div>
+					<div class="panel-body">
+						<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi nisl, pellentesque vitae hendrerit ut, lacinia non quam. </p>
+					</div>
+				</div>
+				<!-- end of description -->
+				<!-- optional canvas for attachment-->
+				<div>
+					<canvas class="qCanvas col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" id="quizCanvas" width="500" height="200"></canvas>
+				</div>
+				<div class="clearfix"></div>
+				<div class="text-center pull-bottom"><button class="btn btn-lg btn-primary" id="startQuiz" type="button">Inizia</button></div>
+				<!-- end of canvas -->
+			</div>
+		</div>
+			<!-- end of panel body -->
+			
+		<!-- question example. heading stays the same, body changes. footer saves page? -->
+		<div class="panel panel-default qPanel">
+			<!-- panel heading -->
+			<div class="panel-heading">
+				<!-- if quiz is private -->
+				<div class="row instClass">
+					<p class="col-md-6 ">Ente</p>
+					<p class="col-md-6 text-right">Classe</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 quizTitle">
+						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> Titolo del quiz</h3>
+						<p class="text-center">Autore</p>
+					</div>
+					<div class="col-md-2 tinybox">
+						<p class="text-center">Materia</p>
+						<!-- custom stars according to difficulty -->
+						<span class="diffStars">
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star-empty"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+			<!-- end of panel heading -->
+			<!-- beginning of body -->
+			<div class="panel-body">
+				<!-- description -->
+					<div class="row">
+						<!-- title -->
+						<div class="col-md-3">
+							<h6 class="text-center">Materia 
+								<span class="diffStars">
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star-empty"></i>
+								</span>
+							</h6>
+							<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i> Titolo della domanda</h4>
+
+						</div>
+						<!-- description -->
+						<div class="col-md-6">
+							<div class="well">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi nisl, pellentesque vitae hendrerit ut, lacinia non quam. </div>
+						</div>
+						<!-- attachment -->
+						<div class="col-md-3">
+							<canvas class="qCanvas" id="questCanvas" width="80" height="80"></canvas>
+						</div>
+					</div>
+					<!-- end of row -->
+					<!-- question body - variable structure depending on qtype -->
+						<div>
+							<canvas class="qCanvas col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" id="quizCanvas" width="500" height="400"></canvas>
+						</div>
+					<!-- end of question body -->
+					<div class="clearfix"></div>
+					<div class="row qFooting">
+						<div class="col-md-offset-1 text-center">
+						<span class="badge qNumber"><span class="qCurrent">1</span>/10</span>
+						<span data-placement="top" data-toggle="tooltip" title="Next"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button"><i class="glyphicon glyphicon-arrow-right"></i></button></span>
+						</div>
+				 </div>
+			</div>
+		</div>
+		<!-- end of panel body -->
+		
+		<!-- MIDDLE question -->
+		<div class="panel panel-default qPanel">
+			<!-- panel heading -->
+			<div class="panel-heading">
+				<!-- if quiz is private -->
+				<div class="row instClass">
+					<p class="col-md-6 ">Ente</p>
+					<p class="col-md-6 text-right">Classe</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 quizTitle">
+						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> Titolo del quiz</h3>
+						<p class="text-center">Autore</p>
+					</div>
+					<div class="col-md-2 tinybox">
+						<p class="text-center">Materia</p>
+						<!-- custom stars according to difficulty -->
+						<span class="diffStars">
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star-empty"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+			<!-- end of panel heading -->
+			<!-- beginning of body -->
+			<div class="panel-body">
+				<!-- description -->
+					<div class="row">
+						<!-- title -->
+						<div class="col-md-3">
+							<h6 class="text-center">Materia 
+								<span class="diffStars">
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star-empty"></i>
+								</span>
+							</h6>
+							<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i> Titolo della domanda</h4>
+
+						</div>
+						<!-- description -->
+						<div class="col-md-6">
+							<div class="well">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi nisl, pellentesque vitae hendrerit ut, lacinia non quam. </div>
+						</div>
+						<!-- attachment -->
+						<div class="col-md-3">
+							<canvas class="qCanvas" id="questCanvas" width="80" height="80"></canvas>
+						</div>
+					</div>
+					<!-- end of row -->
+					<!-- question body - variable structure depending on qtype -->
+						<div>
+							<canvas class="qCanvas col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" id="quizCanvas" width="500" height="400"></canvas>
+						</div>
+					<!-- end of question body -->
+					<div class="clearfix"></div>
+					<div class="row qFooting">
+						<div class="col-md-6">
+							<span data-placement="top" data-toggle="tooltip" title="Previous"><button class="btn btn-lg btn-primary prevBtn pull-left" type="button"><i class="glyphicon glyphicon-arrow-left"></i></button></span>
+						</div>
+						<div class="col-md-offset-1 text-center">
+						<span class="badge qNumber"><span class="qCurrent">2</span>/10</span>
+						<span data-placement="top" data-toggle="tooltip" title="Next"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button"><i class="glyphicon glyphicon-arrow-right"></i></button></span>
+						</div>
+					</div>
+				 </div>
+			</div>
+		<!-- end of panel body -->
+		
+		<!-- LAST question -->
+		<div class="panel panel-default qPanel">
+			<!-- panel heading -->
+			<div class="panel-heading">
+				<!-- if quiz is private -->
+				<div class="row instClass">
+					<p class="col-md-6 ">Ente</p>
+					<p class="col-md-6 text-right">Classe</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 quizTitle">
+						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> Titolo del quiz</h3>
+						<p class="text-center">Autore</p>
+					</div>
+					<div class="col-md-2 tinybox">
+						<p class="text-center">Materia</p>
+						<!-- custom stars according to difficulty -->
+						<span class="diffStars">
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star-empty"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+			<!-- end of panel heading -->
+			<!-- beginning of body -->
+			<div class="panel-body">
+				<!-- description -->
+					<div class="row">
+						<!-- title -->
+						<div class="col-md-3">
+							<h6 class="text-center">Materia 
+								<span class="diffStars">
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star-empty"></i>
+								</span>
+							</h6>
+							<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i> Titolo della domanda</h4>
+
+						</div>
+						<!-- description -->
+						<div class="col-md-6">
+							<div class="well">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi nisl, pellentesque vitae hendrerit ut, lacinia non quam. </div>
+						</div>
+						<!-- attachment -->
+						<div class="col-md-3">
+							<canvas class="qCanvas" id="questCanvas" width="80" height="80"></canvas>
+						</div>
+					</div>
+					<!-- end of row -->
+					<!-- question body - variable structure depending on qtype -->
+						<div>
+							<canvas class="qCanvas col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" id="quizCanvas" width="500" height="400"></canvas>
+						</div>
+					<!-- end of question body -->
+					<div class="clearfix"></div>
+					<div class="row qFooting">
+						<div class="col-md-6">
+							<span data-placement="top" data-toggle="tooltip" title="Previous"><button class="btn btn-lg btn-primary prevBtn pull-left" type="button"><i class="glyphicon glyphicon-arrow-left"></i></button></span>
+						</div>
+						<div class="col-md-offset-1 text-center">
+						<span class="badge qNumber"><span class="qCurrent">10</span>/10</span>
+						<span data-placement="top" data-toggle="tooltip" title="Last"><button class="btn btn-lg btn-primary nextBtn btn-success pull-right" type="button"><i class="glyphicon glyphicon-ok"></i></button></span>
+						</div>
+					</div>
+				 </div>
+			</div>
+		<!-- end of panel body -->
+		
+		<!-- GRADE -->
+		<div class="panel panel-default qPanel">
+			<!-- panel heading -->
+			<div class="panel-heading">
+				<!-- if quiz is private -->
+				<div class="row instClass">
+					<p class="col-md-6 ">Ente</p>
+					<p class="col-md-6 text-right">Class</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 quizTitle">
+						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> Titolo del quiz</h3>
+						<p class="text-center">Autore</p>
+					</div>
+					<div class="col-md-2 tinybox">
+						<p class="text-center">Materia</p>
+						<!-- custom stars according to difficulty -->
+						<span class="diffStars">
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star"></i>
+							<i class="glyphicon glyphicon-star-empty"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+			<!-- end of panel heading -->
+			<!-- beginning of body -->
+			<div class="panel-body qResult">
+			<!-- grade -->
+				<div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title text-center">
+							<i class="glyphicon glyphicon-pencil"></i> RISULTATO 
+							<span class="label label-success">18/30</span>
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="list-group">
+							<a href="#" class="list-group-item">
+								<i class="success glyphicon glyphicon-ok pull-right" style="color: #179917;"></i> 1. Title
+							</a>
+							<a href="#" class="list-group-item">
+								<i class="danger glyphicon glyphicon-remove pull-right" style="color: #e14825;"></i> 2. Title
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<!-- end of panel body -->
+	</div>
+  </body>
+</html>
+
+
+
+
+
+

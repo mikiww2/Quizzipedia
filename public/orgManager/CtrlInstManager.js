@@ -3,6 +3,7 @@ angular.module('InstClassManager').controller('CtrlInstManager',['Class', '$scop
     $scope.institution = 'prova'; 
     $scope.classes = [];
     $scope.myClass = new Class();
+    $scope.class_id = null;
     
     $scope.loadClasses = function() {
         $http.get('/api/class/fetch_inst_classes').success(function(response) {
@@ -12,21 +13,27 @@ angular.module('InstClassManager').controller('CtrlInstManager',['Class', '$scop
     
     $scope.createClass = function() {
         var request = { description : $scope.myClass.getDescription(), name : $scope.myClass.getName(), year : $scope.myClass.getAcademicYear()};
-        $http.post('/api/class/create_class', request);
+        $http.post('/api/class/create_class', request); 
         $scope.myClass = new Class();       
     };
     
     $scope.delete = function() {
-        //manda al server name e academicYear di myClass e la svuota
-        $scope.myClass = new Class(); 
+        var request = {_id : $scope.class_id};
+        $http.post('/api/class/remove_class', request);
+        $scope.myClass = new Class();
+        $scope.class_id = null;        
     };
     
     $scope.edit = function (){
-        //in myClass sono salvate le nuove info. Ricordarsi dopo di svuotare myClass
+        var request = {_id : $scope.class_id, description : $scope.myClass.getDescription()};
+        $http.post('/api/class/update_class', request);
+        $scope.myClass = new Class();
+        $scope.class_id = null;
     };
     
-    $scope.selectClass = function (classs) {
-        $scope.myClass.edit(classs.description, classs.name, classs.academicYear);        
+    $scope.selectClass = function (classs, id) {
+        $scope.myClass.edit(classs.description, classs.name, classs.academicYear);    
+        $scope.class_id = id;
     };
     
     $scope.loadClasses();

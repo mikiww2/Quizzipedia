@@ -41,8 +41,9 @@ exports.save = function (req, res) {
 	       			if(org.topics[i] == req.body.topicName)
 	       				exist = true;
 	       		}
+
 	       		if(exist){
-	       			res.send({ res_code: 0, res_msg: 'L\'argomento ' + req.body.topicName + ' esiste già!' });
+	       			res.send({ res_code: 0, res_msg: 'L\'argomento "' + req.body.topicName + '" esiste già!' });
 	       		}
 	       		else{ //aggiunge topic
 	       			org.topics.push(req.body.topicName);
@@ -71,7 +72,7 @@ exports.erase = function (req, res) {
 			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 				if (err) {
 	            console.log('error: ' + err);
-	            res.redirect('/');
+	            res.send({ res_code: -1, res_msg: '/' });
 	      }
 	      else{
 	       	if(org){
@@ -82,11 +83,11 @@ exports.erase = function (req, res) {
        			org.save( function (err) {
                 if (err) {
                     console.log('errore nella rimozione del topic: ' + err);
-                    res.send('error');
+                    res.send({ res_code: 0, res_msg: 'Errore nella rimozione dell\'argomento!' });
                 }
                 else {
                     console.log('topic rimosso correttamente');
-                    res.send('ok');
+                    res.send({ res_code: 1, res_msg: 'Argomento rimosso correttamente!' });
                 }
             });
 	       	}
@@ -94,5 +95,5 @@ exports.erase = function (req, res) {
 	    	}
 			});
 		}
-		else res.redirect('/');
+		else res.send({ res_code: -1, res_msg: '/' });
 }

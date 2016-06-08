@@ -3,8 +3,9 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
     
      $scope.loadTopics = function(){
         
-        var x = new Topics();
-        return x;
+       $http.get('/api/topic/fetch').success(function(response){
+           //iterare e fare cazzate
+       });
       
         //faccio una richiesta al server che mi ritorna un array di topics e assegno l'oggetto a listTopics
     };
@@ -24,13 +25,9 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
          //inseriamo il nuovo topic dentro a listTopics e invio una richiesta al server
          var value = { topicName: name};
          
-<<<<<<< HEAD
+
          $scope.topicsList.addTopic(name);
          
-       
-         
-         $http.post('/api/topic/save',{name: name});
-=======
          //$scope.topicsList.addTopic(name);
 
          $http.post('/api/topic/save',value)
@@ -39,7 +36,7 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
                 }).error(function(response){
                     alert("Errore");
                 });
->>>>>>> e151bf000cd11d75d22a47a0e391f0494c050226
+
      };
     
      $scope.removeTopic = function(index){

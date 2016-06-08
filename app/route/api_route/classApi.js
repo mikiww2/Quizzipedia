@@ -18,4 +18,8 @@ module.exports = function (app) {
     classM.updateClass(req, res);
   });
 
+  app.post('/api/class/remove_class',function (req, res, next) {
+    classM.removeClass(req, res);
+  });
+
 };

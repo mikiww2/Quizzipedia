@@ -1,15 +1,21 @@
-angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$http',function(Topics,$scope,$http){
+angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$http','$window',function(Topics,$scope,$http,$window){
     
     
      $scope.loadTopics = function(){
         
        $http.get('/api/topic/fetch').success(function(response){
-           //iterare e fare cazzate
+           
+           //var topics = new Topics();
+           console.log(response);
+           
+           return null;
+           
+           
        });
       
         //faccio una richiesta al server che mi ritorna un array di topics e assegno l'oggetto a listTopics
     };
-    
+
     
     
     
@@ -26,8 +32,6 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
          var value = { topicName: name};
          
 
-         $scope.topicsList.addTopic(name);
-         
          //$scope.topicsList.addTopic(name);
 
          $http.post('/api/topic/save',value)

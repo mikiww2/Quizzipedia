@@ -54,7 +54,7 @@
 
   <body ><!-- onload="getUrl()"-->
 	
-      <div class="container" ng-controller="CtrlHeader"> 
+      <div class="container pagewrap" ng-controller="CtrlHeader"> 
           
           <header-not-logged ng-if="user.role== null"></header-not-logged>          
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>

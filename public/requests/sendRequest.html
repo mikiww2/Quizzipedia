@@ -56,7 +56,7 @@
 
   <body onload="getUrl()">
       
-	<div class="container"> <!-- Make modal? Later -->
+	<div class="container pagewrap"> 
         
         <div ng-controller="CtrlHeader">        
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
@@ -64,20 +64,22 @@
           <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>         
           <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
         </div>
-
-		<ul class="nav nav-pills">
-		  <li class="active"><a data-toggle="pill" href="#role">Richiedi ruolo in un ente</a></li>
-		  <li><a data-toggle="pill" href="#class">Richiedi entrata in una classe</a></li>
-		</ul>
-        
-        <div class="tab-content">
-            <div id="role" class="tab-pane fade in active">
-                <request-role></request-role>
-            </div>
-            <div id="class" class="tab-pane fade">
-                <request-class></request-class>
-            </div>            
-        </div>
+		
+		<div>
+			<ul class="nav nav-pills col-md-offset-4 col-sm-offset-3 col-xs-offset-2">
+			  <li class="active"><a data-toggle="pill" href="#role">Richiedi ruolo in un ente</a></li>
+			  <li><a data-toggle="pill" href="#class">Richiedi entrata in una classe</a></li>
+			</ul>
+			
+			<div class="tab-content">
+				<div id="role" class="tab-pane fade in active answContainer">
+					<request-role></request-role>
+				</div>
+				<div id="class" class="tab-pane fade answContainer">
+					<request-class></request-class>
+				</div>            
+			</div>
+		</div>
         
 	</div>
       <page-footer></page-footer>

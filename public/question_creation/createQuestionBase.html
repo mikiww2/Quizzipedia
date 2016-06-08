@@ -72,9 +72,10 @@
       <script type="text/javascript" src="./public/question_creation/CtrlQuestion.js"></script>
      
        
-        <script>
+       <!--<script>
         
             function readURL(input,index) {
+                console.log('readURL invocato');
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
                     
@@ -82,6 +83,7 @@
                     reader.onload = function (e) {
                         
                         if(index == 'null'){
+                            console.log("index == null");
                             $('#blah')
                             .attr('src', e.target.result)
                             .width(150)
@@ -89,12 +91,14 @@
                             
                         }
                         else{
+                            console.log(index);
                             $('#blah'+index)
                             .attr('src', e.target.result)
                             .width(150)
                             .height(200);    
                         }
                         
+                       
                         
                         
                     };
@@ -102,8 +106,8 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             }
-        </script>
-      
+        </script> -->
+    
       
       
       
@@ -161,8 +165,8 @@
                ngf-pattern="'image/*'"
                accept="image/*" 
                ngf-max-size="20MB" 
-                   onchange="readURL(this,'null')"
-               />
+                ng-change="readURL(this,'null')"       
+               /> <!--   onchange="readURL(this,'null')"-->
             
             <img id ="blah" src="#"/>
              

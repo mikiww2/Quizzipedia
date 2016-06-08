@@ -163,15 +163,44 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     };
     
     
-    /*$scope.onFileSelect = function($files){
-        for(var i = 0; i< $files.length; i++){
-            $scope.localfiles.push($files[i]);
-        }
-    };*/
+    
+    
+    /*
+         if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    
 
+                    reader.onload = function (e) {
+                        
+                        console.log("chiamato il metodo onload");
+                        console.log(e.target.result);
+                        
+                        if(index == 'null'){
+                            $('#blah')
+                            .attr('src', e.target.result)
+                            .width(150)
+                            .height(200);
+                            
+                        }
+                        else{
+                            $('#blah'+index)
+                            .attr('src', e.target.result)
+                            .width(150)
+                            .height(200);    
+                        }
+                        
+                        
+                        
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+    
+    */
     
     
-    $scope.uploadFiles = function(files){
+    
+    $scope.uploadFiles = function(files,input){
         console.log(files[0]);
         $scope.files = files[0];
         if (files[0]){
@@ -181,6 +210,20 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             }).then(function(response){
                 console.log(response);
             });
+            
+            /*var jq = $.noConflict();
+            
+            var reader = new FileReader();
+            reader.onload = function(e){
+                console.log(e.target.result);
+              jq('#blah').attr('src', e.target.result).width(150).height(200);  
+            };
+            */
+            
+            //reader.readAsDataURL(input.files[0]);
+            
+            
+            
         }       
     };
     
@@ -236,6 +279,36 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         });
     };
     
-    
+    $scope.readURL = $(function (input,index) {
+        
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    
+
+                    reader.onload = function (e) {
+                        
+                        
+                        
+                        if(index == 'null'){
+                            $('#blah')
+                            .attr('src', e.target.result)
+                            .width(150)
+                            .height(200);
+                            
+                        }
+                        else{
+                            $('#blah'+index)
+                            .attr('src', e.target.result)
+                            .width(150)
+                            .height(200);    
+                        }
+                        
+                        
+                        
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            });
     
 }]);

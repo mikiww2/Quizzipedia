@@ -42,7 +42,7 @@ exports.save = function (req, res) {
 	       				exist = true;
 	       		}
 	       		if(exist){
-	       			console.log('Il topic esiste già');
+	       			res.send({ res_code: 0, res_msg: 'L\'argomento ' + req.body.topicName + ' esiste già!' });
 	       		}
 	       		else{ //aggiunge topic
 	       			org.topics.push(req.body.topicName);

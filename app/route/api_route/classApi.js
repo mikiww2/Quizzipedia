@@ -14,4 +14,8 @@ module.exports = function (app) {
     classM.createClass(req, res);
   });
 
+  app.post('/api/class/update_class',function (req, res, next) {
+    classM.updateClass(req, res);
+  });
+
 };

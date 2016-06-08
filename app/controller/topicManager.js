@@ -38,18 +38,18 @@ exports.save = function (req, res) {
 	      else{
 	       	if(org){
 	       		for(var i=0;i<org.topics.length;i++){
-	       			if(org.topics.type == req.body.topicName)
+	       			if(org.topics[i] == req.body.topicName)
 	       				exist = true;
 	       		}
 	       		if(exist){
 	       			console.log('Il topic esiste già');
 	       		}
 	       		else{ //aggiunge topic
-	       			org.topics.push({ type: req.body.topicName});
+	       			org.topics.push(req.body.topicName);
 	       			org.save( function (err) {
 	                if (err) {
 	                    console.log('errore nell\'inserimento del topic: ' + err);
-	                    res.send('ok');
+	                    res.send('error');
 	                }
 	                else {
 	                    console.log('topic inserito correttamente');

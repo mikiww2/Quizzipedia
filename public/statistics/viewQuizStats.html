@@ -8,26 +8,37 @@
 	 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="Autore" content="">
     <link rel="icon" href="../favicon.ico">
 
-    <title>Quiz</title>
+    <title>Statistiche quiz</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
 	<!-- quizzipedia.base.css -->
-	<link href="../../css/quizzipedia.base.css" rel="stylesheet">
+	<link href="./assets/css/quizzipedia.base.css" rel="stylesheet">
+	      
+    <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./assets/js/urlGetter.js"></script>
+      
+    <script type="text/javascript" src="./public/core.js"></script>
+	<script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
 	
-	<!-- select2.js -->
-	<link href="../../js/select2-4.0.2/dist/css/select2.min.css" rel="stylesheet" />
-	<script src="../../js/select2-4.0.2/dist/js/select2.min.js"></script>
+    <!-- select2.js -->
+	<link href="./assets/js/select2-4.0.2/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="./assets/js/select2-4.0.2/dist/js/select2.min.js"></script>
 	
 	<!-- chained.js -->
-	<script src="../../js/jquery.chained.min.js"></script>
+	<script src="./assets/js/jquery.chained.min.js"></script>
+    <!-- Directive angular (HEADER)-->
+	<script src="./public/header/headerLoggedTeacher.js"></script>
+	
+    <!--Directive angular (FOOTER)-->
+    <script type="text/javascript" src="./public/footer/pageFooter.js"></script> 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,7 +48,12 @@
   </head>
 
   <body>
-	<div class="container">
+	<div class="container pagewrap">
+	
+	    <div ng-controller="CtrlHeader">                
+			  <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>         
+		</div>
+		
 		<h4 class="description text-center"><i class="glyphicon glyphicon-th-list"></i> <i class="glyphicon glyphicon-stats"></i> Statistiche dei quiz</h4>
 		<div class="pull-right dropOrder">
 			<span>Ordina:</span>
@@ -105,5 +121,6 @@
 			</tbody>
 		</table>
 	</div>
+	<page-footer></page-footer>
   </body>
 </html>

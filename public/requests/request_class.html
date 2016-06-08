@@ -8,7 +8,7 @@
     <div class="form">
         <div class="form-area">  
             <form>
-                <div class="text-center clear"> <h3 class="formTitle">Invia richiesta di classe</h3></div> 
+                <div class="text-center clear"> <h3 class="formTitle">Invia richiesta di classe {{class}}</h3></div> 
                 
                 <fieldset class="form-group">
                     <label for="inst">Ente</label><br>
@@ -24,14 +24,14 @@
 				<fieldset class="form-group">
                     <label for="class">Seleziona classe</label>
                     <!-- load classes for selected institution -->
-                    <select id="classSelect" name="class" class="form-control">
-                        <option ng-repeat = "class in classes">{{class.name}} - a.s. {{class.academicYear}}</option>           
+                    <select id="classSelect" name="class" class="form-control" ng-model = "class">
+                        <option ng-repeat = "class in classes" value = {{class._id}} >{{class.name}} - a.s. {{class.academicYear}}</option> 
                     </select>
                 </fieldset>
 					
 				<script type="text/javascript"> $("#classSelect").chained("#instSelectClass");</script>			
                 
-				<button type="button" id="submitClass" name="submit" class="btn btn-primary pull-right">Invia richiesta</button>
+				<button type="button" id="submitClass" name="submit" class="btn btn-primary pull-right" ng-click="sendClassRequest()">Invia richiesta</button>
             </form>
         </div>
 		<div class="spacer"></div>

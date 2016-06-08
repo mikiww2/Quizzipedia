@@ -33,7 +33,7 @@
 					<div class="answerBlock" id="newBlock">
 					<!--  creare dinamicamente answerBlock con id newBlock# e stampare contenuti usando createTextArea() e loadFile() -->
 					<!--  upload sballato se si aggiungono + elementi senza ricaricare perchè gli id non sono incrementati -->
-                        <form name="upload_form">
+                        
                         <div class="answerBlock" ng-repeat="answer in MyMultipleChoiceQ.question.arrayAnswer track by $index"> <!-- METTERE UN BEL NG-REPEAT-->
                                 <!-- ng-repeat="q in MyMultipleChoiceQ.question.answers track by $index" -->
                             
@@ -44,12 +44,13 @@
                                 
                                 <textarea ng-if="answer.textAnswer !== null " type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="answer.textAnswer"></textarea>
                                 
-                                <input ng-if="answer.attachment !== null" type="file" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB">
+                                <input ng-if="answer.attachment !== null" type="file" ngf-select ="uploadFiles($files)" ng-model="files" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" onchange="readURL(this,{{$index}})">
+                                <!--
+                                <img ng-if="answer.attachment !== null" id="'blah' + {{$index}}" src="#"/>
+              -->
+            
+            
                                 
-                                <i ng-show="answer.attachment !== null">Anteprima</i>
-                                <img  ng-if="answer.attachment !== null" style="width:100px;" ngf-thumbnail="file" />
-                                <i ng-if="answer.attachment !== null" ng-show="upload_form.file.$error.required">*required</i><br>
-                                <i ng-if="answer.attachment !== null" ng-show="upload_form.file.$error.maxSize"> File to large</i>
                                 
                                 
                                 
@@ -84,9 +85,7 @@
                             </div>
                             
                         </div>
-                            <button type="submit" ng-click="submit()">Upload file</button>
-                        </form>
-                        
+                            
                         
 					</div>
 				

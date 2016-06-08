@@ -129,5 +129,44 @@ exports.updateClass = function (req, res) {
 	    	}
 			});
 		}
-		res.redirect('/');
+		else res.redirect('/');
+}
+
+exports.removeClass = function (req, res) {
+
+		if(req.session.user && req.session.user.role == 'director'){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+				if (err) {
+	            console.log('error: ' + err);
+	            res.redirect('/');
+	      }
+	      else{
+	       	if(org){
+	       		for(var i=0;i<org.classes.length;i++){  //rimuove classe da organization
+	       			if(org.classes[i]._id == req.body._id)
+	       				org.classes.splice(i,1);
+	       		}
+
+	       		for(var j=0;j<org.users.length;j++){  //rimuove classe da users
+	       			for(var k=0;k<org.users[j].classes.length;k++){
+	       				org.users[j].classes.splice(k,1);
+	       			}
+	       		}
+	       		
+	       		org.save( function (err) {
+                if (err) {
+                    console.log('errore nella rimozione della classe: ' + err);
+                    res.send('errore');
+                }
+                else {
+                    console.log('classe rimossa correttamente');
+                    res.send('ok');
+                }
+            });
+	       	}
+	       	console.log('Organizzazione non trovata');
+	    	}
+			});
+		}
+		else res.redirect('/');
 }

@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="./assets/img/favicon.ico">
   <link rel="shortcut icon" type="image/x-icon" href="./assets/img/favicon.ico" />
-    <title>Sign up</title>
+    <title>Registrati</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -43,39 +43,42 @@
           
         <header-not-logged></header-not-logged>
   
-      <form class="form" ng-submit="user.sendRegistration()">
-        <h2 class="form-heading">Sign up</h2>
-    <div class="form-group row">
-      <label for="inputFirstName" class=" form-control-label small" style="width:auto">First Name</label>
-      <input type="text" class="form-control" id="inputFirstName" placeholder="First name" ng-model="user.firstName" required autofocus>
-    </div>
-    <div class="form-group row">
-      <label for="inputLastName" class=" form-control-label small" style="width:auto">Last Name</label>
-      <input type="text" class="form-control" id="inputLastName" placeholder="Last name" ng-model="user.lastName" required>
-    </div>
-    <div class="form-group row">
-      <label for="inputEmail" class=" form-control-label small" style="width:auto">Email address</label>
-      <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="user.email" required>
-    </div>
-    <div class="form-group row">
-      <label for="inputConfirmEmail" class=" form-control-label small" style="width:auto">Confirm email address</label>
-      <input type="email" class="form-control" id="inputConfirmEmail" placeholder="Confirm email" ng-model="user.cemail" required>
-    </div>
-    <div class="form-group row">
-      <label for="inputPassword" class=" form-control-label small" style="width:auto">Password</label>
-      <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="user.password" required>
-    </div>
-    <div class="form-group row">
-      <label for="inputConfirmPassword" class=" form-control-label small" style="width:auto">Confirm password</label>
-      <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm password" ng-model="user.cpassword" required>
-    </div>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="notARobot"> I'm not a robot
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    <form class="form" ng-submit="user.sendRegistration()">
+		<h3 class="form-heading description text-center">Registrati</h3>
+		<div class="form-group row">
+		  <label for="inputFirstName" class=" form-control-label small" style="width:auto">Nome</label>
+		  <input type="text" class="form-control" id="inputFirstName" placeholder="Nome" ng-model="user.firstName" required autofocus>
+		</div>
+		<div class="form-group row">
+		  <label for="inputLastName" class=" form-control-label small" style="width:auto">Cognome</label>
+		  <input type="text" class="form-control" id="inputLastName" placeholder="Cognome" ng-model="user.lastName" required>
+		</div>
+		<div class="form-group row">
+		  <label for="inputEmail" class=" form-control-label small" style="width:auto">Indirizzo email</label>
+		  <input type="email" class="form-control" id="inputEmail" placeholder="Indirizzo email" ng-model="user.email" required>
+		</div>
+		<div class="form-group row">
+		  <label for="inputConfirmEmail" class=" form-control-label small" style="width:auto">Conferma l'indirizzo email</label>
+		  <input type="email" class="form-control" id="inputConfirmEmail" placeholder="Conferma l'indirizzo email" ng-model="user.cemail" required>
+		</div>
+		<div class="form-group row">
+		  <label for="inputPassword" class=" form-control-label small" style="width:auto">Password</label>
+		  <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="user.password" required>
+		</div>
+		<div class="form-group row">
+		  <label for="inputConfirmPassword" class=" form-control-label small" style="width:auto">Conferma la password</label>
+		  <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Conferma la password" ng-model="user.cpassword" required>
+		</div>
+		<div class="checkbox">
+		  <label>
+			<input type="checkbox" value="notARobot"> Non sono un bot
+		  </label>
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Registrati</button>
       </form>
+	  <div class="bottom text-center">
+		Hai già un account? <a href="#"><b>Accedi!</b></a>
+	  </div>
 
     </div> <!-- /container -->
 

@@ -43,4 +43,5 @@ exports.fetch = function (req, res) {
 exports.test = function (req, res) {
     console.log(req.body);
     console.log('QML = ' + agent.generate(req.body));
+    res.send(req.body);
 };

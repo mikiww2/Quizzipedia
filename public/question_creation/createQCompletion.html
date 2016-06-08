@@ -4,75 +4,37 @@
 			<div class="form-group row form">
 				<button class="btn btn-default" id="newgap"><i class="glyphicon glyphicon-plus"></i></button>
 			</div>
-			<div class="answContainer row bluebg">
+			<div class="answContainer row">
 				<div id="complText" class="answerBlock lineGap">
-					<!-- VERSION 1: no textearea, pure uneditable text -->
-					<!-- <span class="label-as-badge label-yellow">lorem ipsum blabla fehfuyrf egeuy dijdisdj</span>
-					<span class="btn"><i class="glyphicon glyphicon-remove"></i></span><br>
-					
-					<span class="badge">1</span><div class="smallDroppable ui-widget-header"></div><br>
-					
-					<span class="label-as-badge label-yellow">lorem ipsum blabla fehfuyrf egeuy dijdisdj lorem ipsum blabla fehfuyrf egeuy dijdisdj</span>
-					<span class="btn"><i class="glyphicon glyphicon-remove"></i></span><br>
-					
-					<span class="badge">2</span><div class="smallDroppable ui-widget-header"></div><br> 
-					<span class="label-as-badge label-yellow">lorem ipsum</span><span class="btn"><i class="glyphicon glyphicon-remove"></i></span> -->
-					
-					<!-- VERSION 2: textarea, editable blocks -->
-					<textarea type="textarea" placeholder="lorem ipsum blabla fehfuyrf egeuy dijdisdj lorem ipsum blabla fehfuyrf egeuy dijdisdj" name="ta1" id="ta1"></textarea>
-					<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-					<div class="badgeWrap">
-					<span class="label-as-badge label-yellow">1</span>
+					<div>
+						<span class="badge">1</span><textarea type="textarea" placeholder="lorem ipsum blabla fehfuyrf egeuy dijdisdj lorem ipsum blabla fehfuyrf egeuy dijdisdj" name="ta1" id="ta1"></textarea>
+						<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
 					</div>
-					<textarea type="textarea" placeholder="lorem ipsum blabla fehfuyrf egeuy dijdisdj" name="ta1" id="ta1"></textarea>
-					<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-					<div class="badgeWrap">
-					<span class="label-as-badge label-yellow">2</span>
+					<div>
+						<span class="badge">2</span><textarea type="textarea" placeholder="lorem ipsum blabla fehfuyrf egeuy dijdisdj" name="ta1" id="ta1"></textarea>
+						<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
 					</div>
-					<textarea type="textarea" placeholder="lorem ipsum blabla fehfuyrf egeuy dijdisdj" name="ta1" id="ta1"></textarea>
-					<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
+					<div>
+						<span class="badge">3</span><textarea type="textarea" placeholder="lorem ipsum blabla fehfuyrf egeuy dijdisdj" name="ta1" id="ta1"></textarea>
+						<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
+					</div>
 					
 				</div>
 			</div>
 			<h4 class="text-center">Risposte</h4>
-				<!-- new upload -->
+				<!-- new answer -->
 				<div class="form-group row form">
-					<span class="btn btn-default btn-file" id="newAttach"><i class="glyphicon glyphicon-upload"></i> <input type="file"></span>
 					<span class="btn btn-default" type="button" id="newAText"><i class="glyphicon glyphicon-align-left"></i></span>
 				</div>
 
-				<div class="answContainer row bluebg">
+				<div class="answContainer row">
 					<div class="answerBlock">
-						<div class="drag">
+						<div>
 							<input id="answNumber1" type="number" min="1" max="8" step="1" value="1" required />
 							<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1"></textarea>
 							<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
 						</div>
-						<div class="answerBlock">
-						<div class="drag">
-							<input id="answNumber1" type="number" min="1" max="8" step="1" value="2" required />
-							<img src="./public/question_creation/test.png" class="resize" id="img1"/>
-							<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-						</div>
-					</div>
 				</div>
-				<script language="javascript" type="text/javascript">
-				$(document).ready(function() { 
-					$('.drag').draggable({ 
-					revert: false, 
-					stack: ".drag"
-					}); //ogni nuovo elemento creato deve essere reso draggable
-					$( ".smallDroppable" ).droppable({
-					hoverClass: 'drop-hover',
-							accept: '.drag',
-							hoverClass: "ui-state-active",
-							drop: function( event, ui ) {
-								$( this )
-								.addClass( "ui-state-highlight" ).find( "p" ).html( "Accettato!" );
-						  }
-						});
-				});
-				</script>
 		</div>
 
 

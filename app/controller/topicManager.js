@@ -40,3 +40,35 @@ exports.save = function (req, res) {
 		}
 		else res.redirect('/');
 } 
+
+exports.erase = function (req, res) {
+
+		if(req.session.user && req.session.user.role == 'director'){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+				if (err) {
+	            console.log('error: ' + err);
+	            res.redirect('/');
+	      }
+	      else{
+	       	if(org){
+	       		for(var i=0;i<org.topics.length;i++){
+	       			if(org.topics[i] == req.body.topicName)
+	       				org.topics.splice(i,1);
+	       		}
+       			org.save( function (err) {
+                if (err) {
+                    console.log('errore nella rimozione del topic: ' + err);
+                    res.send('error');
+                }
+                else {
+                    console.log('topic rimosso correttamente');
+                    res.send('ok');
+                }
+            });
+	       	}
+	       	else console.log('Nessuna organizzazione trovata');      		
+	    	}
+			});
+		}
+		else res.redirect('/');
+}

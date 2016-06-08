@@ -149,7 +149,7 @@ exports.parse = function (qml){
 
     var generateRA = function (question) {  // teoricamente ok
         var stringAttached = generateAttached(question);
-        return question.title + stringAttached + '#a#' + question.ans + '#££#';
+        return question.title + stringAttached + '#a#' + question.correctAnswer + '#££#';
     };
 
     var generateCL = function (question) { // da sistemare quando il form sarà comprensibile
@@ -176,7 +176,7 @@ exports.parse = function (qml){
         else
             question.title = text;
         var answer = extract(qml, '#a#', '#££#');
-        question.ans = answer;
+        question.correctAnswer = answer;
         qson.question = question;
         return qson;
     };
@@ -257,7 +257,7 @@ exports.parse = function (qml){
         }
         else
             question.title = text;
-        question.ans = extract(qml, '#a#', '#££#');
+        question.correctAnswer = extract(qml, '#a#', '#££#');
         qson.question = question;
         return qson;
     };

@@ -812,9 +812,13 @@ img{
 	background-color: #22A7F0;
 }
 
-.navbar-nav{
-	
-	
+.pagination>li>a{
+	color: #22A7F0;
+}
+
+.pagination>li.active>a{
+	background-color: #22A7F0;
+	color: white;
 }
 
 .top-nav>li>a:hover,

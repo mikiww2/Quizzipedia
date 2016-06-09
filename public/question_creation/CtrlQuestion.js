@@ -217,15 +217,14 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         });
     };
     
-    $scope.readURL = function (input,index) {
+	//BACKUP ORIGINALE SOLO IMMAGINI
+   /* $scope.readURL = function (input,index) {
         
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
                     
-
                     reader.onload = function (e) {
                         
-
                         if(index == 'null'){
                             $('#blah')
                             .attr('src', e.target.result)
@@ -238,8 +237,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
                             .attr('src', e.target.result)
                             .height(140)
 							.width(auto);    
-                        }
-                        
+                        }                      
 
                     };
 
@@ -250,6 +248,83 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
 				else {
 					$('#blah').hide(); 
 				}
-            };
+            };*/
+			
+		//IMMAGINI AUDIO E VIDEO
+	    $scope.readURL = function (input,index) {
+
+		/* TYPE CHECK */
+		if(input.files[0].type === "image/png") { //IMAGE
+			window.alert("This is an image of type: " + input.files[0].type); //test
+			
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				
+				reader.onload = function (e) {
+					
+					if(index == 'null'){
+						$('#blah')
+						.attr('src', e.target.result)
+						.height(140)
+						.width(auto);
+						
+					}
+					else{
+						$('#blah'+index)
+						.attr('src', e.target.result)
+						.height(140)
+						.width(auto);    
+					}                      
+
+				};
+
+				reader.readAsDataURL(input.files[0]);
+				$('#blah').show();
+			}
+			
+			else {
+				$('#blah').hide(); 
+			}
+		} //END OF IMAGE
+		//AUDIO
+		else if(input.files[0].type === "audio/mp3"){	
+			window.alert("This is an audio file of type: " + input.files[0].type); //test
+			
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				
+				reader.onload = function (e) {
+					$('#audio-preview').attr('src', e.target.result);                
+
+				};
+
+				reader.readAsDataURL(input.files[0]);
+				$('#audio-preview').show();
+			}
+			
+			else {
+				$('#audio-preview').hide(); 
+			}
+		} //END OF AUDIO
+		
+		else if(input.files[0].type === "video/mp4")	{
+			window.alert("This is a video file of type: " + input.files[0].type); //test
+			
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				
+				reader.onload = function (e) {
+					$('#video-preview').attr('src', e.target.result);
+				};
+
+				reader.readAsDataURL(input.files[0]);
+				$('#video-preview').show();
+			}
+			
+			else {
+				$('#video-preview').hide(); 
+			}
+		} //END OF VIDEO
+	};
     
 }]);

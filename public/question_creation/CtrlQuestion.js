@@ -55,6 +55,17 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         
     };
     
+    
+    $scope.Allegati = {
+        array: new Array(),
+        elementSelected: null,
+        insertKey: function(index){
+            this.array[index.toString()] = index;
+            this.elementSelected = index;
+        }
+        
+    }
+    
    
    
     

@@ -194,7 +194,7 @@ exports.addClassInsertRequest = function (req, res) {
                 if(result['user'] == req.session.user._id){
                 	var classs = {
                 		state: 'requested',
-                		class: req.body._id
+                		_id: req.body._id
                 	};
                 	org.users[index].classes.push(classs);
                 }

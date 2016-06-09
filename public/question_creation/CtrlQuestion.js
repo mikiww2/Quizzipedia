@@ -225,28 +225,31 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
 
                     reader.onload = function (e) {
                         
-                        
-                        
+
                         if(index == 'null'){
                             $('#blah')
                             .attr('src', e.target.result)
-                            .width(150)
-                            .height(200);
+                            .height(140)
+							.width(auto);
                             
                         }
                         else{
                             $('#blah'+index)
                             .attr('src', e.target.result)
-                            .width(150)
-                            .height(200);    
+                            .height(140)
+							.width(auto);    
                         }
                         
-                        
-                        
+
                     };
 
                     reader.readAsDataURL(input.files[0]);
+					$('#blah').show();
                 }
+				
+				else {
+					$('#blah').hide(); 
+				}
             };
     
 }]);

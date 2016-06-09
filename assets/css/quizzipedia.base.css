@@ -1066,6 +1066,10 @@ i.red{
 	height: 150px;
 }
 
+.hidden-block {
+	display: none;
+}
+
 .btn-file {
     position: relative;
     overflow: hidden;

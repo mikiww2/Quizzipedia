@@ -46,20 +46,19 @@
   </head>
 
   <body >
-	<div class="container">
+	<div class="container pagewrap">
         
         <div ng-controller="CtrlHeader">        
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
           <header-logged-student ng-if="user.role == 'student'"></header-logged-student>         
           <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>         
           <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
-	</div>
+		</div>
         
 		<h4 class="description text-center"><i class="glyphicon glyphicon-book"></i> Argomenti</h4>
 		<div class="row" ng-controller="CtrlTopics" ng-controller="CtrlTopics">
 			<div class="list-group form text-center important">
-			  <a href="#" class="list-group-item" ng-repeat="topic in topicsList.topics track by $index">{{topic}}</a>
-			  
+			  <a href="#" class="list-group-item" ng-repeat="topic in topicsList.topics track by $index">{{topic}}</a>  
 			</div>
 		</div>
 	</div>

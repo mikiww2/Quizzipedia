@@ -41,7 +41,6 @@ var appendAttached = function (attached){ // funzione che gestisce gli allegati 
 
 exports.generate = function (question){
     var stringType = 'q?' + question.type + '#t#';
-    //var stringQuestion = question.txt + '#a#'; // da aggiungere nelle funzioni specifiche
     var stringTextAndAnswers;
 
     switch (question.type){ // in base al tipo fa operare la funzione corrispondente nella stringa
@@ -73,7 +72,7 @@ exports.generate = function (question){
 exports.parse = function (qml){
     if (qml.startsWith('|') && qml.endsWith('|') && qml.includes('#t#') && qml.includes('#a#') && qml.includes('#££#')) {
         var type = extract(qml, 'q?', '#t#');
-        var qson;
+        var qson; //creazione json vuoto
         switch (type){ // in base al tipo fa operare la funzione corrispondente nella stringa
             case 'trfs': // tipo vero/falso
                 qson = parserTF(qml);
@@ -135,9 +134,9 @@ exports.parse = function (qml){
         }
         var stringAnswers = '';
         for (var item of question.ans){
-            if (item.text)
+            if (item.text) // se la risposta è testuale
                 stringAnswers = stringAnswers + item.text + '[' + item.id + ']§';
-            if (item.attachment)
+            if (item.attachment) // se la risposta è un media
                 stringAnswers = stringAnswers + generateAttached(item) + '[' + item.id + ']§';
         }
         if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
@@ -153,13 +152,7 @@ exports.parse = function (qml){
     };
 
     var generateCL = function (question) { // da sistemare quando il form sarà comprensibile
-      /*  var stringAttached = generateAttached(question);
-        var stringAnswers = '';
-        for (var item of question.ans) {
-            var stringAttached = generateAttached(item);
-            stringAnswers = stringAnswers + item. + '[' + item.isTrue + ']' + stringAttached + '§';
-        }
-        return question.title + stringAttached + '#a#';*/
+
     };
 }
 
@@ -167,8 +160,8 @@ exports.parse = function (qml){
 {
     var parserTF = function (qml) { // teoricamente ok , da testare nei casi particolari
         var qson = {'type': 'trfs'};
-        var question = {};
-        var text = extract(qml, '#t#', '#a#');
+        var question = {}; //creazione json vuoto
+        var text = extract(qml, '#t#', '#a#'); //estrazione stringa di domanda
         if (text.includes('{') && text.endsWith('}')) {  // se presente allegato nella stringa
             question.title = extract(text, '', '{');
             question.attachment = appendAttached(extract(text, '{', '}'));
@@ -183,17 +176,17 @@ exports.parse = function (qml){
 
     var parserRM = function (qml) { // teoricamente ok, da testare nei casi particolari
         var qson = {'type': 'mult'};
-        var question = {};
-        var text = extract(qml, '#t#', '#a#');
+        var question = {};  //creazione json vuoto
+        var text = extract(qml, '#t#', '#a#'); //estrazione stringa di domanda
         if (text.includes('{') && text.endsWith('}')) {  // se presente allegato nella stringa
             question.title = extract(text, '', '{');
             question.attachment = appendAttached(extract(text, '{', '}'));
         }
-        else
+        else //se non presente allegato
             question.title = text;
-        var answer = extract(qml, '#a#', '#££#');
-        var arrayAns = answer.split('§');
-        var arrayJsonAns = []; //contiene le stringhe per ogni risposta da parsare
+        var answer = extract(qml, '#a#', '#££#'); //estrae le risposte
+        var arrayAns = answer.split('§'); //array di stringhe delle risposte
+        var arrayJsonAns = []; //conterrà i json delle risposte
         for (var item of arrayAns) {
             var ansTxt = extract(item, '', '['); // estrae il testo della risposta
             var ansIsTrue = extract(item, '[', ']'); // estrate la soluzione della risposta
@@ -213,10 +206,10 @@ exports.parse = function (qml){
 
     var parserCM = function (qml) { // teoricamente ok, da testare casi particolari
         var qson = {'type': 'cmpl'};
-        var question = {};
-        var text = extract(qml, '#t#', '#a#');
-        var arrayTitles = text.split('§');
-        var arrayJsonTitle = [];
+        var question = {}; //creazione json vuoto
+        var text = extract(qml, '#t#', '#a#'); // estrae il testo della  domanda
+        var arrayTitles = text.split('§'); //array che contiene le stringhe delle risposte
+        var arrayJsonTitle = []; //conterrà i json delle risposte
         for (var item of arrayTitles){
             var jsonTitle;
             if (item.startsWith('[') && item.endsWith(']')){
@@ -228,17 +221,17 @@ exports.parse = function (qml){
             arrayJsonTitle.push(jsonTitle);
         }
         question.title = arrayJsonTitle;
-        var answer = extract(qml, '#a#', '#££#');
-        var arrayAnswers = answer.split('§');
-        var arrayJsonAns = [];
+        var answer = extract(qml, '#a#', '#££#'); //estrae la stringa delle risposte
+        var arrayAnswers = answer.split('§'); //array che contiene le stringhe delle risposte
+        var arrayJsonAns = []; //conterrà i json delle risposte
         for (var item of arrayAnswers){
             var answerId = extract(item, '[', ']');
             var jsonAns = {'id': answerId};
             var answerValue = extract(item, '', '[');
-            if (answerValue.startsWith('{') && answerValue.endsWith('}')){
+            if (answerValue.startsWith('{') && answerValue.endsWith('}')){ //se presente allegato
                 jsonAns.attachment = appendAttached(extract(answerValue, '{', '}'));
             }
-            else
+            else // se non presente allegato
                 jsonAns.text = answerValue;
             arrayJsonAns.push(jsonAns);
         }
@@ -249,13 +242,13 @@ exports.parse = function (qml){
 
     var parserRA = function (qml) { // teoricamente ok, da testare nei casi particolari
         var qson = {'type': 'open'};
-        var question = {};
-        var text = extract(qml, '#t#', '#a#');
+        var question = {}; //creazione json vuoto
+        var text = extract(qml, '#t#', '#a#'); //estrae la stringa della domanda
         if (text.includes('{') && text.endsWith('}')) {  // se presente allegato nella stringa
             question.title = extract(text, '', '{');
             question.attachment = appendAttached(extract(text, '{', '}'));
         }
-        else
+        else // se non presente allegato
             question.title = text;
         question.correctAnswer = extract(qml, '#a#', '#££#');
         qson.question = question;

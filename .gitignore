@@ -45,3 +45,6 @@ npm-debug.log
 #quizzipedia
 upload/**
 upload_tmp/**
+
+#windows
+Thumbs.db

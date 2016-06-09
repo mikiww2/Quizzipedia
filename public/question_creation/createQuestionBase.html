@@ -72,75 +72,24 @@
       <script type="text/javascript" src="./public/question_creation/CtrlQuestion.js"></script>
      
        
-       <!--<script>
-        
-            function readURL(input,index) {
-                console.log('readURL invocato');
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    
-
-                    reader.onload = function (e) {
-                        
-                        if(index == 'null'){
-                            console.log("index == null");
-                            $('#blah')
-                            .attr('src', e.target.result)
-                            .width(150)
-                            .height(200);
-                            
-                        }
-                        else{
-                            console.log(index);
-                            $('#blah'+index)
-                            .attr('src', e.target.result)
-                            .width(150)
-                            .height(200);    
-                        }
-                        
-                       
-                        
-                        
-                    };
-
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-        </script> -->
-    
+           
       
       
       
   </head>
 
   <body ng-app="CreateQuestion" > 
-	<div class="container">
+	<div class="container pagewrap">
         
         <header-logged-teacher ng-controller="CtrlHeader"></header-logged-teacher>
         
 	<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
         
         
-        <!--
-         <h4>Upload on file select</h4>
-        
-        <button ngf-select="uploadFiles($files)" multiple accept="image/*">Files</button>
-        <br><br>Files:
-        <ul>
-            <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
-        </ul>
-        <span ng-show="progress >= 0">
-            <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
-        </span>
-        {{result | json}}
-        {{errorMsg}}
-        -->
-
-      
+                
         
         
-        
-      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)" name="CtrlQuestion.upload_form" novalidate ng-controller="CtrlQuestion">
+      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)" name="CtrlQuestion.upload_form" novalidate ng-controller="CtrlQuestion" ng-init="resetQuestion()">
 		
           
           <input type="button" ng-click="resetQuestion()" value="cancella"/>
@@ -164,8 +113,7 @@
                name="file" 
                ngf-pattern="'image/*'"
                accept="image/*" 
-               ngf-max-size="20MB" 
-                ng-change="readURL(this,'null')"       
+               ngf-max-size="20MB"  onchange="angular.element(this).scope().readURL(this,'null')"       
                /> <!--   onchange="readURL(this,'null')"-->
             
             <img id ="blah" src="#"/>
@@ -249,14 +197,14 @@
           
           
          
-
+          {{domande | json}}
           
           
           
           
         <button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button>
           
-        </form>-->
+        </form>
         
         
       

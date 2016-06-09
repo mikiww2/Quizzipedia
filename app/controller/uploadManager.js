@@ -5,7 +5,7 @@ var config = require('../../config/upload'); // path delle cartelle upload
 var multer = require('multer'); // si occupa del salvataggio
 var glob = require("glob"); // pattern matching su fs
 var mkdirp = require('mkdirp'); // crea la cartella se manca
-
+var fs = require('fs');
 
 
 
@@ -37,29 +37,35 @@ exports.upload = function (req, res, next) {
     });
 };
 
-exports.remove = function (req, res) {
+exports.remove = function (req, res, next) {
     // var user = req.session._id;
     var user = "nome.utente";
-    var pattern = config.pathTmpFiles + user + "_*";
+    var pattern = config.pathTmpFiles + "/" + user + "_*";
 
     glob(pattern, { nodir: true }, function (err, files) {
-        if(err)
-            return console.log(err);
-        files.forEach(function(file) {
-            fs.unlink(file, function(err) {
-                if(err)
-                    return console.log(err);
-            });
-        });
-    });
+        if(err) {
+            console.log(err);
+            res.send({ result: "error" });
+        }
+        else {
+            console.log("files :");
+            console.log(files);
 
-    res.send("done");
+            files.forEach(function(file) {
+                fs.unlink(file, function(err) {
+                    if(err)
+                        return console.log(err);
+                });
+            });
+            res.send({ result: "done" });
+        }
+    });
 };
 
-// funzione usata da questionManager per salvare un allegato
+// funzione usata da questionManager per salvare un allegato, ritorna il path o null se c'è stato un errore
 exports.save = function(user, filename, questionId) {
-    var newPathFile = config.pathFiles + questionId + "_" + Date.now() + "_" + filename;
-    var pattern = config.pathTmpFiles + user + "_*_" + filename;
+    var newPathFile = config.pathFiles + "/" + questionId + "_" + Date.now() + "_" + filename;
+    var pattern = config.pathTmpFiles + "/" + user + "_*_" + filename;
 
     console.log("old pattern file : " + pattern);
     console.log("new path file : " + newPathFile);
@@ -69,13 +75,18 @@ exports.save = function(user, filename, questionId) {
             console.log(err);
 
         glob(pattern, { nodir: true }, function (err, files) {
-            if(err)
-                return console.log(err);
-
-            fs.renameSync(files[0], newPathFile, function(err) {
-                if (err)
-                    return console.log(err);
-            });
+            if(err) {
+                console.log(err);
+                newPathFile = null;
+            }
+            else {
+                fs.renameSync(files[0], newPathFile, function(err) {
+                    if (err) {
+                        console.log(err);
+                        newPathFile = null;
+                    }
+                });
+            }
         });
     });
 

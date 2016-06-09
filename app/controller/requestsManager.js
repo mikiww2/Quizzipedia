@@ -62,20 +62,21 @@ exports.viewClassRequests = function (req, res) {
 	      }
 	      else{
 	       	if(org){
-	       		console.log('sto cercando nell\'organizzazione ' + req.session.user.institution);
+	       		console.log('sto cercando nell\'organizzazione ' + req.session.user.institution + ' con ruolo direttore');
        			for(var i=0;i<org.users.length;i++){
        				if(org.users[i].role == 'teacher')
        					for(var j=0;j<org.users[i].classes.length;j++){
 	       					if(org.users[i].classes[j].state == 'requested')
 	       						for(var k=0;k<org.classes.length;k++){
-       								if(org.classes[k]._id == org.users[i].classes[j].class)
+       								if(org.classes[k]._id.equals(org.users[i].classes[j]._id)){
        									response.push({
        										user: org.users[i].user,
-       										class: org.users[i].classes[j].class,
+       										class_id: org.users[i].classes[j]._id,
        										description: org.classes[k].description,
        										name: org.classes[k].name,
        										academicYear: org.classes[k].academicYear
        									});
+       								}
        							}	
 	       				}
        			}
@@ -97,25 +98,32 @@ exports.viewClassRequests = function (req, res) {
 		      }
 		      else{
 		       	if(org){
-		       		console.log('sto cercando nell\'organizzazione ' + req.session.user.institution);
+		       		console.log('sto cercando nell\'organizzazione ' + req.session.user.institution + ' con ruolo docente');
 	       			for(var i=0;i<org.users.length;i++){
-	       				if(org.users[i].user == req.session.user._id)
-	       					for(var j=0;j<org.users[i].classes.length;j++){
-		       					if(org.users[i].classes[j].state == 'allowed')
-		       						for(var k=0;k<org.users.length;k++){
-	       								if(org.users[k].state == 'student')
-	       									for(var h=0;h<org.users[k].classes.length;h++){
-	       										if(org.users[k].classes[h].state == 'requested')
-	       											for(var w=0;w<org.classes.length;w++){
-	       												if(org.classes[w]._id == org.users[k].classes[h].class)
-	       													response.push({
-					       										user: org.users[k].user,
-					       										class: org.users[k].classes[h].class,
-					       										description: org.classes[w].description,
-					       										name: org.classes[w].name,
-					       										academicYear: org.classes[w].academicYear
-					       									});
-	       											}
+	       				if(org.users[i].user == req.session.user._id)  //cerco il docente
+
+	       					for(var j=0;j<org.users[i].classes.length;j++){  //scansiono le sue classi
+		       					if(org.users[i].classes[j].state == 'allowed')  //seleziono le classi per le quali è stato accettato
+
+		       						for(var k=0;k<org.users.length;k++){  //scansiono gli utenti
+	       								if(org.users[k].role == 'student')  //seleziono solo gli studenti
+
+	       									for(var h=0;h<org.users[k].classes.length;h++){  //scansiono le loro classi
+	       										if(org.users[k].classes[h].state == 'requested')  //seleziono quelle x le quali hanno fatto richiesta
+	       											if(org.users[k].classes[h]._id.equals(org.users[i].classes[j]._id))  //seleziono le classi che coincidono
+
+		       											for(var w=0;w<org.classes.length;w++){  //prelievo le info delle classi dell'organizzazione
+		       												if(org.classes[w]._id.equals(org.users[k].classes[h]._id)){
+		       													response.push({
+						       										user: org.users[k].user,
+						       										class_id: org.users[k].classes[h]._id,
+						       										description: org.classes[w].description,
+						       										name: org.classes[w].name,
+						       										academicYear: org.classes[w].academicYear
+						       									});
+						       									console.log("beccato");
+						       								}
+		       											}
 	       									}
 	       							}	
 		       				}
@@ -196,19 +204,31 @@ exports.addClassInsertRequest = function (req, res) {
                 		state: 'requested',
                 		_id: req.body._id
                 	};
-                	org.users[index].classes.push(classs);
-                }
 
-		        		org.save( function (err) {
-                    if (err) {
-                        console.log('errore nella richiesta di inserimento nella classe: ' + err);
-                        res.send('/');
-                    }
-                    else {
-                        console.log('richiesta di inserimento nella classe inserita correttamente');
-                        res.send('/');
-                    }
-                });
+                	var exist = false;
+                	for(var i=0;i<org.users[index].classes.length;i++){
+                		if(org.users[index].classes[i]._id == req.body._id)
+                			exist = true;
+                	}
+                	if(!exist){
+                		org.users[index].classes.push(classs);
+                		org.save( function (err) {
+	                    if (err) {
+	                        console.log('errore nella richiesta di inserimento nella classe: ' + err);
+	                        res.send('/');
+	                    }
+	                    else {
+	                        console.log('richiesta di inserimento nella classe inserita correttamente');
+	                        res.send('/');
+	                    }
+	                	});
+                	}
+                	else{
+                		console.log('Hai gia chiesto di entrare in questa classe');
+                		res.send('/');
+                	}
+                }
+		        		
 		        	});
 	       		}
 	        	else{

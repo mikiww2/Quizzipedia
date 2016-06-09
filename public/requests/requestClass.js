@@ -40,7 +40,7 @@ angular.module('RequestsManager').directive('requestClass',['$window',function($
           $scope.setClassId = function (id) {
 
                 $scope.class = id;
-                
+
             };
           
           
@@ -50,7 +50,7 @@ angular.module('RequestsManager').directive('requestClass',['$window',function($
                 $http.post('/api/requests/add_class_insert_request', value).success(function(response){
                   alert('Aggiunto correttamente');
                 }).error(function(response){
-                  $window.location.href = '/Quizzipedia/home';
+                  alert(response);
                 });
             };
             

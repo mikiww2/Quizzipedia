@@ -183,7 +183,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
                 url:'/api/upload/save',
                 data: {file: files[0]}
             }).then(function(response){
-                console.log(response);
+                
             });
         }
                    
@@ -213,7 +213,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         */
             
            
-            alert(response.toJson);
+            
         });
     };
     
@@ -266,14 +266,16 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
 						$('#blah')
 						.attr('src', e.target.result)
 						.height(140)
-						.width(auto);
+						.width('auto');
+                        
+                        $scope.MyGenericQ.attachment = input.files[0].name;
 						
 					}
 					else{
 						$('#blah'+index)
 						.attr('src', e.target.result)
 						.height(140)
-						.width(auto);    
+						.width('auto');    
 					}                      
 
 				};

@@ -44,7 +44,8 @@
                                 
                                 <textarea ng-if="answer.textAnswer !== null " type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="answer.textAnswer"></textarea>
                                 
-                                <input ng-if="answer.attachment !== null" type="file" ngf-select ="uploadFiles($files)" ng-model="files" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" onchange="angular.element(this).scope().readURL(this,{{$index}})">
+                                
+                                <input ng-if="answer.attachment !== null" type="file" ngf-select ="uploadFiles($files)" ng-model="files" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" onchange="angular.element(this).scope().readURL(this,'null')" ng-click="Allegati.insertKey($index)">
                                 
                                 <img ng-if="answer.attachment !== null" id="'blah' + {{$index}}" src="#"/>
                                 
@@ -86,6 +87,7 @@
                                 <!--a href="#"><i class="glyphicon glyphicon-remove"></i></a>-->
                                 <button class="btn" style="display:inline;" ng-click="MyMultipleChoiceQ.remove($index)"><i class="glyphicon glyphicon-remove"></i></button>
                             </div>
+                            {{Allegati.array | json}}
                             
                         </div>
                             

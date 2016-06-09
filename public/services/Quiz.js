@@ -1,11 +1,11 @@
-//Include Class, Questions, Info
+//  MANCANO DIPENDENZE DA TOPIC, CLASS E GENERICQUESTION
 
-angular.module('').factory('Quiz', ['Class','GenericQuestions', 'QuizStatistics', 'StudentsStatisticsQuiz', function (Class, GenericQuestions, QuizStatistics, StudentsStatisticsQuiz) {
+angular.module('QuizManager').factory('Quiz', [function () {
     function Quiz() {
         this.author = null; //stringa
         this.creationDate = null; //Data
         this.classes = []; //array di classi
-        this.topics = []; //Array di stringhe
+        this.topic = null //Array di stringhe
         this.description = null;
         this.questions = []; //array di GenericQuestions
         this.keywords = []; //array di stringhe
@@ -39,25 +39,22 @@ angular.module('').factory('Quiz', ['Class','GenericQuestions', 'QuizStatistics'
         if (objectQuestion instanceof GenericQuestion) {
             this.questions.push(question);
         }
-        //Aggiornamento server alla fine
     };
     
     Quiz.prototype.removeQuestion = function (indexOfQuestion) {
         if (indexOfQuestion >= 0 && indexOfQuestion<this.questions.length) {
             this.questions.splice(indexOfQuestion, 1);
-        }       
-        //Aggiornamento server alla fine
+        }
     };
     
     Quiz.prototype.addClass = function (objectClass) {
-        if (objectClass instanceof Class) {
-            this.classes.push(class);
-        }
+        if (objectClass instanceof Class) 
+            this.classes.push(objectClass);
     };
     
     Quiz.prototype.removeClass = function(index){
         this.classes.splice(index,1);
-    }
+    };
     
     
     Quiz.prototype.createStatisticsQuiz = function(){

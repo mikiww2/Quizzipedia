@@ -8,7 +8,7 @@
     <div class="form">
         <div class="form-area">  
             <form>
-                <div class="text-center clear"> <h3 class="formTitle">Invia richiesta di classe {{class}}</h3></div> 
+                <div class="text-center clear"> <h3 class="formTitle">Invia richiesta di classe</h3></div> 
                 
                 <fieldset class="form-group">
                     <label for="inst">Ente</label><br>
@@ -24,8 +24,8 @@
 				<fieldset class="form-group">
                     <label for="class">Seleziona classe</label>
                     <!-- load classes for selected institution -->
-                    <select id="classSelect" name="class" class="form-control" ng-model = "class">
-                        <option ng-repeat = "class in classes" value = {{class._id}} >{{class.name}} - a.s. {{class.academicYear}}</option> 
+                    <select id="classSelect" name="class" class="form-control" ng-model = "class" ng-change="setClassId(class)">
+                        <option ng-repeat = "class in classes track by $index" value = {{class._id}} >{{class.name}} - a.s. {{class.academicYear}}</option> 
                     </select>
                 </fieldset>
 					

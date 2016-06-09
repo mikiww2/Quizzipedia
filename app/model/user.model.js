@@ -47,15 +47,15 @@ userSchema.methods.checkPassword = function(password) {
     return password == this.password;
 };
 
-//find user, usable only like find
-userSchema.statics.findUser = function(mail) {
-    return this.findOne({ _id: mail });
-};
+// //find user, usable only like find
+// userSchema.statics.findUser = function(mail) {
+//     return this.findOne({ _id: mail });
+// };
 
-//has user
-userSchema.statics.hasUser = function(mail) {
-    return !!this.findOne({ _id: mail });
-};
+// //has user
+// userSchema.statics.hasUser = function(mail) {
+//     return !!this.findOne({ _id: mail });
+// };
 
 //export
 module.exports = mongoose.model('User', userSchema);

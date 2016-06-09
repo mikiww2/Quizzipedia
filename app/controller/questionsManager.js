@@ -5,15 +5,17 @@ var agent = require('./QMLAgent');
 var author = 'tmpauthor@gmail.com';  //poi da cancellare e recuperare sempre da req.session.user._id
 
 exports.save = function (req, res) {
+    console.log("body");
+    console.log(req.body);
 
-    var question = new Question();
-
-    //author  = req.session.user._id;
-    question.author = author;
-    question.description = req.body.description;
-    question.topic = req.body.topic;
-    question.difficulty = req.body.difficulty;
-    question.keywords = req.body.keywords; //da verificare
+    var question = new Question({
+        //author: req.session.user._id
+        author: author
+        ,description: req.body.question.description
+        ,topic: req.body.question.topic // ignorante o controlla che esistano veramente ?
+        ,difficulty: req.body.question.difficulty
+        ,keywords: req.body.question.keywords
+    });
 
     //sistemo gli allegati
 
@@ -22,7 +24,7 @@ exports.save = function (req, res) {
     // salvataggio nel model
 
     // per ogni allegato devo avere, circa
-    // req.body.attachement = {
+    // attachement = {
     //     type:
     //     ,path: upload.save(question.author, req.body.questionAttachement, question._id);
     //     ,x
@@ -30,18 +32,33 @@ exports.save = function (req, res) {
     //     , a quale risposta ? bho
     // };
 
-// newTFQ.questionAttachement = upload.save(newTFQ.author, req.body.questionAttachement, newTFQ._id);
 
+
+    //sistemo gli allegati, author da recuperare da session
+    if(req.body.question.questionAttachement) {
+        var path = upload.save(author, req.body.question.questionAttachement, question._id);
+        delete req.body.question.attachment;
+        req.body.question.attachment = { // senza x e y
+            type: "img"
+            ,path: path
+        };
+    }
+
+    //inserisco il qml
     question.qml = agent.generate(req.body);
 
+    console.log("model della domanda");
+    console.log(question);
 
+    //salvo la domanda
     question.save(function(err) {
-      if (err)
-          console.log('errore nel salvataggio della domanda : ' + err);
-      else
-          console.log('domanda salvata correttamente');
+        if (err)
+            console.log('errore nel salvataggio della domanda : ' + err);
+        else
+            console.log('domanda salvata correttamente');
     });
-    res.redirect('/Quizzipedia/mgmtQuestion');
+    // res.redirect('/Quizzipedia/mgmtQuestion');
+    res.send({ result: "done" });
 };
 
 exports.fetch = function (req, res) {
@@ -95,7 +112,7 @@ exports.test = function (req, res) {
         ,keywords: req.body.question.keywords
     });
 
-    //sistemo gli allegati, author da recuoerare da session
+    //sistemo gli allegati, author da recuperare da session
     if(req.body.question.questionAttachement) {
         var path = upload.save(author, req.body.question.questionAttachement, question._id);
         delete req.body.question.attachment;
@@ -118,6 +135,7 @@ exports.test = function (req, res) {
         else
             console.log('domanda salvata correttamente');
     });
+    
     // res.redirect('/Quizzipedia/mgmtQuestion');
     res.send({ result: "done" });
 };

@@ -1,4 +1,4 @@
-angular.module('RequestsManager').directive('requestClass',function(){    
+angular.module('RequestsManager').directive('requestClass',['$window',function($window){    
     return{
       restrict: 'E',
       templateUrl: './public/requests/request_class.html',
@@ -21,7 +21,7 @@ angular.module('RequestsManager').directive('requestClass',function(){
                       $scope.user.role = "Responsabile";
               })
                   .error(function(response){
-                  $window.location.href = '/Quizzipedia/home.html';
+                  $window.location.href = '/Quizzipedia/home';
                   alert("Sessione scaduta");
               });        
           };       
@@ -35,17 +35,26 @@ angular.module('RequestsManager').directive('requestClass',function(){
           }; 
           
           
-          $scope.loadClasses();   
-          
-          
-           /*$scope.sendRoleRequest = function () {                
-                var request = { user : $scope.user._id, institution : $scope.institution, role : $scope.role, message: $scope.message };
+          $scope.loadClasses();
+
+          $scope.setClassId = function (id) {
+
+                $scope.class = id;
                 
-                //$http.post('Definire api', request);
+            };
+          
+          
+           $scope.sendClassRequest = function () {
+
+                var value = { _id : $scope.class };
+                $http.post('/api/requests/add_class_insert_request', value).success(function(response){
+                  alert('Aggiunto correttamente');
+                }).error(function(response){
+                  $window.location.href = '/Quizzipedia/home';
+                });
             };
             
-            */
             
        }
     };
-});
+}]);

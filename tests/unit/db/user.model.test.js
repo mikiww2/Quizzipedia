@@ -51,45 +51,33 @@ describe('user.model.js unit tests :', function() {
             user.password.should.be.a.String().and.be.exactly(password);
             user.tmpPassword.should.be.a.String().and.be.exactly(tmpPassword);
             
-            return user.save(function(err, u, nRow) {
-                should.not.exist(err);
+            return user.save(function(e, u, nRow) {
+                should.not.exist(e);
                 should.exist(u);
-
-                should.exist(u._id);
-                should.exist(u.firstName);
-                should.exist(u.lastName);
-                should.exist(u.password);
-                should.exist(u.tmpPassword);
-
-                u._id.should.be.a.String().and.be.exactly(mail1);
-                u.firstName.should.be.a.String().and.be.exactly(firstName1);
-                u.lastName.should.be.a.String().and.be.exactly(lastName1);
-                u.password.should.be.a.String().and.be.exactly(password);
-                u.tmpPassword.should.be.a.String().and.be.exactly(tmpPassword);
-                
                 should.exist(nRow);
-                
                 nRow.should.be.a.Number().and.be.exactly(1);
                 
-                return User.find({ _id: mail1 }, function (err, uu) {
-                    should.not.exist(err);
+                return User.find({ _id: mail1 }, function (er, uu) {
+                    should.not.exist(er);
                     should.exist(uu);
                     
                     should.exist(uu.length);
                     uu.length.should.be.a.Number().and.be.exactly(1);
                     
                     should.exist(uu[0]);
-                    should.exist(uu[0]._id);
-                    should.exist(uu[0].firstName);
-                    should.exist(uu[0].lastName);
-                    should.exist(uu[0].password);
-                    should.exist(uu[0].tmpPassword);
 
-                    uu[0]._id.should.be.a.String().and.be.exactly(mail1);
-                    uu[0].firstName.should.be.a.String().and.be.exactly(firstName1);
-                    uu[0].lastName.should.be.a.String().and.be.exactly(lastName1);
-                    uu[0].password.should.be.a.String().and.be.exactly(password);
-                    uu[0].tmpPassword.should.be.a.String().and.be.exactly(tmpPassword);
+                    uu = uu[0];
+                    should.exist(uu._id);
+                    should.exist(uu.firstName);
+                    should.exist(uu.lastName);
+                    should.exist(uu.password);
+                    should.exist(uu.tmpPassword);
+
+                    uu._id.should.be.a.String().and.be.exactly(mail1);
+                    uu.firstName.should.be.a.String().and.be.exactly(firstName1);
+                    uu.lastName.should.be.a.String().and.be.exactly(lastName1);
+                    uu.password.should.be.a.String().and.be.exactly(password);
+                    uu.tmpPassword.should.be.a.String().and.be.exactly(tmpPassword);
                     
                     return done();
                 });
@@ -116,43 +104,33 @@ describe('user.model.js unit tests :', function() {
             user.lastName.should.be.a.String().and.be.exactly(lastName1);
             user.password.should.be.a.String().and.be.exactly(password);
 
-            return user.save(function(err, u, nRow) {
-                should.not.exist(err);
+            return user.save(function(e, u, nRow) {
+                should.not.exist(e);
                 should.exist(u);
-
-                should.exist(u._id);
-                should.exist(u.firstName);
-                should.exist(u.lastName);
-                should.exist(u.password);
-                should.not.exist(u.tmpPassword);
-
-                u._id.should.be.a.String().and.be.exactly(mail1);
-                u.firstName.should.be.a.String().and.be.exactly(firstName1);
-                u.lastName.should.be.a.String().and.be.exactly(lastName1);
-                u.password.should.be.a.String().and.be.exactly(password);
-
                 should.exist(nRow);
-
                 nRow.should.be.a.Number().and.be.exactly(1);
 
-                return User.find({ _id: mail1 }, function (err, uu) {
-                    should.not.exist(err);
+                return User.find({ _id: mail1 }, function (er, uu) {
+                    should.not.exist(er);
                     should.exist(uu);
 
                     should.exist(uu.length);
                     uu.length.should.be.a.Number().and.be.exactly(1);
 
                     should.exist(uu[0]);
-                    should.exist(uu[0]._id);
-                    should.exist(uu[0].firstName);
-                    should.exist(uu[0].lastName);
-                    should.exist(uu[0].password);
-                    should.not.exist(uu[0].tmpPassword);
 
-                    uu[0]._id.should.be.a.String().and.be.exactly(mail1);
-                    uu[0].firstName.should.be.a.String().and.be.exactly(firstName1);
-                    uu[0].lastName.should.be.a.String().and.be.exactly(lastName1);
-                    uu[0].password.should.be.a.String().and.be.exactly(password);
+                    uu = uu[0];
+
+                    should.exist(uu._id);
+                    should.exist(uu.firstName);
+                    should.exist(uu.lastName);
+                    should.exist(uu.password);
+                    should.not.exist(uu.tmpPassword);
+
+                    uu._id.should.be.a.String().and.be.exactly(mail1);
+                    uu.firstName.should.be.a.String().and.be.exactly(firstName1);
+                    uu.lastName.should.be.a.String().and.be.exactly(lastName1);
+                    uu.password.should.be.a.String().and.be.exactly(password);
 
                     return done();
                 });
@@ -181,45 +159,34 @@ describe('user.model.js unit tests :', function() {
             user.password.should.be.a.String().and.be.exactly(password);
             user.tmpPassword.should.be.a.String().and.be.exactly(tmpPassword);
 
-            return user.save(function(err, u, nRow) {
-                should.not.exist(err);
+            return user.save(function(e, u, nRow) {
+                should.not.exist(e);
                 should.exist(u);
-
-                should.exist(u._id);
-                should.exist(u.firstName);
-                should.exist(u.lastName);
-                should.exist(u.password);
-                should.exist(u.tmpPassword);
-
-                u._id.should.be.a.String().and.be.exactly(mail2);
-                u.firstName.should.be.a.String().and.be.exactly(firstName2);
-                u.lastName.should.be.a.String().and.be.exactly(lastName2);
-                u.password.should.be.a.String().and.be.exactly(password);
-                u.tmpPassword.should.be.a.String().and.be.exactly(tmpPassword);
-
                 should.exist(nRow);
-
                 nRow.should.be.a.Number().and.be.exactly(1);
 
-                return User.find({ _id: mail2 }, function (err, uu) {
-                    should.not.exist(err);
+                return User.find({ _id: mail2 }, function (er, uu) {
+                    should.not.exist(er);
                     should.exist(uu);
 
                     should.exist(uu.length);
                     uu.length.should.be.a.Number().and.be.exactly(1);
 
                     should.exist(uu[0]);
-                    should.exist(uu[0]._id);
-                    should.exist(uu[0].firstName);
-                    should.exist(uu[0].lastName);
-                    should.exist(uu[0].password);
-                    should.exist(uu[0].tmpPassword);
 
-                    uu[0]._id.should.be.a.String().and.be.exactly(mail2);
-                    uu[0].firstName.should.be.a.String().and.be.exactly(firstName2);
-                    uu[0].lastName.should.be.a.String().and.be.exactly(lastName2);
-                    uu[0].password.should.be.a.String().and.be.exactly(password);
-                    uu[0].tmpPassword.should.be.a.String().and.be.exactly(tmpPassword);
+                    uu = uu[0];
+
+                    should.exist(uu._id);
+                    should.exist(uu.firstName);
+                    should.exist(uu.lastName);
+                    should.exist(uu.password);
+                    should.exist(uu.tmpPassword);
+
+                    uu._id.should.be.a.String().and.be.exactly(mail2);
+                    uu.firstName.should.be.a.String().and.be.exactly(firstName2);
+                    uu.lastName.should.be.a.String().and.be.exactly(lastName2);
+                    uu.password.should.be.a.String().and.be.exactly(password);
+                    uu.tmpPassword.should.be.a.String().and.be.exactly(tmpPassword);
 
                     return done();
                 });
@@ -246,43 +213,33 @@ describe('user.model.js unit tests :', function() {
             user.lastName.should.be.a.String().and.be.exactly(lastName2);
             user.password.should.be.a.String().and.be.exactly(password);
 
-            return user.save(function(err, u, nRow) {
-                should.not.exist(err);
+            return user.save(function(e, u, nRow) {
+                should.not.exist(e);
                 should.exist(u);
-
-                should.exist(u._id);
-                should.exist(u.firstName);
-                should.exist(u.lastName);
-                should.exist(u.password);
-                should.not.exist(u.tmpPassword);
-
-                u._id.should.be.a.String().and.be.exactly(mail2);
-                u.firstName.should.be.a.String().and.be.exactly(firstName2);
-                u.lastName.should.be.a.String().and.be.exactly(lastName2);
-                u.password.should.be.a.String().and.be.exactly(password);
-
                 should.exist(nRow);
-
                 nRow.should.be.a.Number().and.be.exactly(1);
 
-                return User.find({ _id: mail2 }, function (err, uu) {
-                    should.not.exist(err);
+                return User.find({ _id: mail2 }, function (er, uu) {
+                    should.not.exist(er);
                     should.exist(uu);
 
                     should.exist(uu.length);
                     uu.length.should.be.a.Number().and.be.exactly(1);
 
                     should.exist(uu[0]);
-                    should.exist(uu[0]._id);
-                    should.exist(uu[0].firstName);
-                    should.exist(uu[0].lastName);
-                    should.exist(uu[0].password);
-                    should.not.exist(uu[0].tmpPassword);
 
-                    uu[0]._id.should.be.a.String().and.be.exactly(mail2);
-                    uu[0].firstName.should.be.a.String().and.be.exactly(firstName2);
-                    uu[0].lastName.should.be.a.String().and.be.exactly(lastName2);
-                    uu[0].password.should.be.a.String().and.be.exactly(password);
+                    uu = uu[0];
+
+                    should.exist(uu._id);
+                    should.exist(uu.firstName);
+                    should.exist(uu.lastName);
+                    should.exist(uu.password);
+                    should.not.exist(uu.tmpPassword);
+
+                    uu._id.should.be.a.String().and.be.exactly(mail2);
+                    uu.firstName.should.be.a.String().and.be.exactly(firstName2);
+                    uu.lastName.should.be.a.String().and.be.exactly(lastName2);
+                    uu.password.should.be.a.String().and.be.exactly(password);
 
                     return done();
                 });
@@ -435,7 +392,7 @@ describe('user.model.js unit tests :', function() {
 
             User.findByIdAndUpdate(mail1, { $set: { password: 'eee' }}, function(er) {
                 should.not.exist(er);
-                
+
                 return User.findOne({ _id: mail1 }, function(err, uu) {
                     should.not.exist(err);
 
@@ -732,5 +689,11 @@ describe('user.model.js unit tests :', function() {
 
             done();
         });
+    });
+
+    afterEach(function(done) {
+        user = null;
+
+        done();
     });
 });

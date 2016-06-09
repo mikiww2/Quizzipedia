@@ -36,29 +36,5 @@ var questionSchema = new Schema({
 
 }, { strict: true });
 
-//find Questions with topic (scope = collection)
-questionSchema.statics.findQuestionsByTopic = function(topic) {
-  return this.find({ topic: topic });
-};
-
-//find Questions with keywords (scope = collection)
-questionSchema.statics.findQuestionsByKeywords = function(keywords) {
-    var result = this.find();
-    keywords.forEach(function(entry) {
-        result = result.find({ keywords: {$in: entry}});
-    });
-    return result;
-};
-
-//find Questions with difficulty (scope = collection)
-questionSchema.statics.findQuestionsByDifficulty = function(difficulty) {
-  return this.find({ difficulty: difficulty });
-};
-
-//find Questions with author (scope = collection)
-questionSchema.statics.findQuestionsByAuthor = function(author) {
-  return this.find({ author: author });
-};
-
 //export
 module.exports =  mongoose.model('Question', questionSchema);

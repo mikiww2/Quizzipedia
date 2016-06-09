@@ -74,13 +74,15 @@ exports.save = function(user, filename, questionId) {
         if (err)
             console.log(err);
 
-        glob(pattern, { nodir: true }, function (err, files) {
+        glob(pattern, function (err, matches) {
             if(err) {
                 console.log(err);
                 newPathFile = null;
             }
             else {
-                fs.renameSync(files[0], newPathFile, function(err) {
+                console.log("file trovati da salvare");
+                console.log(matches);
+                fs.renameSync(matches[0], { nodir: true }, newPathFile, function(err) {
                     if (err) {
                         console.log(err);
                         newPathFile = null;

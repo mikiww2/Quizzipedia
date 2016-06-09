@@ -10,6 +10,10 @@ module.exports = function (app) {
     questionM.fetch(req, res);
   });
 
+  app.get('/api/question/search',function (req, res, next) {
+    questionM.search(req, res);
+  });
+
   app.post('/api/question/test',function (req, res, next) {
     questionM.test(req, res);
   });

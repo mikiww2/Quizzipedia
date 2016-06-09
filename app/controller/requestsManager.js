@@ -34,7 +34,6 @@ exports.viewRoleRequests = function (req, res) {
 
 	        	});
 	        	setTimeout(function(){
-	        		console.log('userlist');
 							res.send(userlist);
 	        	}, 500);
 
@@ -184,7 +183,7 @@ exports.addInstitutionRoleRequest = function (req, res) {
 exports.addClassInsertRequest = function (req, res) {
 
 		if(req.session.user){
-			Organization.findOne({ 'name': req.body.institution }, function (err,org){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 				if (err) {
 	            console.log('error: ' + err);
 	            res.redirect('/');
@@ -213,7 +212,7 @@ exports.addClassInsertRequest = function (req, res) {
 		        	});
 	       		}
 	        	else{
-	        		console.log('utente già presente');
+	        		console.log('Organizzazione non trovata');
 	        		res.send('/');
 	        	}
 	        }	       		

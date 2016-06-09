@@ -4,7 +4,7 @@ exports.fetch = function (req, res) {
 
 		var response = [];
 
-		if(req.session.user && req.session.user.role == 'director'){
+		if(req.session.user){
 			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 				if (err) {
 	            console.log('error: ' + err);

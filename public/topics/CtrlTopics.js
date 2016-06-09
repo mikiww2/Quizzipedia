@@ -2,20 +2,13 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
     
     
      $scope.loadTopics = function(){
-        
-       $http.get('/api/topic/fetch').success(function(response){
-           
-           
-           
-           var topics = new Topics();
-           
-           for(var i =0; i< response.length; i++){
-               topics.addTopic(response[i]);
-           }
-           
-           $scope.topicsList = topics;
-           
-           
+         $http.get('/api/topic/fetch').success(function(response){
+             
+             var topics = new Topics();
+             for(var i =0; i< response.length; i++){
+                 topics.addTopic(response[i]);
+             }
+             $scope.topicsList = topics;        
        });
       
         //faccio una richiesta al server che mi ritorna un array di topics e assegno l'oggetto a listTopics
@@ -34,7 +27,7 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
     
      $scope.addTopic = function(name){
          //inseriamo il nuovo topic dentro a listTopics e invio una richiesta al server
-         var value = { topicName: name};
+         var value = {topicName: name};
          
 
          //$scope.topicsList.addTopic(name);
@@ -43,6 +36,8 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
                 .success(function(response){
                     //$window.location.href = '/Quizzipedia/topicMgmt';
                     //res_code res_msg
+             
+                    $scope.topicName = null;
              
                     switch(response.res_code){
                         case 0: alert(response.res_msg); break;
@@ -71,6 +66,7 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
              
                     //$window.location.href = '/Quizzipedia/topicMgmt';
              
+                    $scope.topicName = null;
              
                     switch(response.res_code){
                         case 0: alert(response.res_msg); break;

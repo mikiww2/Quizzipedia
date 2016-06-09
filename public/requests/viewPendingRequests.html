@@ -25,8 +25,7 @@
     <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
     <script type="text/javascript" src="./assets/js/urlGetter.js"></script>
       
-    <script type="text/javascript" src="./public/core.js"></script>	
-    <script type="text/javascript"  src="./public/requests/CtrlPendingRR.js" ></script>
+    <script type="text/javascript" src="./public/core.js"></script>    
     <script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
       
     <!-- Directive angular (HEADER)-->
@@ -34,6 +33,9 @@
 	<script src="./public/header/headerLoggedTeacher.js"></script>
     <!--Directive angular (FOOTER)-->
     <script type="text/javascript" src="./public/footer/pageFooter.js"></script>
+    <!--Directive angular (PILLS)-->
+    <script type="text/javascript"  src="./public/requests/pendingRole.js" ></script>
+    <script type="text/javascript"  src="./public/requests/pendingClass.js" ></script>
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -43,43 +45,31 @@
   </head>
 
   <body onload="getUrl()">
-	<div class="container pagewrap">
+	<div class="container pagewrap" ng-controller="CtrlHeader">
         
-        <div ng-controller="CtrlHeader">        
+        <div>        
 		  <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>
           <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
 	  </div>
         
-		<div ng-controller = "CtrlPendingRR">
-			<h4 class="description text-center">Richieste in sospeso</h4>           
-            
-            <div ng-if= "pendingRR.length == 0">Nessuna richiesta pendente</div>
-            
-			<div class="row pt-md" ng-if="pendingRR.length != 0">
-                
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userbox text-center" ng-repeat = "request in pendingRR">
-				<div class="img-box">
-					<img src="./assets/img/portraits/usr1.jpg" class="img-rounded" width="100" height="auto" />
-					<ul class="text-center">
-					<a href="#profile"><li><i class="glyphicon glyphicon-user"></i></li></a>
-					</ul>
-				</div>               
-			<h1>{{request.firstName}} {{request.lastName}}</h1>
-			<p>chiede di diventare <strong>{{request.role}}</strong></p>
-            <p>Messaggio: </p>
-			<div class="btn-group">
-				<button type="button" class="btn btn-success">
-					<span data-placement="top" data-toggle="tooltip" title="Accept"><i class="glyphicon glyphicon-ok" ng-click="acceptRoleRequest(request._id)"></i> </span>
-				</button>
-				<button type="button" class="btn btn-danger">
-					<span data-placement="top" data-toggle="tooltip" title="Refuse"><i class="glyphicon glyphicon-remove" ng-click="discardRoleRequest(request._id)"></i> </span>
-				</button>		
-			</div>
-			</div>
-			<!-- end of single userbox -->	
-                
-			</div>
-		</div>
+        <ul class="nav nav-pills col-md-offset-4 col-sm-offset-3 col-xs-offset-2"  ng-if = "user.role == 'director'">
+			  <li class="active"><a data-toggle="pill" href="#role" >Richieste pendenti di ruolo</a></li>
+			  <li><a data-toggle="pill" href="#class">Richieste pendenti di classe</a></li>
+        </ul>
+        
+        <div ng-if = "user.role == 'teacher'">
+            <h4 class="description text-center">Richieste in sospeso</h4> 
+            <pending-class></pending-class>
+        </div>
+        
+		<div class="tab-content">
+            <div id="role" class="tab-pane fade in active answContainer">
+                <pending-role></pending-role>
+            </div>
+            <div id="class" class="tab-pane fade answContainer"> 
+                <pending-class></pending-class>            
+            </div>
+          </div>
 	</div>
       <page-footer></page-footer>
   </body>

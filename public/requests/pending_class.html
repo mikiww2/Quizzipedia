@@ -1,0 +1,28 @@
+<!-- Pending Class Tab -->             
+            
+            <div ng-if= "pendingCR.length == 0">Nessuna richiesta pendente</div>
+            
+			<div class="row pt-md" ng-if="pendingCR.length != 0">
+                
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userbox text-center" ng-repeat = "request in pendingRR">
+				<div class="img-box">
+					<img src="./assets/img/portraits/usr1.jpg" class="img-rounded" width="100" height="auto" />
+				</div>               
+			<h1>{{request.firstName}} {{request.lastName}}</h1>
+			<p>chiede di diventare docente della classe<strong>{{request.class}}</strong> </p>
+			<div class="btn-group">
+				<button type="button" class="btn btn-success">
+					<span data-placement="top" data-toggle="tooltip" title="Accept"><i class="glyphicon glyphicon-ok" ng-click="acceptClassRequest(request._id)"></i> </span>
+				</button>
+				<button type="button" class="btn btn-danger">
+					<span data-placement="top" data-toggle="tooltip" title="Refuse"><i class="glyphicon glyphicon-remove" ng-click="discardClassRequest(request._id)"></i> </span>
+				</button>		
+			</div>
+			</div>
+			<!-- end of single userbox -->	
+                
+			</div>
+		
+
+
+

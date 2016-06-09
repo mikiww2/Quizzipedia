@@ -47,9 +47,8 @@ exports.fetchNoUserClass = function (req, res) {
 	       				}
 	       				for(var m=0;m<noUserClass.length;m++){
 	       					for(var n=0;n<userClass.length;n++){
-	       						if(noUserClass[m]._id == userClass[n]._id){
-	       							console.log('trovato classe in cui è unserito l\'utente');
-	       							noUserClass.remove(m,1);
+	       						if(noUserClass[m]._id.equals(userClass[n]._id)){
+	       							noUserClass.splice(m,1);
 	       						}
 	       					}
 	       				}

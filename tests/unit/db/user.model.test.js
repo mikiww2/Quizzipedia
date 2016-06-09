@@ -29,7 +29,7 @@ describe('user.model.js unit tests :', function() {
     });
 
     describe('can save', function() {
-        it("user with id  " + mail1 + "with tmpPassword", function(done) {
+        it("user with id " + mail1 + " with tmpPassword", function(done) {
             user = new User({
                 _id: mail1
                 ,firstName: firstName1
@@ -84,7 +84,7 @@ describe('user.model.js unit tests :', function() {
             });
         });
 
-        it("user with id  " + mail1 + "without tmpPassword", function(done) {
+        it("user with id " + mail1 + " without tmpPassword", function(done) {
             user = new User({
                 _id: mail1
                 ,firstName: firstName1
@@ -137,7 +137,7 @@ describe('user.model.js unit tests :', function() {
             });
         });
 
-        it("user with id  " + mail2 + "with tmpPassword", function(done) {
+        it("user with id " + mail2 + " with tmpPassword", function(done) {
             user = new User({
                 _id: mail2
                 ,firstName: firstName2
@@ -193,7 +193,7 @@ describe('user.model.js unit tests :', function() {
             });
         });
 
-        it("user with id  " + mail2 + "without tmpPassword", function(done) {
+        it("user with id " + mail2 + " without tmpPassword", function(done) {
             user = new User({
                 _id: mail2
                 ,firstName: firstName2
@@ -246,7 +246,7 @@ describe('user.model.js unit tests :', function() {
             });
         });
 
-        it("user with same firstName, lastName and password ", function(done) {
+        it("user with same firstName, lastName and password", function(done) {
             return new User({
                 _id: mail1
                 ,firstName: firstName1
@@ -380,7 +380,7 @@ describe('user.model.js unit tests :', function() {
     });
 
     describe('can change', function() {
-        it("change password ", function(done) {
+        it("change password", function(done) {
             user = new User({
                 _id: mail1
                 ,firstName: firstName1
@@ -579,7 +579,7 @@ describe('user.model.js unit tests :', function() {
         });
     });
 
-    describe('getMail ', function() {
+    describe('getMail', function() {
         it(mail1, function(done) {
             user = new User({
                 _id: mail1
@@ -611,7 +611,7 @@ describe('user.model.js unit tests :', function() {
         });
     });
 
-    describe('fullName ', function() {
+    describe('fullName', function() {
         it(mail1, function(done) {
             user = new User({
                 _id: mail1
@@ -661,7 +661,7 @@ describe('user.model.js unit tests :', function() {
         });
     });
 
-    describe('checkPassword ', function() {
+    describe('checkPassword', function() {
         it("expected true", function(done) {
             user = new User({
                 _id: mail1

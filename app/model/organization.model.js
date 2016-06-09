@@ -88,7 +88,7 @@ classSchema.methods.hasClassRequests = function(userMail) {
 
 //user access in class
 var classAccessSchema = new Schema({
-    class: {
+    _id: {
         type: Schema.Types.ObjectId
         ,required: [true, 'class_id is required']
     }

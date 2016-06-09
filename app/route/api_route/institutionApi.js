@@ -10,6 +10,10 @@ module.exports = function (app) {
     institutionM.fetchNoUserInst(req, res);
   });
 
+  app.get('/api/institution/fetch_users_in_inst',function (req, res, next) {
+    institutionM.fetchUsersInInst(req, res);
+  });
+
   app.post('/api/institution/change_inst',function (req, res, next) {
     institutionM.changeInst(req, res);
   });

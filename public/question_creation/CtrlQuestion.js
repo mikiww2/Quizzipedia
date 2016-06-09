@@ -164,42 +164,6 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     
     
-    
-    /*
-         if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    
-
-                    reader.onload = function (e) {
-                        
-                        console.log("chiamato il metodo onload");
-                        console.log(e.target.result);
-                        
-                        if(index == 'null'){
-                            $('#blah')
-                            .attr('src', e.target.result)
-                            .width(150)
-                            .height(200);
-                            
-                        }
-                        else{
-                            $('#blah'+index)
-                            .attr('src', e.target.result)
-                            .width(150)
-                            .height(200);    
-                        }
-                        
-                        
-                        
-                    };
-
-                    reader.readAsDataURL(input.files[0]);
-                }
-    
-    */
-    
-    
-    
     $scope.uploadFiles = function(files,input){
         console.log(files[0]);
         $scope.files = files[0];
@@ -210,52 +174,12 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             }).then(function(response){
                 console.log(response);
             });
-            
-            /*var jq = $.noConflict();
-            
-            var reader = new FileReader();
-            reader.onload = function(e){
-                console.log(e.target.result);
-              jq('#blah').attr('src', e.target.result).width(150).height(200);  
-            };
-            */
-            
-            //reader.readAsDataURL(input.files[0]);
-            
-            
-            
-        }       
+        }
+                   
     };
     
     
-    /*
-    $scope.$on('$locationChangeStart', function(event){
-        console.log("sono stato chiamato");
-        var answer = confirm("Sicuro di voler interrompere la creazione delle domanda?");
-        
-        if(!answer){
-            event.preventDefault();
-        }
-    });
-    */
-    
-    
-   
-/*window.onbeforeunload = function (event) {
-  console.log(event);
-    var answer = confirm('Sei sicura di voler uscire dalla creazione della domanda?');
-    if(typeof event == 'undefined'){
-        event = window.event;
-    }
-    if(event){
-        event.returnValue = answer;
-    }
-    
-    console.log(event);
-    return answer;
-  
-}*/
-   
+ 
     
     $scope.resetQuestion = function(){
         console.log("resetQuestion");
@@ -268,18 +192,21 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         
 
         var json = {type: type, question: question};
+        console.log(json.toJson);
         
        $http.post('/api/question/test',json).success(function(response){
             
-            //$http.get('/api/question/fetch').success(function(response){
-              //  $scope.domande = response;
-            //});
-        
+           /* $http.get('/api/question/fetch').success(function(response){
+                $scope.domande = response;
+            });
+        */
+            
+           
             alert(response.toJson);
         });
     };
     
-    $scope.readURL = $(function (input,index) {
+    $scope.readURL = function (input,index) {
         
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
@@ -309,6 +236,6 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
 
                     reader.readAsDataURL(input.files[0]);
                 }
-            });
+            };
     
 }]);

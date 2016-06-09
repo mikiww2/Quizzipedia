@@ -89,7 +89,7 @@
                 
         
         
-      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)" name="CtrlQuestion.upload_form" novalidate ng-controller="CtrlQuestion">
+      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)" name="CtrlQuestion.upload_form" novalidate ng-controller="CtrlQuestion" ng-init="resetQuestion()">
 		
           
           <input type="button" ng-click="resetQuestion()" value="cancella"/>

@@ -5,9 +5,7 @@ angular.module('RequestsManager').directive ('pendingRole',['$window', function(
         templateUrl: './public/requests/pending_role.html',
         controller: function ($scope, $http) {
             
-            $scope.institution = "Nessun ente selezionato";
             $scope.pendingRR = null;
-            $scope.request = null;
             
             $scope.loadPendingRR = function () {
                 $http.get('/api/requests/view_role_requests').success(function(response) {

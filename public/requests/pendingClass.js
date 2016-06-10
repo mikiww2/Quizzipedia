@@ -5,9 +5,8 @@ angular.module('RequestsManager').directive ('pendingClass',['$window', function
         templateUrl: './public/requests/pending_class.html',
         controller: function ($scope, $http) {
             
-            $scope.pendingCR = null;
-            $scope.request = null;
-            
+            $scope.pendingCR = [];
+           
             $scope.loadPendingCR = function () {
                 $http.get('/api/requests/view_class_requests').success(function(response) {
                     $scope.pendingCR = response;

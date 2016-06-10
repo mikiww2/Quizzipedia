@@ -108,19 +108,19 @@
 			<label for="up" class=" form-control-label">Carica</label><br>
             <input 
                type="file" 
-               ngf-select ="uploadFiles($files)"
+               ngf-select ="uploadFiles($files,'question','null')"
                ng-model="files" 
                name="file" 
                ngf-pattern="'image/*'"
                accept="image/*,audio/*,video/*" 
-               ngf-max-size="20MB"  onchange="angular.element(this).scope().readURL(this,'null')"       
-               /> <!--   onchange="readURL(this,'null')"-->
+               ngf-max-size="20MB"         
+               /> <!--   onchange="angular.element(this).scope().readURL(this,'null')"-->
             
-            <img id ="blah" src="#" class="hidden-block"/> <!-- immagine -->
-            <audio id="audio-preview" controls class="hidden-block" src="#" type="audio/mpeg"> <!-- audio -->
+            <!--<img id ="blah" src="#" class="hidden-block"/> 
+            <audio id="audio-preview" controls class="hidden-block" src="#" type="audio/mpeg"> 
 			</audio>
-			<video id="video-preview" class="hidden-block" width="330" height="auto" controls src="#" type="video/mp4"> <!-- video -->
-			</video>
+			<video id="video-preview" class="hidden-block" width="330" height="auto" controls src="#" type="video/mp4"> <!-- video
+			</video>-->
             
 		</div>
 		<!-- topic-->
@@ -200,7 +200,7 @@
           
           
          
-          {{domande | json}}
+          {{MyMultipleChoiceQ.question.arrayAnswer | json}}
           
           
           

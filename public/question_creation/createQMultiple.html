@@ -45,95 +45,22 @@
                                 <textarea ng-if="answer.textAnswer !== null " type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="answer.textAnswer"></textarea>
                                 
                                 
-                                <input ng-if="answer.attachment !== null" type="file" ngf-select ="uploadFiles($files)" ng-model="files" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" onchange="angular.element(this).scope().readURL(this,'null')" ng-click="Allegati.insertKey($index)">
+                                <input ng-if="answer.attachment !== null" type="file" ngf-select="uploadFiles($files,'answer',{{$index}})" name="file" ngf-pattern="'image/*'" accept="image/*,audio/*,video/*" ngf-max-size="20MB" >
                                 
-                                <img ng-if="answer.attachment !== null" id="'blah' + {{$index}}" src="#"/>
-                                
-                                <!-- onchange="angular.element(this).scope().readURL(this,'null')"-->
-                                
-                            
-            
-            
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                <!--<form ng-if="MyMultipleChoiceQ.question.answerAttachment[$index] !== null" name="uploadForm">
-                                    <input type="file" ngf-select ng-model="picFile" name="file" accept="img/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
-                                    
-                                    <i ng-show="uploadForm.file.$error.required">* required</i>
-                                    <i ng-show="uploadForm.file.$error.maxSize">File troppo grande {{errorFile.size / 1000000|number:1}}MB: max 2MB</i>
-                                    <img ng-show="uploadForm.file.$valid" ngf-thumbnail="picFile" class="thumb">
-                                
-                                    <button  ng-click="uploadPic(picFile)">Upload</button> 
-                                    
-                                    <span class="progress" ng-show="picFile.progress >= 0">
-                                        <div style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'"></div>
-                                    </span>
-                                    <span ng-show="picFile.result">Upload completato</span>
-                                    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-                                    
-                                    {{picFile.result.result.name| json}}
-                                        
-                                    
-                                    
-                                </form>-->
+                                <!-- onchange="angular.element(this).scope().readURL(this,{{$index}})"-->
+                               
                                 
                                 
                                 
                                 <!--a href="#"><i class="glyphicon glyphicon-remove"></i></a>-->
                                 <button class="btn" style="display:inline;" ng-click="MyMultipleChoiceQ.remove($index)"><i class="glyphicon glyphicon-remove"></i></button>
                             </div>
-                            {{Allegati.array | json}}
                             
                         </div>
                             
                         
 					</div>
 				
-                    
-                    
-                    
-                    
-                    
-                    
-                
-
-                    
-                    <!--<div class="answerBlock">
-						<div class="drag">
-							<input type="checkbox" value="answ1">
-							<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1"></textarea>
-							<a href="#"><i class="glyphicon glyphicon-remove"></i></a>
-						</div>
-					</div>
-					<div class="answerBlock">
-						<div class="drag">
-							<input type="checkbox" value="answ2">
-							<textarea type="textarea" placeholder="Answer..." name="ta2" id="ta2" cols="15" rows="1"></textarea>
-							<a href="#"><i class="glyphicon glyphicon-remove"></i></a>
-						</div>
-					</div>
-					<div class="answerBlock">
-						<div class="drag">
-							<input type="checkbox" value="answ3">
-							<video id="video1" height="100" style="padding-left: 5px;" controls="controls" onclick="toggleFullScreen()">
-							<source src="http://html5demos.com/assets/dizzy.mp4">
-							<source src="http://html5demos.com/assets/dizzy.ogv">
-						</video>
-							<a href="#"><i class="glyphicon glyphicon-remove"></i></a>
-						</div>
-					</div>
-					<div class="answerBlock">
-						<div class="drag">
-							<input type="checkbox" value="answ4">
-							<img src="./public/question_creation/test.png" class="resize" id="img1"/>
-							<a href="#" ><i class="glyphicon glyphicon-remove"></i></a>
-						</div>
-					</div> -->
 				</div> 
 		</div>
 	

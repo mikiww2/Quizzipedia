@@ -112,9 +112,9 @@ exports.parse = function (qml){
     var generateRM = function (question) { // teoricamente ok
         var attached = generateAttached(question);
         var stringAnswers = '';
-        for (var item of question.ans) {
+        for (var item of question.arrayAnswer) {
             var stringAttached = generateAttached(item);
-            stringAnswers = stringAnswers + item.answer + '[' + item.isTrue + ']' + stringAttached + '§';
+            stringAnswers = stringAnswers + item.textAnswer + '[' + item.isTrue + ']' + stringAttached + '§';
         }
         if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
             stringAnswers = stringAnswers.substr(0, stringAnswers.length - 1);
@@ -133,7 +133,7 @@ exports.parse = function (qml){
             stringTitle = stringTitle + '§';
         }
         var stringAnswers = '';
-        for (var item of question.ans){
+        for (var item of question.arrayAnswer){
             if (item.text) // se la risposta è testuale
                 stringAnswers = stringAnswers + item.text + '[' + item.id + ']§';
             if (item.attachment) // se la risposta è un media
@@ -190,15 +190,15 @@ exports.parse = function (qml){
         for (var item of arrayAns) {
             var ansTxt = extract(item, '', '['); // estrae il testo della risposta
             var ansIsTrue = extract(item, '[', ']'); // estrate la soluzione della risposta
-            var jsonAnswer = {"answer": ansTxt, "isTrue": ansIsTrue};
+            var jsonAnswer = {"textAnswer": ansTxt, "isTrue": ansIsTrue};
             if (item.includes('{') && item.endsWith('}')){ // se presente allegato nella stringa
-                jsonAnswer.attached = appendAttached(extract(item, '{', '}')); //estrae l'allegato della risposta
+                jsonAnswer.attachment = appendAttached(extract(item, '{', '}')); //estrae l'allegato della risposta
                 //console.log(jsonAnswer.attached);
             }
             arrayJsonAns.push(jsonAnswer);
         }
         //console.log('prova ' + textwoattached);
-        question.ans = arrayJsonAns;
+        question.arrayAnswer = arrayJsonAns;
         qson.question = question;
         return qson;
         };

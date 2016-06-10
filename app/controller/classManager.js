@@ -142,13 +142,16 @@ exports.removeClass = function (req, res) {
 	      else{
 	       	if(org){
 	       		for(var i=0;i<org.classes.length;i++){  //rimuove classe da organization
-	       			if(org.classes[i]._id == req.body._id)
+	       			if(org.classes[i]._id == req.body._id){
+	       				console.log('CLASSE rimossa da lista classi');
 	       				org.classes.splice(i,1);
+	       			}
 	       		}
 
 	       		for(var j=0;j<org.users.length;j++){  //rimuove classe da users
 	       			for(var k=0;k<org.users[j].classes.length;k++){
-	       				org.users[j].classes.splice(k,1);
+	       				if(org.users[j].classes[k]._id == req.body._id)
+	       					org.users[j].classes.splice(k,1);
 	       			}
 	       		}
 	       		

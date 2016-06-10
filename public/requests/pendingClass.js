@@ -9,13 +9,13 @@ angular.module('RequestsManager').directive ('pendingClass',['$window', function
             $scope.request = null;
             
             $scope.loadPendingCR = function () {
-                $http.get('SOME API').success(function(response) {
+                $http.get('/api/requests/view_class_requests').success(function(response) {
                     $scope.pendingCR = response;
                 });
             };  
             
-            $scope.acceptRoleRequest = function (email) {
-                var value = { email: email};
+            $scope.acceptRoleRequest = function (email,clas) {
+                var value = { email: email, class_id: clas};
                 $http.post('/api/requests/accept_class_request', value).success(function(response){
                     $window.location.href = '/Quizzipedia/viewPendingRequests';
                 }).error(function(response){
@@ -23,8 +23,8 @@ angular.module('RequestsManager').directive ('pendingClass',['$window', function
                 });
             };
             
-            $scope.discardRoleRequest = function (email) {
-                var value = { email: email};
+            $scope.discardRoleRequest = function (email,clas) {
+                var value = { email: email, class_id: clas};
                 $http.post('/api/requests/discard_class_request', value).success(function(response){
                     $window.location.href = '/Quizzipedia/viewPendingRequests';
                 }).error(function(response){

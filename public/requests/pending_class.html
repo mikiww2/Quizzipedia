@@ -4,18 +4,18 @@
             
 			<div class="row pt-md" ng-if="pendingCR.length != 0">
                 
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userbox text-center" ng-repeat = "request in pendingRR">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userbox text-center" ng-repeat = "request in pendingCR">
 				<div class="img-box">
 					<img src="./assets/img/portraits/usr1.jpg" class="img-rounded" width="100" height="auto" />
 				</div>               
 			<h1>{{request.firstName}} {{request.lastName}}</h1>
-			<p>chiede di diventare docente della classe<strong>{{request.class}}</strong> </p>
+			<p>chiede di entrare a far parte della classe <strong>{{request.name}}</strong> </p>
 			<div class="btn-group">
 				<button type="button" class="btn btn-success">
-					<span data-placement="top" data-toggle="tooltip" title="Accept"><i class="glyphicon glyphicon-ok" ng-click="acceptClassRequest(request._id)"></i> </span>
+					<span data-placement="top" data-toggle="tooltip" title="Accept"><i class="glyphicon glyphicon-ok" ng-click="acceptClassRequest(request.class_id)"></i> </span>
 				</button>
 				<button type="button" class="btn btn-danger">
-					<span data-placement="top" data-toggle="tooltip" title="Refuse"><i class="glyphicon glyphicon-remove" ng-click="discardClassRequest(request._id)"></i> </span>
+					<span data-placement="top" data-toggle="tooltip" title="Refuse"><i class="glyphicon glyphicon-remove" ng-click="discardClassRequest(request.user,request.class_id)"></i> </span>
 				</button>		
 			</div>
 			</div>

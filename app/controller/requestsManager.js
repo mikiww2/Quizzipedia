@@ -58,9 +58,6 @@ exports.viewClassRequests = function (req, res) {
 
 		var response = [];
 		var teacherclasses = [];
-		var endi = false;
-		var endj = false;
-		var endk = false;
 
 		if(req.session.user && req.session.user.role == 'director'){
 			
@@ -105,28 +102,26 @@ exports.viewClassRequests = function (req, res) {
 				function(callback){
 					console.log('comincia find User');
 					console.log(response.length);
-					for(var i=0;i<response.length;i++){
-						User.find(function (err,users){
-							if (err) {
-			            console.log('error: ' + err);
-			            res.redirect('/');
-				      }
-				      else{
-				       	if(users){
-				       		for(var i=0;i<users.length;i++){
-				       			for(var j=0;j<response.length;j++){
-				       				if(response[j].user == users[i]._id){
-				       					response[j].firstName = users[i].firstName;
-				       					response[j].lastName = users[i].lastName;
-				       					console.log(response[j].firstName);
-				       				}
-				       			}
-				       		}
-									callback();
-				       	}
-							}
-						});
-					}
+					User.find(function (err,users){
+						if (err) {
+		            console.log('error: ' + err);
+		            res.redirect('/');
+			      }
+			      else{
+			       	if(users){
+			       		for(var i=0;i<users.length;i++){
+			       			for(var j=0;j<response.length;j++){
+			       				if(response[j].user == users[i]._id){
+			       					response[j].firstName = users[i].firstName;
+			       					response[j].lastName = users[i].lastName;
+			       					console.log(response[j].firstName);
+			       				}
+			       			}
+			       		}
+			       		callback();
+			       	}
+						}
+					});
 				}],function(err){
 					if(err)
 						console.log(err);
@@ -186,31 +181,29 @@ exports.viewClassRequests = function (req, res) {
 					},
 
 					function(callback){
-						console.log('comincia find User');
-						console.log(response.length);
-						for(var i=0;i<response.length;i++){
-							User.find(function (err,users){
-								if (err) {
-				            console.log('error: ' + err);
-				            res.redirect('/');
-					      }
-					      else{
-					       	if(users){
-					       		for(var i=0;i<users.length;i++){
-					       			for(var j=0;j<response.length;j++){
-					       				if(response[j].user == users[i]._id){
-					       					response[j].firstName = users[i].firstName;
-					       					response[j].lastName = users[i].lastName;
-					       					console.log(response[j].firstName);
-					       				}
-					       			}
-					       		}
-										callback();
-					       	}
-								}
-							});
+					console.log('comincia find User');
+					console.log(response.length);
+					User.find(function (err,users){
+						if (err) {
+		            console.log('error: ' + err);
+		            res.redirect('/');
+			      }
+			      else{
+			       	if(users){
+			       		for(var i=0;i<users.length;i++){
+			       			for(var j=0;j<response.length;j++){
+			       				if(response[j].user == users[i]._id){
+			       					response[j].firstName = users[i].firstName;
+			       					response[j].lastName = users[i].lastName;
+			       					console.log(response[j].firstName);
+			       				}
+			       			}
+			       		}
+			       		callback();
+			       	}
 						}
-					}],function(err){
+					});
+				}],function(err){
 						if(err)
 							console.log(err);
 						else{

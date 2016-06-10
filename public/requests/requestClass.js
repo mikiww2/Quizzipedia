@@ -48,7 +48,7 @@ angular.module('RequestsManager').directive('requestClass',['$window',function($
 
                 var value = { _id : $scope.class };
                 $http.post('/api/requests/add_class_insert_request', value).success(function(response){
-                  alert('Aggiunto correttamente');
+                  $window.location.href = '/Quizzipedia/sendRequest';
                 }).error(function(response){
                   alert(response);
                 });

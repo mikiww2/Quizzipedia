@@ -1,4 +1,4 @@
-angular.module('CreateQuestion').factory('GenericQuestion',[function(){
+angular.module('CreateQuestion').factory('GenericQuestion',['Attachment',function(Attachment){
     
     function GenericQuestion(){
       
@@ -7,7 +7,7 @@ angular.module('CreateQuestion').factory('GenericQuestion',[function(){
         this.description = null; //String
         this.topic = null, //String
         this.difficulty = null; //int
-        this.questionAttachement = null; //String
+        this.questionAttachement = new Attachment(); //String
         this.keywords = []; //String[]
         
         
@@ -34,7 +34,12 @@ angular.module('CreateQuestion').factory('GenericQuestion',[function(){
     };
     
     GenericQuestion.prototype.setQuestionAttachment = function(newAttachment){
-        this.questionAttachement = newAttachment;
+        
+        if(newAttachment instanceof Attachment){
+            this.questionAttachement = newAttachment;    
+        }
+        
+        
     };
     
     GenericQuestion.prototype.setKeyword = function(newArrayKeyword){

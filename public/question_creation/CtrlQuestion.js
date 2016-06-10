@@ -9,7 +9,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     $scope.MyGenericQ ={
         title: null,
         description: null,
-        attachment: null,
+        attachment: new Attachment(),
         topic: null,
         questionType: null,
         difficulty: null,
@@ -17,7 +17,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         reset: function(){ //Non pulisce le keywords
             this.title = null;
             this.description = null;
-            this.attachment = null;
+            this.attachment = new Attachment();
             this.topic = null;
             this.questionType = null;
             this.difficulty = null;
@@ -188,7 +188,8 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             });
             
             if(isQuestion == 'question'){
-                $scope.MyGenericQ.attachment = files[0].name;
+                $scope.MyGenericQ.attachment.setPath(files[0].name);
+                $scope.MyGenericQ.attachment.setType('img');
             }
             else if(isQuestion == 'answer'){
                 if($scope.MyGenericQ.questionType == 'mult'){
@@ -224,11 +225,11 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         console.log(question);
         
         var json = {type: type, question: question};
-        
+       /* 
        $http.post('/api/question/test',json).success(function(response){           
            
             
-        });
+        });*/
     };
     
 			

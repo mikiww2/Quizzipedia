@@ -37,11 +37,19 @@ exports.save = function (req, res) {
     //sistemo gli allegati, author da recuperare da session
     if(req.body.question.questionAttachement) {
         var path = upload.save(author, req.body.question.questionAttachement, question._id);
-        delete req.body.question.attachment;
-        req.body.question.attachment = { // senza x e y
-            type: "img"
-            ,path: path
-        };
+
+        if(path) {
+            console.log("salvataggio file " + path + " riuscito");
+
+            delete req.body.question.attachment;
+            req.body.question.attachment = { // senza x e y
+                type: "img"
+                ,path: path
+            };
+        }
+        else {
+            console.log("salvataggio file " + req.body.question.questionAttachement + " non riuscito");
+        }
     }
 
     //inserisco il qml
@@ -129,13 +137,19 @@ exports.test = function (req, res) {
     console.log(question);
 
     //salvo la domanda
-    question.save(function(err) {
-        if (err)
+    return question.save(function(err) {
+        if (err) {
             console.log('errore nel salvataggio della domanda : ' + err);
-        else
+
+            return res.send({ result: "error" });
+
+        }
+        else {
             console.log('domanda salvata correttamente');
+
+            // res.redirect('/Quizzipedia/mgmtQuestion');
+            return res.send({ result: "done" });
+        }
+
     });
-    
-    // res.redirect('/Quizzipedia/mgmtQuestion');
-    res.send({ result: "done" });
 };

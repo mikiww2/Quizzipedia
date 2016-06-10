@@ -7,7 +7,7 @@ var glob = require("glob"); // pattern matching su fs
 var mkdirp = require('mkdirp'); // crea la cartella se manca
 var fs = require('fs');
 
-
+var author = 'tmpauthor@gmail.com';  //poi da cancellare e recuperare sempre da req.session.user._id
 
 //set storage configuration
 var storageTmp = multer.diskStorage({ //multers disk storage settings
@@ -16,7 +16,7 @@ var storageTmp = multer.diskStorage({ //multers disk storage settings
         }
         , filename: function (req, file, cb) {
             // req.session.user._id
-            cb(null, "nome.utente" + '_' + Date.now() + "_" + file.originalname);
+            cb(null, author + '_' + Date.now() + "_" + file.originalname);
         }
     });
 
@@ -39,7 +39,7 @@ exports.upload = function (req, res, next) {
 
 exports.remove = function (req, res, next) {
     // var user = req.session._id;
-    var user = "nome.utente";
+    var user = author;
     var pattern = config.pathTmpFiles + "/" + user + "_*";
 
     glob(pattern, { nodir: true }, function (err, files) {
@@ -48,7 +48,7 @@ exports.remove = function (req, res, next) {
             res.send({ result: "error" });
         }
         else {
-            console.log("files :");
+            console.log("deleting files :");
             console.log(files);
 
             files.forEach(function(file) {
@@ -67,29 +67,30 @@ exports.save = function(user, filename, questionId) {
     var newPathFile = config.pathFiles + "/" + questionId + "_" + Date.now() + "_" + filename;
     var pattern = config.pathTmpFiles + "/" + user + "_*_" + filename;
 
-    console.log("old pattern file : " + pattern);
-    console.log("new path file : " + newPathFile);
+    // console.log("old pattern file : " + pattern);
+    // console.log("new path file : " + newPathFile);
 
     mkdirp(config.pathFiles, function(err) {
-        if (err)
+        if (err) {
             console.log(err);
-
-        glob(pattern, function (err, matches) {
-            if(err) {
-                console.log(err);
-                newPathFile = null;
-            }
-            else {
-                console.log("file trovati da salvare");
-                console.log(matches);
-                fs.renameSync(matches[0], { nodir: true }, newPathFile, function(err) {
-                    if (err) {
-                        console.log(err);
-                        newPathFile = null;
-                    }
-                });
-            }
-        });
+            return newPathFile = null
+        }
+        else {
+            glob(pattern, function (err, matches) {
+                if(err) {
+                    console.log(err);
+                    newPathFile = null;
+                }
+                else {
+                    fs.rename(matches[0], newPathFile, function(err) {
+                        if (err) {
+                            console.log(err);
+                            newPathFile = null;
+                        }
+                    });
+                }
+            });
+        }
     });
 
     return newPathFile;

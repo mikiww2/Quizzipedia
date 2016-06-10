@@ -205,17 +205,17 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         console.log(question);
         
         var json = {type: type, question: question};
-        /*
+        
        $http.post('/api/question/test',json).success(function(response){
             
-            $http.get('/api/question/fetch').success(function(response){
+            /*$http.get('/api/question/fetch').success(function(response){
                 $scope.domande = response;
             });
-        
+        */
             
            
             
-        });*/
+        });
     };
     
 	//BACKUP ORIGINALE SOLO IMMAGINI
@@ -254,6 +254,8 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
 		//IMMAGINI AUDIO E VIDEO
 	    $scope.readURL = function (input,index) {
 
+            //var imageRegexImg = (/\.(gif|jpg|jpeg|tiff|png)$/i);
+            
 		/* TYPE CHECK */
 		if(input.files[0]) { //IMAGE
 			window.alert("This is an image of type: " + input.files[0].type); //test

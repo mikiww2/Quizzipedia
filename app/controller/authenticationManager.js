@@ -7,22 +7,24 @@ exports.signin = function (req, res) {
 
     var email = req.body.email;
     var pass = req.body.password;
-    User.findOne({'_id': email}, function (err, user) {
+    User.findOne({ '_id': email }, function(err, user) {
         if (err) {
             console.log('error: ' + err);
             res.redirect('/Quizzipedia/signin');
         }
         else {
             if (user) {  //SE TROVA UN UTENTE NEL DB
-                if (user.password == pass) {  //SE LA PASS CORRISPONDE
+                if (user.checkPassword(pass)) {  //SE LA PASS CORRISPONDE
                     console.log('user trovato: ' + user._id + ' con pass corretta');
-                    req.session.user = { };
-                    req.session.user._id = user._id;
-                    req.session.user.firstName = user.firstName;
-                    req.session.user.lastName = user.lastName;
-                    req.session.user.password = user.password;
-                    req.session.user.institution = 'none';
-                    req.session.user.role = 'noRole';
+                    req.session.user = {
+                        _id: user._id
+                        ,firstName: user.firstName
+                        ,lastName: user.lastName
+                        ,password: user.password
+                        ,institution: 'none'
+                        ,role: 'noRole'
+                    };
+
                     console.log(user);
                     res.redirect('/');
                 }
@@ -39,11 +41,11 @@ exports.signin = function (req, res) {
     });
 };
 
-exports.signin_with_token = function (req, res) {
+exports.signin_with_token = function(req, res) {
 
     var email = req.body.email;
     var pass = req.body.password;
-    User.findOne({'_id': email}, function (err, user) {
+    User.findOne({ '_id': email }, function(err, user) {
         if (err) {
             console.log('error: ' + err);
             res.redirect('/Quizzipedia/signin');
@@ -72,7 +74,7 @@ exports.signin_with_token = function (req, res) {
 exports.signup = function (req, res) {
 
     var email = req.body.email;
-    User.findOne({'_id': email}, function (err, user) {
+    User.findOne({ '_id': email }, function(err, user) {
         if (err) {
             console.log('error: ' + err);
             res.redirect('/Quizzipedia/signup');
@@ -84,12 +86,12 @@ exports.signup = function (req, res) {
             }
             else { //SE LA EMAIL NON è PRESENTE NEL DB
                 console.log('account disponibile ' + email);
-                var newUser = new User();
-                newUser.firstName = req.body.firstName;
-                newUser.lastName = req.body.lastName;
-                newUser._id = req.body.email;
-                newUser.password = req.body.password;
-                newUser.save(function (err) {
+                new User({
+                    firstName: req.body.firstName
+                    ,lastName: req.body.lastName
+                    ,_id: req.body.email
+                    ,password: req.body.password
+                }).save(function (err) {
                     if (err) {
                         console.log('errore nel salvataggio utente: ' + err);
                     }
@@ -111,7 +113,7 @@ exports.signup = function (req, res) {
 exports.recoverPswd = function (req, res) {
 
     var email = req.body.email;
-    User.findOne({'_id': email}, function (err, user) {
+    User.findOne({ '_id': email }, function (err, user) {
         if (err) {
             console.log('error: ' + err);
             res.redirect('/Quizzipedia/recover_pswd');

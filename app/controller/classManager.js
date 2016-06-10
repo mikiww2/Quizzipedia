@@ -22,7 +22,7 @@ exports.fetchInstClasses = function (req, res) {
 			});
 		}
 		else res.redirect('/');
-}
+};
 
 exports.fetchNoUserClass = function (req, res) {
 
@@ -60,7 +60,7 @@ exports.fetchNoUserClass = function (req, res) {
 	    	}
 			});
 		}
-}
+};
 
 exports.createClass = function (req, res) {
 
@@ -72,7 +72,7 @@ exports.createClass = function (req, res) {
 				description : req.body.description,
 				name : req.body.name,
 				academicYear : req.body.year
-			}
+			};
 
 			Organization.findOne({ 'name': organization }, function (err,org){
 				if (err) {
@@ -96,7 +96,7 @@ exports.createClass = function (req, res) {
 	    	}
 			});
 		}
-}
+};
 
 exports.updateClass = function (req, res) {
 
@@ -129,7 +129,7 @@ exports.updateClass = function (req, res) {
 			});
 		}
 		else res.redirect('/');
-}
+};
 
 exports.removeClass = function (req, res) {
 
@@ -168,4 +168,4 @@ exports.removeClass = function (req, res) {
 			});
 		}
 		else res.redirect('/');
-}
+};

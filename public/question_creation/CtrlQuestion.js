@@ -225,11 +225,11 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         console.log(question);
         
         var json = {type: type, question: question};
-       /* 
+        
        $http.post('/api/question/test',json).success(function(response){           
            
             
-        });*/
+        });
     };
     
 			

@@ -1,3 +1,4 @@
+var async = require('async');
 var Organization = require('../model/organization.model');
 var User = require('../model/user.model');
 
@@ -50,44 +51,89 @@ exports.viewRoleRequests = function (req, res) {
 		else res.redirect('/');
 }
 
+var callback = function(){ //callback fake x sincronismo
+}
+
 exports.viewClassRequests = function (req, res) {
 
 		var response = [];
+		var endi = false;
+		var endj = false;
+		var endk = false;
 
 		if(req.session.user && req.session.user.role == 'director'){
-			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
-				if (err) {
-	            console.log('error: ' + err);
-	            res.redirect('/');
-	      }
-	      else{
-	       	if(org){
-	       		console.log('sto cercando nell\'organizzazione ' + req.session.user.institution + ' con ruolo direttore');
-       			for(var i=0;i<org.users.length;i++){
-       				if(org.users[i].role == 'teacher')
-       					for(var j=0;j<org.users[i].classes.length;j++){
-	       					if(org.users[i].classes[j].state == 'requested')
-	       						for(var k=0;k<org.classes.length;k++){
-       								if(org.classes[k]._id.equals(org.users[i].classes[j]._id)){
-       									response.push({
-       										user: org.users[i].user,
-       										class_id: org.users[i].classes[j]._id,
-       										description: org.classes[k].description,
-       										name: org.classes[k].name,
-       										academicYear: org.classes[k].academicYear
-       									});
-       								}
-       							}	
-	       				}
-       			}
-       			res.send(response);
-       		}
-       		else{
-       			console.log('Organizzazione non trovata');
-       			res.redirect('/');
-       		}
-		    }
-	    });
+			
+			async.series([
+				function(callback){
+					console.log('comincia find Organization');
+					Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+						if (err) {
+			            console.log('error: ' + err);
+			            res.redirect('/');
+			      }
+			      else{
+			       	if(org){
+			       		console.log('sto cercando nell\'organizzazione ' + req.session.user.institution + ' con ruolo direttore');
+		       			for(var i=0;i<org.users.length;i++){
+		       				if(org.users[i].role == 'teacher')
+		       					for(var j=0;j<org.users[i].classes.length;j++){
+			       					if(org.users[i].classes[j].state == 'requested')
+			       						for(var k=0;k<org.classes.length;k++){
+		       								if(org.classes[k]._id.equals(org.users[i].classes[j]._id)){
+		       									console.log(org.classes[k].name);
+		       									response.push({
+															user: org.users[i].user,
+															class_id: org.users[i].classes[j]._id,
+															name: org.classes[k].name,
+															firstName: null,
+															lastName: null
+														});
+		       								}
+		       							}
+			       				}
+		       			}
+								callback();
+		       		}
+		       		else{
+		       			console.log('Organizzazione non trovata');
+		       		}
+				    }
+			    });
+				},
+
+				function(callback){
+					console.log('comincia find User');
+					console.log(response.length);
+					for(var i=0;i<response.length;i++){
+						User.find(function (err,users){
+							if (err) {
+			            console.log('error: ' + err);
+			            res.redirect('/');
+				      }
+				      else{
+				       	if(users){
+				       		for(var i=0;i<users.length;i++){
+				       			for(var j=0;j<response.length;j++){
+				       				if(response[j].user == users[i]._id){
+				       					response[j].firstName = users[i].firstName;
+				       					response[j].lastName = users[i].lastName;
+				       					console.log(response[j].firstName);
+				       				}
+				       			}
+				       		}
+									callback();
+				       	}
+							}
+						});
+					}
+				}],function(err){
+					if(err)
+						console.log(err);
+					else{
+						res.send(response);
+					}
+				});
+			
 		}
 		else{
 			if(req.session.user && req.session.user.role == 'teacher'){
@@ -117,9 +163,7 @@ exports.viewClassRequests = function (req, res) {
 		       													response.push({
 						       										user: org.users[k].user,
 						       										class_id: org.users[k].classes[h]._id,
-						       										description: org.classes[w].description,
 						       										name: org.classes[w].name,
-						       										academicYear: org.classes[w].academicYear
 						       									});
 						       									console.log("beccato");
 						       								}
@@ -252,7 +296,6 @@ exports.acceptRoleRequest = function (req, res) {
 	       	if(org){
 	       		for(var i=0;i<org.users.length;i++){
 	       			if(org.users[i].user == req.body.email){
-	       				console.log('CAMBIO RUOLO');
 	       				org.users[i].state = 'allowed';
 	       			}
 	       		}
@@ -296,6 +339,42 @@ exports.discardRoleRequest = function (req, res) {
                         res.send('ok');
                     }
                 });
+	       	}
+	      }
+	    });
+	  }
+}
+
+exports.acceptClassRequest = function (req, res) {
+
+		if(req.session.user){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+				if (err) {
+	            console.log('error: ' + err);
+	            res.redirect('/');
+	      }
+	      else{
+	       	if(org){
+	       		for(var i=0;i<org.users.length;i++){
+	       			if(org.users[i].user == req.body.user){
+	       				for(var j=0;j<org.users[i].classes.length;j++){
+	       					if(org.users[i].classes[j]._id.equals(req.body.class_id)){
+	       						console.log('CAMBIO RUOLO');
+	       						org.users[i].state = 'allowed';
+	       					}
+	       				}
+	       			}
+	       		}
+	       		org.save( function (err) {
+                if (err) {
+                    console.log('errore nell\'accettazione della richiesta di classe: ' + err);
+                    res.send('ok');
+                }
+                else {
+                    console.log('richiesta di classe accettata correttamente');
+                    res.send('ok');
+                }
+            });
 	       	}
 	      }
 	    });

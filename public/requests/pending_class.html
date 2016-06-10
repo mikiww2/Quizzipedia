@@ -12,7 +12,7 @@
 			<p>chiede di entrare a far parte della classe <strong>{{request.name}}</strong> </p>
 			<div class="btn-group">
 				<button type="button" class="btn btn-success">
-					<span data-placement="top" data-toggle="tooltip" title="Accept"><i class="glyphicon glyphicon-ok" ng-click="acceptClassRequest(request.class_id)"></i> </span>
+					<span data-placement="top" data-toggle="tooltip" title="Accept"><i class="glyphicon glyphicon-ok" ng-click="acceptClassRequest(request.user,request.class_id)"></i> </span>
 				</button>
 				<button type="button" class="btn btn-danger">
 					<span data-placement="top" data-toggle="tooltip" title="Refuse"><i class="glyphicon glyphicon-remove" ng-click="discardClassRequest(request.user,request.class_id)"></i> </span>

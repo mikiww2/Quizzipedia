@@ -14,8 +14,8 @@ angular.module('RequestsManager').directive ('pendingClass',['$window', function
                 });
             };  
             
-            $scope.acceptRoleRequest = function (email,clas) {
-                var value = { email: email, class_id: clas};
+            $scope.acceptClassRequests = function (email,clas) {
+                var value = { user: email, class_id: clas};
                 $http.post('/api/requests/accept_class_request', value).success(function(response){
                     $window.location.href = '/Quizzipedia/viewPendingRequests';
                 }).error(function(response){
@@ -23,7 +23,7 @@ angular.module('RequestsManager').directive ('pendingClass',['$window', function
                 });
             };
             
-            $scope.discardRoleRequest = function (email,clas) {
+            $scope.discardClassRequest = function (email,clas) {
                 var value = { email: email, class_id: clas};
                 $http.post('/api/requests/discard_class_request', value).success(function(response){
                     $window.location.href = '/Quizzipedia/viewPendingRequests';

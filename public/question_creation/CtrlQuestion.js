@@ -254,11 +254,12 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
 		//IMMAGINI AUDIO E VIDEO
 	    $scope.readURL = function (input,index) {
 
-            var imageRegexImg = (/\.(gif|jpg|jpeg|tiff|png)$/i);
+            var imageRegex = (/\.(gif|jpg|jpeg|tiff|png)$/i);
+            var audioRegex = (/\.(?:wav|mp3)$/i);
             
             
 		/* TYPE CHECK */
-		if(imageRegexImg.test(input.files[0].name)) { //IMAGE
+		if(imageRegex.test(input.files[0].name)) { //IMAGE
 			window.alert("This is an image of type: " + input.files[0].type); //test
 			
 			if (input.files && input.files[0]) {
@@ -293,7 +294,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
 			}
 		} //END OF IMAGE
 		//AUDIO
-		else if(input.files[0].type === "audio/mp3"){	
+		else if(audioRegex.test(input.files[0].name)){	
 			window.alert("This is an audio file of type: " + input.files[0].type); //test
 			
 			if (input.files && input.files[0]) {

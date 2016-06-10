@@ -202,19 +202,20 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
       //salvo la domanda creata        
         
 
-        var json = {type: type, question: question};
-        console.log(json.toJson);
+        console.log(question);
         
+        var json = {type: type, question: question};
+        /*
        $http.post('/api/question/test',json).success(function(response){
             
-           /* $http.get('/api/question/fetch').success(function(response){
+            $http.get('/api/question/fetch').success(function(response){
                 $scope.domande = response;
             });
-        */
+        
             
            
             
-        });
+        });*/
     };
     
 	//BACKUP ORIGINALE SOLO IMMAGINI
@@ -254,7 +255,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
 	    $scope.readURL = function (input,index) {
 
 		/* TYPE CHECK */
-		if(input.files[0].type === "image/png") { //IMAGE
+		if(input.files[0]) { //IMAGE
 			window.alert("This is an image of type: " + input.files[0].type); //test
 			
 			if (input.files && input.files[0]) {

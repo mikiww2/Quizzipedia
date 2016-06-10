@@ -35,8 +35,8 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         question: new MultipleChoiceQ(),
         size: 0,
         create: function(index){ //per i textarea
-            var x = new AnswerMultipleChoice();
-            this.question.addAnswer(x);
+            
+            this.question.addAnswer(new AnswerMultipleChoice());
             this.question.arrayAnswer[index].textAnswer = "";
             this.size = this.size +1;
         },
@@ -49,22 +49,18 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             this.question.addAnswer(x);
             this.question.setEmptyAttachment(index);
             this.size = this.size + 1;
+        },
+        setNameAttachment: function(index,name){
+            this.question.setNameAttachment(index,name);  
+        },
+        setTypeAttachment: function(index,type){
+            this.question.setTypeAttachment(index,type);
         }
+        
         
         
         
     };
-    
-    
-    $scope.Allegati = {
-        array: new Array(),
-        elementSelected: null,
-        insertKey: function(index){
-            this.array[index.toString()] = index;
-            this.elementSelected = index;
-        }
-        
-    }
     
    
    
@@ -111,7 +107,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             case "mtch": $scope.saveMatchingQ($scope.MyGenericQ,$scope.MyMatchingQ); break;
             case "cmpl": $scope.saveCompletionQ($scope.MyGenericQ,$scope.MyCompletionQ); break;
             case "open": $scope.saveShortAnswerQ($scope.MyGenericQ,$scope.MyShortAnswerQ); break;
-            case "mult": $scope.saveMultipleChoiceQ($scope.MyGenericQ,$scope.MyMultipleChoiceQ); break;
+            case "mult": $scope.saveMultipleChoiceQ($scope.MyGenericQ,$scope.MyMultipleChoiceQ.question); break;
             case "trfs": $scope.saveTrueFalseQ($scope.MyGenericQ,$scope.MyTrueFalseQ); break;
             default: alert("This question type doesn't exist");
         }
@@ -155,7 +151,12 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     };
     
     $scope.saveMultipleChoiceQ = function(generic,multipleChoice){
-       
+       setGenericPart(generic,multipleChoice);
+        
+        $scope.save(multipleChoice,generic.questionType);
+        generic.reset();
+        $scope.MyMultipleChoiceQ.question = new MultipleChoiceQ();
+        $scope.MyMultipleChoiceQ.size = 0;
     };
     
     
@@ -175,7 +176,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     
     
-    $scope.uploadFiles = function(files,input){
+    $scope.uploadFiles = function(files,isQuestion,index){
         console.log(files[0]);
         $scope.files = files[0];
         if (files[0]){
@@ -185,6 +186,25 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             }).then(function(response){
                 
             });
+            
+            if(isQuestion == 'question'){
+                $scope.MyGenericQ.attachment = files[0].name;
+            }
+            else if(isQuestion == 'answer'){
+                if($scope.MyGenericQ.questionType == 'mult'){
+                    $scope.MyMultipleChoiceQ.setNameAttachment(index,files[0].name);
+                    
+                    var imgRegExp = new RegExp(/^image/g);
+                    if(files[0].type.search(imgRegExp) != -1){ //imgRegExp.test(files[0].type) != -1
+                        $scope.MyMultipleChoiceQ.question.setTypeAttachment(index,'img');
+                    }
+                    
+                }
+            }
+            
+            
+            
+            
         }
                    
     };
@@ -201,65 +221,39 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     $scope.save = function(question, type){
       //salvo la domanda creata        
         
-
         console.log(question);
         
         var json = {type: type, question: question};
         
-       $http.post('/api/question/test',json).success(function(response){
-            
-            /*$http.get('/api/question/fetch').success(function(response){
-                $scope.domande = response;
-            });
-        */
-            
+       /*$http.post('/api/question/test',json).success(function(response){           
            
             
-        });
+        });*/
     };
     
-	//BACKUP ORIGINALE SOLO IMMAGINI
-   /* $scope.readURL = function (input,index) {
-        
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    
-                    reader.onload = function (e) {
-                        
-                        if(index == 'null'){
-                            $('#blah')
-                            .attr('src', e.target.result)
-                            .height(140)
-							.width(auto);
-                            
-                        }
-                        else{
-                            $('#blah'+index)
-                            .attr('src', e.target.result)
-                            .height(140)
-							.width(auto);    
-                        }                      
-
-                    };
-
-                    reader.readAsDataURL(input.files[0]);
-					$('#blah').show();
-                }
-				
-				else {
-					$('#blah').hide(); 
-				}
-            };*/
 			
-		//IMMAGINI AUDIO E VIDEO
-	    $scope.readURL = function (input,index) {
+	
+	
+    
+}]);
+
+
+
+
+
+
+
+
+
+	//IMMAGINI AUDIO E VIDEO
+	 /*   $scope.readURL = function (input,index) {
 
             var imageRegex = (/\.(gif|jpg|jpeg|tiff|png)$/i);
             var audioRegex = (/\.(?:wav|mp3)$/i);
             
             
-		/* TYPE CHECK */
-		if(imageRegex.test(input.files[0].name)) { //IMAGE
+		
+		if(input.files && imageRegex.test(input.files[0].name)) { //IMAGE
 			window.alert("This is an image of type: " + input.files[0].type); //test
 			
 			if (input.files && input.files[0]) {
@@ -294,7 +288,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
 			}
 		} //END OF IMAGE
 		//AUDIO
-		else if(audioRegex.test(input.files[0].name)){	
+		else if(input.files && audioRegex.test(input.files[0].name)){	
 			window.alert("This is an audio file of type: " + input.files[0].type); //test
 			
 			if (input.files && input.files[0]) {
@@ -331,7 +325,4 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
 			else {
 				$('#video-preview').hide(); 
 			}
-		} //END OF VIDEO
-	};
-    
-}]);
+		} */

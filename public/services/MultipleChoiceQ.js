@@ -19,8 +19,10 @@ angular.module('CreateQuestion').factory('MultipleChoiceQ',['GenericQuestion','A
         
     };
     
+    MultipleChoiceQ.prototype = GenericQuestion.prototype;
+    
     MultipleChoiceQ.prototype.addAnswer = function(answer){ //answer: AnswerMultipleChoice
-      this.arrayAnswer.push(answer);  
+      this.arrayAnswer.push(answer);
     };
     
     MultipleChoiceQ.prototype.setEmptyAttachment = function(index){
@@ -40,6 +42,14 @@ angular.module('CreateQuestion').factory('MultipleChoiceQ',['GenericQuestion','A
         return this.arrayAnswer;  
     };
     
+    MultipleChoiceQ.prototype.setNameAttachment = function(index,name){
+        this.arrayAnswer[index].setAttachmentPath(name);
+        
+    };
+    
+    MultipleChoiceQ.prototype.setTypeAttachment = function(index,type){
+      this.arrayAnswer[index].setAttachmentType(type);  
+    };
     
     
     return MultipleChoiceQ;

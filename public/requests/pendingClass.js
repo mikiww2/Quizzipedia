@@ -24,7 +24,7 @@ angular.module('RequestsManager').directive ('pendingClass',['$window', function
             };
             
             $scope.discardClassRequest = function (email,clas) {
-                var value = { email: email, class_id: clas};
+                var value = { user: email, class_id: clas};
                 $http.post('/api/requests/discard_class_request', value).success(function(response){
                     $window.location.href = '/Quizzipedia/viewPendingRequests';
                 }).error(function(response){

@@ -26,7 +26,8 @@ exports.viewRoleRequests = function (req, res) {
 			       			if(org.users[i].state == 'requested')
 			       				userlist.push({
 			       					user: org.users[i].user,
-			       					message: org.users[i].message
+			       					message: org.users[i].message,
+			       					role: org.users[i].role
 			       				});
 			       		}
 			       		callback();
@@ -50,7 +51,6 @@ exports.viewRoleRequests = function (req, res) {
 	        					if(userlist[i].user == users[j]._id){
 	        						userlist[i].firstName = users[j].firstName;
 	        						userlist[i].lastName = users[j].lastName;
-	        						userlist[i].role = users[j].role;
 	        					}
 	        				}
 	        			}

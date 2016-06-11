@@ -45,7 +45,7 @@
   </head>
 
   <body>
-	<div class="container pagewrap">
+	<div class="pagewrap">
         
         <div ng-controller="CtrlHeader">        
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
@@ -68,29 +68,31 @@
             </ol>
         </div>
         
-		<form class="form" action="/api/profile/set_pswd" method="post">
-			<div class="text-center"> 
-				<h3 class="formTitle description">Cambia password</h3>
-			</div>
-			
-			<div class="form-group row">
-				<label for="inputOldPassword" class=" form-control-label small" style="width:auto">Password corrente</label>
-				<input type="password" name="oldPswd" class="form-control" id="inputOldPassword" placeholder="Password corrente" value="{{ recovering ? user.password : emptystring }}" required>
-			</div>
+		<div class="container">
+			<form class="form" action="/api/profile/set_pswd" method="post">
+				<div class="text-center"> 
+					<h3 class="formTitle description">Cambia password</h3>
+				</div>
+				
+				<div class="form-group row">
+					<label for="inputOldPassword" class=" form-control-label small" style="width:auto">Password corrente</label>
+					<input type="password" name="oldPswd" class="form-control" id="inputOldPassword" placeholder="Password corrente" value="{{ recovering ? user.password : emptystring }}" required>
+				</div>
 
-			<div class="form-group row">
-				<label for="inputNewPassword" class=" form-control-label small" style="width:auto">Nuova password</label>
-				<input type="password" name="newPswd1" class="form-control" id="inputNewPassword" placeholder="Nuova password" required>
-			</div>
-			
-			<div class="form-group row">
-				<label for="inputConfirmNewPassword" class=" form-control-label small" style="width:auto">Conferma nuova password</label>
-				<input type="password" name="newPswd2" class="form-control" id="inputConfirmNewPassword" placeholder="Conferma nuova password" required>
-			</div>
-			
-			<!-- <span class="help-block"><p id="characterLeft" class="help-block ">Password must be [rules]</p></span> -->
-		<button id="submitPwd" type="submit" class="btn btn-primary pull-right">Conferma</button>
-		</form>
+				<div class="form-group row">
+					<label for="inputNewPassword" class=" form-control-label small" style="width:auto">Nuova password</label>
+					<input type="password" name="newPswd1" class="form-control" id="inputNewPassword" placeholder="Nuova password" required>
+				</div>
+				
+				<div class="form-group row">
+					<label for="inputConfirmNewPassword" class=" form-control-label small" style="width:auto">Conferma nuova password</label>
+					<input type="password" name="newPswd2" class="form-control" id="inputConfirmNewPassword" placeholder="Conferma nuova password" required>
+				</div>
+				
+				<!-- <span class="help-block"><p id="characterLeft" class="help-block ">Password must be [rules]</p></span> -->
+			<button id="submitPwd" type="submit" class="btn btn-primary pull-right">Conferma</button>
+			</form>
+		</div>
  <!-- end of form -->
 	</div>
       <page-footer></page-footer>

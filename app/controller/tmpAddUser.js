@@ -6,19 +6,19 @@ var User = require('../model/user.model');
 var database = require('../../config/database');
 mongoose.connect(database.localUrl);
 
-var orgName = "Scuola Guida Montello1";  //inserire il nome dell'istituto nel quale inserire l'utente
+var orgName = "Università di Padova";  //inserire il nome dell'istituto nel quale inserire l'utente
 
 var userInOrg = {
-      	          "user" : "a@gmail.com", //attenzione inserire la stessa mail sia qui che sotto in userInUsers nel campo _id
-                	"role" : "student",
+      	          "user" : "boss@gmail.com", //attenzione inserire la stessa mail sia qui che sotto in userInUsers nel campo _id
+                	"role" : "director",
                 	"message" : "commento",
                   "state" : "allowed"
                 };
 
 var userInUsers = {
-                    "_id" : "a@gmail.com",  //idem come sopra deve coincidere con user di userInOrg
-                    "firstName" : "Ciccio",
-                    "lastName" : "Pasticcio",
+                    "_id" : "boss@gmail.com",  //idem come sopra deve coincidere con user di userInOrg
+                    "firstName" : "Director",
+                    "lastName" : "Buddy",
                     "password" : "123456789"
                   };
 

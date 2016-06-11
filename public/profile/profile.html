@@ -45,7 +45,7 @@
 
   <body>   
       
-	<div class="container pagewrap">
+	<div class="pagewrap">
         
     <div ng-controller="CtrlHeader">        
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
@@ -65,7 +65,7 @@
             </ol>
         </div> 
     
-      <div class="row" ng-controller="CtrlUserManager">
+      <div class="row container" ng-controller="CtrlUserManager">
       <div class="col-md-10 col-md-offset-1">
         <div class="col-lg-12">
           <h4 class="description text-center">PROFILO</h4>

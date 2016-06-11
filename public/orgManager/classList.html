@@ -41,7 +41,7 @@
   </head>
 
   <body>
-	<div class="container pagewrap">
+	<div class="pagewrap">
         
     <div ng-controller="CtrlHeader">        
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
@@ -50,7 +50,7 @@
           <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
 	</div>
         
-	<div class="list-group" id="classes">
+	<div class="list-group container" id="classes">
 			 <a href="#" class="list-group-item"><span class="important">Biologia </span> <!-- linkare a viewClassMembers -->
 				<span class="pull-right">
 					<i class="glyphicon glyphicon-education"></i>

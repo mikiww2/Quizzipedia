@@ -11,7 +11,7 @@ angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$sco
     };
     
     $scope.createClass = function() {
-        var request = { description : $scope.myClass.getDescription(), name : $scope.myClass.getName(), year : $scope.myClass.getAcademicYear()};
+        var request = { description : $scope.myClass.getDescription(), name : $scope.myClass.getName(), academicYear : $scope.myClass.getAcademicYear()};
         $http.post('/api/class/create_class', request); 
         $scope.classes.push(request);
         $scope.myClass = new Class();       

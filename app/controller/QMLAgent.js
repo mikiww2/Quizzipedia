@@ -95,7 +95,6 @@ exports.parse = function (qml){
             default:
                 return 'error! question type not supported by parser';
         }
-        //qson = {'type': type, 'text': text, 'ans': answer};
         return qson;
     }
     else
@@ -205,11 +204,9 @@ exports.parse = function (qml){
             var jsonAnswer = {"textAnswer": ansTxt, "isTrue": ansIsTrue};
             if (item.includes('{') && item.endsWith('}')){ // se presente allegato nella stringa
                 jsonAnswer.attachment = appendAttached(extract(item, '{', '}')); //estrae l'allegato della risposta
-                //console.log(jsonAnswer.attached);
             }
             arrayJsonAns.push(jsonAnswer);
         }
-        //console.log('prova ' + textwoattached);
         question.arrayAnswer = arrayJsonAns;
         qson.question = question;
         return qson;
@@ -232,7 +229,6 @@ exports.parse = function (qml){
             }
             arrayJsonTitle.push(jsonTitle);
         }
-        question.title = arrayJsonTitle;
         var answer = extract(qml, '#a#', '#££#'); //estrae la stringa delle risposte
         var arrayAnswers = answer.split('§'); //array che contiene le stringhe delle risposte
         var arrayJsonAns = []; //conterrà i json delle risposte
@@ -247,6 +243,7 @@ exports.parse = function (qml){
                 jsonAns.text = answerValue;
             arrayJsonAns.push(jsonAns);
         }
+        question.title = arrayJsonTitle;
         question.ans = arrayJsonAns;
         qson.question = question;
         return qson;
@@ -278,7 +275,6 @@ exports.parse = function (qml){
             var id = extract(item, '[', ']');
             arrayJsonTitle.push({'text': txt, 'id': id});
         }
-        question.title = arrayJsonTitle;
         var answer = extract(qml, '#a#', '#££#'); //estrae la stringa delle risposte
         var arrayAnswers = answer.split('§'); //array che contiene le stringhe delle risposte
         var arrayJsonAns = []; //conterrà i json delle risposte
@@ -287,6 +283,7 @@ exports.parse = function (qml){
             var id = extract(item, '[', ']');
             arrayJsonAns.push({'text': txt, 'id': id});
         }
+        question.title = arrayJsonTitle;
         question.ans = arrayJsonAns;
         qson.question = question;
         return qson;

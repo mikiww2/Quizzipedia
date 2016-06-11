@@ -10,6 +10,10 @@ module.exports = function (app) {
     classM.fetchTeacherClassesDetails(req, res);
   });
 
+  app.get('/api/class/fetch_class_members',function (req, res, next) {
+    classM.fetchClassMembers(req, res);
+  });
+
 	app.get('/api/class/fetch_inst_classes',function (req, res, next) {
     classM.fetchInstClasses(req, res);
   });

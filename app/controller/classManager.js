@@ -218,17 +218,51 @@ exports.fetchClassMembers = function (req, res) {
 		else res.redirect('/');
 }
 
+exports.removeFromClass = function (req, res) {
+
+		if(req.session.user && (req.session.user.role == 'director' || req.session.user.role == 'teacher')){
+			Organization.findOne({ 'name': organization }, function (err,org){
+				if (err) {
+	            console.log('error: ' + err);
+	            res.redirect('/');
+	      }
+	      else{
+	       	if(org){
+	       		for(var i=0;i<org.users.length;i++){
+	       			if(org.users[i].user == req.body.user)
+	       				for(var j=0;j<org.users[i].classes.length;j++){
+	       					if(org.users[i].classes[j]._id.equals(req.body.class_id))
+	       						org.users[i].classes.splice(j,1);
+	       				}
+	       		}
+	       		org.save( function (err) {
+                if (err) {
+                    console.log('errore nella rimozione dell\'utente della classe: ' + err);
+                    res.send('/');
+                }
+                else {
+                    console.log('utente rimosso dalla classe correttamente');
+                    res.send('/');
+                }
+            });
+	       	}
+	       	else console.log('Nessun ente trovato');
+	    	}
+			});
+		}
+		else res.redirect('/');
+}
+
 exports.createClass = function (req, res) {
 
 		if(req.session.user && req.session.user.role == 'director'){
-			var organization = req.session.user.institution;
 			var classs = {
 				description : req.body.description,
 				name : req.body.name,
 				academicYear : req.body.academicYear
 			};
 
-			Organization.findOne({ 'name': organization }, function (err,org){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 				if (err) {
 	            console.log('error: ' + err);
 	            res.redirect('/');

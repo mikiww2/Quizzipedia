@@ -20,10 +20,11 @@ angular.module('UsersManager').controller ('CtrlUsers',[ '$scope', '$http', func
         $scope.userToRemove = fullUser;
     };
     
-    $scope.removeUser = function (mail) {
-        var value = { user: mail};
+    $scope.removeUser = function () {
+        var value = { user: $scope.userToRemove.user};
+        
         $http.post('/api/institution/remove_from_inst', value).success(function(response){
-            var index = $scope.users.indexOf(mail);
+            var index = $scope.users.indexOf($scope.userToRemove);
             $scope.users.splice(index, 1);
         }).error(function(response){
             alert("Errore");

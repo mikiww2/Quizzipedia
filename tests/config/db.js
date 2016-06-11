@@ -1,3 +1,16 @@
+/*
+ * Nome del file: db.js
+ * Percorso: test/config/db.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  DESCRIZIONE?
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 'use strict';
 
 // Bring Mongoose into the app

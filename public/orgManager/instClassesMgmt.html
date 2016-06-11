@@ -52,8 +52,19 @@
           <header-logged-director></header-logged-director>            
 	    </div>
         
-		<h4 class="description text-center">Gestione ente</h4>
-		<h6 class="text-center">Ente</h6><br>
+        <div class="row-fluid">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>
+                    Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+                </li>
+                <li class="active">
+                    <i class="glyphicon glyphicon-education"> </i> Gestione ente e classi
+                </li>
+            </ol>
+        </div>
+        
+		<h4 class="description text-center">Gestione ente e classi</h4>
+
 		<h3 class="panel-title">Questo ente contiene correntemente <span class="badge">{{classes.length}}</span> classi</h3>
 			<div class="text-right">
 				<span data-placement="top" data-toggle="tooltip" title="Create New"><button type="button" class="btn btn-primary btn-create " data-title="New" data-toggle="modal" data-target="#new"><i class="glyphicon glyphicon-plus"></i> Aggiungi </button></span>

@@ -253,7 +253,7 @@ exports.removeClass = function (req, res) {
                 }
             });
 	       	}
-	       	console.log('Organizzazione non trovata');
+	       	else console.log('Organizzazione non trovata');
 	    	}
 			});
 		}

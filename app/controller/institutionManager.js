@@ -29,7 +29,6 @@ exports.fetchAllInstInfos = function (req,res) {
        				}
        			}
        			for(var k=0;k<orgs[i].classes.length;k++){ //ricavo info per ogni classe
-       				console.log('CICLO');
        				var numClassTeachers = 0;
        				var numClassStudents = 0;
        				for(var l=0;l<orgs[i].users.length;l++){
@@ -137,10 +136,11 @@ exports.fetchUsersInInst = function (req, res) {
 			       	if(org){
 			       		console.log('sto cercando nell\'organizzazione ' + req.session.user.institution + ' con ruolo direttore');
 		       			for(var i=0;i<org.users.length;i++){
-		       				results.push({
-		       					user: org.users[i].user,
-		       					role: org.users[i].role
-		       				});
+		       				if(org.users[i].state == 'allowed')
+			       				results.push({
+			       					user: org.users[i].user,
+			       					role: org.users[i].role
+			       				});
 		       			}
 								callback();
 		       		}

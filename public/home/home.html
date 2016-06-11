@@ -53,7 +53,7 @@
 
   <body >
 	
-      <div class="container pagewrap" ng-controller="CtrlHeader"> 
+      <div class="pagewrap" ng-controller="CtrlHeader"> 
           
           <header-not-logged ng-if="user.role== null"></header-not-logged>          
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>
@@ -68,12 +68,13 @@
                   </li>
               </ol>
           </div> 
-          
-          <home-page-generic ng-if="user.role== null || user.role == 'noRole'"></home-page-generic>
-          <home-page-student ng-if="user.role == 'student'"></home-page-student>          
-          <home-page-teacher ng-if="user.role == 'teacher'"></home-page-teacher>         
-          <home-page-director ng-if="user.role == 'director'"></home-page-director>         
-           
+		  
+          <div class="container">
+			  <home-page-generic ng-if="user.role== null || user.role == 'noRole'"></home-page-generic>
+			  <home-page-student ng-if="user.role == 'student'"></home-page-student>          
+			  <home-page-teacher ng-if="user.role == 'teacher'"></home-page-teacher>         
+			  <home-page-director ng-if="user.role == 'director'"></home-page-director>         
+           </div>
       </div>
       
       <page-footer></page-footer>

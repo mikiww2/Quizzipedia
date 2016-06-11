@@ -41,18 +41,18 @@
 
   <body>
 
-    <div class="container pagewrap">
+    <div class="pagewrap">
         
         <header-not-logged></header-not-logged>
-
-      <form class="form" action="/api/auth/recover_pswd" method="post">
-         <h3 class="form-heading description text-center">Recupero password</h3><br>
-        <label for="inputEmail" class="sr-only">Indirizzo email</label>
-        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Indirizzo email" required autofocus>
-    <small class="text-muted">Una password temporanea sarà inviata all'indirizzo email inserito.</small>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Invia</button>
-      </form>
-
+	<div class="container">
+		  <form class="form" action="/api/auth/recover_pswd" method="post">
+			 <h3 class="form-heading description text-center">Recupero password</h3><br>
+			<label for="inputEmail" class="sr-only">Indirizzo email</label>
+			<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Indirizzo email" required autofocus>
+			<small class="text-muted">Una password temporanea sarà inviata all'indirizzo email inserito.</small>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Invia</button>
+		  </form>
+		</div>
     </div> <!-- /container -->
 
 

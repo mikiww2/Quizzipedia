@@ -40,10 +40,11 @@
 
   <body>
 
-    <div class="container pagewrap">
+    <div class="pagewrap">
 	
 	 <header-not-logged></header-not-logged>
-
+	 
+	<div class="container">
       <form class="form" action="/api/auth/signin" method="post">
         <h3 class="form-heading description text-center">Accedi</h3>
         <label for="inputEmail" class="sr-only">Indirizzo email</label>
@@ -61,7 +62,7 @@
 	  <div class="bottom text-center">
 		Non hai un account? <a href="/Quizzipedia/signup"><b>Registrati!</b></a>
 		</div>
-
+	</div>
     </div> <!-- /container -->
 
 	<page-footer></page-footer>

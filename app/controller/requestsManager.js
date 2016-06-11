@@ -7,49 +7,65 @@ var callback = function(){ //callback fake per sincronismo
 
 exports.viewRoleRequests = function (req, res) {
 
-		var newuser = {};
 		var userlist = [];
 
 		if(req.session.user && req.session.user.role == 'director'){
-			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
-				if (err) {
-	            console.log('error: ' + err);
-	            res.redirect('/');
-	      }
-	      else{
-	       	if(org){
-	       		console.log('sto cercando nell\'organizzazione ' + req.session.user.institution);
-       			org.users.forEach(function(result,index){
-              if(result['state'] == 'requested'){
-              	User.findOne({ '_id': result['user']}, function (err,user){  //err not handled
-              		if(user){
-              			newuser._id = user._id;
-	              		newuser.firstName = user.firstName;
-	              		newuser.lastName = user.lastName;
-	              		if(result['role'] == 'student')
-	              			newuser.role = 'studente';
-	              		else newuser.role = 'docente';
-	              		userlist.push(newuser);
-	              		console.log(newuser);
-	              		newuser = { };
-              		}
-              	});
-              }
 
-	        	});
-	        	setTimeout(function(){
-							res.send(userlist);
-	        	}, 500);
+			async.series([
+				function(callback){
+					console.log('comincia find role Organization');
+					Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+						if (err) {
+			            console.log('error: ' + err);
+			            res.redirect('/');
+			      }
+			      else{
+			       	if(org){
+			       		console.log('sto cercando nell\'organizzazione ' + req.session.user.institution);
+			       		for(var i=0;i<org.users.length;i++){
+			       			if(org.users[i].state == 'requested')
+			       				userlist.push({
+			       					user: org.users[i].user,
+			       					message: org.users[i].message
+			       				});
+			       		}
+			       		callback();
+			       	}
+			       	else console.log('Organizzazione non trovata');
+			      }
+			    });
+				},
 
-       		}
-       		else{
-       			console.log('Organizzazione non trovata');
-       			res.redirect('/');
-       		}
-		            
-       	}
-
-	    });
+				function(callback){
+					console.log('comincia find role User');
+        	User.find(function (err,users){
+        		if (err) {
+			            console.log('error: ' + err);
+			            res.redirect('/');
+			      }
+			      else{
+	        		if(users){
+	        			for(var i=0;i<userlist.length;i++){
+	        				for(var j=0;j<users.length;j++){
+	        					if(userlist[i].user == users[j]._id){
+	        						userlist[i].firstName = users[j].firstName;
+	        						userlist[i].lastName = users[j].lastName;
+	        						userlist[i].role = users[j].role;
+	        					}
+	        				}
+	        			}
+	        			callback();
+	        		}
+	        		else console.log('Nessun utente trovato');
+	        	}
+        	});
+        }],function(err){
+					if(err)
+						console.log(err);
+					else{
+						res.send(userlist);
+					}
+			});
 		}
 		else res.redirect('/');
 }
@@ -63,7 +79,7 @@ exports.viewClassRequests = function (req, res) {
 			
 			async.series([
 				function(callback){
-					console.log('comincia find Organization');
+					console.log('comincia find class Organization');
 					Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 						if (err) {
 			            console.log('error: ' + err);
@@ -92,16 +108,13 @@ exports.viewClassRequests = function (req, res) {
 		       			}
 								callback();
 		       		}
-		       		else{
-		       			console.log('Organizzazione non trovata');
-		       		}
+		       		else console.log('Organizzazione non trovata');
 				    }
 			    });
 				},
 
 				function(callback){
-					console.log('comincia find User');
-					console.log(response.length);
+					console.log('comincia find class User');
 					User.find(function (err,users){
 						if (err) {
 		            console.log('error: ' + err);
@@ -136,7 +149,7 @@ exports.viewClassRequests = function (req, res) {
 
 				async.series([
 					function(callback){
-						console.log('comincia find Organization');
+						console.log('comincia find class Organization');
 						Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 							if (err) {
 				            console.log('error: ' + err);
@@ -181,7 +194,7 @@ exports.viewClassRequests = function (req, res) {
 					},
 
 					function(callback){
-					console.log('comincia find User');
+					console.log('comincia find class User');
 					console.log(response.length);
 					User.find(function (err,users){
 						if (err) {

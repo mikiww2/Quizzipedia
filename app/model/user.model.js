@@ -1,3 +1,16 @@
+/*
+ * Nome del file: user.model.js
+ * Percorso: app/model/user.model.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Model che rappresenta un utente e i metodi di controllo password e recupero mail
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 // 'use strict'; //will load js in strict mode
 
 //declare required

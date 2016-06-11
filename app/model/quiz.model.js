@@ -1,3 +1,16 @@
+/*
+ * Nome del file: quiz.model.js
+ * Percorso: app/model/quiz.model.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Model che rappresenta i quiz nel database e vari metodi associati
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 'use strict';
 
 //declare required

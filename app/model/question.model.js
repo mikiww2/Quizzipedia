@@ -1,3 +1,16 @@
+/*
+ * Nome del file: question.model.js
+ * Percorso: app/model/question.model.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Model che rappresenta le domande nel database
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 'use strict';
 
 //declare required

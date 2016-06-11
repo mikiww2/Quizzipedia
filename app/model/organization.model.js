@@ -5,12 +5,12 @@
  * Data creazione:
  * E-mail: vaulttech.swe@gmail.com
  *
- * Questo file contiene la definizione del modello delle organizzazioni e classi
- * per mongo, oltre a definire alcuni metodi
+ *  Model che rappresenta le organizzazioni e le classi nel database e vari metodi associati
  *
- * Diario delle modifiche:
+ * * Diario delle modifiche:
  *
  */
+ 
 'use strict';
 
 //declare required

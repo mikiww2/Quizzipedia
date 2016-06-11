@@ -5,7 +5,7 @@
  * Data creazione:
  * E-mail: vaulttech.swe@gmail.com
  *
- * Controller che contiene i metodi per generazione e parsing QML <-> JSON
+ *  Controller che contiene i metodi per generazione e parsing QML <-> JSON
  *
  * * Diario delle modifiche:
  *

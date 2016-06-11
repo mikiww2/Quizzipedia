@@ -226,7 +226,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         
         var json = {type: type, question: question};
         
-       $http.post('/api/question/test',json).success(function(response){           
+       $http.post('/api/question/save',json).success(function(response){
            
             
         });

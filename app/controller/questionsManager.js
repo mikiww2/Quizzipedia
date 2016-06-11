@@ -6,7 +6,7 @@ var author = 'tmpauthor@gmail.com';  //poi da cancellare e recuperare sempre da 
 
 exports.save = function (req, res) {
     console.log("body");
-    console.log(req.body);
+    console.log(JSON.stringify(req.body, undefined, 2));
 
     var question = new Question({
         //author: req.session.user._id
@@ -17,39 +17,38 @@ exports.save = function (req, res) {
         ,keywords: req.body.question.keywords
     });
 
-    //sistemo gli allegati
-
-    //upload.save per ogni allegato
-    //qml agent (req.body sporcato con i link degli allegati)
-    // salvataggio nel model
-
-    // per ogni allegato devo avere, circa
-    // attachement = {
-    //     type:
-    //     ,path: upload.save(question.author, req.body.questionAttachement, question._id);
-    //     ,x
-    //     ,y
-    //     , a quale risposta ? bho
-    // };
-
-
-
     //sistemo gli allegati, author da recuperare da session
     if(req.body.question.questionAttachement) {
-        var path = upload.save(author, req.body.question.questionAttachement, question._id);
+        var path = upload.save(author, req.body.question.questionAttachement.path, question._id);
 
         if(path) {
             console.log("salvataggio file " + path + " riuscito");
 
-            delete req.body.question.attachment;
-            req.body.question.attachment = { // senza x e y
-                type: "img"
-                ,path: path
-            };
+            req.body.question.questionAttachement.path = path;
         }
-        else {
-            console.log("salvataggio file " + req.body.question.questionAttachement + " non riuscito");
-        }
+        else
+            console.log("salvataggio file " + req.body.question.questionAttachement.path + " non riuscito");
+    }
+
+    req.body.question.attachment = req.body.question.questionAttachement;
+    delete req.body.question.questionAttachement;
+
+
+
+    if(req.body.question.arrayAnswer) {
+        req.body.question.arrayAnswer.forEach(function(answer) {
+            if(answer.attachment) {
+                var path = upload.save(author, answer.attachment.path, question._id);
+
+                if(path) {
+                    console.log("salvataggio file " + path + " riuscito");
+
+                    answer.attachment.path = path;
+                }
+                else
+                    console.log("salvataggio file " + answer.attachment.path + " non riuscito");
+            }
+        });
     }
 
     //inserisco il qml
@@ -107,49 +106,49 @@ exports.search = function (req, res, next) {
     });
 };
 
-exports.test = function (req, res) {
-    console.log("body");
-    console.log(req.body);
-
-    var question = new Question({
-        //author: req.session.user._id
-        author: author
-        ,description: req.body.question.description
-        ,topic: req.body.question.topic
-        ,difficulty: req.body.question.difficulty
-        ,keywords: req.body.question.keywords
-    });
-
-    //sistemo gli allegati, author da recuperare da session
-    if(req.body.question.questionAttachement) {
-        var path = upload.save(author, req.body.question.questionAttachement, question._id);
-        delete req.body.question.attachment;
-        req.body.question.attachment = { // senza x e y
-            type: "img"
-            ,path: path
-        };
-    }
-
-    //inserisco il qml
-    question.qml = agent.generate(req.body);
-
-    console.log("model della domanda");
-    console.log(question);
-
-    //salvo la domanda
-    return question.save(function(err) {
-        if (err) {
-            console.log('errore nel salvataggio della domanda : ' + err);
-
-            return res.send({ result: "error" });
-
-        }
-        else {
-            console.log('domanda salvata correttamente');
-
-            // res.redirect('/Quizzipedia/mgmtQuestion');
-            return res.send({ result: "done" });
-        }
-
-    });
-};
+// exports.test = function (req, res) {
+//     console.log("body");
+//     console.log(JSON.stringify(req.body, undefined, 2));
+//
+//     var question = new Question({
+//         //author: req.session.user._id
+//         author: author
+//         ,description: req.body.question.description
+//         ,topic: req.body.question.topic
+//         ,difficulty: req.body.question.difficulty
+//         ,keywords: req.body.question.keywords
+//     });
+//
+//     //sistemo gli allegati, author da recuperare da session
+//     if(req.body.question.questionAttachement) {
+//         var path = upload.save(author, req.body.question.questionAttachement, question._id);
+//         delete req.body.question.attachment;
+//         req.body.question.attachment = { // senza x e y
+//             type: "img"
+//             ,path: path
+//         };
+//     }
+//
+//     //inserisco il qml
+//     question.qml = agent.generate(req.body);
+//
+//     console.log("model della domanda");
+//     console.log(question);
+//
+//     //salvo la domanda
+//     return question.save(function(err) {
+//         if (err) {
+//             console.log('errore nel salvataggio della domanda : ' + err);
+//
+//             return res.send({ result: "error" });
+//
+//         }
+//         else {
+//             console.log('domanda salvata correttamente');
+//
+//             // res.redirect('/Quizzipedia/mgmtQuestion');
+//             return res.send({ result: "done" });
+//         }
+//
+//     });
+// };

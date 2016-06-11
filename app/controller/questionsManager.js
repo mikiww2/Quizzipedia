@@ -1,3 +1,16 @@
+/*
+ * Nome del file: questionsManager.js
+ * Percorso: app/controller/questionsManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ * Controller per il salvataggio, caricamento e ricerca di domande nel database
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var Question = require('../model/question.model');
 var upload = require('../controller/uploadManager'); // usata per salvare gli allegati
 var agent = require('./QMLAgent');

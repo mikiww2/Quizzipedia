@@ -1,3 +1,16 @@
+/*
+ * Nome del file: authenticationManager.js
+ * Percorso: app/controller/authenticationManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per il recupero della password, la registrazione account e il login
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var nodemailer = require('nodemailer');
 var randomstring = require("randomstring");
 

@@ -1,3 +1,16 @@
+/*
+ * Nome del file: profileManager.js
+ * Percorso: app/controller/profileManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per il reperimento di un utente, modifica password nel database
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var User = require('../model/user.model');
 var Organization = require('../model/organization.model');
 

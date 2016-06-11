@@ -1,3 +1,16 @@
+/*
+ * Nome del file: searchManager.js
+ * Percorso: app/controller/searchManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ * Controller per la ricerca di quiz e domande nel database
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var Quiz = require('../model/quiz.model');
 var Question = require('../model/question.model');
 

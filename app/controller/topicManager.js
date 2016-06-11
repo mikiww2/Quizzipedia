@@ -1,3 +1,16 @@
+/*
+ * Nome del file: topicManager.js
+ * Percorso: app/controller/topicManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per il reperimento, salvataggio ed eliminazione di argomenti dal database
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var Organization = require('../model/organization.model');
 
 exports.fetch = function (req, res) {

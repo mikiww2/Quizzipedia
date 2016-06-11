@@ -1,3 +1,17 @@
+/*
+ * Nome del file: institutionManager.js
+ * Percorso: app/controller/institutionManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per il recupero di enti, utenti contenuti in un dato ente, enti di un dato utente, 
+ *  cambio di ente durante la sessione, rimozione di un utente da un ente dal database
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var async = require('async');
 var Organization = require('../model/organization.model');
 var User = require('../model/user.model');

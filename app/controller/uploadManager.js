@@ -1,3 +1,16 @@
+/*
+ * Nome del file: uploadManager.js
+ * Percorso: app/controller/uploadManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la gestione degli allegati alle domande
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 "use strict";
 
 var config = require('../../config/upload'); // path delle cartelle upload

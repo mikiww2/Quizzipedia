@@ -1,3 +1,16 @@
+/*
+ * Nome del file: classManager.js
+ * Percorso: app/controller/classManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per il reperimento, creazione, modifica delle classi nel database
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var async = require('async');
 
 var Organization = require('../model/organization.model');

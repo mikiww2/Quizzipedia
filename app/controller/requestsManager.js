@@ -1,3 +1,16 @@
+/*
+ * Nome del file: requestsManager.js
+ * Percorso: app/controller/requestsManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ * Controller per reperire e aggiunger richieste di ruolo, di classe nel database e per l'accettazione/rifiuto di queste
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var async = require('async');
 var Organization = require('../model/organization.model');
 var User = require('../model/user.model');

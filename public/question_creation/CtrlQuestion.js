@@ -1,4 +1,4 @@
-angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ','ShortAnswerQ','MultipleChoiceQ','AnswerMultipleChoice','Attachment','Upload','$window', function($scope, $http, TrueFalseQ,ShortAnswerQ,MultipleChoiceQ,AnswerMultipleChoice,Attachment,Upload,$window){ //dipendenze verso tutti i tipi di domande e Topics
+angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ','ShortAnswerQ','MultipleChoiceQ','AnswerMultipleChoice','Attachment','Upload','$window','CompletionQ', function($scope, $http, TrueFalseQ,ShortAnswerQ,MultipleChoiceQ,AnswerMultipleChoice,Attachment,Upload,$window,CompletionQ){ //dipendenze verso tutti i tipi di domande e Topics
     
     $scope.topics = []; //inizializzato dal server
     
@@ -64,26 +64,15 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
    
    
-    
        
-    $scope.MyCompletionQ ={
-      
-        text: null,
-        correctAnswer: [],
-        wrongAnswer: [],
-        insertAnswer: function(name,correct){ //correct == true allora inserisco in correctAnswer altrimenti wrongAnswer
-        
-        },
-        removeAnswer: function(name,correct){ //correct == true rimuovo la risposta da correctAnswer altrimenti wrongAnswer
-            
-        },
-        reset: function(){
-            this.text = null;
-            this.correctAnswer = [];
-            this.wrongAnswer = [];
-        }
-        
-    };    
+    $scope.MyCompletionQ = new CompletionQ();
+    
+    
+    
+    
+    
+    
+    
     
     $scope.MyMatchingQ = {
       answer: [], //answer temporanea che deve essere inserita in allAnswer

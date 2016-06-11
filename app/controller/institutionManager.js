@@ -19,7 +19,8 @@ exports.fetchAllInstInfos = function (req,res) {
        			var numTeachers = 0;
        			var numStudents = 0;
        			var date = orgs[i].creationDate.toString().substring(0,15);
-       			for(var j=0;j<orgs[i].users.length;j++){
+       			var classesList = [];
+       			for(var j=0;j<orgs[i].users.length;j++){ //ricavo info generali
        				if(orgs[i].users[j].state == 'allowed'){
        					if(orgs[i].users[j].role == 'teacher')
 	       					numTeachers++;
@@ -27,12 +28,38 @@ exports.fetchAllInstInfos = function (req,res) {
 	     						numStudents++;
        				}
        			}
+       			for(var k=0;k<orgs[i].classes.length;k++){ //ricavo info per ogni classe
+       				console.log('CICLO');
+       				var numClassTeachers = 0;
+       				var numClassStudents = 0;
+       				for(var l=0;l<orgs[i].users.length;l++){
+       					if(orgs[i].users[l].state == 'allowed') //se sono utenti accettati nell'ente
+	       					for(var m=0;m<orgs[i].users[l].classes.length;m++){
+	       						if(orgs[i].users[l].classes[m].state == 'allowed') //se sono stati accettati nella classe
+		       						if(orgs[i].users[l].classes[m]._id.equals(orgs[i].classes[k]._id)){
+				       					if(orgs[i].users[l].role == 'teacher')
+					       					numClassTeachers++;
+					     					if(orgs[i].users[l].role == 'student')
+					     						numClassStudents++;
+				       				}
+	       					}
+	       			}
+	       			classesList.push({
+	       				className: orgs[i].classes[k].name,
+	       				classDescription: orgs[i].classes[k].description,
+	       				classAcademicYear: orgs[i].classes[k].academicYear,
+	       				classTeachers: numClassTeachers,
+	       				classStudents: numClassStudents
+	       			});
+       			}
        			results.push({
        				orgName: orgs[i].name,
        				teachers: numTeachers,
        				students: numStudents,
-       				creationDate: date
+       				creationDate: date,
+       				classes: classesList
        			});
+
        		}
        		res.send(results);
        	}
@@ -110,7 +137,10 @@ exports.fetchUsersInInst = function (req, res) {
 			       	if(org){
 			       		console.log('sto cercando nell\'organizzazione ' + req.session.user.institution + ' con ruolo direttore');
 		       			for(var i=0;i<org.users.length;i++){
-		       				results.push(org.users[i]);
+		       				results.push({
+		       					user: org.users[i].user,
+		       					role: org.users[i].role
+		       				});
 		       			}
 								callback();
 		       		}

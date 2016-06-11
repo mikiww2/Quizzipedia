@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="UsersManager">
+<html lang="en" ng-app="UserManager">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	 <script src="./assets/js/jquery-1.11.0.min/jquery-1.11.0.min.js"></script>
+    <script src="./assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
@@ -31,8 +31,9 @@
     <!-- Directive angular (HEADER)-->
     <script src="./public/header/headerLoggedDirector.js"></script>
     <!--Directive angular (FOOTER)-->
-    <script type="text/javascript" src="./public/footer/pageFooter.js"></script> 
-	
+    <script type="text/javascript" src="./public/footer/pageFooter.js"></script>
+
+    <script type="text/javascript" src="./public/users/CtrlUsers.js"></script>	
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -52,61 +53,19 @@
 	</div>
         
 		<h4 class="description text-center">GESTIONE UTENTI</h4>
-		<div class="row userMgmt">
+		<div class="row userMgmt" ng-controller="ctrlUser">
 		<!-- for each here -->
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userbox text-center">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userbox text-center" ng-repeat = "user in users">
 			<div class="img-box">
 				<img src="../../img/portraits/usr2.jpg" class="img-rounded" width="100" height="auto" />
 				<ul class="text-center">
 				<a href="#profile"><li><i class="glyphicon glyphicon-user"></i></li></a>
 				</ul>
 			</div>
-		<h1>John Doe</h1>
-		<p>Docente</p>
+		<h1>{{user.firstName}} {{user.lastName}}</h1>
+		<p>{{user.role}}</p>
 			<div class="btn-group btn-group-sx">
 				<span data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger rmUserBtn pull-right" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span> </button></span>
-			</div>
-		</div>
-		<!-- end of single userbox -->
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userbox text-center">
-			<div class="img-box">
-				<img src="../../img/portraits/usr7.jpg" class="img-rounded" width="100" height="auto" />
-				<ul class="text-center">
-				<a href="#profile"><li><i class="glyphicon glyphicon-user"></i></li></a>
-				</ul>
-			</div>
-		<h1>Jane Doe</h1>
-		<p>Docente</p>
-		<div class="btn-group btn-group-sx">
-			  <span data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger rmUserBtn pull-right" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span> </button></span>
-			</div>
-		</div>
-		<!-- end of single userbox -->
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userbox text-center">
-			<div class="img-box">
-				<img src="../../img/portraits/usr6.jpg" class="img-rounded" width="100" height="auto" />
-				<ul class="text-center">
-				<a href="#profile"><li><i class="glyphicon glyphicon-user"></i></li></a>
-				</ul>
-			</div>
-		<h1>John Doe</h1>
-		<p>Studente</p>
-			<div class="btn-group btn-group-sx">
-				  <span data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger rmUserBtn pull-right" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span> </button></span>
-			</div>
-		</div>
-		<!-- end of single userbox -->
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userbox text-center">
-			<div class="img-box">
-				<img src="../../img/portraits/usr1.jpg" class="img-rounded" width="100" height="auto" />
-				<ul class="text-center">
-				<a href="#profile"><li><i class="glyphicon glyphicon-user"></i></li></a>
-				</ul>
-			</div>
-		<h1>Jane Doe</h1>
-		<p>Studente</p>
-		<div class="btn-group btn-group-sx">
-			  <span data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger rmUserBtn pull-right" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span> </button></span>
 			</div>
 		</div>
 		<!-- end of single userbox -->

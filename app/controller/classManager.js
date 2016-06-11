@@ -114,8 +114,6 @@ exports.fetchTeacherClassesDetails = function (req, res) {
 	       					if(org.users[i].classes[j].state == 'allowed')
 	       						classList.push({
 	       							class_id: org.users[i].classes[j]._id,
-	       							numTeachers: null,
-	       							numStudents: null
 	       						});
 	       				}
 	       		}
@@ -125,8 +123,8 @@ exports.fetchTeacherClassesDetails = function (req, res) {
        				for(var j=0;j<org.users.length;j++){ //scansiono tutti gli utenti
        					if(org.users[j].state == 'allowed') //se sono utenti accettati nell'ente
 	       					for(var k=0;k<org.users[j].classes.length;k++){ //scansiono classi dell'utente
-	       						if(orgs.users[j].classes[k].state == 'allowed') //se sono stati accettati nella classe
-		       						if(org.users[j].classes[k]._id.equals(classList.class_id)){
+	       						if(org.users[j].classes[k].state == 'allowed') //se sono stati accettati nella classe
+		       						if(org.users[j].classes[k]._id.equals(classList[i].class_id)){
 				       					if(org.users[j].role == 'teacher')
 					       					numClassTeachers++;
 					     					if(org.users[j].role == 'student')
@@ -134,10 +132,8 @@ exports.fetchTeacherClassesDetails = function (req, res) {
 				       				}
 	       					}
 	       			}
-	       			classList.push({
-	       				classTeachers: numClassTeachers,
-	       				classStudents: numClassStudents
-	       			});
+	       			classList[i].classTeachers = numClassTeachers;
+	       			classList[i].classStudents = numClassStudents;
        			}
        			for(var i=0;i<classList.length;i++){
        				for(var j=0;j<org.classes.length;j++){ 
@@ -145,7 +141,7 @@ exports.fetchTeacherClassesDetails = function (req, res) {
        						classList[i].className = org.classes[j].name;
        				}
        			}
-       			
+
 	       		res.send(classList);
 	       	}      		
 	    	}

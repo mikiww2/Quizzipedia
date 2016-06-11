@@ -10,6 +10,13 @@ angular.module('RequestsManager').directive ('pendingRole',['$window', function(
             $scope.loadPendingRR = function () {
                 $http.get('/api/requests/view_role_requests').success(function(response) {
                     $scope.pendingRR = response;
+
+                    angular.forEach ($scope.pendingRR, function(user) {
+                        if (user.role == "teacher")
+                            user.role = "Docente";
+                        else if (user.role =="student")
+                           user.role = "Studente";
+                    });
                 });
             };  
             

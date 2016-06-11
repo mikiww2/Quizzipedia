@@ -448,6 +448,7 @@ h6.description, h4.description, h3.description{
 	color: #22A7F0;
 }
 
+#instList .collapse a, #instList .btn  a{
 	text-decoration: none;
 }
 

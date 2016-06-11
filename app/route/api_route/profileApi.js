@@ -1,3 +1,16 @@
+/*
+ * Nome del file: profileApi.js
+ * Percorso: app/route/api_route/profileApi.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Api che gestisce le richieste da parte del client relative al profilo utente
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var profileM = require('../../controller/profileManager');
 
 module.exports = function (app) {

@@ -1,3 +1,16 @@
+/*
+ * Nome del file: topicApi.js
+ * Percorso: app/route/api_route/topicApi.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Api che gestisce le richieste da parte del client relative agli argomenti
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var topicM = require('../../controller/topicManager');
 
 module.exports = function (app) {

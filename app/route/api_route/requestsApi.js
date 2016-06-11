@@ -1,3 +1,16 @@
+/*
+ * Nome del file: requestsApi.js
+ * Percorso: app/route/api_route/requestsApi.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Api che gestisce le richieste da parte del client relative alle richieste di ruolo
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var requestsM = require('../../controller/requestsManager');
 
 module.exports = function (app) {

@@ -1,3 +1,16 @@
+/*
+ * Nome del file: classApi.js
+ * Percorso: app/route/api_route/classApi.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Api che gestisce le richieste da parte del client relative alle classi
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var classM = require('../../controller/classManager');
 
 module.exports = function (app) {

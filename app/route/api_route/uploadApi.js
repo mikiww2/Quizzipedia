@@ -1,3 +1,16 @@
+/*
+ * Nome del file: uploadApi.js
+ * Percorso: app/route/api_route/uploadApi.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Api che gestisce le richieste da parte del client relative agli upload di allegati
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var uploadM = require('../../controller/uploadManager');
 
 module.exports = function (app) {

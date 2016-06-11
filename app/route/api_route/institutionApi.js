@@ -1,3 +1,16 @@
+/*
+ * Nome del file: institutionApi.js
+ * Percorso: app/route/api_route/institutionApi.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Api che gestisce le richieste da parte del client relative agli enti
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var institutionM = require('../../controller/institutionManager');
 
 module.exports = function (app) {

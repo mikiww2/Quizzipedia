@@ -1,3 +1,16 @@
+/*
+ * Nome del file: route.js
+ * Percorso: app/route/route.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Routing che associa le api al client
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var path = require('path');
 
 module.exports = function (app) {

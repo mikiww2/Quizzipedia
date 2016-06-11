@@ -1,3 +1,16 @@
+/*
+ * Nome del file: questionApi.js
+ * Percorso: app/route/api_route/questionApi.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Api che gestisce le richieste da parte del client relative alle domande
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 var questionM = require('../../controller/questionsManager');
 
 module.exports = function (app) {

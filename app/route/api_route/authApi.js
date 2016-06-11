@@ -1,3 +1,17 @@
+/*
+ * Nome del file: authApi.js
+ * Percorso: app/route/api_route/authApi.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Api che gestisce l'autenticazione
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
+
 var authenticationM = require('../../controller/authenticationManager');
 
 module.exports = function (app) {

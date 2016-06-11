@@ -423,6 +423,7 @@ h6.description, h4.description, h3.description{
 
 .answerBlock input[type="checkbox"] {
 	vertical-align: top;
+	margin-top: 10px;
 }
 
 .answerBlock textarea {
@@ -431,6 +432,7 @@ h6.description, h4.description, h3.description{
 	resize: both;
 	min-width: 20px;
 	min-height: 10px;
+	margin-top: 5px;
 }
 
 #classes {
@@ -583,6 +585,12 @@ h6.description, h4.description, h3.description{
 .answerBlock input[type="number"]{
 	display: inline-block; 
 	vertical-align: top;
+} 
+
+.answerBlock input[type="file"]{
+	display: inline-block; 
+	max-width: 200px;
+	margin-top: 5px;
 } 
 
 .matching {

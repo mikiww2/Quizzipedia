@@ -2,6 +2,10 @@ var institutionM = require('../../controller/institutionManager');
 
 module.exports = function (app) {
 
+  app.get('/api/institution/fetch_all_inst_infos',function (req, res, next) {
+    institutionM.fetchAllInstInfos(req, res);
+  });
+
   app.get('/api/institution/fetch_user_inst',function (req, res, next) {
     institutionM.fetchUserInst(req, res);
   });

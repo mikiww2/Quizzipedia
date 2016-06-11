@@ -2,6 +2,10 @@ var classM = require('../../controller/classManager');
 
 module.exports = function (app) {
 
+  app.get('/api/class/fetch_teacher_classes_list',function (req, res, next) {
+    classM.fetchTeacherClassesList(req, res);
+  });
+
 	app.get('/api/class/fetch_inst_classes',function (req, res, next) {
     classM.fetchInstClasses(req, res);
   });

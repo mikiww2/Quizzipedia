@@ -1,4 +1,9 @@
+var async = require('async');
 var Organization = require('../model/organization.model');
+var User = require('../model/user.model');
+
+var callback = function(){ //callback fake per sincronismo
+}
 
 exports.fetchUserInst = function (req, res) {
 
@@ -50,6 +55,66 @@ exports.fetchUserInst = function (req, res) {
 		}
 };
 
+exports.fetchUsersInInst = function (req, res) {
+
+		var results = [];
+		if(req.session.user && req.session.user.role == 'director'){
+			async.series([
+				function(callback){
+					console.log('comincia find Organization');
+					Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+						if (err) {
+			            console.log('error: ' + err);
+			            res.redirect('/');
+			      }
+			      else{
+			       	if(org){
+			       		console.log('sto cercando nell\'organizzazione ' + req.session.user.institution + ' con ruolo direttore');
+		       			for(var i=0;i<org.users.length;i++){
+		       				result.push(org.users[i]);
+		       			}
+								callback();
+		       		}
+		       		else{
+		       			console.log('Organizzazione non trovata');
+		       		}
+				    }
+			    });
+				},
+
+				function(callback){
+					console.log('comincia find User');
+					console.log(results.length);
+					User.find(function (err,users){
+						if (err) {
+		            console.log('error: ' + err);
+		            res.redirect('/');
+			      }
+			      else{
+			       	if(users){
+			       		for(var i=0;i<users.length;i++){
+			       			for(var j=0;j<results.length;j++){
+			       				if(results[j].user == users[i]._id){
+			       					results[j].firstName = users[i].firstName;
+			       					results[j].lastName = users[i].lastName;
+			       				}
+			       			}
+			       		}
+			       		callback();
+			       	}
+						}
+					});
+				}],function(err){
+					if(err)
+						console.log(err);
+					else{
+						res.send(results);
+					}
+				});
+		}
+		else res.redirect('/');
+}
+
 exports.fetchNoUserInst = function (req, res) {
 
 		var results = [];
@@ -88,8 +153,6 @@ exports.fetchNoUserInst = function (req, res) {
 		}
 };
 
-
-
 exports.changeInst = function (req, res) {
 
 		var institution = req.body.organizationName;
@@ -123,4 +186,36 @@ exports.changeInst = function (req, res) {
             }
         }
     });
+};
+
+exports.removeFromInst = function (req, res) {
+
+		if(req.session.user && req.session.user.role == 'director'){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err, org) {
+	        if (err) {
+	            console.log('error: ' + err);
+	            res.redirect('/');
+	        }
+	        else {
+            if (org) {  //SE TROVA UN UTENTE NEL DB
+            	for(var i=0;i<org.users.length;i++){
+            		if(org.users[i].user == req.body.user)
+            			org.users.splice(i,1);
+            	}
+              org.save( function (err) {
+		              if (err) {
+		                  console.log('errore nella rimozione dell\'utente dall\'ente: ' + err);
+		                  res.send('/');
+		              }
+		              else {
+		                  console.log('rimosso l\'utente dall\'ente correttamente');
+		                  res.send('/');
+		              }
+		          });
+            }
+            else console.log('organizzazione non trovata');
+	        }
+	    });
+		}
+		else res.redirect('/');
 };

@@ -55,7 +55,7 @@
 
   <body>
       
-	<div class="container pagewrap"> 
+	<div class="pagewrap"> 
         
         <div ng-controller="CtrlHeader">        
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
@@ -75,7 +75,7 @@
             </ol>
         </div>
 		
-		<div>
+		<div class="container">
 			<ul class="nav nav-pills col-md-offset-4 col-sm-offset-3 col-xs-offset-2">
 			  <li class="active"><a data-toggle="pill" href="#role">Richiedi ruolo in un ente</a></li>
 			  <li><a data-toggle="pill" href="#class">Richiedi entrata in una classe</a></li>

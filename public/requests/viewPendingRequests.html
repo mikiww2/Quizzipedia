@@ -44,31 +44,33 @@
   </head>
 
   <body>
-	<div class="container pagewrap" ng-controller="CtrlHeader">
+	<div class="pagewrap" ng-controller="CtrlHeader">
         
         <div>        
 		  <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>
           <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
 	  </div>
         
-        <ul class="nav nav-pills col-md-offset-4 col-sm-offset-3 col-xs-offset-2"  ng-if = "user.role == 'director'">
-			  <li class="active"><a data-toggle="pill" href="#role" >Richieste pendenti di ruolo</a></li>
-			  <li><a data-toggle="pill" href="#class">Richieste pendenti di classe</a></li>
-        </ul>
-        
-        <div ng-if = "user.role == 'teacher'">
-            <h4 class="description text-center">Richieste in sospeso</h4> 
-            <pending-class></pending-class>
-        </div>
-        
-		<div class="tab-content" ng-if = "user.role == 'director'">
-            <div id="role" class="tab-pane fade in active answContainer">
-                <pending-role></pending-role>
-            </div>
-            <div id="class" class="tab-pane fade answContainer"> 
-                <pending-class></pending-class>            
-            </div>
-          </div>
+		<div class="container">
+			<ul class="nav nav-pills col-md-offset-4 col-sm-offset-3 col-xs-offset-2"  ng-if = "user.role == 'director'">
+				  <li class="active"><a data-toggle="pill" href="#role" >Richieste pendenti di ruolo</a></li>
+				  <li><a data-toggle="pill" href="#class">Richieste pendenti di classe</a></li>
+			</ul>
+			
+			<div ng-if = "user.role == 'teacher'">
+				<h4 class="description text-center">Richieste in sospeso</h4> 
+				<pending-class></pending-class>
+			</div>
+			
+			<div class="tab-content" ng-if = "user.role == 'director'">
+				<div id="role" class="tab-pane fade in active answContainer">
+					<pending-role></pending-role>
+				</div>
+				<div id="class" class="tab-pane fade answContainer"> 
+					<pending-class></pending-class>            
+				</div>
+			  </div>
+		</div>
 	</div>
       <page-footer></page-footer>
   </body>

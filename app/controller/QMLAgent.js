@@ -274,6 +274,8 @@ exports.parse = function (qml){
         var arrayTitles = text.split('§'); //array che contiene le stringhe delle risposte
         var arrayJsonTitle = []; //conterrà i json delle risposte
         for (var item of arrayTitles){
+            var txt = extract(item, '', '[');
+            var id = extract(item, '[', ']');
             arrayJsonTitle.push({'text': txt, 'id': id});
         }
         question.title = arrayJsonTitle;
@@ -281,6 +283,8 @@ exports.parse = function (qml){
         var arrayAnswers = answer.split('§'); //array che contiene le stringhe delle risposte
         var arrayJsonAns = []; //conterrà i json delle risposte
         for (var item of arrayAnswers){
+            var txt = extract(item, '', '[');
+            var id = extract(item, '[', ']');
             arrayJsonAns.push({'text': txt, 'id': id});
         }
         question.ans = arrayJsonAns;

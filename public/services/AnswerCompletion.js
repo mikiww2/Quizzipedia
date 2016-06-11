@@ -3,8 +3,8 @@ angular.module('CreateQuestion').factory('AnswerCompletion',[function(){
     
     function AnswerCompletion(){
       
-        this.text = null;
-        this.id = null;
+        this.text = null; //testo risposta
+        this.id = null; //id del buco corretto
         
     };
     

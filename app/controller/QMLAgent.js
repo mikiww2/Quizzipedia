@@ -152,7 +152,19 @@ exports.parse = function (qml){
     };
 
     var generateCL = function (question) { // da sistemare quando il form sarà comprensibile
-
+        var stringTitle = '';
+        for (var item of question.arrayTitle) {
+            stringTitle = stringTitle + item.text + '[' + item.id + ']' + '§';
+        }
+        if (stringTitle.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
+            stringTitle = stringTitle.substr(0, stringTitle.length - 1);
+        var stringAnswers = '';
+        for (var item of question.arrayAnswer){
+            stringAnswers = stringAnswers + item.text + '[' + item.id + ']' + '§';
+        }
+        if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
+            stringAnswers = stringAnswers.substr(0, stringAnswers.length - 1);
+        return stringTitle + '#a#' + stringAnswers + '#££#';
     };
 }
 
@@ -255,7 +267,28 @@ exports.parse = function (qml){
         return qson;
     };
 
-    var parserCL = function (qml) { // da sistemare con form funzionante
-
+    var parserCL = function (qml) { // manca gestione allegati
+        var qson = {'type': 'mtch'};
+        var question = {}; //creazione json vuoto
+        var text = extract(qml, '#t#', '#a#'); //estrae la stringa della domanda
+        var arrayTitles = text.split('§'); //array che contiene le stringhe delle risposte
+        var arrayJsonTitle = []; //conterrà i json delle risposte
+        for (var item of arrayTitles){
+            var txt = extract(item, '', '[');
+            var id = extract(item, '[', ']');
+            arrayJsonTitle.push({'text': txt, 'id': id});
+        }
+        question.title = arrayJsonTitle;
+        var answer = extract(qml, '#a#', '#££#'); //estrae la stringa delle risposte
+        var arrayAnswers = answer.split('§'); //array che contiene le stringhe delle risposte
+        var arrayJsonAns = []; //conterrà i json delle risposte
+        for (var item of arrayAnswers){
+            var txt = extract(item, '', '[');
+            var id = extract(item, '[', ']');
+            arrayJsonAns.push({'text': txt, 'id': id});
+        }
+        question.ans = arrayJsonAns;
+        qson.question = question;
+        return qson;
     };
 }

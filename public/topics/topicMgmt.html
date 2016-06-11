@@ -48,12 +48,21 @@
       
 	<div class="container text-center pagewrap">
         
-        <div ng-controller="CtrlHeader">        
-          <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
-          <header-logged-student ng-if="user.role == 'student'"></header-logged-student>         
-          <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>         
+        <div ng-controller="CtrlHeader">                
           <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
-	</div>
+        </div>
+        
+        <div class="row-fluid">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>
+                    Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+                </li>
+                <li class="active">
+                    <i class="glyphicon glyphicon-th-list"> </i> Gestione argomenti
+                </li>
+            </ol>
+        </div>               
+
         <div ng-controller="CtrlTopics">
 		<h4 class="description">GESTIONE ARGOMENTI</h4>
 		<div class="row" id="topicList">

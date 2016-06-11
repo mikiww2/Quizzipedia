@@ -6,6 +6,10 @@ module.exports = function (app) {
     classM.fetchTeacherClassesList(req, res);
   });
 
+  app.get('/api/class/fetch_teacher_classes_details',function (req, res, next) {
+    classM.fetchTeacherClassesDetails(req, res);
+  });
+
 	app.get('/api/class/fetch_inst_classes',function (req, res, next) {
     classM.fetchInstClasses(req, res);
   });

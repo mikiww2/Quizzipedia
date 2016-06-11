@@ -57,18 +57,24 @@
           
           <header-not-logged ng-if="user.role== null"></header-not-logged>          
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>
-          <home-page-generic ng-if="user.role== null || user.role == 'noRole'"></home-page-generic>
-          
           <header-logged-student ng-if="user.role == 'student'"></header-logged-student>
-          <home-page-student ng-if="user.role == 'student'"></home-page-student> 
-          
-          <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>
-          <home-page-teacher ng-if="user.role == 'teacher'"></home-page-teacher>
-          
+          <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>          
           <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
-          <home-page-director ng-if="user.role == 'director'"></home-page-director>        
-	
-		</div>
+          
+          <div class="row-fluid">
+              <ol class="breadcrumb" id="breadcrumb">
+                  <li class="active">
+                      Sei in: <i class="glyphicon glyphicon-home"> </i> Home
+                  </li>
+              </ol>
+          </div> 
+          
+          <home-page-generic ng-if="user.role== null || user.role == 'noRole'"></home-page-generic>
+          <home-page-student ng-if="user.role == 'student'"></home-page-student>          
+          <home-page-teacher ng-if="user.role == 'teacher'"></home-page-teacher>         
+          <home-page-director ng-if="user.role == 'director'"></home-page-director>         
+           
+      </div>
       
       <page-footer></page-footer>
   </body>

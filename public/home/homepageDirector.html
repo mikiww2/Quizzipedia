@@ -12,12 +12,12 @@
 										<i class="glyphicon glyphicon-envelope"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge"><span class="label label-danger">{{numberRequests}}</span></div>
+										<div class="huge"><span class="label label-danger">{{pendingRR.length + pendingCR.length}}</span></div>
 										<div>Richieste</div>
 									</div>
 								</div>
 							</div>
-							<a href="#">
+							<a href="/Quizzipedia/viewPendingRequests">
 								<div class="panel-footer">
 									<span class="pull-left">Dettagli</span>
 									<span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
@@ -25,8 +25,7 @@
 								</div>
 							</a>
 						</div>
-					</div>
-					
+					</div>					
 					<!-- panel - users -->
 					<div class="col-lg-6 col-md-6 col-sm-6">
 						<div class="panel panel-default">
@@ -36,12 +35,12 @@
 										<i class="glyphicon glyphicon-user"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge"><span class="label label-danger">{{numberUsers}}</span></div>
+										<div class="huge"><span class="label label-danger">{{users.length}}</span></div>
 										<div>Utenti</div>
 									</div>
 								</div>
 							</div>
-							<a href="#">
+							<a href="removeUser">
 								<div class="panel-footer">
 									<span class="pull-left">Dettagli</span>
 									<span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
@@ -60,12 +59,12 @@
 										<i class="glyphicon glyphicon-th-list"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge"><span class="label label-danger">{{numberTopics}}</span></div>
+										<div class="huge"><span class="label label-danger">{{topics.length}}</span></div>
 										<div>Argomenti</div>
 									</div>
 								</div>
 							</div>
-							<a href="#">
+							<a href="/Quizzipedia/topicMgmt">
 								<div class="panel-footer">
 									<span class="pull-left">Dettagli</span>
 									<span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>
@@ -84,12 +83,12 @@
 										<i class="glyphicon glyphicon-book"></i>
 									</div>
 									<div class="col-xs-9 text-right">
-										<div class="huge"><span class="label label-danger">{{numberClasses}}</span></div>
+										<div class="huge"><span class="label label-danger">{{classes.length}}</span></div>
 										<div>Classi</div>
 									</div>
 								</div>
 							</div>
-							<a href="#">
+							<a href="/Quizzipedia/instClassesMgmt">
 								<div class="panel-footer">
 									<span class="pull-left">Dettagli</span>
 									<span class="pull-right"><i class="glyphicon glyphicon-circle-arrow-right"></i></span>

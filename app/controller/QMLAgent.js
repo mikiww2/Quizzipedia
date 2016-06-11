@@ -152,7 +152,19 @@ exports.parse = function (qml){
     };
 
     var generateCL = function (question) { // da sistemare quando il form sarà comprensibile
-
+        var stringTitle = '';
+        for (var item of question.arrayTitle) {
+            stringTitle = stringTitle + item.text + '[' + item.id + ']' + '§';
+        }
+        if (stringTitle.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
+            stringTitle = stringTitle.substr(0, stringTitle.length - 1);
+        var stringAnswers = '';
+        for (var item of question.arrayAnswer){
+            stringAnswers = stringAnswers + item.text + '[' + item.id + ']' + '§';
+        }
+        if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
+            stringAnswers = stringAnswers.substr(0, stringAnswers.length - 1);
+        return stringTitle + '#a#' + stringAnswers + '#££#';
     };
 }
 

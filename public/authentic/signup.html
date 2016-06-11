@@ -45,6 +45,17 @@
           
         <header-not-logged></header-not-logged>
 	
+	<div class="row-fluid">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>
+                    Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+                </li>
+                <li class="active">
+                    <i class="glyphicon glyphicon-user"> </i> Registrati
+                </li>
+            </ol>
+        </div>
+		
 	<div class="container">
 		<form class="form" ng-submit="user.sendRegistration()">
 			<h3 class="form-heading description text-center">Registrati</h3>
@@ -72,15 +83,10 @@
 			  <label for="inputConfirmPassword" class=" form-control-label small" style="width:auto">Conferma la password</label>
 			  <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Conferma la password" ng-model="user.cpassword" required>
 			</div>
-			<div class="checkbox">
-			  <label>
-				<input type="checkbox" value="notARobot"> Non sono un bot
-			  </label>
-			</div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Registrati</button>
 		  </form>
 		  <div class="bottom text-center">
-			Hai già un account? <a href="#"><b>Accedi!</b></a>
+			Hai già un account? <a href="/Quizzipedia/signin"><b>Accedi!</b></a>
 		  </div>
 		  <div class="spacer"></div>
 		</div>

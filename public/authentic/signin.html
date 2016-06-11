@@ -44,6 +44,17 @@
 	
 	 <header-not-logged></header-not-logged>
 	 
+	 <div class="row-fluid">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>
+                    Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+                </li>
+                <li class="active">
+                    <i class="glyphicon glyphicon-user"> </i> Accedi
+                </li>
+            </ol>
+        </div>
+		
 	<div class="container">
       <form class="form" action="/api/auth/signin" method="post">
         <h3 class="form-heading description text-center">Accedi</h3>
@@ -52,11 +63,6 @@
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
 		 <div class="help-block text-right"><a href="/Quizzipedia/recover_pswd">Hai dimenticato la tua password?</a></div>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Ricordami
-          </label>
-        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Accedi</button>
       </form>
 	  <div class="bottom text-center">

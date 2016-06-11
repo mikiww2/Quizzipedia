@@ -1,6 +1,7 @@
 angular.module('UsersManager').controller ('CtrlUsers',[ '$scope', '$http', function($scope, $http){
     
     $scope.users = [];
+    $scope.userToRemove = null;
     
     $scope.loadUsers = function () {
         $http.get('/api/institution/fetch_users_in_inst').success(function(response) {
@@ -13,6 +14,10 @@ angular.module('UsersManager').controller ('CtrlUsers',[ '$scope', '$http', func
                    user.role = "Studente";
             });
         });
+    };
+
+    $scope.setUserToRemove = function(fullUser) {
+        $scope.userToRemove = fullUser;
     };
     
     $scope.removeUser = function (mail) {

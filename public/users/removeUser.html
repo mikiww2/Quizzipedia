@@ -53,9 +53,7 @@
 	</div>
         
 		<h4 class="description text-center">GESTIONE UTENTI </h4>
-		<div class="row userMgmt" ng-controller="CtrlUsers">
-            
-            {{users}}
+		<div class="row userMgmt">
             
             <div ng-if =  "users.length == 0"> Non ci sono utenti in questo ente</div>
             
@@ -67,7 +65,7 @@
             <h1>{{user.firstName}} {{user.lastName}}</h1>
             <p>{{user.role}}</p>
             <div class="btn-group btn-group-sx">
-				<span data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger rmUserBtn pull-right" data-title="Delete" data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-trash"></span> Rimuovi dall'ente</button></span>
+				<span data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger rmUserBtn pull-right" data-title="Delete" data-toggle="modal" data-target="#delete" ng-click="setUserToRemove(user)"><span class="glyphicon glyphicon-trash"></span> Rimuovi dall'ente</button></span>
 			</div>
 		</div>
 		<!-- end of single userbox -->
@@ -79,14 +77,14 @@
 			<div class="modal-content">
 				<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-				<h4 class="modal-title custom_align" id="Heading">Rimuovi l'utente {{user.firstName}} {{user.lastName}}</h4>
+				<h4 class="modal-title custom_align" id="Heading">Rimuovi l'utente {{userToRemove.firstName}} {{userToRemove.lastName}}</h4>
 			  </div>
 			<div class="modal-body">
 			<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Sei sicuro di voler rimuovere questo utente?</div>
 			   
 			</div>
 				<div class="modal-footer ">
-				<button type="button" class="btn btn-primary" ng-click = "removeUser(user.user)" data-dismiss="modal">Sì</button>
+				<button type="button" class="btn btn-primary" ng-click = "removeUser(userToRemove.user)" data-dismiss="modal">Sì</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
 			  </div>
 				</div>

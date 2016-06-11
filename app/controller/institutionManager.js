@@ -110,7 +110,7 @@ exports.fetchUsersInInst = function (req, res) {
 			       	if(org){
 			       		console.log('sto cercando nell\'organizzazione ' + req.session.user.institution + ' con ruolo direttore');
 		       			for(var i=0;i<org.users.length;i++){
-		       				result.push(org.users[i]);
+		       				results.push(org.users[i]);
 		       			}
 								callback();
 		       		}

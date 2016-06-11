@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="UserManager">
+<html lang="en" ng-app="UsersManager">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
     <script src="./assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" href="./assets/img/favicon.ico">
 
     <title>Gestione utenti</title>
 
@@ -43,7 +43,7 @@
   </head>
 
   <body>
-	<div class="container pagewrap" onload="getUrl()">
+	<div class="container pagewrap"  ng-controller="CtrlUsers">
         
         <div ng-controller="CtrlHeader">        
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
@@ -52,38 +52,41 @@
           <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
 	</div>
         
-		<h4 class="description text-center">GESTIONE UTENTI</h4>
-		<div class="row userMgmt" ng-controller="ctrlUser">
+		<h4 class="description text-center">GESTIONE UTENTI </h4>
+		<div class="row userMgmt" ng-controller="CtrlUsers">
+            
+            {{users}}
+            
+            <div ng-if =  "users.length == 0"> Non ci sono utenti in questo ente</div>
+            
 		<!-- for each here -->
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userbox text-center" ng-repeat = "user in users">
 			<div class="img-box">
-				<img src="../../img/portraits/usr2.jpg" class="img-rounded" width="100" height="auto" />
-				<ul class="text-center">
-				<a href="#profile"><li><i class="glyphicon glyphicon-user"></i></li></a>
-				</ul>
+				<img src="./assets/img/portraits/usr2.jpg" class="img-rounded" width="100" height="auto" />
 			</div>
-		<h1>{{user.firstName}} {{user.lastName}}</h1>
-		<p>{{user.role}}</p>
-			<div class="btn-group btn-group-sx">
-				<span data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger rmUserBtn pull-right" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span> </button></span>
+            <h1>{{user.firstName}} {{user.lastName}}</h1>
+            <p>{{user.role}}</p>
+            <div class="btn-group btn-group-sx">
+				<span data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger rmUserBtn pull-right" data-title="Delete" data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-trash"></span> Rimuovi dall'ente</button></span>
 			</div>
 		</div>
 		<!-- end of single userbox -->
-		</div>
+            
+        </div>
 	<!-- delete class popup -->
 	<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-				<h4 class="modal-title custom_align" id="Heading">Rimuovi l'utente "@name @lastName"</h4>
+				<h4 class="modal-title custom_align" id="Heading">Rimuovi l'utente {{user.firstName}} {{user.lastName}}</h4>
 			  </div>
 			<div class="modal-body">
 			<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Sei sicuro di voler rimuovere questo utente?</div>
 			   
 			</div>
 				<div class="modal-footer ">
-				<button type="button" class="btn btn-primary" >Sì</button>
+				<button type="button" class="btn btn-primary" ng-click = "removeUser(user.user)" data-dismiss="modal">Sì</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
 			  </div>
 				</div>

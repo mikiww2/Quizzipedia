@@ -18,5 +18,9 @@ module.exports = function (app) {
     institutionM.changeInst(req, res);
   });
 
+  app.post('/api/institution/remove_from_inst',function (req, res, next) {
+    institutionM.removeFromInst(req, res);
+  });
+
 };  
  

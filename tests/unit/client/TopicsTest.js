@@ -1,13 +1,15 @@
 /*
- * Name: tests/unit/client/TopicsTest.js
- * Author: Vault-Tech
- * Email: vaulttech.swe@gmail.com
- * Referring to: public/services/Topics.js
- * Creation date : 03.06.2016
+ * Nome del file: TopicsTest.js
+ * Percorso: tests/unit/client/TopicsTest.js
+ * Autore: Vault-Tech
+ * Data creazione: 03.06.2016
+ * E-mail: vaulttech.swe@gmail.com
  *
- * ** Diary **
- * 	03.06.2016 Test superato - Rudy Berton
- * 	03.06.2016 Creazione del test - Rudy Berton
+ *  Test per il componente: public/services/Topics.js
+ *
+ * * Diario delle modifiche:
+ *  03.06.2016 Test superato - Rudy Berton
+ *  03.06.2016 Creazione del test - Rudy Berton
  *
  */
 

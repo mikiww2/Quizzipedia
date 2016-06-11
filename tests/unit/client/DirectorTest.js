@@ -1,13 +1,15 @@
 /*
- * Name: tests/unit/client/DirectorTest.js
- * Author: Vault-Tech
- * Email: vaulttech.swe@gmail.com
- * Referring to: public/services/Director.js
- * Creation date : 18.05.2016
+ * Nome del file: DirectorTest.js
+ * Percorso: tests/unit/client/DirectorTest.js
+ * Autore: Vault-Tech
+ * Data creazione: 18.05.2016
+ * E-mail: vaulttech.swe@gmail.com
  *
- * ** Diary **
- * 	19.05 2016 Test superato - Rudy Berton
- * 	18.05.2016 Creazione del test - Rudy Berton
+ *  Test per il componente: public/services/Director.js
+ *
+ * * Diario delle modifiche:
+ *  19.05 2016 Test superato - Rudy Berton
+ *  18.05.2016 Creazione del test - Rudy Berton
  *
  */
 

@@ -1,13 +1,15 @@
 /*
- * Name: tests/unit/client/RequestClassTest.js
- * Author: Vault-Tech
- * Email: vaulttech.swe@gmail.com
- * Referring to: public/services/RequestClass.js
- * Creation date : 26.05.2016
+ * Nome del file: RequestClassTest.js
+ * Percorso: tests/unit/client/RequestClassTest.js
+ * Autore: Vault-Tech
+ * Data creazione: 26.05.2016
+ * E-mail: vaulttech.swe@gmail.com
  *
- * ** Diary **
- * 	26.05 2016 Test superato - Rudy Berton
- * 	26.05.2016 Creazione del test - Rudy Berton
+ *  Test per il componente: public/services/RequestClass.js
+ *
+ * * Diario delle modifiche:
+ *  26.05 2016 Test superato - Rudy Berton
+ *  26.05.2016 Creazione del test - Rudy Berton
  *
  */
 

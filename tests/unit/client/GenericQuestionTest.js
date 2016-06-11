@@ -1,13 +1,15 @@
 /*
- * Name: tests/unit/client/GenericQuestionTest.js
- * Author: Vault-Tech
- * Email: vaulttech.swe@gmail.com
- * Referring to: public/services/GenericQuestion.js
- * Creation date : 06.06.2016
+ * Nome del file: GenericQuestionTest.js
+ * Percorso: tests/unit/client/GenericQuestionTest.js
+ * Autore: Vault-Tech
+ * Data creazione: 06.06.2016
+ * E-mail: vaulttech.swe@gmail.com
  *
- * ** Diary **
- * 	06.06.2016 Test superato - Rudy Berton
- * 	06.06.2016 Creazione del test - Rudy Berton
+ *  Test per il componente: public/services/GenericQuestion.js
+ *
+ * * Diario delle modifiche:
+ *  06.06.2016 Test superato - Rudy Berton
+ *  06.06.2016 Creazione del test - Rudy Berton
  *
  */
 

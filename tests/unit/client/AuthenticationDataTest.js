@@ -1,13 +1,15 @@
 /*
- * Name: tests/unit/client/AuthenticationDataTest.js
- * Author: Vault-Tech
- * Email: vaulttech.swe@gmail.com
- * Referring to: public/services/AuthenticationData.js
- * Creation date : 10.05.2016
+ * Nome del file: AuthenticationDataTest.js
+ * Percorso: tests/unit/client/AuthenticationDataTest.js
+ * Autore: Vault-Tech
+ * Data creazione: 10.05.2016
+ * E-mail: vaulttech.swe@gmail.com
  *
- * ** Diary **
- * 	12.05 2016 Test superato - Rudy Berton
- * 	10.05.2016 Creazione del test - Rudy Berton
+ *  Test per il componente: public/services/AuthenticationData.js
+ *
+ * * Diario delle modifiche:
+ *  12.05 2016 Test superato - Rudy Berton
+ *  10.05.2016 Creazione del test - Rudy Berton
  *
  */
 

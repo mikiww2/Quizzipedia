@@ -1,13 +1,15 @@
 /*
- * Name: tests/unit/client/UserTest.js
- * Author: Vault-Tech
- * Email: vaulttech.swe@gmail.com
- * Referring to: public/services/User.js
- * Creation date : 11.05.2016
+ * Nome del file: UserTest.js
+ * Percorso: tests/unit/client/UserTest.js
+ * Autore: Vault-Tech
+ * Data creazione: 11.05.2016
+ * E-mail: vaulttech.swe@gmail.com
  *
- * ** Diary **
- * 	12.05 2016 Test superato - Rudy Berton
- * 	11.05.2016 Creazione del test - Rudy Berton
+ *  Test per il componente: public/services/User.js
+ *
+ * * Diario delle modifiche:
+ *  12.05 2016 Test superato - Rudy Berton
+ *  11.05.2016 Creazione del test - Rudy Berton
  *
  */
 

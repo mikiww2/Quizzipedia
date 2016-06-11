@@ -1,13 +1,15 @@
 /*
- * Name: tests/unit/client/ClassTest.js
- * Author: Vault-Tech
- * Email: vaulttech.swe@gmail.com
- * Referring to: public/services/Class.js
- * Creation date : 14.05.2016
+ * Nome del file: ClassTest.js
+ * Percorso: tests/unit/client/ClassTest.js
+ * Autore: Vault-Tech
+ * Data creazione: 14.05.2016
+ * E-mail: vaulttech.swe@gmail.com
  *
- * ** Diary **
- * 	14.05 2016 Test superato - Rudy Berton
- * 	14.05.2016 Creazione del test - Rudy Berton
+ *  Test per il componente: public/services/Class.js
+ *
+ * * Diario delle modifiche:
+ *  14.05 2016 Test superato - Rudy Berton
+ *  14.05.2016 Creazione del test - Rudy Berton
  *
  */
 

@@ -1,13 +1,15 @@
 /*
- * Name: tests/unit/client/InstitutionTest.js
- * Author: Vault-Tech
- * Email: vaulttech.swe@gmail.com
- * Referring to: public/services/Institution.js
- * Creation date : 25.05.2016
+ * Nome del file: InstitutionTest.js
+ * Percorso: tests/unit/client/InstitutionTest.js
+ * Autore: Vault-Tech
+ * Data creazione: 25.05.2016
+ * E-mail: vaulttech.swe@gmail.com
  *
- * ** Diary **
- * 	26.05.2016 Test superato - Rudy Berton
- * 	25.05.2016 Creazione del test - Rudy Berton
+ *  Test per il componente: public/services/Institution.js
+ *
+ * * Diario delle modifiche:
+ *  26.05.2016 Test superato - Rudy Berton
+ *  25.05.2016 Creazione del test - Rudy Berton
  *
  */
 

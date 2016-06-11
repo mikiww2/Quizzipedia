@@ -1,13 +1,15 @@
 /*
- * Name: tests/unit/client/TrueFalseQTest.js
- * Author: Vault-Tech
- * Email: vaulttech.swe@gmail.com
- * Referring to: public/services/TrueFalseQ.js
- * Creation date : 07.06.2016
+ * Nome del file: TrueFalseQTest.js
+ * Percorso: tests/unit/client/TrueFalseQTest.js
+ * Autore: Vault-Tech
+ * Data creazione: 07.06.2016
+ * E-mail: vaulttech.swe@gmail.com
  *
- * ** Diary **
- * 	07.06.2016 Test superato - Rudy Berton
- * 	07.06.2016 Creazione del test - Rudy Berton
+ *  Test per il componente: public/services/TrueFalseQ.js
+ *
+ * * Diario delle modifiche:
+ *  07.06.2016 Test superato - Rudy Berton
+ *  07.06.2016 Creazione del test - Rudy Berton
  *
  */
 

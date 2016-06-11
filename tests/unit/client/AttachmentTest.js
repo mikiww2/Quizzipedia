@@ -1,14 +1,16 @@
 /*
- * Name: tests/unit/client/AttachmentTest.js
- * Author: Vault-Tech
- * Email: vaulttech.swe@gmail.com
- * Referring to: public/services/Attachment.js
- * Creation date : 08.05.2016
+ * Nome del file: AttachmentTest.js
+ * Percorso: tests/unit/client/AttachmentTest.js
+ * Autore: Vault-Tech
+ * Data creazione: 08.05.2016
+ * E-mail: vaulttech.swe@gmail.com
  *
- * ** Diary **
- * 	08.05.2016 Test superato - Rudy Berton
- * 	08.05.2016 Modifica del test - Rudy Berton
- * 	07.05.2016 Creazione del test - Rudy Berton
+ *  Test per il componente: public/services/Attachment.js
+ *
+ * * Diario delle modifiche:
+ *  08.05.2016 Test superato - Rudy Berton
+ *  08.05.2016 Modifica del test - Rudy Berton
+ *  07.05.2016 Creazione del test - Rudy Berton
  *
  */
 

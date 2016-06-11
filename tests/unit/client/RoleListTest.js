@@ -1,13 +1,15 @@
 /*
- * Name: tests/unit/client/RoleListTest.js
- * Author: Vault-Tech
- * Email: vaulttech.swe@gmail.com
- * Referring to: public/services/RoleList.js
- * Creation date : 27.05.2016
+ * Nome del file: RoleListTest.js
+ * Percorso: tests/unit/client/RoleListTest.js
+ * Autore: Vault-Tech
+ * Data creazione: 27.05.2016
+ * E-mail: vaulttech.swe@gmail.com
  *
- * ** Diary **
- * 	27.05 2016 Test superato - Rudy Berton
- * 	27.05.2016 Creazione del test - Rudy Berton
+ *  Test per il componente: public/services/RoleList.js
+ *
+ * * Diario delle modifiche:
+ *  27.05 2016 Test superato - Rudy Berton
+ *  27.05.2016 Creazione del test - Rudy Berton
  *
  */
 

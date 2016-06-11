@@ -1,13 +1,15 @@
 /*
- * Name: tests/unit/client/RequestRoleTest.js
- * Author: Vault-Tech
- * Email: vaulttech.swe@gmail.com
- * Referring to: public/services/RequestRole.js
- * Creation date : 29.05.2016
+ * Nome del file: RequestRoleTest.js
+ * Percorso: tests/unit/client/RequestRoleTest.js
+ * Autore: Vault-Tech
+ * Data creazione: 29.05.2016
+ * E-mail: vaulttech.swe@gmail.com
  *
- * ** Diary **
- * 	30.05 2016 Test superato - Rudy Berton
- * 	29.05.2016 Creazione del test - Rudy Berton
+ *  Test per il componente: public/services/RequestRole.js
+ *
+ * * Diario delle modifiche:
+ *  30.05 2016 Test superato - Rudy Berton
+ *  29.05.2016 Creazione del test - Rudy Berton
  *
  */
 

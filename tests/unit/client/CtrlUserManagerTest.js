@@ -1,11 +1,13 @@
 /*
- * Name: tests/unit/client/CtrlUserManagerTest.js
- * Author: Vault-Tech
- * Email: vaulttech.swe@gmail.com
- * Referring to: public/profile/CtrlUserManager.js
- * Creation date : 18.05.2016
+ * Nome del file: CtrlUserManagerTest.js
+ * Percorso: tests/unit/client/CtrlUserManagerTest.js
+ * Autore: Vault-Tech
+ * Data creazione: 18.05.2016
+ * E-mail: vaulttech.swe@gmail.com
  *
- * ** Diary **
+ *  Test per il componente: public/profile/CtrlUserManager.js
+ *
+ * * Diario delle modifiche:
  * 	19.05 2016 Test superato - Rudy Berton
  * 	18.05.2016 Creazione del test - Rudy Berton
  *

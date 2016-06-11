@@ -62,6 +62,41 @@ exports.fetchNoUserClass = function (req, res) {
 		}
 };
 
+exports.fetchTeacherClassesList = function (req, res) {
+
+		var classList = [];
+		if(req.session.user && req.session.user.role == 'teacher'){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+				if (err) {
+	            console.log('error: ' + err);
+	            res.redirect('/');
+	      }
+	      else{
+	       	if(org){
+	       		for(var i=0;i<org.users.length;i++){
+	       			if(org.users[i].user == req.session.user._id)
+	       				for(var j=0;j<org.users[i].classes.length;j++){
+	       					if(org.users[i].classes[j].state == 'allowed')
+	       						classList.push({
+	       							class_id: org.users[i].classes[j]._id,
+	       							name: null
+	       						});
+	       				}
+	       		}
+	       		for(var i=0;i<org.classes.length;i++){
+	       			for(var j=0;j<classList.length;j++){
+	       				if(org.classes[i]._id.equals(classList[j].class_id))
+	       					classList[j].name = org.classes[i].name;
+	       			}
+	       		}
+
+	       		res.send(classList);
+	       	}      		
+	    	}
+			});
+		}
+};
+
 exports.createClass = function (req, res) {
 
 		if(req.session.user && req.session.user.role == 'director'){

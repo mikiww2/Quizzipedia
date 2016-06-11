@@ -93,7 +93,6 @@ h6.description, h4.description, h3.description{
 .breadcrumb {
      background-color: #22A7F0;
      border-radius: 0;
-	 padding-left: 20px;
      -moz-border-radius: 0;
      -webkit-border-radius: 0;
      -o-border-radius: 0;
@@ -440,9 +439,16 @@ h6.description, h4.description, h3.description{
 }
 
  #instList > .list-group-item{
-	background-color: #22A7F0;
-	color:white;
+	background-color: #f3f3f3;
 	padding-bottom: 20px;
+}
+
+#instList a {
+	text-decoration: underline;
+	color: #22A7F0;
+}
+
+	text-decoration: none;
 }
 
  .block {
@@ -452,13 +458,18 @@ h6.description, h4.description, h3.description{
 	background-color: white;
 	border: 1px solid #d3d3d3;
 }
-
+/*
 #instList .important{
 	color:white;
+}*/
+
+#instList .btn {
+	background-color: white;
+	box-shadow: 1px 1px 0 #d3d3d3;
+	border-radius: 5px;
 }
 
-
-#classes .btn, #instList .btn{
+#classes .btn{
 	background-color: #e14825;
 }
 

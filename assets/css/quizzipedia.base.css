@@ -585,6 +585,7 @@ h6.description, h4.description, h3.description{
 .answerBlock input[type="number"]{
 	display: inline-block; 
 	vertical-align: top;
+	margin-top: 4px;
 } 
 
 .answerBlock input[type="file"]{
@@ -595,6 +596,12 @@ h6.description, h4.description, h3.description{
 
 .matching {
 	margin: 0 auto;
+}
+
+.prev-text {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 3px;
 }
 
 .matching .answerBlock {

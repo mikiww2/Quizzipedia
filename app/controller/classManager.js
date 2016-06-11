@@ -97,6 +97,62 @@ exports.fetchTeacherClassesList = function (req, res) {
 		}
 };
 
+exports.fetchTeacherClassesDetails = function (req, res) {
+
+		var classList = [];
+		if(req.session.user && req.session.user.role == 'teacher'){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+				if (err) {
+	            console.log('error: ' + err);
+	            res.redirect('/');
+	      }
+	      else{
+	       	if(org){
+	       		for(var i=0;i<org.users.length;i++){ //cerca il docente
+	       			if(org.users[i].user == req.session.user._id)
+	       				for(var j=0;j<org.users[i].classes.length;j++){  //passa le sue classi dove è stato accettato
+	       					if(org.users[i].classes[j].state == 'allowed')
+	       						classList.push({
+	       							class_id: org.users[i].classes[j]._id,
+	       							numTeachers: null,
+	       							numStudents: null
+	       						});
+	       				}
+	       		}
+	       		for(var i=0;i<classList.length;i++){ //passo l'array classlist
+       				var numClassTeachers = 0;
+       				var numClassStudents = 0;
+       				for(var j=0;j<org.users.length;j++){ //scansiono tutti gli utenti
+       					if(org.users[j].state == 'allowed') //se sono utenti accettati nell'ente
+	       					for(var k=0;k<org.users[j].classes.length;k++){ //scansiono classi dell'utente
+	       						if(orgs.users[j].classes[k].state == 'allowed') //se sono stati accettati nella classe
+		       						if(org.users[j].classes[k]._id.equals(classList.class_id)){
+				       					if(org.users[j].role == 'teacher')
+					       					numClassTeachers++;
+					     					if(org.users[j].role == 'student')
+					     						numClassStudents++;
+				       				}
+	       					}
+	       			}
+	       			classList.push({
+	       				classTeachers: numClassTeachers,
+	       				classStudents: numClassStudents
+	       			});
+       			}
+       			for(var i=0;i<classList.length;i++){
+       				for(var j=0;j<org.classes.length;j++){ 
+       					if(classList[i].class_id.equals(org.classes[j]._id))
+       						classList[i].className = org.classes[j].name;
+       				}
+       			}
+       			
+	       		res.send(classList);
+	       	}      		
+	    	}
+			});
+		}
+};
+
 exports.createClass = function (req, res) {
 
 		if(req.session.user && req.session.user.role == 'director'){

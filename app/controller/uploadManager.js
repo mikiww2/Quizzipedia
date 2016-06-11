@@ -5,6 +5,7 @@ var config = require('../../config/upload'); // path delle cartelle upload
 var multer = require('multer'); // si occupa del salvataggio
 var glob = require("glob"); // pattern matching su fs
 var mkdirp = require('mkdirp'); // crea la cartella se manca
+var mime = require('mime'); // per l'estensione dei file
 var fs = require('fs');
 
 var author = 'tmpauthor@gmail.com';  //poi da cancellare e recuperare sempre da req.session.user._id
@@ -96,3 +97,47 @@ exports.save = function(user, filename, questionId) {
     return newPathFile;
 };
 
+//profile image
+var storageProfileImg = multer.diskStorage({ //multers disk storage settings
+    destination: function (req, file, cb) {
+        cb(null, config.pathFiles);
+    }
+    , filename: function (req, file, cb) {
+        // req.session.user._id
+        cb(null, author + '.' + mime.extension(file.mimetype));
+    }
+});
+
+exports.update_profile_image = function (req, res, next) {
+    //delete old file, author da req.session.user._id
+    var pattern = config.pathFiles + "/" + author + "*";
+
+    mkdirp(config.pathFiles, function(err) {
+        if(err) {
+            console.log(err);
+            res.send({ result: "error" });
+        }
+        else {
+            glob(pattern, { nodir: true }, function (err, files) {
+                if(err) {
+                    console.log(err);
+                    res.send({ result: "error" });
+                }
+                else {
+                    console.log("deleting files :");
+                    console.log(files);
+
+                    files.forEach(function(file) {
+                        fs.unlink(file, function(err) {
+                            if(err)
+                                return console.log(err);
+                        });
+                    });
+
+                    multer({ storage: storageProfileImg }).single('file')(req, res, next);
+                    res.send({ result: "done" });
+                }
+            });
+        }
+    });
+};

@@ -11,4 +11,9 @@ module.exports = function (app) {
         console.log(" removing file");
     });
 
+    app.post('/api/upload/update_profile_image', uploadM.update_profile_image, function (req, res, next) {
+        console.log(" uploading profile image");
+        console.log(req.file); // Should show you the files
+    });
+
 };

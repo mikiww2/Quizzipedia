@@ -1030,7 +1030,7 @@ h6.description{
 	height: 0px;
 	margin:0px;
 	opacity: 0;
-}
+} 
 .profile .img-box:after, .img-box ul, .img-box ul li{
 	-webkit-transition: all 0.2s ease-in-out 0s;
     -moz-transition: all 0.2s ease-in-out 0s;
@@ -1123,52 +1123,6 @@ i.red{
     display: block;
 }
 
-.request{
-	margin-top: 25px;
-	max-width: 200px;
-}
-.request h1{
-	font-weight: normal;
-	font-size: 20px;
-	margin:10px 0 0 0;
-}
-.request h2{
-	font-size: 14px;
-	font-weight: lighter;
-	margin-top: 5px;
-}
-
-.request .img{margin: 0 auto;}
-
-.request .img-box{
-	opacity: 1;
-	display: block;
-	position: relative;
-	width: 100px;
-	height: auto;
-	margin-left: auto; margin-right: auto;
-}
-.request .img-box:after{
-	content:"";
-	opacity: 0;
-	background-color: rgba(0, 0, 0, 0.75);
-	position: absolute;
-	right: 0;
-	left: 0;
-	top: 0;
-	bottom: 0;
-}
-
-.request .img-box:after, .img-box ul, .img-box ul li{
-	-webkit-transition: all 0.2s ease-in-out 0s;
-    -moz-transition: all 0.2s ease-in-out 0s;
-    transition: all 0.2s ease-in-out 0s;
-}
-
-.request .btn-danger{
-	margin-top:10px;
-}
-
 /* requests */
 
 .request{
@@ -1256,3 +1210,9 @@ i.red{
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.userMgmt img{
+	width: 100px;
+	height: 100%;
+}
+

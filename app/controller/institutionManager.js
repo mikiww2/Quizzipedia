@@ -5,6 +5,45 @@ var User = require('../model/user.model');
 var callback = function(){ //callback fake per sincronismo
 }
 
+exports.fetchAllInstInfos = function (req,res) {
+
+		var results = [];
+		Organization.find(function (err,orgs) {
+			if (err) {
+            console.log('error: ' + err);
+            res.redirect('/');
+      }
+      else{
+       	if(orgs){
+       		for(var i=0;i<orgs.length;i++){
+       			var numTeachers = 0;
+       			var numStudents = 0;
+       			var date = orgs[i].creationDate.toString().substring(0,15);
+       			for(var j=0;j<orgs[i].users.length;j++){
+       				if(orgs[i].users[j].state == 'allowed'){
+       					if(orgs[i].users[j].role == 'teacher')
+	       					numTeachers++;
+	     					if(orgs[i].users[j].role == 'student')
+	     						numStudents++;
+       				}
+       			}
+       			results.push({
+       				orgName: orgs[i].name,
+       				teachers: numTeachers,
+       				students: numStudents,
+       				creationDate: date
+       			});
+       		}
+       		res.send(results);
+       	}
+       	else{
+       		console.log('Nessun ente trovato');
+       		res.send('Null');
+       	}
+			}
+		});
+}
+
 exports.fetchUserInst = function (req, res) {
 
 		var results = [];

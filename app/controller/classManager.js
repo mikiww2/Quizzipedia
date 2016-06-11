@@ -1,4 +1,10 @@
+var async = require('async');
+
 var Organization = require('../model/organization.model');
+var User = require('../model/user.model');
+
+var callback = function(){ //callback fake per sincronismo
+}
 
 exports.fetchInstClasses = function (req, res) {
 
@@ -42,12 +48,12 @@ exports.fetchNoUserClass = function (req, res) {
 	       				for(var j=0;j<org.classes.length;j++){ //copia array classi in istituto
 	       					noUserClass.push(org.classes[j]);
 	       				}
-	       				for(var k=0;k<result['classes'].length;k++){ //copia array classi nelle quali è lo studente
+	       				for(var k=0;k<result['classes'].length;k++){ //copia array classi nelle quali è l'utente
 	       					userClass.push(result['classes'][k]);
 	       				}
 	       				for(var m=0;m<noUserClass.length;m++){
 	       					for(var n=0;n<userClass.length;n++){
-	       						if(noUserClass[m]._id.equals(userClass[n]._id)){
+	       						if(noUserClass[m]._id.equals(userClass[n]._id)){ //rimuove le classi nelle quali è gia l'utente
 	       							noUserClass.splice(m,1);
 	       						}
 	       					}
@@ -149,16 +155,77 @@ exports.fetchTeacherClassesDetails = function (req, res) {
 		}
 };
 
+exports.fetchClassMembers = function (req, res) {
+
+		var results = [];
+		if(req.session.user && req.session.user.role == 'teacher'){
+
+			async.series([
+				function(callback){
+					Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+						if (err) {
+			            console.log('error: ' + err);
+			            res.redirect('/');
+			      }
+			      else{
+			       	if(org){
+			       		for(var i=0;i<org.users.length;i++){
+			       			if(org.users[i].state == 'allowed')
+				       			for(var j=0;j<org.users[i].classes.length;j++){
+				       				if(org.users[i].classes[j].state == 'allowed')
+				       					if(org.users[i].classes[j]._id.equals(req.body.class_id))
+				       						results.push({
+				       							user: org.users[i].user,
+				       							role: org.users[i].role
+				       						});
+				       			}
+			       		}
+			       		callback();
+			       	}
+			       	else console.log('Nessun ente trovato');
+			      }
+			    });
+				},
+
+				function(callback){
+					User.find(function (err,users){
+						if (err) {
+		            console.log('error: ' + err);
+		            res.redirect('/');
+			      }
+			      else{
+			       	if(users){
+			       		for(var i=0;i<users.length;i++){
+			       			for(var j=0;j<results.length;j++){
+			       				if(results[j].user == users[i]._id){
+			       					results[j].firstName = users[i].firstName;
+			       					results[j].lastName = users[i].lastName;
+			       				}
+			       			}
+			       		}
+			       		callback();
+			       	}
+						}
+					});
+				}],function(err){
+					if(err)
+						console.log(err);
+					else{
+						res.send(results);
+					}
+				});			
+		}
+		else res.redirect('/');
+}
+
 exports.createClass = function (req, res) {
 
 		if(req.session.user && req.session.user.role == 'director'){
 			var organization = req.session.user.institution;
-			var fulldate = new Date();
-			var year = fulldate.getFullYear();
 			var classs = {
 				description : req.body.description,
 				name : req.body.name,
-				academicYear : req.body.year
+				academicYear : req.body.academicYear
 			};
 
 			Organization.findOne({ 'name': organization }, function (err,org){

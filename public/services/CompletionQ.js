@@ -1,11 +1,6 @@
-angular.module().factory('CompletionQ',['GenericQuestion',function(){
+angular.module('CreateQuestion').factory('CompletionQ',['GenericQuestion','TextCompletion','AnswerCompletion',function(GenericQuestion,TextCompletion,AnswerCompletion){
     
-    function CompletionQ(){
-      
-        this.correctAnswer = null; //String[]
-        this.text = null; //String
-        this.suggestions = []; //String[]
-    };
+    
     /* il testo della domanda deve essere un array con questi json dentro 
     {'type': 'txt/id', 'value': 'blocco di testo della domanda se è tipo txt/ id della risposta se tipo id'}
 
@@ -29,31 +24,61 @@ angular.module().factory('CompletionQ',['GenericQuestion',function(){
 
     */
     
-    CompletionQ.prototype.setText = function(newText){
+    
+    
+    function CompletionQ(){
       
-        this.text = newText;
-    };
-    
-    CompletionQ.prototype.setCorrectAnswer = function(correctAnswer){
-        this.correctAnswer = correctAnswer;
-    };
-    
-    CompletionQ.prototype.setSuggestion = function(suggestions){
-      this.suggestions = suggestions;  
-    };  
-    
-    
-    CompletionQ.prototype.removeSuggestion = function(index){
-      this.suggestions.splice(index,1);  
-    };
-    
-    CompletionQ.prototype.createAnswerQuestion = function(answer){ //answer:String[]
+        GenericQuestion.call(this);
+        this.text = []; //text: TextCompletion[]
+        this.answer = []; //answer: AnswerCompletion[] 
         
     };
     
-    CompletionQ.prototype.getSuggestion = function() {
-        return this.suggestions;
+    CompletionQ.prototype = GenericQuestion.prototype;
+    
+    
+    CompletionQ.prototype.insertText = function(text){
+        var x = new TextCompletion();
+        x.setType('txt');
+        x.setValue(text);
+        
+        this.text.push(x);
     };
+    
+    CompletionQ.prototype.insertHole = function(numberHole){
+      
+        var x = new TextCompletion();
+        x.setType('id');
+        x.setValue(numberHole);
+        
+        this.text.push(x);
+    };
+    
+    CompletionQ.prototype.insertAnswer = function(text,numberHole){
+        
+        var x = AnswerCompletion();
+        x.setText(text);
+        x.setId(numberHole);
+        
+        this.answer.push(x);
+        
+    };
+    
+    CompletionQ.prototype.removeTextElment = function(index){
+      
+        if(index>=0 && index < this.text.length){
+            this.text.splice(index,1);
+        }
+        
+    };
+    
+    CompletionQ.prototype.removeAnswer = function(index){
+      
+        if(index>= 0 && index < this.answer.length){
+            this.answer.splice(index,1);
+        }
+    };
+    
     
     return CompletionQ;
     

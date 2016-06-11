@@ -267,7 +267,24 @@ exports.parse = function (qml){
         return qson;
     };
 
-    var parserCL = function (qml) { // da sistemare con form funzionante
-
+    var parserCL = function (qml) { // manca gestione allegati
+        var qson = {'type': 'mtch'};
+        var question = {}; //creazione json vuoto
+        var text = extract(qml, '#t#', '#a#'); //estrae la stringa della domanda
+        var arrayTitles = text.split('§'); //array che contiene le stringhe delle risposte
+        var arrayJsonTitle = []; //conterrà i json delle risposte
+        for (var item of arrayTitles){
+            arrayJsonTitle.push({'text': txt, 'id': id});
+        }
+        question.title = arrayJsonTitle;
+        var answer = extract(qml, '#a#', '#££#'); //estrae la stringa delle risposte
+        var arrayAnswers = answer.split('§'); //array che contiene le stringhe delle risposte
+        var arrayJsonAns = []; //conterrà i json delle risposte
+        for (var item of arrayAnswers){
+            arrayJsonAns.push({'text': txt, 'id': id});
+        }
+        question.ans = arrayJsonAns;
+        qson.question = question;
+        return qson;
     };
 }

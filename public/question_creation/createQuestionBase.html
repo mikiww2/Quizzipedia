@@ -170,32 +170,7 @@
 				<label for="inputTags">Parole chiave</label>
 				<select id="inputTags" multiple="multiple" class="form-control" ng-model="MyGenericQ.keywords">
 				</select>
-<<<<<<< HEAD
-			</fieldset>
-		</div>
-		
-		
-		<!-- VARIABLE PART - correct answer -->
-          
-          <create-qmultiple ng-show="MyGenericQ.questionType == 'mult'"></create-qmultiple>
-          <create-qtf ng-show="MyGenericQ.questionType == 'trfs'"></create-qtf>
-          <create-qmatch ng-show="MyGenericQ.questionType == 'mtch'"></create-qmatch>
-          <create-qopen ng-show="MyGenericQ.questionType == 'open'"></create-qopen>
-          <create-qcompletion ng-show="MyGenericQ.questionType == 'cmpl'"></create-qcompletion>
-          
-          
-          
-         
-          {{MyCompletionQ.question | json}}
-          
-          
-          
-          
-        <button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button>
-          
-        </form>
-        
-=======
+
 				<script>
 				$('#inputTags').select2({
 					tags: true,
@@ -242,7 +217,6 @@
 			<button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button>
 			  
 			</form>
->>>>>>> 4a62727d309bd745d353b81791f8d5b84b592078
         
         </div>
       

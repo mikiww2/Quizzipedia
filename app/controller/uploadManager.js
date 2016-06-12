@@ -21,8 +21,6 @@ var mkdirp = require('mkdirp'); // crea la cartella se manca
 var mime = require('mime'); // per l'estensione dei file
 var fs = require('fs');
 
-var author = 'tmpauthor@gmail.com';  //poi da cancellare e recuperare sempre da req.session.user._id
-
 //set storage configuration
 var storageTmp = multer.diskStorage({ //multers disk storage settings
         destination: function (req, file, cb) {
@@ -30,7 +28,7 @@ var storageTmp = multer.diskStorage({ //multers disk storage settings
         }
         , filename: function (req, file, cb) {
             // req.session.user._id
-            cb(null, author + '_' + Date.now() + "_" + file.originalname);
+            cb(null, req.session.user._id + '_' + Date.now() + "_" + file.originalname);
         }
     });
 
@@ -53,7 +51,7 @@ exports.upload = function (req, res, next) {
 
 exports.remove = function (req, res, next) {
     // var user = req.session._id;
-    var user = author;
+    var user = req.session.user._id;
     var pattern = config.pathTmpFiles + "/" + user + "_*";
 
     glob(pattern, { nodir: true }, function (err, files) {
@@ -117,13 +115,13 @@ var storageProfileImg = multer.diskStorage({ //multers disk storage settings
     }
     , filename: function (req, file, cb) {
         // req.session.user._id
-        cb(null, author + '.' + mime.extension(file.mimetype));
+        cb(null, req.session.user._id + '.' + mime.extension(file.mimetype));
     }
 });
 
 exports.update_profile_image = function (req, res, next) {
     //delete old file, author da req.session.user._id
-    var pattern = config.pathFiles + "/" + author + "*";
+    var pattern = config.pathFiles + "/" + req.session.user._id + "*";
 
     mkdirp(config.pathFiles, function(err) {
         if(err) {

@@ -1,7 +1,7 @@
 /*
  * Nome del file: questionsManager.js
  * Percorso: app/controller/questionsManager.js
- * Autore: Vault-Tech
+ * author: Vault-Tech
  * Data creazione:
  * E-mail: vaulttech.swe@gmail.com
  *
@@ -15,14 +15,13 @@ var Question = require('../model/question.model');
 var upload = require('../controller/uploadManager'); // usata per salvare gli allegati
 var agent = require('./QMLAgent');
 
-var author = 'tmpauthor@gmail.com';  //poi da cancellare e recuperare sempre da req.session.user._id
-
 exports.save = function (req, res) {
     console.log("body");
     console.log(JSON.stringify(req.body, undefined, 2));
 
+    var author = req.session.user._id;
+
     var question = new Question({
-        //author: req.session.user._id
         author: author
         ,description: req.body.question.description
         ,topic: req.body.question.topic // ignorante o controlla che esistano veramente ?
@@ -31,7 +30,7 @@ exports.save = function (req, res) {
     });
 
     //sistemo gli allegati, author da recuperare da session
-    if(req.body.question.questionAttachement) {
+    if(req.body.question.questionAttachement.type != null) {
         var path = upload.save(author, req.body.question.questionAttachement.path, question._id);
 
         if(path) {
@@ -41,10 +40,11 @@ exports.save = function (req, res) {
         }
         else
             console.log("salvataggio file " + req.body.question.questionAttachement.path + " non riuscito");
-    }
 
-    req.body.question.attachment = req.body.question.questionAttachement;
-    delete req.body.question.questionAttachement;
+        req.body.question.attachment = req.body.question.questionAttachement;
+        delete req.body.question.questionAttachement;
+
+    }
 
 
 
@@ -82,7 +82,7 @@ exports.save = function (req, res) {
 };
 
 exports.fetch = function (req, res) {
-    //author  = req.session.user._id;
+    author  = req.session.user._id;
 
     Question.find({ author: author }, function (err, questions) {  //poi da filtrare secondo l'email della sessione (al momento test)
         if (err) {
@@ -97,7 +97,7 @@ exports.fetch = function (req, res) {
 exports.search = function (req, res, next) {
     var option = req.body;
 
-    //author  = req.session.user._id; //b autore sempre definito
+    author  = req.session.user._id; //b author sempre definito
     var query = Question.find({ author: author });
 
     if(option.topic)

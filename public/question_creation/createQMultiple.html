@@ -42,10 +42,10 @@
                                 <input type="checkbox" ng-model="answer.isTrue">
                                 
                                 
-                                <textarea ng-if="answer.textAnswer !== null " type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="answer.textAnswer"></textarea>
+                                <textarea ng-if="answer.textAnswer != null " type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="answer.textAnswer"></textarea>
                                 
                                 
-                                <input ng-if="answer.attachment !== null" type="file" ngf-select="uploadFiles($files,'answer',{{$index}})" name="file" ngf-pattern="'image/*'" accept="image/*,audio/*,video/*" ngf-max-size="20MB" >
+                                <input ng-if="answer.attachment != null" type="file" ngf-select="uploadFiles($files,'answer',{{$index}})" name="file" ngf-pattern="'image/*'" accept="image/*,audio/*,video/*" ngf-max-size="20MB" >
                                 
                                 <!-- onchange="angular.element(this).scope().readURL(this,{{$index}})"-->
                                
@@ -69,7 +69,7 @@
 		$('.drag').draggable(); //aggiunto
 	});*/
 	// fullscreen toggle for video
-	function toggleFullScreen() {
+	/*function toggleFullScreen() {
 		var elem = document.getElementById("video1");
 		if (elem.requestFullscreen) {
 		  elem.requestFullscreen();
@@ -80,7 +80,7 @@
 		} else if (elem.webkitRequestFullscreen) {
 		  elem.webkitRequestFullscreen();
 		}
-	};//aggiunto
+	};*///aggiunto
 
 	/*function createTextarea() { //value="answ0"
 		$("#newBlock").append($('<div class="answerBlock"><div class="drag" id="index"><input type="checkbox" ng-model="MyMultipleChoiceQ.question.correctAnswer[0]"><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="MyMultipleChoiceQ.question.answers[0]"></textarea><a href="#"><i class="glyphicon glyphicon-remove"></i></a></div></div>'));

@@ -202,8 +202,6 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         }
         
         
-        
-        
         if (files[0] && notDuplicate){
             Upload.upload({
                 url:'/api/upload/save',

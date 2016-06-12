@@ -31,5 +31,9 @@ module.exports = function (app) {
     questionM.test(req, res);
   });
 
+  app.get('/api/question/fetch_questions_number',function (req, res, next) { //numero domande nell'istituto
+    questionM.fetchQuestionsNumber(req, res);
+  });
+
 }; 
  

@@ -566,6 +566,23 @@ h6.description, h4.description, h3.description{
     color:#590000;
 }
 
+#complText .badge {
+	margin-left: -5px;
+}
+
+.btn-xxs {
+	background-color: #22A7F0;
+	font-size: 8px;
+	padding: 1px 3px;
+	margin-left: 3px;
+	
+}
+
+.btn-xxs i {
+	color: white;
+	padding-top: 2px;
+}
+
 .drag .label {
 	display: inline-block;
 	vertical-align: top;

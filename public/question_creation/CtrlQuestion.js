@@ -168,7 +168,43 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     $scope.uploadFiles = function(files,isQuestion,index){
         console.log(files[0]);
         $scope.files = files[0];
-        if (files[0]){
+        
+        var notDuplicate = true;
+        
+        if(files[0]){
+            
+            if($scope.MyGenericQ.attachment.getPath() == files[0].name){ //devo controllare anche il tipo, ma per adesso facciamo solo immagini
+                notDuplicate = false;
+                
+            }
+            
+            if(notDuplicate && $scope.MyGenericQ.questionType == 'mult'){
+                
+                    var q = $scope.MyMultipleChoiceQ.question.arrayAnswer;
+                for(var i = 0; i< q.length && notDuplicate;i++){ //controllo allegati risposte
+                    
+                    if(q[i].attachment != null){
+                        
+                        if(q[i].getAttachment().getPath() == files[0].name){
+                            notDuplicate = false;
+                        }
+                    }
+                    
+                }
+            }
+            
+            console.log(notDuplicate);
+                    
+            if(!notDuplicate){
+                    alert("Immagine con lo stesso nome già presente in questa domanda");
+            }
+            
+        }
+        
+        
+        
+        
+        if (files[0] && notDuplicate){
             Upload.upload({
                 url:'/api/upload/save',
                 data: {file: files[0]}

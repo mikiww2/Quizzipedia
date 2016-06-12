@@ -149,7 +149,7 @@ exports.fetchNumberTeachers = function (req, res) { //numero docenti nell'ente
        				if(org.users[i].role == 'teacher')
 	       				counter++;
        			}
-						res.send(counter);
+						res.send({ number: counter });
        		}
        		else{
        			console.log('Organizzazione non trovata');
@@ -160,7 +160,7 @@ exports.fetchNumberTeachers = function (req, res) { //numero docenti nell'ente
 		else res.redirect('/');
 }
 
-exports.fetchNumberTeachers = function (req, res) { //numero studenti nell'ente
+exports.fetchNumberStudents = function (req, res) { //numero studenti nell'ente
 
 		if(req.session.user && req.session.user.role == 'teacher'){
 			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
@@ -175,7 +175,7 @@ exports.fetchNumberTeachers = function (req, res) { //numero studenti nell'ente
        				if(org.users[i].role == 'students')
 	       				counter++;
        			}
-						res.send(counter);
+						res.send({ number: counter });
        		}
        		else{
        			console.log('Organizzazione non trovata');

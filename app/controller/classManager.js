@@ -234,7 +234,7 @@ exports.fetchClassesDetails = function (req, res) {
 exports.fetchClassMembers = function (req, res) {
 
 		var results = [];
-		if(req.session.user && req.session.user.role == 'teacher'){
+		if(req.session.user && (req.session.user.role == 'director' || req.session.user.role == 'teacher')){
 
 			async.series([
 				function(callback){

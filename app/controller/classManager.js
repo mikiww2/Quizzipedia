@@ -234,7 +234,7 @@ exports.fetchClassMembers = function (req, res) {
 exports.removeFromClass = function (req, res) {
 
 		if(req.session.user && (req.session.user.role == 'director' || req.session.user.role == 'teacher')){
-			Organization.findOne({ 'name': organization }, function (err,org){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 				if (err) {
 	            console.log('error: ' + err);
 	            res.redirect('/');

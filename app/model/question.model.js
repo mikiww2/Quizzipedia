@@ -46,6 +46,10 @@ var questionSchema = new Schema({
         type: String
         ,required: [false]
     }
+    ,institution: {
+        type: String
+        ,required: [true, 'institution name is required']
+    }
 
 }, { strict: true });
 

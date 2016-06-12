@@ -1,6 +1,6 @@
 /*
  * Nome del file: TrueFalseQTest.js
- * Percorso: tests/unit/client/TrueFalseQTest.js
+ * Percorso: tests/TrueFalseQTest.js
  * Autore: Vault-Tech
  * Data creazione: 07.06.2016
  * E-mail: vaulttech.swe@gmail.com

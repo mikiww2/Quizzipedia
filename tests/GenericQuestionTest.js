@@ -1,6 +1,6 @@
 /*
  * Nome del file: GenericQuestionTest.js
- * Percorso: tests/unit/client/GenericQuestionTest.js
+ * Percorso: tests/GenericQuestionTest.js
  * Autore: Vault-Tech
  * Data creazione: 06.06.2016
  * E-mail: vaulttech.swe@gmail.com
@@ -18,6 +18,8 @@
 describe('GenericQuestion test', function () {
     var GenericQuestion;
     var mock_gq;
+    var Attachment;
+    var mock_att;
 
     beforeEach(function() {
         angular.module('CreateQuestion');
@@ -25,6 +27,13 @@ describe('GenericQuestion test', function () {
 
     beforeEach(inject(function() {
         var $injector = angular.injector(['CreateQuestion']);
+        Attachment=$injector.get('Attachment');
+        mock_att=new Attachment();
+        mock_att.setType("audio");
+        mock_att.setPath("/img/TFquestions/pluto.png");
+        mock_att.setX(3.17);
+        mock_att.setY(4.44);
+
         GenericQuestion = $injector.get('GenericQuestion');
         mock_gq = new GenericQuestion();
     }));
@@ -55,8 +64,8 @@ describe('GenericQuestion test', function () {
     });
 
     it('test setQuestionAttachment() method', function() {
-        mock_gq.setQuestionAttachment("nessun allegato");
-        expect(mock_gq.questionAttachement).toBe("nessun allegato");
+        mock_gq.setQuestionAttachment(mock_att);
+        expect(mock_gq.questionAttachement).toBe(mock_att);
     });
 
     it('test setKeyword() method', function () {

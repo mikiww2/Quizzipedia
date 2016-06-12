@@ -27,6 +27,7 @@ exports.save = function (req, res) {
         ,topic: req.body.question.topic // ignorante o controlla che esistano veramente ?
         ,difficulty: req.body.question.difficulty
         ,keywords: req.body.question.keywords
+        ,institution: req.session.user.institution
     });
 
     //sistemo gli allegati, author da recuperare da session
@@ -82,16 +83,27 @@ exports.save = function (req, res) {
 };
 
 exports.fetch = function (req, res) {
-    author  = req.session.user._id;
 
-    Question.find({ author: author }, function (err, questions) {  //poi da filtrare secondo l'email della sessione (al momento test)
-        if (err) {
-            console.log('error: ' + err);
-            res.redirect('/');
-        }
-        else
-            res.send(questions);
-    });
+    if(req.session.user){ //&& req.session.user.role == 'teacher' da aggiungere dopo
+
+        Question.find({ 'author': req.session.user._id, 'institution': req.session.user.institution }, function (err, questions) {
+            if (err) {
+                console.log('error: ' + err);
+                res.redirect('/');
+            }
+            else{
+                if(questions)
+                    res.send(questions);
+                else{
+                    console.log('Nessuna domanda trovata');
+                    res.send('Null');
+                }
+            }
+        });
+
+    }
+    else res.redirect('/');
+
 };
 
 exports.search = function (req, res, next) {

@@ -1,6 +1,6 @@
 /*
  * Nome del file: ClassTest.js
- * Percorso: tests/unit/client/ClassTest.js
+ * Percorso: tests/ClassTest.js
  * Autore: Vault-Tech
  * Data creazione: 14.05.2016
  * E-mail: vaulttech.swe@gmail.com

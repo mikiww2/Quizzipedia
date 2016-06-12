@@ -1,6 +1,6 @@
 /*
  * Nome del file: UserTest.js
- * Percorso: tests/unit/client/UserTest.js
+ * Percorso: tests/UserTest.js
  * Autore: Vault-Tech
  * Data creazione: 11.05.2016
  * E-mail: vaulttech.swe@gmail.com

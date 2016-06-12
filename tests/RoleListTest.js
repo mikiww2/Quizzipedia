@@ -1,6 +1,6 @@
 /*
  * Nome del file: RoleListTest.js
- * Percorso: tests/unit/client/RoleListTest.js
+ * Percorso: tests/RoleListTest.js
  * Autore: Vault-Tech
  * Data creazione: 27.05.2016
  * E-mail: vaulttech.swe@gmail.com

@@ -1,6 +1,6 @@
 /*
  * Nome del file: InstitutionTest.js
- * Percorso: tests/unit/client/InstitutionTest.js
+ * Percorso: tests/InstitutionTest.js
  * Autore: Vault-Tech
  * Data creazione: 25.05.2016
  * E-mail: vaulttech.swe@gmail.com

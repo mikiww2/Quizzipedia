@@ -1,6 +1,6 @@
 /*
  * Nome del file: AttachmentTest.js
- * Percorso: tests/unit/client/AttachmentTest.js
+ * Percorso: tests/AttachmentTest.js
  * Autore: Vault-Tech
  * Data creazione: 08.05.2016
  * E-mail: vaulttech.swe@gmail.com

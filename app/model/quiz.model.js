@@ -59,6 +59,10 @@ var quizSchema = new Schema({
         type: String
         ,required: [true, 'title is required']
     }
+    ,institution: {
+        type: String
+        ,required: [true, 'institution name is required']
+    }
 }, { strict: true });
 
 //countQuestions

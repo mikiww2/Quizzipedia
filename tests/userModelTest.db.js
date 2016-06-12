@@ -1,9 +1,9 @@
 'use strict';
 
 var should = require('should'),
-    database = require('../../config/database.test'),
+    database = require('./config/database.test'),
     mongoose = require('mongoose'),
-    User = require('../../../app/model/user.model');
+    User = require('../app/model/user.model');
 require('mocha-mongoose')(database.localUrl);
 
 var user,

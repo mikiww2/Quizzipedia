@@ -175,7 +175,7 @@ exports.parse = function (qml){
         var text = extract(qml, '#t#', '#a#'); //estrazione stringa di domanda
         if (text.includes('{') && text.endsWith('}')) {  // se presente allegato nella stringa
             question.title = extract(text, '', '{');
-            question.attachment = appendAttached(extract(text, '{', '}'));
+            question.questionAttachment = appendAttached(extract(text, '{', '}'));
         }
         else
             question.title = text;

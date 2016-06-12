@@ -1,6 +1,6 @@
 /*
  * Nome del file: DirectorTest.js
- * Percorso: tests/unit/client/DirectorTest.js
+ * Percorso: tests/DirectorTest.js
  * Autore: Vault-Tech
  * Data creazione: 18.05.2016
  * E-mail: vaulttech.swe@gmail.com

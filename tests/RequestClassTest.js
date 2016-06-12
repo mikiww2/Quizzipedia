@@ -1,6 +1,6 @@
 /*
  * Nome del file: RequestClassTest.js
- * Percorso: tests/unit/client/RequestClassTest.js
+ * Percorso: tests/RequestClassTest.js
  * Autore: Vault-Tech
  * Data creazione: 26.05.2016
  * E-mail: vaulttech.swe@gmail.com

@@ -1,6 +1,6 @@
 /*
  * Nome del file: RequestRoleTest.js
- * Percorso: tests/unit/client/RequestRoleTest.js
+ * Percorso: tests/RequestRoleTest.js
  * Autore: Vault-Tech
  * Data creazione: 29.05.2016
  * E-mail: vaulttech.swe@gmail.com

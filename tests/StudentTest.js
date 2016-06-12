@@ -1,6 +1,6 @@
 /*
  * Nome del file: StudentTest.js
- * Percorso: tests/unit/client/StudentTest.js
+ * Percorso: tests/StudentTest.js
  * Autore: Vault-Tech
  * Data creazione: 13.05.2016
  * E-mail: vaulttech.swe@gmail.com

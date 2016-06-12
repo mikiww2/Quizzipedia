@@ -1,6 +1,6 @@
 /*
  * Nome del file: AuthenticationDataTest.js
- * Percorso: tests/unit/client/AuthenticationDataTest.js
+ * Percorso: tests/AuthenticationDataTest.js
  * Autore: Vault-Tech
  * Data creazione: 10.05.2016
  * E-mail: vaulttech.swe@gmail.com

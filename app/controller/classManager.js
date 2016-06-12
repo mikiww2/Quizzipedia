@@ -81,10 +81,10 @@ exports.fetchNoUserClass = function (req, res) {
 		}
 };
 
-exports.fetchTeacherClassesList = function (req, res) {
+exports.fetchClassesList = function (req, res) {
 
 		var classList = [];
-		if(req.session.user && req.session.user.role == 'teacher'){
+		if(req.session.user && req.session.user.role == 'director'){
 			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 				if (err) {
 	            console.log('error: ' + err);
@@ -92,34 +92,57 @@ exports.fetchTeacherClassesList = function (req, res) {
 	      }
 	      else{
 	       	if(org){
-	       		for(var i=0;i<org.users.length;i++){
-	       			if(org.users[i].user == req.session.user._id)
-	       				for(var j=0;j<org.users[i].classes.length;j++){
-	       					if(org.users[i].classes[j].state == 'allowed')
-	       						classList.push({
-	       							class_id: org.users[i].classes[j]._id,
-	       							name: null
-	       						});
-	       				}
-	       		}
 	       		for(var i=0;i<org.classes.length;i++){
-	       			for(var j=0;j<classList.length;j++){
-	       				if(org.classes[i]._id.equals(classList[j].class_id))
-	       					classList[j].name = org.classes[i].name;
-	       			}
+	       			classList.push({
+	       				class_id: org.classes[i]._id,
+	       				name: org.classes[i].name
+	       			});
 	       		}
-
 	       		res.send(classList);
-	       	}      		
+	       	}
+	       	else console.log('Nessun ente trovato');
 	    	}
 			});
 		}
+		else{
+			if(req.session.user && req.session.user.role == 'teacher'){
+				Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+					if (err) {
+		            console.log('error: ' + err);
+		            res.redirect('/');
+		      }
+		      else{
+		       	if(org){
+		       		for(var i=0;i<org.users.length;i++){
+		       			if(org.users[i].user == req.session.user._id)
+		       				for(var j=0;j<org.users[i].classes.length;j++){
+		       					if(org.users[i].classes[j].state == 'allowed')
+		       						classList.push({
+		       							class_id: org.users[i].classes[j]._id,
+		       							name: null
+		       						});
+		       				}
+		       		}
+		       		for(var i=0;i<org.classes.length;i++){
+		       			for(var j=0;j<classList.length;j++){
+		       				if(org.classes[i]._id.equals(classList[j].class_id))
+		       					classList[j].name = org.classes[i].name;
+		       			}
+		       		}
+
+		       		res.send(classList);
+		       	}      		
+		    	}
+				});
+			}
+			else res.redirect('/');
+		}
 };
 
-exports.fetchTeacherClassesDetails = function (req, res) {
+exports.fetchClassesDetails = function (req, res) {
 
 		var classList = [];
-		if(req.session.user && req.session.user.role == 'teacher'){
+		if(req.session.user && req.session.user.role == 'director'){
 			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 				if (err) {
 	            console.log('error: ' + err);
@@ -127,14 +150,11 @@ exports.fetchTeacherClassesDetails = function (req, res) {
 	      }
 	      else{
 	       	if(org){
-	       		for(var i=0;i<org.users.length;i++){ //cerca il docente
-	       			if(org.users[i].user == req.session.user._id)
-	       				for(var j=0;j<org.users[i].classes.length;j++){  //passa le sue classi dove è stato accettato
-	       					if(org.users[i].classes[j].state == 'allowed')
-	       						classList.push({
-	       							class_id: org.users[i].classes[j]._id,
-	       						});
-	       				}
+	       		for(var i=0;i<org.classes.length;i++){
+	       			classList.push({
+	       				class_id: org.classes[i]._id,
+	       				className: org.classes[i].name
+	       			});
 	       		}
 	       		for(var i=0;i<classList.length;i++){ //passo l'array classlist
        				var numClassTeachers = 0;
@@ -154,24 +174,67 @@ exports.fetchTeacherClassesDetails = function (req, res) {
 	       			classList[i].classTeachers = numClassTeachers;
 	       			classList[i].classStudents = numClassStudents;
        			}
-       			for(var i=0;i<classList.length;i++){
-       				for(var j=0;j<org.classes.length;j++){ 
-       					if(classList[i].class_id.equals(org.classes[j]._id))
-       						classList[i].className = org.classes[j].name;
-       				}
-       			}
-
 	       		res.send(classList);
 	       	}      		
 	    	}
 			});
+		}
+		else{
+			if(req.session.user && req.session.user.role == 'teacher'){
+				Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+					if (err) {
+		            console.log('error: ' + err);
+		            res.redirect('/');
+		      }
+		      else{
+		       	if(org){
+		       		for(var i=0;i<org.users.length;i++){ //cerca il docente
+		       			if(org.users[i].user == req.session.user._id)
+		       				for(var j=0;j<org.users[i].classes.length;j++){  //passa le sue classi dove è stato accettato
+		       					if(org.users[i].classes[j].state == 'allowed')
+		       						classList.push({
+		       							class_id: org.users[i].classes[j]._id,
+		       						});
+		       				}
+		       		}
+		       		for(var i=0;i<classList.length;i++){ //passo l'array classlist
+	       				var numClassTeachers = 0;
+	       				var numClassStudents = 0;
+	       				for(var j=0;j<org.users.length;j++){ //scansiono tutti gli utenti
+	       					if(org.users[j].state == 'allowed') //se sono utenti accettati nell'ente
+		       					for(var k=0;k<org.users[j].classes.length;k++){ //scansiono classi dell'utente
+		       						if(org.users[j].classes[k].state == 'allowed') //se sono stati accettati nella classe
+			       						if(org.users[j].classes[k]._id.equals(classList[i].class_id)){
+					       					if(org.users[j].role == 'teacher')
+						       					numClassTeachers++;
+						     					if(org.users[j].role == 'student')
+						     						numClassStudents++;
+					       				}
+		       					}
+		       			}
+		       			classList[i].classTeachers = numClassTeachers;
+		       			classList[i].classStudents = numClassStudents;
+	       			}
+	       			for(var i=0;i<classList.length;i++){
+	       				for(var j=0;j<org.classes.length;j++){ 
+	       					if(classList[i].class_id.equals(org.classes[j]._id))
+	       						classList[i].className = org.classes[j].name;
+	       				}
+	       			}
+
+		       		res.send(classList);
+		       	}      		
+		    	}
+				});
+			}
+			else res.redirect('/');
 		}
 };
 
 exports.fetchClassMembers = function (req, res) {
 
 		var results = [];
-		if(req.session.user && req.session.user.role == 'teacher'){
+		if(req.session.user && (req.session.user.role == 'director' || req.session.user.role == 'teacher')){
 
 			async.series([
 				function(callback){
@@ -234,7 +297,7 @@ exports.fetchClassMembers = function (req, res) {
 exports.removeFromClass = function (req, res) {
 
 		if(req.session.user && (req.session.user.role == 'director' || req.session.user.role == 'teacher')){
-			Organization.findOne({ 'name': organization }, function (err,org){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 				if (err) {
 	            console.log('error: ' + err);
 	            res.redirect('/');

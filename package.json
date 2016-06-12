@@ -40,11 +40,9 @@
   "scripts": {
     "start": "node server.js",
     "pre-test": "npm install",
-    "test": "npm run testDb && npm run testClient && npm run testServer && npm run testIntegration",
-    "testDb": "node node_modules/mocha/bin/mocha --colors --recursive tests/unit/db/",
-    "testClient": "echo \"devi settare per i test in tests/unit/client/\" && exit 0",
-    "testServer": "echo \"devi settareper i test in tests/unit/server/\" && exit 0",
-    "testKarma": "karma start karma.conf.js --log-level debug --single-run --colors --no-fail-on-empty-test-suite",
+    "test": "npm run testDb && npm run testKarma",
+    "testDb": "node node_modules/mocha/bin/mocha --colors --recursive tests/*.db.js",
+    "testKarma": "karma start karma.conf.js",
     "clearUpload": "rm upload upload_tmp -f -r -v"
   },
   "repository": {
@@ -64,3 +62,4 @@
   },
   "homepage": "https://github.com/devsoft91/Quizzipedia#readme"
 }
+

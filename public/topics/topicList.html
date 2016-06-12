@@ -9,7 +9,8 @@
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" href="./assets/img/favicon.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="./assets/img/favicon.ico" />
 
     <title>Argomenti</title>
 
@@ -46,7 +47,7 @@
   </head>
 
   <body>
-	<div class="container pagewrap">
+	<div class="pagewrap">
         
         <div ng-controller="CtrlHeader">        
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
@@ -55,13 +56,26 @@
           <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
 	</div>
         
-		<h4 class="description text-center"><i class="glyphicon glyphicon-book"></i> Argomenti </h4>
-		<div class="row" ng-controller="CtrlTopics">
-			<div class="list-group form text-center important">
-                <p class="list-group-item" ng-repeat="topic in topicsList.topics track by $index">{{topic}}</p>			  
+		 <div class="row-fluid text-left breadcrumb-div">
+				<ol class="breadcrumb" id="breadcrumb">
+					<li>
+						Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+					</li>
+					<li class="active">
+						<i class="glyphicon glyphicon-th-list"> </i> Argomenti
+					</li>
+				</ol>
+			</div> 
+			
+			<div class="container">
+				<h4 class="description text-center"><i class="glyphicon glyphicon-book"></i> Argomenti </h4>
+				<div class="row" ng-controller="CtrlTopics">
+					<div class="list-group form text-center important">
+						<p class="list-group-item" ng-repeat="topic in topicsList.topics track by $index">{{topic}}</p>			  
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
       <page-footer></page-footer>
   </body>
 </html>

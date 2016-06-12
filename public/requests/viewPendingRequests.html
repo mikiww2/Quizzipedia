@@ -51,6 +51,17 @@
           <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
 	  </div>
         
+		  <div class="row-fluid breadcrumb-div">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>
+                    Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+                </li>
+                <li class="active">
+                    <i class="glyphicon glyphicon-envelope"> </i> Gestione richieste
+                </li>
+            </ol>
+        </div>
+		
 		<div class="container">
 			<ul class="nav nav-pills col-md-offset-4 col-sm-offset-3 col-xs-offset-2"  ng-if = "user.role == 'director'">
 				  <li class="active"><a data-toggle="pill" href="#role" >Richieste pendenti di ruolo</a></li>

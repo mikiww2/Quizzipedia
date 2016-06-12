@@ -1,6 +1,6 @@
 /*
  * Nome del file: ShortAnswerQTest.js
- * Percorso: tests/unit/client/ShortAnswerQTest.js
+ * Percorso: tests/ShortAnswerQTest.js
  * Autore: Vault-Tech
  * Data creazione: 06.06.2016
  * E-mail: vaulttech.swe@gmail.com

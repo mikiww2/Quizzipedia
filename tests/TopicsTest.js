@@ -1,6 +1,6 @@
 /*
  * Nome del file: TopicsTest.js
- * Percorso: tests/unit/client/TopicsTest.js
+ * Percorso: tests/TopicsTest.js
  * Autore: Vault-Tech
  * Data creazione: 03.06.2016
  * E-mail: vaulttech.swe@gmail.com

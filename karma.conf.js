@@ -30,8 +30,16 @@ module.exports = function(config) {
         'public/services/RequestRole.js',
         'public/services/RoleList.js',
         'public/services/ClassList.js',
+        'public/services/Topics.js',
+        'public/services/Institution.js',
+        'public/services/GenericQuestion.js',
+        'public/services/TrueFalseQ.js',
+        'public/services/ShortAnswerQ.js',
+        'public/services/Attachment.js',
 
-//         'tests/unit/client/*.js',
+        'tests/*.js'
+        /*
+         * 
         'tests/unit/client/AuthenticationDataTest.js', //ok
         'tests/unit/client/CtrlUserManagerTest.js', //ok
         'tests/unit/client/ClassTest.js', //ok
@@ -41,16 +49,22 @@ module.exports = function(config) {
         'tests/unit/client/RequestClassTest.js', //ok
         'tests/unit/client/RequestRoleTest.js', //ok
         'tests/unit/client/RoleListTest.js',
-        'tests/unit/client/ClassListTest.js'
+        'tests/unit/client/ClassListTest.js',
+        'tests/unit/client/TopicsTest.js', //ok
+        'tests/unit/client/InstitutionTest.js', //ok
+        'tests/unit/client/GenericQuestionTest.js', //ok
+        'tests/unit/client/TrueFalseQTest.js', //ok
+        'tests/unit/client/ShortAnswerQTest.js', //ok
+        'tests/unit/client/AttachmentTest.js' //ok
+        * 
+        */
 
-
-//         'tests/integration/*.js'
     ],
 
 
     // list of files to exclude
     exclude: [
-        'tests/unit/db/*'
+		'tests/*.db.js'
     ],
 
 

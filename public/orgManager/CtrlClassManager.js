@@ -1,7 +1,7 @@
 angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$scope', '$http', function (Class, $scope, $http){
     
     $scope.classes = [];
-    $scope.teacherClasses = [];
+    $scope.userClasses = [];
     $scope.classMembers = [];
     $scope.myClass = new Class();
     $scope.index = null;
@@ -13,9 +13,9 @@ angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$sco
         });
     };
     
-    $scope.loadTeacherClasses = function () {
-        $http.get(' /api/class/fetch_teacher_classes_details').success(function(response) {
-            $scope.teacherClasses = response;
+    $scope.loadUserClasses = function () {
+        $http.get(' /api/class/fetch_classes_details').success(function(response) {
+            $scope.userClasses = response;
         });
     };
     
@@ -74,7 +74,7 @@ angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$sco
     };
     
     $scope.deleteFromClass = function (){
-        var request = {user : $scope.memberToRemove.user, class_id : $scope.teacherClasses[$scope.index].class_id};
+        var request = {user : $scope.memberToRemove.user, class_id : $scope.userClasses[$scope.index].class_id};
         $http.post('/api/class/remove_from_class', request);
         var userIndex = $scope.classMembers[$scope.index].indexOf($scope.memberToRemove);
         $scope.classMembers[$scope.index].splice(userIndex, 1);
@@ -83,7 +83,7 @@ angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$sco
     };
     
     $scope.loadClasses(); 
-    $scope.loadTeacherClasses();
+    $scope.loadUserClasses();
 }]);
     
     

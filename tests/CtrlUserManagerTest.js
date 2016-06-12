@@ -1,6 +1,6 @@
 /*
  * Nome del file: CtrlUserManagerTest.js
- * Percorso: tests/unit/client/CtrlUserManagerTest.js
+ * Percorso: tests/CtrlUserManagerTest.js
  * Autore: Vault-Tech
  * Data creazione: 18.05.2016
  * E-mail: vaulttech.swe@gmail.com

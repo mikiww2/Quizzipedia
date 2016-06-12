@@ -1,2 +1,0 @@
- 
-here integration test (maybe karma ?)

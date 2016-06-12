@@ -131,6 +131,30 @@ exports.search = function (req, res, next) {
     });
 };
 
+exports.fetchQuestionsNumber = function (req, res, next) {
+
+    if(req.session.user){ //&& req.session.user.role == 'teacher' da aggiungere dopo
+
+        Question.find({ 'institution': req.session.user.institution }, function (err, questions) {
+            if (err) {
+                console.log('error: ' + err);
+                res.redirect('/');
+            }
+            else{
+                if(questions){
+                    res.send({ questionsNumber: questions.length });
+                }
+                else{
+                    console.log('Nessuna domanda trovata');
+                    res.send({ questionsNumber: 0 });
+                }
+            }
+        });
+
+    }
+    else res.redirect('/');
+};
+
 // exports.test = function (req, res) {
 //     console.log("body");
 //     console.log(JSON.stringify(req.body, undefined, 2));

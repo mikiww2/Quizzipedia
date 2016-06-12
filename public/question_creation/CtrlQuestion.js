@@ -411,7 +411,15 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         });
     };
     
-			
+    $scope.topicsList = [];
+    $scope.loadTopics = function () {
+        $http.get('/api/topic/fetch').success(function(response) {
+            $scope.topicsList = response;
+        });
+        
+    }
+
+    $scope.loadTopics();
 	
 	
     

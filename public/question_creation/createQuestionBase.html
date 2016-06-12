@@ -87,15 +87,6 @@
         
         <header-logged-teacher ng-controller="CtrlHeader"></header-logged-teacher>
         
-<<<<<<< HEAD
-	<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
-        
-        
-                <!-- name="CtrlQuestion.upload_form"-->
-        
-        
-      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)"  novalidate ng-controller="CtrlQuestion" ng-init="resetQuestion()">
-=======
 		<div class="row-fluid breadcrumb-div">
             <ol class="breadcrumb" id="breadcrumb">
                 <li>
@@ -106,7 +97,6 @@
                 </li>
             </ol>
         </div>
->>>>>>> 4a62727d309bd745d353b81791f8d5b84b592078
 		
 	<div class="container">
 	
@@ -148,13 +138,9 @@
 			<!-- topic-->
 			<div class="form-group row">
 				<fieldset class="form-group">
-					<label for="topic">Materia</label>
-					<select class="form-control" id="topic" ng-model="MyGenericQ.topic">
-					<!-- load options from existing topics  RENDERE AUTOMATICA-->
-					  <option>Storia dell'arte</option>
-					  <option>Informatica</option>
-					  <option>Matematica</option>
-					  <option>Fisica</option>
+					<label for="topic">Argomento</label>
+					<select class="form-control" id="topic" ng-model="topicsList">
+					  <option ng-repeat="topic in topicsList" value={{topic}}>{{topic}}</option>
 					</select>
 				</fieldset>
 			</div>

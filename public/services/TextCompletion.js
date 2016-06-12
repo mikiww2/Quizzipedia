@@ -21,6 +21,7 @@ angular.module('CreateQuestion').factory('TextCompletion',[function(){
     };
     
     TextCompletion.prototype.setValue = function(value){
+        
         this.value = value;
     };
     

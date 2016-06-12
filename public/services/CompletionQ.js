@@ -56,7 +56,7 @@ angular.module('CreateQuestion').factory('CompletionQ',['GenericQuestion','TextC
     
     CompletionQ.prototype.insertAnswer = function(text,numberHole){
         
-        var x = AnswerCompletion();
+        var x = new AnswerCompletion();
         x.setText(text);
         x.setId(numberHole);
         
@@ -64,7 +64,7 @@ angular.module('CreateQuestion').factory('CompletionQ',['GenericQuestion','TextC
         
     };
     
-    CompletionQ.prototype.removeTextElment = function(index){
+    CompletionQ.prototype.removeTextElement = function(index){
       
         if(index>=0 && index < this.text.length){
             this.text.splice(index,1);
@@ -72,13 +72,68 @@ angular.module('CreateQuestion').factory('CompletionQ',['GenericQuestion','TextC
         
     };
     
-    CompletionQ.prototype.removeAnswer = function(index){
+    CompletionQ.prototype.removeSomeTextElements = function(index,nElements){
+      
+        if((index>=0 && index < this.text.length) && (nElements>= 0 && nElements <= this.text.length)){
+            this.text.splice(index,nElements);
+        }
+        
+    };
+    
+    CompletionQ.prototype.removeAns = function(index){
       
         if(index>= 0 && index < this.answer.length){
             this.answer.splice(index,1);
         }
     };
     
+    CompletionQ.prototype.getTextElement = function(index){
+        
+        if(index>= 0 && index < this.text.length){
+            return this.text[index].getValue();
+        }
+        
+    };
+    
+    CompletionQ.prototype.getTypeTextElement = function(index){
+      
+        return this.text[index].getType();
+    };
+    
+    CompletionQ.prototype.getAnswerElement = function(idHole){ //restituisce la risposta dove this.id == idHole
+        
+        for(var i = 0; i< this.answer.length;i++){
+            if(this.answer[i].getId() == idHole){
+                return this.answer[i].getText();
+            }
+        }
+        
+        return '';
+        
+    };
+    
+    CompletionQ.prototype.checkAnswer = function(valueHole){ //verifica che ogni answer sia associata a un solo buco
+        var conta = 0;
+        console.log("METODO checkAnswer");
+        for(var i =0; i < this.answer.length; i++){
+            console.log("id:"+ this.answer[i].getId() +"valueHole:"+ valueHole);
+            
+            if(this.answer[i].getId() == valueHole){
+                conta = conta + 1;
+            }
+        }
+        
+        return conta; //se conta == 0 c'è un buco che non è associato a una answer, conta > 1 ci sono due answer associata allo stesso buco, se conta == 1 tutto ok 
+        
+    };
+    
+    CompletionQ.prototype.getSizeText = function(){
+        return this.text.length;
+    };
+    
+    CompletionQ.prototype.getSizeAnswer = function(){
+        return this.answer.length;
+    };
     
     return CompletionQ;
     

@@ -153,7 +153,7 @@ exports.fetchClassesDetails = function (req, res) {
 	       		for(var i=0;i<org.classes.length;i++){
 	       			classList.push({
 	       				class_id: org.classes[i]._id,
-	       				name: org.classes[i].name
+	       				className: org.classes[i].name
 	       			});
 	       		}
 	       		for(var i=0;i<classList.length;i++){ //passo l'array classlist

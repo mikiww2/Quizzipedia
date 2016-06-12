@@ -7,6 +7,8 @@ angular.module('Quizzipedia').directive('homePageTeacher', function() {
             $scope.classes = [];
             $scope.teachersNumber = null;
             $scope.studentsNumber = null;
+            $scope.questionsNumber = null;
+            $scope.quizNumber = null;
             
             $scope.loadClasses = function () {                
                 $http.get('/api/class/fetch_classes_list').success (function (response) {
@@ -22,9 +24,23 @@ angular.module('Quizzipedia').directive('homePageTeacher', function() {
                     $scope.studentsNumber = response.number;
                 });
             }
+
+            $scope.loadQuestionsNumber = function () {                
+                $http.get('/api/question/fetch_questions_number').success (function (response) {
+                    $scope.questionsNumber = response.number;
+                });
+            }
+
+            $scope.loadQuizNumber = function () {                
+                $http.get('/api/quiz/fetch_quiz_number').success (function (response) {
+                    $scope.quizNumber = response.number;
+                });
+            }
             
             $scope.loadClasses();
             $scope.loadStudentsTeachersNumber();
+            $scope.loadQuestionsNumber();
+            $scope.loadQuizNumber();
         }
     };    
     

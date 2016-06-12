@@ -368,7 +368,7 @@ h6.description, h4.description, h3.description{
 	border-radius: 5px;
 }
 
-.success{
+.success, .success i{
 	color: #179917;
 }
 
@@ -380,7 +380,7 @@ h6.description, h4.description, h3.description{
 	margin-right: 40px;
 }
 
-.danger{
+.danger, .danger i{
 	color: #e14825;
 }
 

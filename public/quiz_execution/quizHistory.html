@@ -9,19 +9,27 @@
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" href="./assets/img/favicon.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="./assets/img/favicon.ico" />
 
     <title>Storico dei quiz</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Bootstrap core CSS -->
+    <link href="./assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="./assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
 	<!-- quizzipedia.base.css -->
-	<link href="../../css/quizzipedia.base.css" rel="stylesheet">
+	<link href="./assets/css/quizzipedia.base.css" rel="stylesheet">
+	
+      <script type="text/javascript" src="./public/core.js"></script>
+      <script type="text/javascript" src="./public/header/CtrlHeader.js"></script>
+	  
+	 <script type="text/javascript" src="./public/header/headerLoggedStudent.js"></script>
 
+	 <!--Directive angular (FOOTER)-->
+    <script type="text/javascript" src="./public/footer/pageFooter.js"></script> 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -30,8 +38,23 @@
   </head>
 
   <body>
-	<div class="container pagewrap">
-		<div class="row">
+	<div class="pagewrap">
+		<div ng-controller="CtrlHeader">  
+			<header-logged-student ng-if="user.role == 'student'"></header-logged-student>
+		 </div>
+		 
+        <div class="row-fluid breadcrumb-div">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>
+                    Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+                </li>
+                <li class="active">
+                    <i class="glyphicon glyphicon-glyphicon-th-list"> </i> Storico quiz
+                </li>
+            </ol>
+        </div> 
+
+		<div class="row container">
 			<div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -39,42 +62,98 @@
 					</div>
 					<div class="panel-body">
 						<div class="list-group">
-							<a href="#" class="list-group-item">
-								<span class="label label-success label-as-badge pull-right">27/30</span>
-								<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
-								<i class="glyphicon glyphicon-list-alt"></i> Materia - 
-								<i class="glyphicon glyphicon-book"></i> Classe
-							</a>
-							<a href="#" class="list-group-item">
-								<span class="label label-success label-as-badge pull-right">18/30</span>
-								<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
-								<i class="glyphicon glyphicon-list-alt"></i> Materia - 
-								<i class="glyphicon glyphicon-book"></i> Classe 
-							</a>
-							<a href="#" class="list-group-item">
-								<span class="label label-danger label-as-badge pull-right">12/30</span>
-								<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
-								<i class="glyphicon glyphicon-list-alt"></i> Materia - 
-								<i class="glyphicon glyphicon-book"></i> Classe 
-							</a>
-							<a href="#" class="list-group-item">
-								<span class="label label-success label-as-badge pull-right">20/30</span>
-								<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
-								<i class="glyphicon glyphicon-list-alt"></i> Materia - 
-								<i class="glyphicon glyphicon-book"></i> Classe 
-							</a>
-							<a href="#" class="list-group-item">
-								<span class="label label-default label-as-badge pull-right">0/30</span>
-								<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
-								<i class="glyphicon glyphicon-list-alt"></i> Materia - 
-								<i class="glyphicon glyphicon-book"></i> Classe
-							</a>
-							<a href="#" class="list-group-item">
-								<span class="label label-success label-as-badge pull-right">20/30</span>
-								<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
-								<i class="glyphicon glyphicon-list-alt"></i> Materia - 
-								<i class="glyphicon glyphicon-book"></i> Classe 
-							</a>
+						
+							<!-- quiz -->
+							<div class="list-group-item">
+								<a href="#quiz1" class="list-group-item" data-toggle="collapse"> <!-- id quiz dinamico -->
+									<span class="label label-success label-as-badge pull-right">27/30</span> <!-- label-success se quiz passato -->
+									<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
+									<i class="glyphicon glyphicon-list-alt"></i> Materia - 
+									<i class="glyphicon glyphicon-book"></i> Classe
+								</a>
+							</div>
+							<!-- singole domande - parte collassata-->
+							<div id="quiz1" class="collapse">
+								<a href="#" class="list-group-item"><span class="label-as-badge label-yellow">1</span> Titolo domanda
+									<span class="pull-right success">
+										<i class="glyphicon glyphicon-ok"></i> <!-- risposta giusta -->
+									</span>
+								</a>
+								<a href="#" class="list-group-item"><span class="label-as-badge label-yellow">2</span> Titolo domanda
+									<span class="pull-right danger">
+										<i class="glyphicon glyphicon-remove"></i> <!-- risposta sbagliata -->
+									</span>
+								</a>
+							</div>	
+							
+							<!-- quiz -->
+							<div class="list-group-item">
+								<a href="#quiz2" class="list-group-item" data-toggle="collapse"> <!-- id quiz dinamico -->
+									<span class="label label-danger label-as-badge pull-right">12/30</span> <!-- label-danger se quiz fallito -->
+									<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
+									<i class="glyphicon glyphicon-list-alt"></i> Materia - 
+									<i class="glyphicon glyphicon-book"></i> Classe
+								</a>
+							</div>
+							<!-- singole domande - parte collassata-->
+							<div id="quiz2" class="collapse">
+								<a href="#" class="list-group-item"><span class="label-as-badge label-yellow">1</span> Titolo domanda
+									<span class="pull-right success">
+										<i class="glyphicon glyphicon-ok"></i> <!-- risposta giusta -->
+									</span>
+								</a>
+								<a href="#" class="list-group-item"><span class="label-as-badge label-yellow">2</span> Titolo domanda
+									<span class="pull-right danger">
+										<i class="glyphicon glyphicon-remove"></i> <!-- risposta sbagliata -->
+									</span>
+								</a>
+							</div>	
+							
+							<!-- quiz -->
+							<div class="list-group-item">
+								<a href="#quiz3" class="list-group-item" data-toggle="collapse"> <!-- id quiz dinamico -->
+									<span class="label label-success label-as-badge pull-right">21/30</span>
+									<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
+									<i class="glyphicon glyphicon-list-alt"></i> Materia - 
+									<i class="glyphicon glyphicon-book"></i> Classe
+								</a>
+							</div>
+							<!-- singole domande - parte collassata-->
+							<div id="quiz3" class="collapse">
+								<a href="#" class="list-group-item"><span class="label-as-badge label-yellow">1</span> Titolo domanda
+									<span class="pull-right success">
+										<i class="glyphicon glyphicon-ok"></i> <!-- risposta giusta -->
+									</span>
+								</a>
+								<a href="#" class="list-group-item"><span class="label-as-badge label-yellow">2</span> Titolo domanda
+									<span class="pull-right danger">
+										<i class="glyphicon glyphicon-remove"></i> <!-- risposta sbagliata -->
+									</span>
+								</a>
+							</div>	
+							
+							<!-- quiz -->
+							<div class="list-group-item">
+								<a href="#quiz4" class="list-group-item" data-toggle="collapse"> <!-- id quiz dinamico -->
+									<span class="label label-danger label-as-badge pull-right">17/30</span> <!-- label-danger se quiz fallito -->
+									<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
+									<i class="glyphicon glyphicon-list-alt"></i> Materia - 
+									<i class="glyphicon glyphicon-book"></i> Classe
+								</a>
+							</div>
+							<!-- singole domande - parte collassata-->
+							<div id="quiz4" class="collapse">
+								<a href="#" class="list-group-item"><span class="label-as-badge label-yellow">1</span> Titolo domanda
+									<span class="pull-right success">
+										<i class="glyphicon glyphicon-ok"></i> <!-- risposta giusta -->
+									</span>
+								</a>
+								<a href="#" class="list-group-item"><span class="label-as-badge label-yellow">2</span> Titolo domanda
+									<span class="pull-right danger">
+										<i class="glyphicon glyphicon-remove"></i> <!-- risposta sbagliata -->
+									</span>
+								</a>
+							</div>	
 						</div>
 					</div>
 				</div>

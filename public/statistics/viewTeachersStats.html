@@ -47,116 +47,129 @@
   </head>
 
   <body>
-	<div class="container pagewrap">
+	<div class="pagewrap">
 	
 	    <div ng-controller="CtrlHeader">                
 			  <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>         
 		</div>
 		
-		<h4 class="description text-center"><i class="glyphicon glyphicon-education"></i> <i class="glyphicon glyphicon-stats"></i>  Statistiche dei docenti</h4>
-		<div class="form-area">  
-		<form class="form">
+		<div class="row-fluid breadcrumb-div">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>
+                    Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+                </li>
+                <li class="active">
+                    <i class="glyphicon glyphicon-stats"> </i> Statistiche docenti
+                </li>
+            </ol>
+        </div>
+		
+		<div class="container">
+			<h4 class="description text-center"><i class="glyphicon glyphicon-education"></i> <i class="glyphicon glyphicon-stats"></i>  Statistiche dei docenti</h4>
+			<div class="form-area">  
+			<form class="form">
+				
+				<fieldset class="form-group">
+				<label for="class">Teacher</label>
+				<select id="usrSelect" name="teacher" class="form-control">
+				  <option value="">--</option>
+				  <option>Jane Doe</option>
+				</select>
+				</fieldset>
+				<script type="text/javascript">
+				$(document).ready(function() {
+				  $("#usrSelect").select2();
+				});
+			</script>
+				</form>
+			</div>
 			
-			<fieldset class="form-group">
-			<label for="class">Teacher</label>
-			<select id="usrSelect" name="teacher" class="form-control">
-			  <option value="">--</option>
-			  <option>Jane Doe</option>
-			</select>
-			</fieldset>
-			<script type="text/javascript">
-			$(document).ready(function() {
-			  $("#usrSelect").select2();
-			});
-		</script>
-			</form>
-		</div>
-		
-		<div class="row">
-			<!-- quiz panel -->
-			<div class="col-lg-6 col-md-6">
-				<div class="pull-right dropOrder">
-					<span>Ordina:</span>
-					<span class="btn-group">
-					  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					  Popolari <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu">
-						<li><a href="#">Recenti</a></li>
-						<li><a href="#">Autore</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">Pubblici</a></li>
-						<li><a href="#">Privati</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">Personali</a></li>
-					  </ul>
-					</span>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> <i class="glyphicon glyphicon-stats"></i> Quiz</h3>
+			<div class="row">
+				<!-- quiz panel -->
+				<div class="col-lg-6 col-md-6">
+					<div class="pull-right dropOrder">
+						<span>Ordina:</span>
+						<span class="btn-group">
+						  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						  Popolari <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu">
+							<li><a href="#">Recenti</a></li>
+							<li><a href="#">Autore</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Pubblici</a></li>
+							<li><a href="#">Privati</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Personali</a></li>
+						  </ul>
+						</span>
 					</div>
-					<div class="panel-body">
-						<div class="list-group">
-							<a href="#" class="list-group-item">
-								Titolo quiz - Materia 
-							</a>
-							<a href="#" class="list-group-item">
-								Titolo quiz - Materia
-							</a>
-							<a href="#" class="list-group-item">
-								Titolo quiz - Materia 
-							</a>
-							<a href="#" class="list-group-item">
-								Titolo quiz - Materia 
-							</a>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title"><i class="glyphicon glyphicon-th-list"></i> <i class="glyphicon glyphicon-stats"></i> Quiz</h3>
+						</div>
+						<div class="panel-body">
+							<div class="list-group">
+								<a href="#" class="list-group-item">
+									Titolo quiz - Materia 
+								</a>
+								<a href="#" class="list-group-item">
+									Titolo quiz - Materia
+								</a>
+								<a href="#" class="list-group-item">
+									Titolo quiz - Materia 
+								</a>
+								<a href="#" class="list-group-item">
+									Titolo quiz - Materia 
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- questions panel -->
+				<div class="col-lg-6 col-md-6">
+					<div class="pull-right dropOrder">
+						<span>Ordina:</span>
+						<span class="btn-group">
+						  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						  Popolari <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu">
+							<li><a href="#">Recenti</a></li>
+							<li><a href="#">Autore</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Pubblici</a></li>
+							<li><a href="#">Privati</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Personali</a></li>
+						  </ul>
+						</span>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title"><i class="glyphicon glyphicon-question-sign"></i> <i class="glyphicon glyphicon-stats"></i> Domande</h3>
+						</div>
+						<div class="panel-body">
+							<div class="list-group">
+								<a href="#" class="list-group-item">
+									Titolo domanda - Materia 
+								</a>
+								<a href="#" class="list-group-item">
+									Titolo domanda - Materia 
+								</a>
+								<a href="#" class="list-group-item">
+									Titolo domanda - Materia 
+								</a>
+								<a href="#" class="list-group-item">
+									Titolo domanda - Materia 
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- questions panel -->
-			<div class="col-lg-6 col-md-6">
-				<div class="pull-right dropOrder">
-					<span>Ordina:</span>
-					<span class="btn-group">
-					  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					  Popolari <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu">
-						<li><a href="#">Recenti</a></li>
-						<li><a href="#">Autore</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">Pubblici</a></li>
-						<li><a href="#">Privati</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">Personali</a></li>
-					  </ul>
-					</span>
-				</div>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title"><i class="glyphicon glyphicon-question-sign"></i> <i class="glyphicon glyphicon-stats"></i> Domande</h3>
-					</div>
-					<div class="panel-body">
-						<div class="list-group">
-							<a href="#" class="list-group-item">
-								Titolo domanda - Materia 
-							</a>
-							<a href="#" class="list-group-item">
-								Titolo domanda - Materia 
-							</a>
-							<a href="#" class="list-group-item">
-								Titolo domanda - Materia 
-							</a>
-							<a href="#" class="list-group-item">
-								Titolo domanda - Materia 
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</div>
-		
 	</div>
 	<page-footer></page-footer>
   </body>

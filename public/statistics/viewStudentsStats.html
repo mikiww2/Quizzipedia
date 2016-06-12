@@ -47,57 +47,70 @@
   </head>
 
   <body>
-	<div class="container pagewrap">
+	<div class="pagewrap">
 	
 		 <div ng-controller="CtrlHeader">                
 			  <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>         
 		</div>
 		
-		<h4 class="description text-center"><i class="glyphicon glyphicon-blackboard"></i><i class="glyphicon glyphicon-stats"></i> Statistiche degli studenti</h4>
-		<div class="form-area">  
-		<form class="form">
-			<fieldset class="form-group">
-			<label for="inst">Classi</label><br>
-			<!-- load all classes the teacher belongs to -->
-			<select id="classSelect" name="class" class="form-control"><br>
-			  <option value="">--</option>
-			  <option value="chm">Chimica</option>
-			  <option value="ing">Inglese</option>
-			</select>
-			</fieldset>
+				<div class="row-fluid breadcrumb-div">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>
+                    Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+                </li>
+                <li class="active">
+                    <i class="glyphicon glyphicon-stats"> </i> Statistiche studenti
+                </li>
+            </ol>
+        </div>
+		
+		<div class="container">
+			<h4 class="description text-center"><i class="glyphicon glyphicon-blackboard"></i><i class="glyphicon glyphicon-stats"></i> Statistiche degli studenti</h4>
+			<div class="form-area">  
+			<form class="form">
+				<fieldset class="form-group">
+				<label for="inst">Classi</label><br>
+				<!-- load all classes the teacher belongs to -->
+				<select id="classSelect" name="class" class="form-control"><br>
+				  <option value="">--</option>
+				  <option value="chm">Chimica</option>
+				  <option value="ing">Inglese</option>
+				</select>
+				</fieldset>
+				
+				<fieldset class="form-group">
+				<label for="class">Quiz</label>
+				<!-- load quizzes for selected class -->
+				<select id="quizSelect" name="quiz" class="form-control">
+				  <option value="">--</option>
+				  <option value="quiz1" class="chm">Struttura della materia</option>
+				  <option value="quiz2" class="chm">La tavola periodica</option>
+				  <option value="quiz3" class="inst1">Grammatica</option>
+				</select>
+				</fieldset>
+				
+				<script>$("#quizSelect").chained("#classSelect");</script>
+				</form>
+			</div>
 			
-			<fieldset class="form-group">
-			<label for="class">Quiz</label>
-			<!-- load quizzes for selected class -->
-			<select id="quizSelect" name="quiz" class="form-control">
-			  <option value="">--</option>
-			  <option value="quiz1" class="chm">Struttura della materia</option>
-			  <option value="quiz2" class="chm">La tavola periodica</option>
-			  <option value="quiz3" class="inst1">Grammatica</option>
-			</select>
-			</fieldset>
+			<!-- variable, loaded once quiz is selected -->
 			
-			<script>$("#quizSelect").chained("#classSelect");</script>
-			</form>
+			<h4 class="text-center"><i class="glyphicon glyphicon-th-list"></i> Risultati</h4>
+			<table class="table table-hover table-compact qTable">
+				<thead>
+				<tr>
+				<th class="text-left">Cognome</th>
+				<th class="text-left">Nome</th>
+				<th class="text-left">Voto</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr><td>Doe</td><td>John</td><td>75</td></tr>
+				<tr><td>Doe</td><td>Jane</td><td>82</td></tr>
+				<tr><td>Doe</td><td>James</td><td>0</td></tr>
+				</tbody>
+			</table>
 		</div>
-		
-		<!-- variable, loaded once quiz is selected -->
-		
-		<h4 class="text-center"><i class="glyphicon glyphicon-th-list"></i> Risultati</h4>
-		<table class="table table-hover table-compact qTable">
-			<thead>
-			<tr>
-			<th class="text-left">Cognome</th>
-			<th class="text-left">Nome</th>
-			<th class="text-left">Voto</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr><td>Doe</td><td>John</td><td>75</td></tr>
-			<tr><td>Doe</td><td>Jane</td><td>82</td></tr>
-			<tr><td>Doe</td><td>James</td><td>0</td></tr>
-			</tbody>
-		</table>
 	</div>
 	<page-footer></page-footer>
   </body>

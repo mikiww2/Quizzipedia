@@ -83,137 +83,145 @@
   </head>
 
   <body ng-app="CreateQuestion" > 
-	<div class="container pagewrap">
+	<div class="pagewrap">
         
         <header-logged-teacher ng-controller="CtrlHeader"></header-logged-teacher>
         
-	<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
-        
-        
-                
-        
-        
-      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)" name="CtrlQuestion.upload_form" novalidate ng-controller="CtrlQuestion" ng-init="resetQuestion()">
+		<div class="row-fluid breadcrumb-div">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>
+                    Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+                </li>
+                <li class="active">
+                    <i class="glyphicon glyphicon-pencil"> </i> Creazione domanda
+                </li>
+            </ol>
+        </div>
 		
-          
-          <input type="button" ng-click="resetQuestion()" value="cancella"/>
-          
-		<div class="form-group row">
-			<label for="inputTitle" class=" form-control-label">Titolo</label>
-			<input type="text" class="form-control" id="inputTitle" placeholder="Titolo" ng-model="MyGenericQ.title" required autofocus>
-		</div>
-		<!-- description-->
-		<div class="form-group row">
-			<label for="inputDescription" class=" form-control-label">Descrizione</label>
-			<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" ng-model="MyGenericQ.description" required></textarea>
-		</div>
-		<!-- missing upload thing here -->
-		<div class="form-group row">
-			<label for="up" class=" form-control-label">Carica</label><br>
-            <input 
-               type="file" 
-               ngf-select ="uploadFiles($files,'question','null')"
-               ng-model="files" 
-               name="file" 
-               ngf-pattern="'image/*'"
-               accept="image/*,audio/*,video/*" 
-               ngf-max-size="20MB"         
-               /> <!--   onchange="angular.element(this).scope().readURL(this,'null')"-->
-            
-            <!--<img id ="blah" src="#" class="hidden-block"/> 
-            <audio id="audio-preview" controls class="hidden-block" src="#" type="audio/mpeg"> 
-			</audio>
-			<video id="video-preview" class="hidden-block" width="330" height="auto" controls src="#" type="video/mp4"> <!-- video
-			</video>-->
-            
-		</div>
-		<!-- topic-->
-		<div class="form-group row">
-			<fieldset class="form-group">
-				<label for="topic">Materia</label>
-				<select class="form-control" id="topic" ng-model="MyGenericQ.topic">
-				<!-- load options from existing topics  RENDERE AUTOMATICA-->
-				  <option>Storia dell'arte</option>
-				  <option>Informatica</option>
-				  <option>Matematica</option>
-				  <option>Fisica</option>
-				</select>
-			</fieldset>
-		</div>
-		
-		<script type="text/javascript">
-			$(document).ready(function() {
-			  $("#topic").select2();
-			});
-		</script>
-		
-		<!-- diff level-->
-		<div class="form-group row">
-			<fieldset class="form-group">
-			<!-- idk the stars are cool, animate them w jquery if theres time -->
-				<label for="difficultyLevel">Livello di difficoltà <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i></label>
-				<select class="form-control" id="difficultyLevel" ng-model="MyGenericQ.difficulty">
-				  <option value="1">Facile</option>
-				  <option value="2">Media</option>
-				  <option value="3">Difficile</option>
-				  <option value="4">Molto difficile</option>
-				</select>
-			</fieldset>
-		</div>
-		
-		<div class="form-group row">
-			<fieldset class="form-group">
-			<label for="inputTags">Parole chiave</label>
-			<select id="inputTags" multiple="multiple" class="form-control" ng-model="MyGenericQ.keywords">
-			</select>
-			<script>
-			$('#inputTags').select2({
-				tags: true,
-				tokenSeparators: [','], 
-				placeholder: "Add your tags here"
-			});
+	<div class="container">
+	
+		<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
+		  <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)" name="CtrlQuestion.upload_form" novalidate ng-controller="CtrlQuestion" ng-init="resetQuestion()">
+			
+			  
+			  <input type="button" ng-click="resetQuestion()" value="cancella"/>
+			  
+			<div class="form-group row">
+				<label for="inputTitle" class=" form-control-label">Titolo</label>
+				<input type="text" class="form-control" id="inputTitle" placeholder="Titolo" ng-model="MyGenericQ.title" required autofocus>
+			</div>
+			<!-- description-->
+			<div class="form-group row">
+				<label for="inputDescription" class=" form-control-label">Descrizione</label>
+				<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" ng-model="MyGenericQ.description" required></textarea>
+			</div>
+			<!-- missing upload thing here -->
+			<div class="form-group row">
+				<label for="up" class=" form-control-label">Carica</label><br>
+				<input 
+				   type="file" 
+				   ngf-select ="uploadFiles($files,'question','null')"
+				   ng-model="files" 
+				   name="file" 
+				   ngf-pattern="'image/*'"
+				   accept="image/*,audio/*,video/*" 
+				   ngf-max-size="20MB"         
+				   /> <!--   onchange="angular.element(this).scope().readURL(this,'null')"-->
+				
+				<!--<img id ="blah" src="#" class="hidden-block"/> 
+				<audio id="audio-preview" controls class="hidden-block" src="#" type="audio/mpeg"> 
+				</audio>
+				<video id="video-preview" class="hidden-block" width="330" height="auto" controls src="#" type="video/mp4"> <!-- video
+				</video>-->
+				
+			</div>
+			<!-- topic-->
+			<div class="form-group row">
+				<fieldset class="form-group">
+					<label for="topic">Materia</label>
+					<select class="form-control" id="topic" ng-model="MyGenericQ.topic">
+					<!-- load options from existing topics  RENDERE AUTOMATICA-->
+					  <option>Storia dell'arte</option>
+					  <option>Informatica</option>
+					  <option>Matematica</option>
+					  <option>Fisica</option>
+					</select>
+				</fieldset>
+			</div>
+			
+			<script type="text/javascript">
+				$(document).ready(function() {
+				  $("#topic").select2();
+				});
 			</script>
-			</fieldset>
-		</div>
-		
-		
-		<!-- type - changes last part -->
-		<div class="form-group row">
-			<fieldset class="form-group">
-				<label for="qtype">Tipo</label>
-				<select class="form-control" id="qtype" ng-model="MyGenericQ.questionType">
-                  <option value="">--</option>
-				  <option value="mtch">Collegamenti</option>
-				  <option value="cmpl">Completamento</option>
-				  <option value="open">Risposta aperta</option>
-				  <option value="mult">Risposta multipla</option>
-				  <option value="trfs">Vero/Falso</option> 
+			
+			<!-- diff level-->
+			<div class="form-group row">
+				<fieldset class="form-group">
+				<!-- idk the stars are cool, animate them w jquery if theres time -->
+					<label for="difficultyLevel">Livello di difficoltà <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i></label>
+					<select class="form-control" id="difficultyLevel" ng-model="MyGenericQ.difficulty">
+					  <option value="1">Facile</option>
+					  <option value="2">Media</option>
+					  <option value="3">Difficile</option>
+					  <option value="4">Molto difficile</option>
+					</select>
+				</fieldset>
+			</div>
+			
+			<div class="form-group row">
+				<fieldset class="form-group">
+				<label for="inputTags">Parole chiave</label>
+				<select id="inputTags" multiple="multiple" class="form-control" ng-model="MyGenericQ.keywords">
 				</select>
-			</fieldset>
-		</div>
-		
-		
-		<!-- VARIABLE PART - correct answer -->
-          
-          <create-qmultiple ng-show="MyGenericQ.questionType == 'mult'"></create-qmultiple>
-          <create-qtf ng-show="MyGenericQ.questionType == 'trfs'"></create-qtf>
-          <create-qmatch ng-show="MyGenericQ.questionType == 'mtch'"></create-qmatch>
-          <create-qopen ng-show="MyGenericQ.questionType == 'open'"></create-qopen>
-          <create-qcompletion ng-show="MyGenericQ.questionType == 'cmpl'"></create-qcompletion>
-          
-          
-          
-         
-          {{MyMultipleChoiceQ.question.arrayAnswer | json}}
-          
-          
-          
-          
-        <button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button>
-          
-        </form>
+				<script>
+				$('#inputTags').select2({
+					tags: true,
+					tokenSeparators: [','], 
+					placeholder: "Add your tags here"
+				});
+				</script>
+				</fieldset>
+			</div>
+			
+			
+			<!-- type - changes last part -->
+			<div class="form-group row">
+				<fieldset class="form-group">
+					<label for="qtype">Tipo</label>
+					<select class="form-control" id="qtype" ng-model="MyGenericQ.questionType">
+					  <option value="">--</option>
+					  <option value="mtch">Collegamenti</option>
+					  <option value="cmpl">Completamento</option>
+					  <option value="open">Risposta aperta</option>
+					  <option value="mult">Risposta multipla</option>
+					  <option value="trfs">Vero/Falso</option> 
+					</select>
+				</fieldset>
+			</div>
+			
+			
+			<!-- VARIABLE PART - correct answer -->
+			  
+			  <create-qmultiple ng-show="MyGenericQ.questionType == 'mult'"></create-qmultiple>
+			  <create-qtf ng-show="MyGenericQ.questionType == 'trfs'"></create-qtf>
+			  <create-qmatch ng-show="MyGenericQ.questionType == 'mtch'"></create-qmatch>
+			  <create-qopen ng-show="MyGenericQ.questionType == 'open'"></create-qopen>
+			  <create-qcompletion ng-show="MyGenericQ.questionType == 'cmpl'"></create-qcompletion>
+			  
+			  
+			  
+			 
+			  {{MyMultipleChoiceQ.question.arrayAnswer | json}}
+			  
+			  
+			  
+			  
+			<button class="btn btn-lg btn-primary btn-block form" type="submit">Conferma</button>
+			  
+			</form>
         
-        
+        </div>
       
     </div> <!-- /container -->
   </body>

@@ -38,149 +38,163 @@
   </head>
 
   <body>
-	<div class="container pagewrap">
-	<h2 class="text-center description"><i class="glyphicon glyphicon-pencil"></i> Crea un nuovo quiz</h2>
-      <form class="form">
-		<!-- title -->
-		<div class="form-group row">
-			<label for="inputTitle" class=" form-control-label">Titolo</label>
-			<input type="text" class="form-control" id="inputTitle" placeholder="Titolo" required autofocus>
-		</div>
-		<!-- description -->
-		<div class="form-group row">
-			<label for="inputDescription" class=" form-control-label">Descrizione</label>
-			<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" required></textarea>
-		</div>
-		<!-- missing upload thing here -->
-		<div class="form-group row">
-			<label for="inputDescription" class=" form-control-label">Allegato</label><br>
-			<span class="btn btn-default btn-file">Cerca <input type="file"></span>
-		</div>
-		
-		<!-- permission-->
-		<div class="form-group row">
-			<fieldset class="form-group">
-				<label for="permission">Permesso</label>
-				<select class="form-control" id="permission">
-				  <option value="public">Pubblico</option>
-				  <option value="private">Privato</option>
+	<div class="pagewrap">
+	
+	  <div class="row-fluid breadcrumb-div">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>
+                    Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+                </li>
+                <li class="active">
+                    <i class="glyphicon glyphicon-pencil"> </i> Creazione quiz
+                </li>
+            </ol>
+        </div>
+	
+	<div class="container">
+		<h2 class="text-center description"><i class="glyphicon glyphicon-pencil"></i> Crea un nuovo quiz</h2>
+		  <form class="form">
+			<!-- title -->
+			<div class="form-group row">
+				<label for="inputTitle" class=" form-control-label">Titolo</label>
+				<input type="text" class="form-control" id="inputTitle" placeholder="Titolo" required autofocus>
+			</div>
+			<!-- description -->
+			<div class="form-group row">
+				<label for="inputDescription" class=" form-control-label">Descrizione</label>
+				<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" required></textarea>
+			</div>
+			<!-- missing upload thing here -->
+			<div class="form-group row">
+				<label for="inputDescription" class=" form-control-label">Allegato</label><br>
+				<span class="btn btn-default btn-file">Cerca <input type="file"></span>
+			</div>
+			
+			<!-- permission-->
+			<div class="form-group row">
+				<fieldset class="form-group">
+					<label for="permission">Permesso</label>
+					<select class="form-control" id="permission">
+					  <option value="public">Pubblico</option>
+					  <option value="private">Privato</option>
+					</select>
+				</fieldset>
+			</div>
+			
+			<!-- private inst/class select - maybe make only visible if private is selected (dropdown?) -->
+			<div class="form-group row">
+						<fieldset class="form-group">
+				<label for="inst">Ente</label><br>
+				<!-- load all institutions the teacher belongs to -->
+				<select id="instSelectClass" name="instClass" class="form-control"><br>
+				  <option value="">--</option>
+				  <option value="inst1" class="private">University X</option>
+				  <option value="inst2" class="private">NDLS Center</option>
 				</select>
-			</fieldset>
-		</div>
-		
-		<!-- private inst/class select - maybe make only visible if private is selected (dropdown?) -->
-		<div class="form-group row">
-					<fieldset class="form-group">
-			<label for="inst">Ente</label><br>
-			<!-- load all institutions the teacher belongs to -->
-			<select id="instSelectClass" name="instClass" class="form-control"><br>
-			  <option value="">--</option>
-			  <option value="inst1" class="private">University X</option>
-			  <option value="inst2" class="private">NDLS Center</option>
-			</select>
-			</fieldset>
-		</div>
-		
-		<script>$("#instSelectClass").chained("#permission");</script>
-		
-		<div class="form-group row">
-			<fieldset class="form-group">
-			<label for="class">Classe</label>
-			<!-- load classes for selected institution -->
-			<select id="classSelect" name="class" class="form-control">
-			  <option value="">--</option>
-			  <option value="art" class="inst1">Storia dell'arte</option>
-			  <option value="maths" class="inst1">Matematica</option>
-			  <option value="dla" class="inst2">Driving Licence 'A'</option>
-			  <option value="dlb" class="inst2">Driving Licence 'B'</option>
-			</select>
-			</fieldset>
-		</div>
-		
-		<script>$("#classSelect").chained("#instSelectClass");</script>
-		<!-- end of private inst/class select -->
-		
-		<!-- topic-->
-		<div class="form-group row">
-			<fieldset class="form-group">
-				<label for="topic">Materia</label>
-				<select class="form-control" id="topic">
-				<!-- load options from existing topics -->
-				  <option>Arte</option>
-				  <option>Informatica</option>
-				  <option>Matematica</option>
-				  <option>Fisica</option>
+				</fieldset>
+			</div>
+			
+			<script>$("#instSelectClass").chained("#permission");</script>
+			
+			<div class="form-group row">
+				<fieldset class="form-group">
+				<label for="class">Classe</label>
+				<!-- load classes for selected institution -->
+				<select id="classSelect" name="class" class="form-control">
+				  <option value="">--</option>
+				  <option value="art" class="inst1">Storia dell'arte</option>
+				  <option value="maths" class="inst1">Matematica</option>
+				  <option value="dla" class="inst2">Driving Licence 'A'</option>
+				  <option value="dlb" class="inst2">Driving Licence 'B'</option>
 				</select>
-			</fieldset>
-		</div>
-		
-		<script type="text/javascript">
-			$(document).ready(function() {
-			  $("#topic").select2();
-			});
-		</script>
-		
-		<!-- diff level -->
-		<div class="form-group row">
-			<fieldset class="form-group">
-			<!-- idk the stars are cool, animate them w jquery if theres time -->
-				<label for="difficultyLevel">Livello di difficoltà <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i></label>
-				<select class="form-control" id="difficultyLevel">
-				  <option>Facile</option>
-				  <option>Media</option>
-				  <option>Difficile</option>
-				  <option>Molto difficile</option>
-				</select>
-			</fieldset>
-		</div>
-		
-		<div class="form-group row">
-			<fieldset class="form-group">
-			<label for="inputTags">Parole chiave</label>
-			<select id="inputTags" multiple="multiple" class="form-control">
-			</select><br><br>
-			<script>
-			$('#inputTags').select2({
-				tags: true,
-				tokenSeparators: [','], 
-				placeholder: "Add your tags here"
-			});
+				</fieldset>
+			</div>
+			
+			<script>$("#classSelect").chained("#instSelectClass");</script>
+			<!-- end of private inst/class select -->
+			
+			<!-- topic-->
+			<div class="form-group row">
+				<fieldset class="form-group">
+					<label for="topic">Materia</label>
+					<select class="form-control" id="topic">
+					<!-- load options from existing topics -->
+					  <option>Arte</option>
+					  <option>Informatica</option>
+					  <option>Matematica</option>
+					  <option>Fisica</option>
+					</select>
+				</fieldset>
+			</div>
+			
+			<script type="text/javascript">
+				$(document).ready(function() {
+				  $("#topic").select2();
+				});
 			</script>
+			
+			<!-- diff level -->
+			<div class="form-group row">
+				<fieldset class="form-group">
+				<!-- idk the stars are cool, animate them w jquery if theres time -->
+					<label for="difficultyLevel">Livello di difficoltà <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i></label>
+					<select class="form-control" id="difficultyLevel">
+					  <option>Facile</option>
+					  <option>Media</option>
+					  <option>Difficile</option>
+					  <option>Molto difficile</option>
+					</select>
+				</fieldset>
+			</div>
+			
+			<div class="form-group row">
+				<fieldset class="form-group">
+				<label for="inputTags">Parole chiave</label>
+				<select id="inputTags" multiple="multiple" class="form-control">
+				</select><br><br>
+				<script>
+				$('#inputTags').select2({
+					tags: true,
+					tokenSeparators: [','], 
+					placeholder: "Add your tags here"
+				});
+				</script>
+				</fieldset>
+			</div>
+			
+			<!-- questions -->
+			<fieldset class="form-group">
+			<label for="questions">Domande</label>
+			<!-- add question button -->
+			<br><button class="btn btn-primary btn-small" type="button" data-title="Add" data-toggle="modal" data-target="#add"><i class="glyphicon glyphicon-plus"></i> Aggiungi</button><br><br>
+			<!-- added questions -->
+			<div class="table-responsive">
+				<table id="classTable" class="table table-borderless table-striped table-hover table-compact">
+				<thead>
+				</thead>
+				<tbody>
+				<tr>
+					<td><a href="#">Titolo domanda</a></td>
+					<td style="width:10%"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Remove" data-toggle="modal" data-target="#remove" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
+				</tr>
+				<tr>
+					<td><a href="#">Titolo domanda</a></td>
+					<td style="width:10%"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Remove" data-toggle="modal" data-target="#remove" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
+				</tr>
+				<tr>
+					<td><a href="#">Titolo domanda</a></td>
+					<td style="width:10%"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Remove" data-toggle="modal" data-target="#remove" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
+				</tr>
+				</tbody>
+				</table>
+				<!-- end of table -->
+			</div>
 			</fieldset>
-		</div>
-		
-		<!-- questions -->
-		<fieldset class="form-group">
-		<label for="questions">Domande</label>
-		<!-- add question button -->
-		<br><button class="btn btn-primary btn-small" type="button" data-title="Add" data-toggle="modal" data-target="#add"><i class="glyphicon glyphicon-plus"></i> Aggiungi</button><br><br>
-		<!-- added questions -->
-		<div class="table-responsive">
-			<table id="classTable" class="table table-borderless table-striped table-hover table-compact">
-			<thead>
-			</thead>
-			<tbody>
-			<tr>
-				<td><a href="#">Titolo domanda</a></td>
-				<td style="width:10%"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Remove" data-toggle="modal" data-target="#remove" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
-			</tr>
-			<tr>
-				<td><a href="#">Titolo domanda</a></td>
-				<td style="width:10%"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Remove" data-toggle="modal" data-target="#remove" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
-			</tr>
-			<tr>
-				<td><a href="#">Titolo domanda</a></td>
-				<td style="width:10%"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Remove" data-toggle="modal" data-target="#remove" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
-			</tr>
-			</tbody>
-			</table>
-			<!-- end of table -->
-		</div>
-		</fieldset>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Conferma</button>
-      </form>
-    </div> <!-- /container -->
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Conferma</button>
+		  </form>
+		</div> <!-- /container -->
+	</div>
 	
 	<!-- add question popup -->
 	<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">

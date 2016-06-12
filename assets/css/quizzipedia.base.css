@@ -93,12 +93,20 @@ h6.description, h4.description, h3.description{
 	padding:10px 15px;
 }
 
+.breadcrumb-div {
+	padding-bottom: 36px;
+	  z-index: 10;
+}
+
 .breadcrumb {
+	 position: fixed;
+	 width: 100%;
      background-color: #22A7F0;
      border-radius: 0;
      -moz-border-radius: 0;
      -webkit-border-radius: 0;
      -o-border-radius: 0;
+	  z-index: 15;
 }
 
 .breadcrumb, .breadcrumb a {
@@ -1226,6 +1234,10 @@ i.red{
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+input {
+	z-index: 1;
 }
 
 .userMgmt img{

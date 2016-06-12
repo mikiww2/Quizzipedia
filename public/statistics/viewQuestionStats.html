@@ -47,66 +47,79 @@
   </head>
 
   <body>
-	<div class="container pagewrap">
+	<div class="pagewrap">
 	    <div ng-controller="CtrlHeader">                
 			  <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>         
 		</div>
 		
-		<h4 class="description text-center"><i class="glyphicon glyphicon-question-sign"></i> <i class="glyphicon glyphicon-stats"></i> Statistiche delle domande</h4>
-		<div class="pull-right dropOrder">
-			<span>Ordina:</span>
-			<span class="btn-group">
-			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			  Popolari <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu">
-				<li><a href="#">Recenti</a></li>
-				<li><a href="#">Autore</a></li>
-				<li role="separator" class="divider"></li>
-				<li><a href="#">Personali</a></li>
-			  </ul>
-			</span>
-		</div>
+		  <div class="row-fluid breadcrumb-div">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>
+                    Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+                </li>
+                <li class="active">
+                    <i class="glyphicon glyphicon-stats"> </i> Statistiche domande
+                </li>
+            </ol>
+        </div>
 		
-		<table class="table table-hover table-striped table-compact qTable">
-			<thead>
-			<tr>
-			<th class="text-center">Titolo</th>
-			<th class="text-center">Materia</th>
-			<th class="text-center">Livello</th>
-			<th class="text-center">Autore</th>
-			<th class="text-center">Svolgimenti</th>
-			<th class="text-center">% superamento</th>
-			</tr>
-			</thead>
-			<tbody class="text-center">
-			<!-- row -->
-			<tr>
-				<td>Titolo</td>
-				<td>Chimica</td>
-				<td>2</td>
-				<td>John Doe</td>
-				<td>5</td>
-				<td>80%</td>
-			</tr>
-			<tr>
-				<td>Titolo</td>
-				<td>Inglese</td>
-				<td>1</td>
-				<td>Jane Doe</td>
-				<td>15</td>
-				<td>90%</td>
-			</tr>
-			<tr>
-				<td>Titolo</td>
-				<td>Chimica</td>
-				<td>2</td>
-				<td>John Doe</td>
-				<td>5</td>
-				<td>80%</td>
-			</tr>
-			</tbody>
-		</table>
+		<div class="container">
+			<h4 class="description text-center"><i class="glyphicon glyphicon-question-sign"></i> <i class="glyphicon glyphicon-stats"></i> Statistiche delle domande</h4>
+			<div class="pull-right dropOrder">
+				<span>Ordina:</span>
+				<span class="btn-group">
+				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  Popolari <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">
+					<li><a href="#">Recenti</a></li>
+					<li><a href="#">Autore</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="#">Personali</a></li>
+				  </ul>
+				</span>
+			</div>
+			
+			<table class="table table-hover table-striped table-compact qTable">
+				<thead>
+				<tr>
+				<th class="text-center">Titolo</th>
+				<th class="text-center">Materia</th>
+				<th class="text-center">Livello</th>
+				<th class="text-center">Autore</th>
+				<th class="text-center">Svolgimenti</th>
+				<th class="text-center">% superamento</th>
+				</tr>
+				</thead>
+				<tbody class="text-center">
+				<!-- row -->
+				<tr>
+					<td>Titolo</td>
+					<td>Chimica</td>
+					<td>2</td>
+					<td>John Doe</td>
+					<td>5</td>
+					<td>80%</td>
+				</tr>
+				<tr>
+					<td>Titolo</td>
+					<td>Inglese</td>
+					<td>1</td>
+					<td>Jane Doe</td>
+					<td>15</td>
+					<td>90%</td>
+				</tr>
+				<tr>
+					<td>Titolo</td>
+					<td>Chimica</td>
+					<td>2</td>
+					<td>John Doe</td>
+					<td>5</td>
+					<td>80%</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<page-footer></page-footer>
   </body>

@@ -23,8 +23,12 @@ module.exports = function (app) {
     institutionM.fetchUserInst(req, res);
   });
 
-  app.get('/api/institution/fetch_number_teachers',function (req, res, next) { //enti e ruoli nei quali è iscritto l'utente
+  app.get('/api/institution/fetch_number_teachers',function (req, res, next) { //numero docenti nell'ente
     institutionM.fetchNumberTeachers(req, res);
+  });
+
+  app.get('/api/institution/fetch_number_students',function (req, res, next) { //numero studenti nell'ente
+    institutionM.fetchNumberStudents(req, res);
   });
 
   app.get('/api/institution/fetch_users_in_inst',function (req, res, next) { 

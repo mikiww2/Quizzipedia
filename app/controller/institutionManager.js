@@ -19,7 +19,7 @@ var User = require('../model/user.model');
 var callback = function(){ //callback fake per sincronismo
 }
 
-exports.fetchAllInstInfos = function (req,res) {
+exports.fetchAllInstInfos = function (req,res) { //informazioni generali enti anche x utente non loggato
 
 		var results = [];
 		Organization.find(function (err,orgs) {
@@ -84,7 +84,7 @@ exports.fetchAllInstInfos = function (req,res) {
 		});
 }
 
-exports.fetchUserInst = function (req, res) {
+exports.fetchUserInst = function (req, res) { //enti e ruoli nei quali è iscritto l'utente
 
 		var results = [];
 		if(req.session.user){
@@ -133,6 +133,32 @@ exports.fetchUserInst = function (req, res) {
 	    });
 		}
 };
+
+exports.fetchNumberTeachers = function (req, res) { //numero docenti nell'ente
+
+		if(req.session.user && req.session.user.role == 'teacher'){
+			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+				if (err) {
+	            console.log('error: ' + err);
+	            res.redirect('/');
+	      }
+	      else{
+	       	if(org){
+	       		var counter = 0;
+       			for(var i=0;i<org.users.length;i++){
+       				if(org.users[i].role == 'teacher')
+	       				counter++;
+       			}
+						res.send(counter);
+       		}
+       		else{
+       			console.log('Organizzazione non trovata');
+       		}
+		    }
+	    });
+		}
+		else res.redirect('/');
+}
 
 exports.fetchUsersInInst = function (req, res) {
 
@@ -198,7 +224,7 @@ exports.fetchUsersInInst = function (req, res) {
 		else res.redirect('/');
 }
 
-exports.fetchNoUserInst = function (req, res) {
+exports.fetchNoUserInst = function (req, res) { //enti nei quali non è l'utente
 
 		var results = [];
 		if(req.session.user){

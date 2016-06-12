@@ -2,13 +2,28 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
     
     $scope.quizzes = [];
     $scope.index = null;
-    $scope.myQuiz = Quiz;
+    $scope.myQuiz = new Quiz();
+    $scope.userClasses = [];
+    $scope.topics = [];
+    $scope.permission = null;
     
     $scope.loadQuizzes = function() {
         $http.get('some api').success(function(response) {
             $scope.quizzes = response;
         });
     };
+    
+    $scope.loadUserClasses = function () {
+        $http.get(' /api/class/fetch_classes_details').success(function(response) {
+            $scope.userClasses = response;
+        });
+    };
+    
+    $scope.loadTopics = function () {
+        $http.get('/api/topic/fetch').success(function(response) {
+            $scope.topics = response;
+        });
+    };    
     
     $scope.removeQuiz = function(){
         var request = {_id : $scope.quizzes[$scope.index]._id};
@@ -17,9 +32,16 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
         //$scope.myQuiz = new Quiz();
         $scope.index = null;        
     };
+    
+    $scope.createQuiz = function () {
+        
+    };    
         
     $scope.modifyQuiz = function(quiz){
          //non sono sicuro vada quiz...
     };
+    
+    $scope.loadUserClasses();
+    $scope.loadTopics();
     
 }]);

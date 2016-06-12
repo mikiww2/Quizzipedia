@@ -90,10 +90,10 @@
 	<div class="text-center"><h2 class="form-heading"><i class="glyphicon glyphicon-pencil"></i> Creazione domanda</h2></div>
         
         
-                
+                <!-- name="CtrlQuestion.upload_form"-->
         
         
-      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)" name="CtrlQuestion.upload_form" novalidate ng-controller="CtrlQuestion" ng-init="resetQuestion()">
+      <form class="form" ng-submit="createQuestion(MyGenericQ.questionType)"  novalidate ng-controller="CtrlQuestion" ng-init="resetQuestion()">
 		
           
           <input type="button" ng-click="resetQuestion()" value="cancella"/>
@@ -204,7 +204,7 @@
           
           
          
-          {{MyMultipleChoiceQ.question.arrayAnswer | json}}
+          {{MyCompletionQ.question | json}}
           
           
           

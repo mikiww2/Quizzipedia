@@ -35,7 +35,6 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         question: new MultipleChoiceQ(),
         size: 0,
         create: function(index){ //per i textarea
-            
             this.question.addAnswer(new AnswerMultipleChoice());
             this.question.arrayAnswer[index].textAnswer = "";
             this.size = this.size +1;
@@ -65,7 +64,126 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
    
    
        
-    $scope.MyCompletionQ = new CompletionQ();
+    $scope.MyCompletionQ = {
+      
+        question: new CompletionQ(),
+        initText: function(){
+            console.log("METODO: MyCompletionQ.initText()");
+            this.question.insertText("");
+            this.question.insertHole(this.question.getSizeText());
+        },
+        initAnswer: function(){
+            console.log("METODO: MyCompletionQ.initAnswer()");
+            this.question.insertAnswer("",-1);
+        },
+        fixAnswer: function(idHole,value){
+            console.log("METODO: MyCompletionQ.fixAnswer()");
+            console.log('idValue: '+idHole + ' value: ' + value);
+            var size = this.question.getSizeAnswer();
+            console.log('elementi da controllare: ' +size);
+            
+            if(idHole == 'null'){
+                
+                for(var i = 0; i< size; i++){
+                    
+                    this.question.answer[i].setId(value);
+                }
+            }
+            else{
+                
+                for(var i = 0; i < size;i++){
+                    console.log('sto iterando');
+                    if(this.question.answer[i].getId() == idHole){
+                        this.question.answer[i].setId(value);
+                    }
+                }
+                
+            }
+            
+        },
+        removeAnswer: function(index){
+            console.log("METODO: MyCompletionQ.removeAnswer()");
+            this.question.removeAns(index);
+            
+        },
+        removeText: function(index,type){
+            console.log("METODO: MyCompletionQ.removeText()");
+            var size = this.question.getSizeText();
+            console.log(size);
+            
+            if( size == 2){ //ok
+                this.question.removeSomeTextElements(0,size);
+                this.fixAnswer('null',-1);
+                
+            }
+            
+            if( size >= 4){
+                
+                if(type == 'hole'){
+                    console.log(type);
+                    var left = index - 1;
+                    var right = index + 1;
+                    console.log('left: '+ left + ' right: '+ right);
+                    
+                    if(left >=0 && right< size){ //se true allora fusione dei textarea
+                        console.log('Sto eliminando un buco e left:'+left+ '&&'+ 'right:' +right);
+                        
+                        var testo = this.question.getTextElement(left);
+                        testo = testo + this.question.getAnswerElement(this.question.getTextElement(index)) + this.question.getTextElement(right);
+                        
+                        console.log('testo: ' + testo);
+                        
+                        this.question.text[left].setValue(testo);
+                        
+                    }
+                    
+                    console.log('eseguo fixAnswer quello nel ramo type = ' + type);
+                    this.fixAnswer(this.question.getTextElement(index),-1);
+                          
+                }
+                else{ //txt
+                    this.fixAnswer(this.question.getTextElement(index+1),-1);
+                }
+                
+                
+                var start = null;
+                console.log('start: ' + start);
+                
+                console.log('condizione 1:' + 'type:' + type+'index:' + (index+1)+'size:'+size);
+                
+                if((type == 'txt') || (type == 'hole' && (index + 1 < size))){
+                    console.log('Rimuovo TextElement con start = '+ index);
+                    this.question.removeSomeTextElements(index,2);
+                    start = index;
+                    console.log('start: ' +start);
+                }
+                else if((type == 'hole') && (index + 1 >= size)){
+                    
+                    this.question.removeSomeTextElements(index - 1,2);
+                    start = this.question.getSizeText();
+                    console.log('ELSEIF Rimuovo TextElement con start = '+ start);
+                }
+                
+                
+                //sistemo i value dei buchi e inizio dalla posizione start
+                
+                for(var i = start; i < this.question.getSizeText();i++){
+                    console.log('Sistemo i buchi');
+                    if(this.question.getTypeTextElement(i) == 'id'){
+                        var idValue = this.question.getTextElement(i);
+                        
+                        this.fixAnswer(idValue,i);
+                        this.question.text[i].setValue(i);
+                        
+                    }
+                }
+                
+            }
+            
+            
+        }
+        
+    };
     
     
     
@@ -91,14 +209,15 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     
     $scope.createQuestion = function(typeQuestion){
-      
+      console.log("METODO: $scope.createQuestion()");
+        console.log("TypeQuestion:" +typeQuestion);
         switch(typeQuestion){
             case "mtch": $scope.saveMatchingQ($scope.MyGenericQ,$scope.MyMatchingQ); break;
-            case "cmpl": $scope.saveCompletionQ($scope.MyGenericQ,$scope.MyCompletionQ); break;
+            case "cmpl": $scope.saveCompletionQ($scope.MyGenericQ,$scope.MyCompletionQ.question); break;
             case "open": $scope.saveShortAnswerQ($scope.MyGenericQ,$scope.MyShortAnswerQ); break;
             case "mult": $scope.saveMultipleChoiceQ($scope.MyGenericQ,$scope.MyMultipleChoiceQ.question); break;
             case "trfs": $scope.saveTrueFalseQ($scope.MyGenericQ,$scope.MyTrueFalseQ); break;
-            default: alert("This question type doesn't exist");
+            default: alert("This question type doesn't exist"); break;
         }
         
         
@@ -107,6 +226,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     
     var setGenericPart = function(generic,question){
+        console.log("METODO: setGenericPart()");
         question.setAuthor($scope.teacher);
         question.setTitle(generic.title);
         question.setDescription(generic.description);
@@ -122,6 +242,42 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     };
     
     $scope.saveCompletionQ = function(generic,completion){
+        console.log("SALVO LA DOMANDA");
+        //controllare che tutti i buchi del testo abbiano una ed una sola domanda associata
+        
+        var questionIsValid = true; //suppongo vada tutto bene
+        
+        for(var i = 0; i < completion.getSizeText() && questionIsValid; i++){
+            
+            if(completion.getTypeTextElement(i) == 'id'){ //è un buco
+                
+                var valueHole = completion.getTextElement(i);
+                var result = completion.checkAnswer(valueHole);
+                
+                if(result == 0){
+                    questionIsValid = false;
+                    alert("Lo spazio "+ valueHole + "non ha risposte associate e la domanda non è stata salvata");
+                }
+                else if(result > 1){
+                    questionIsValid = false;
+                    alert("Lo spazio "+ valueHole+ "ha più di una risposta associata e la domanda non è stata salvata");
+                }
+                
+                
+            }
+        }
+        
+        if(questionIsValid){
+            //salviamo la domanda
+            setGenericPart(generic,completion);
+            
+            $scope.save(completion,generic.questionType);
+            
+            generic.reset();
+            $scope.MyCompletionQ.question = new CompletionQ();
+        }
+        
+        
        
     };
     

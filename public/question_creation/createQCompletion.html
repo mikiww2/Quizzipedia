@@ -2,43 +2,31 @@
 			<div class="form-group row text-center">
 			<h4 class="text-center">Testo</h4>
 			<div class="form-group row form">
-				<button class="btn btn-default" id="newgap"><i class="glyphicon glyphicon-plus"></i></button>
+				<span class="btn btn-default" type="button" id="newgap" ng-click="MyCompletionQ.initText()"><i class="glyphicon glyphicon-plus"></i></span>
 			</div>
 			<div class="answContainer row">
-				<div id="complText" class="answerBlock lineGap">
-					<div>
-						<textarea type="textarea" placeholder="lorem ipsum blabla fehfuyrf egeuy dijdisdj lorem ipsum blabla fehfuyrf egeuy dijdisdj" name="ta1" id="ta1"></textarea>
-						<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-						<div><span class="badge">1</span><span class="prev-text">Anteprima risposta </span><button class="btn btn-xs btn-xxs"><i class="glyphicon glyphicon-remove"></i></button></div> <!-- numero buco + anteprima + pulsante-->
-					</div>
-					<div>
-						<textarea type="textarea" placeholder="lorem ipsum blabla fehfuyrf egeuy dijdisdj" name="ta1" id="ta1"></textarea>
-						<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-
-						<div><span class="badge">2</span><span class="prev-text">Anteprima risposta </span><button class="btn btn-xs btn-xxs"><i class="glyphicon glyphicon-remove"></i></button></div> 
-					</div>
-					<div>
-						<textarea type="textarea" placeholder="lorem ipsum blabla fehfuyrf egeuy dijdisdj" name="ta1" id="ta1"></textarea>
-						<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-
-						<div><span class="badge">3</span><span class="prev-text">Anteprima risposta </span><button class="btn btn-xs btn-xxs"><i class="glyphicon glyphicon-remove"></i></button></div>
-
-					</div>
+				<div id="complText" class="answerBlock lineGap" ng-repeat="text in MyCompletionQ.question.text track by $index">
+                    
+					<div id="{{$index}}">
+						<textarea ng-if="text.type == 'txt'" type="textarea" placeholder="inserire testo" name="ta1" id="ta1" ng-model="text.value"></textarea>
+						<button ng-if="text.type == 'txt'" class="btn btn-xs" ng-click="MyCompletionQ.removeText($index,'txt')"><i class="glyphicon glyphicon-remove"></i></button>
+						<div ng-if="text.type == 'id'"><span class="badge">{{text.value | number:0}}</span><span class="prev-text">Anteprima risposta </span><button class="btn btn-xs btn-xxs" ng-click="MyCompletionQ.removeText($index,'hole')"><i class="glyphicon glyphicon-remove"></i></button></div> <!-- numero buco + anteprima + pulsante-->
+                    </div>
 					
 				</div>
 			</div>
 			<h4 class="text-center">Risposte</h4>
 				<!-- new answer -->
 				<div class="form-group row form">
-					<span class="btn btn-default" type="button" id="newAText"><i class="glyphicon glyphicon-align-left"></i></span>
+					<span class="btn btn-default" type="button" id="newAText" ng-click="MyCompletionQ.initAnswer()"><i class="glyphicon glyphicon-align-left"></i></span>
 				</div>
 
 				<div class="answContainer row">
-					<div class="answerBlock">
+					<div class="answerBlock" ng-repeat=" answer in MyCompletionQ.question.answer track by $index">
 						<div>
-							<input id="answNumber1" type="number" min="1" max="8" step="1" value="1" required />
-							<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1"></textarea>
-							<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
+							<input id="answNumber1" type="number" min="-1" max="10" step="1" ng-model="answer.id" required />
+							<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="answer.text"></textarea>
+							<button class="btn btn-xs" ng-click="MyCompletionQ.removeAnswer($index)"><i class="glyphicon glyphicon-remove"></i></button>
 						</div>
 				</div>
 		</div>

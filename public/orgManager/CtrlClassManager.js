@@ -1,15 +1,42 @@
 angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$scope', '$http', function (Class, $scope, $http){
     
     $scope.classes = [];
+    $scope.teacherClasses = [];
+    $scope.classMembers = [];
     $scope.myClass = new Class();
-    $scope.index = null; 
+    $scope.index = null;
+    $scope.memberToRemove = null;
     
-    $scope.loadClasses = function() {
+    $scope.loadClasses = function() { 
         $http.get('/api/class/fetch_inst_classes').success(function(response) {
             $scope.classes = response;
         });
     };
     
+    $scope.loadTeacherClasses = function () {
+        $http.get(' /api/class/fetch_teacher_classes_details').success(function(response) {
+            $scope.teacherClasses = response;
+        });
+    };
+    
+    $scope.loadMembers = function (selectedClass, index) {
+        if ($scope.classMembers[index] == null) {
+            var request = {class_id : selectedClass};
+            $http.post('/api/class/fetch_class_members', request).success(function(response) {
+                $scope.classMembers[index] = response;
+                
+                angular.forEach ($scope.classMembers[index], function(member) {
+                if (member.role == "teacher")
+                    member.role = "Docente";
+                else if (member.role =="student")
+                    member.role = "Studente";
+                else if (member.role=="director")
+                    member.role = "Responsabile";
+                })
+            });
+        }
+    }
+        
     $scope.createClass = function() {
         var request = { description : $scope.myClass.getDescription(), name : $scope.myClass.getName(), academicYear : $scope.myClass.getAcademicYear()};
         $http.post('/api/class/create_class', request); 
@@ -30,7 +57,7 @@ angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$sco
         $http.post('/api/class/update_class', request);
         $scope.classes[$scope.index].description = $scope.myClass.getDescription();
         $scope.myClass = new Class();
-        $scope.class_id = null;
+        $scope.index = null;
     };
     
     $scope.selectClass = function (indexOfClass) {
@@ -38,8 +65,25 @@ angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$sco
         $scope.index = indexOfClass;
     };
     
-    $scope.loadClasses();
+    $scope.setIndex = function (newIndex) {
+        $scope.index = newIndex;
+    };
     
+    $scope.setMemberToRemove = function (member) {
+        $scope.memberToRemove = member;
+    };
+    
+    $scope.deleteFromClass = function (){
+        var request = {user : $scope.memberToRemove.user, class_id : $scope.teacherClasses[$scope.index].class_id};
+        $http.post('/api/class/remove_from_class', request);
+        var userIndex = $scope.classMembers[$scope.index].indexOf($scope.memberToRemove);
+        $scope.classMembers[$scope.index].splice(userIndex, 1);
+        $scope.memberToRemove=null;
+        $scope.index=null;
+    };
+    
+    $scope.loadClasses(); 
+    $scope.loadTeacherClasses();
 }]);
     
     

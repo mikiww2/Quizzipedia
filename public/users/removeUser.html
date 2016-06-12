@@ -61,6 +61,7 @@
         
 		<div class="container">
 			<h4 class="description text-center">GESTIONE UTENTI </h4>
+            
 			<div class="row userMgmt">
 							
 				<div ng-if =  "users.length == 0"> Non ci sono utenti in questo ente</div>
@@ -92,7 +93,7 @@
 			   
 			</div>
 				<div class="modal-footer ">
-				<button type="button" class="btn btn-primary" ng-click = "removeUser(userToRemove.user)" data-dismiss="modal">Sì</button>
+				<button type="button" class="btn btn-primary" ng-click = "removeUser()" data-dismiss="modal">Sì</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
 			  </div>
 				</div>

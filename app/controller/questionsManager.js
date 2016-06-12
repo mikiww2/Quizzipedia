@@ -142,11 +142,11 @@ exports.fetchQuestionsNumber = function (req, res, next) {
             }
             else{
                 if(questions){
-                    res.send({ questionsNumber: questions.length });
+                    res.send({ number: questions.length });
                 }
                 else{
                     console.log('Nessuna domanda trovata');
-                    res.send({ questionsNumber: 0 });
+                    res.send({ number: 0 });
                 }
             }
         });

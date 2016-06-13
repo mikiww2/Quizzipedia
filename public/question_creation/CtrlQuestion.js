@@ -1,4 +1,4 @@
-angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ','ShortAnswerQ','MultipleChoiceQ','AnswerMultipleChoice','Attachment','Upload','$window','CompletionQ', function($scope, $http, TrueFalseQ,ShortAnswerQ,MultipleChoiceQ,AnswerMultipleChoice,Attachment,Upload,$window,CompletionQ){ //dipendenze verso tutti i tipi di domande e Topics
+angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ','ShortAnswerQ','MultipleChoiceQ','AnswerMultipleChoice','Attachment','Upload','$window','CompletionQ','MatchingQ', function($scope, $http, TrueFalseQ,ShortAnswerQ,MultipleChoiceQ,AnswerMultipleChoice,Attachment,Upload,$window,CompletionQ,MatchingQ){ //dipendenze verso tutti i tipi di domande e Topics
     
     
     $scope.domande = [];
@@ -183,14 +183,39 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     
     $scope.MyMatchingQ = {
-      answer: [], //answer temporanea che deve essere inserita in allAnswer
-      allAnswers:[], //è la tabella dei collegamenti
-      saveAnswer: function(answer){
-          $scope.MyMatchingQ.allAnswers.push(answer);
-      },
-      removeAnswer: function(answer){
-          
-      }
+        questionMatch: new MatchingQ(),
+        createTextArea: function(isPortionText){
+            if(isPortionText){
+                this.questionMatch.insertTextIntoText(-1,"");
+            }
+            else{
+                this.questionMatch.insertTextIntoAnswer(-1,"");    
+            }
+            
+        },
+        removeTextElement: function(index){
+            console.log('Index remove:' + index);
+            this.setNegativeIdAnswer(this.questionMatch.text[index].getId());
+            this.questionMatch.removeText(index);
+            
+        },
+        removeAnswerElement: function(index){
+            this.questionMatch.removeAnswer(index);
+        },
+        setNegativeIdAnswer: function(id){ //sistema gli indici del testo e risposte 
+               var size = this.questionMatch.getSizeAnswer();
+                var change = false;
+            
+               for(var i = 0; i < size && !change; i++){
+                   if(this.questionMatch.answer[i].getId() == id){
+                       this.questionMatch.answer[i].setId(-1);
+                       change = true;
+                   }
+               }
+        },
+        
+        
+      
     };
     
     
@@ -198,7 +223,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
       console.log("METODO: $scope.createQuestion()");
         console.log("TypeQuestion:" +typeQuestion);
         switch(typeQuestion){
-            case "mtch": $scope.saveMatchingQ($scope.MyGenericQ,$scope.MyMatchingQ); break;
+            case "mtch": $scope.saveMatchingQ($scope.MyGenericQ,$scope.MyMatchingQ.questionMatch); break;
             case "cmpl": $scope.saveCompletionQ($scope.MyGenericQ,$scope.MyCompletionQ.question); break;
             case "open": $scope.saveShortAnswerQ($scope.MyGenericQ,$scope.MyShortAnswerQ); break;
             case "mult": $scope.saveMultipleChoiceQ($scope.MyGenericQ,$scope.MyMultipleChoiceQ.question); break;
@@ -225,6 +250,79 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     $scope.saveMatchingQ = function(generic,matching){
        
+        //prima di salvare ho dei controlli da fare
+        var questionIsValid = true;
+        
+        //controllo che ci sia un numero sufficiente di risposte
+        if(matching.getSizeText() > matching.getSizeAnswer()){
+            questionIsValid = false;
+            alert("Salvataggio interrotto perchè non sono state inserite un numero sufficiente di risposte! Aggiungerne di nuove e confermate la creazione della domanda");
+        }
+        
+        if(questionIsValid){
+            //ho un numero di risposte sufficienti
+            
+            
+            //controllo che nella parte di testo non ci siano id = -1
+            var indexNegative = false;
+            var k = 0;
+            for(k; k < matching.getSizeText() && !indexNegative; k++){
+                if(matching.text[k].getId() == -1){
+                    indexNegative = true;
+                }
+            }
+            
+            if(indexNegative){
+                questionIsValid = false;
+                alert("il frammento di testo:" + matching.text[k-1].getTxt() + " ha un id = -1 che non è valido nel testo ma è valido solo nelle risposte");
+            }
+            
+            
+            
+            
+            //devo controllare che ogni parte del testo abbia un sola risposta associata
+            if(questionIsValid && !indexNegative){
+                var condition = true; //suppongo che ogni testo ha una ed una sola risposta associata0
+                for(var i = 0; i < matching.getSizeText() && condition; i++){
+                    var id = matching.text[i].getId();
+                    var conta = 0;
+                
+                    
+                    for(var j=0; j < matching.getSizeAnswer(); j++){
+                    
+                        if(matching.answer[j].getId() == id){
+                            conta = conta + 1;
+                        }
+                    
+                    }
+                    
+                    if(conta == 0){
+                        questionIsValid = false;
+                        condition = false;
+                        alert("Il frammento di testo: "+ matching.text[i].getTxt() + " non ha nessuna risposta associata! La domanda non è stata salvata");
+                    }
+                    else if(conta > 1){
+                        questionIsValid = false;
+                        condition = false;
+                        alert("Il frammento di testo: "+ matching.text[i].getTxt() + " ha " + conta + " risposte assegnate! Ne deve avere solo una. Domanda non salvata");
+                    }
+                
+                }
+                
+            }
+            
+            
+        }
+        
+        
+        if(questionIsValid){ //se dopo tutti i controlli è TRUE allora salvo la domanda
+            
+            setGenericPart(generic,matching);
+            
+            $scope.save(matching,generic.questionType);
+        }
+        
+        
     };
     
     $scope.saveCompletionQ = function(generic,completion){
@@ -374,12 +472,12 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         
         var json = {type: type, question: question};
         
-       $http.post('/api/question/save',json).success(function(response){
+       /*$http.post('/api/question/save',json).success(function(response){
            
             
         });
         
-        $window.location.href = '/Quzzipedia/createQuestion';
+        $window.location.href = '/Quzzipedia/createQuestion';*/
     };
     
     $scope.topicsList = [];

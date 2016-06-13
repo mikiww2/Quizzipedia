@@ -98,7 +98,7 @@ exports.search = function (req, res, next) {
                 }
 
             if(req.body.difficulty){
-                console.log()
+                console.log(); //da testare ancora
                 for(var i=0;i<results.length;i++){ //filtra difficoltà
                     if(results[i].difficulty != req.body.difficulty)
                         results.splice(i,1);                                                                                                                            
@@ -167,8 +167,20 @@ exports.fetchTeacherQuestions = function (req, res, next) {
             }
             else{
                 if(questions){
-                    for(var i=0;i<questions.length;i++)
-                        results.push(questions[i]);
+                    for(var i=0;i<questions.length;i++){
+                        var parsed = agent.parse(questions[i].qml);
+                        /*console.log(parsed);
+                        console.log(questions[i]);*/
+                        results.push({
+                            title: parsed.question.title,
+                            institution: questions[i].institution,
+                            difficulty: questions[i].difficulty,
+                            topic: questions[i].topic,
+                            description: questions[i].description,
+                            author: questions[i].author,
+                            keywords: questions[i].keywords
+                        });
+                    }
                     res.send(results);
                 }
                 else{

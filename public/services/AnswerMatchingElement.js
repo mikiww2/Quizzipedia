@@ -37,5 +37,6 @@ angular.module('CreateQuestion').factory('AnswerMatchingElement',['Attachment',f
         this.txt = txt;
     };
     
+    return AnswerMatchingElement;
     
 }]);

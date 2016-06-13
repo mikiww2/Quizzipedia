@@ -1260,3 +1260,11 @@ input {
 .grey-btn i{
 	color: #333333;
 }
+
+.list1-width-fix{
+	min-width:350px;
+}
+
+.list2-width-fix{
+	min-width:420px;
+}

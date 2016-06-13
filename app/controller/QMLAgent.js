@@ -37,10 +37,15 @@ var generateAttached = function (item) { // funzione che gestisce gli allegati d
 
 var appendAttached = function (attached){ // funzione che gestisce gli allegati del parser
     var attachedtype = extract(attached, '', ':');
-    var attachedpath = extract(attached, ':', ':x');
-    var attachedcoordX = extract(attached, ':x.', ':y');
-    var attachedcoordY = attached.substr(attached.indexOf(':y.') + 3);
-    return {'type': attachedtype, 'path': attachedpath, 'x': attachedcoordX, 'y': attachedcoordY};
+    var attachedpath = attached.substr(attached.indexOf(':') + 1)
+    if (attached.includes(':x.') && attached.includes(':y.')){
+        var attachedcoordX = extract(attached, ':x.', ':y');
+        var attachedcoordY = attached.substr(attached.indexOf(':y.') + 3);
+        var attachedpath = extract(attached, ':', ':x');
+        return {'type': attachedtype, 'path': attachedpath, 'x': null, 'y': null};
+    }
+    else
+        return {'type': attachedtype, 'path': attachedpath, 'x': null, 'y': null};
 };
 
 exports.generate = function (question){
@@ -181,6 +186,7 @@ exports.parse = function (qml){
         var text = extract(qml, '#t#', '#a#'); //estrazione stringa di domanda
         if (text.includes('{') && text.endsWith('}')) {  // se presente allegato nella stringa
             question.title = extract(text, '', '{');
+            console.log(extract(text, '{', '}'));
             question.questionAttachment = appendAttached(extract(text, '{', '}'));
         }
         else

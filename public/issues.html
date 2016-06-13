@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Quizzipedia">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="./assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./assets/img/favicon.ico">
+      
+    <title>Segnalazione problemi</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- <link href="./assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+
+    <!-- quizzipedia.base.css -->
+    <link href="./assets/css/quizzipedia.base.css" rel="stylesheet">
+      
+    <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
+      
+    <script type="text/javascript" src="./public/core.js"></script>
+	<script type="text/javascript" src="./public/authentic/CtrlData.js" ></script>
+      
+    <!-- Directive angular (HEADER)-->
+    <script type="text/javascript" src="./public/header/headerNotLogged.js"></script>
+    <!--Directive angular (FOOTER)-->
+    <script type="text/javascript" src="./public/footer/pageFooter.js"></script> 
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="pagewrap">
+        
+        <header-not-logged></header-not-logged>
+		
+		 <div class="row-fluid breadcrumb-div">
+            <ol class="breadcrumb" id="breadcrumb">
+                <li>
+                    Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+                </li>
+                <li class="active">
+                    <i class="glyphicon glyphicon-warning-sign"> </i> Segnalazione problemi
+                </li>
+            </ol>
+        </div>
+		
+		
+	<div class="container">
+		  <form class="form">
+			 <h3 class="form-heading description text-center">Segnalazione problemi</h3>
+			 <div class="spacer"></div>
+			<label for="issues" class="sr-only">Descrivi il problema riscontrato </label>
+			<textarea class="form-control" type="textarea" id="inputIssue" placeholder="Descrizione" maxlength="140" rows="7"></textarea>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Invia</button>
+		  </form>
+		</div>
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--<script src="./assets/js/ie10-viewport-bug-workaround.js"></script>-->
+      <page-footer></page-footer>
+  </body>
+</html>

@@ -24,7 +24,7 @@
 				<div class="answContainer row">
 					<div class="answerBlock" ng-repeat=" answer in MyCompletionQ.question.answer track by $index">
 						<div>
-							<input id="answNumber1" type="number" min="-1" max="10" step="1" ng-model="answer.id" required />
+							<input id="answNumber1" type="number" min="-1" step="1" ng-model="answer.id" required />
 							<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="answer.text"></textarea>
 							<span class="btn btn-xs" ng-click="MyCompletionQ.removeAnswer($index)"><i class="glyphicon glyphicon-remove"></i></span>
 						</div>

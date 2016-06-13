@@ -97,7 +97,7 @@
 				</thead>
 				<tbody class="text-center">
 				<!-- row -->
-				<tr>
+				<tr data-toggle="collapse" data-target="#001" class="accordion-toggle"> <!-- se quiz privato mostra classi -->
 					<td>Struttura della materia</td>
 					<td>Chimica</td>
 					<td>2</td>
@@ -106,6 +106,12 @@
 					<td>80%</td>
 					<td>25/30</td>
 				</tr>
+				<tr><!-- accordion classi-->
+					<td colspan="7" class="hiddentablerow">
+						<div class="accordian-body collapse" id="001"><span class="important">Classi:</span> classe1 - classe2 - classe3 - classe4</div> 
+					</td>
+				</tr><!-- fine classi -->
+
 				<tr>
 					<td>Grammatica inglese</td>
 					<td>Inglese</td>
@@ -115,7 +121,7 @@
 					<td>90%</td>
 					<td>27/30</td>
 				</tr>
-				<tr>
+				<tr data-toggle="collapse" data-target="#002" class="accordion-toggle"> <!-- se quiz privato mostra classi -->
 					<td>Struttura della materia</td>
 					<td>Chimica</td>
 					<td>2</td>
@@ -124,10 +130,16 @@
 					<td>80%</td>
 					<td>25/30</td>
 				</tr>
+				<tr><!-- accordion classi-->
+					<td colspan="7" class="hiddentablerow">
+						<div class="accordian-body collapse" id="002"><span class="important">Classi:</span> classe1 - classe2 - classe3 - classe4</div> 
+					</td>
+				</tr><!-- fine classi -->
 				</tbody>
 			</table>
 		</div>
 	</div>
+
 	<page-footer></page-footer>
   </body>
 </html>

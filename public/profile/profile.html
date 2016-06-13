@@ -45,9 +45,9 @@
 
   <body>   
       
-	<div class="pagewrap">
+	<div class="pagewrap"  ng-controller="CtrlHeader">
         
-    <div ng-controller="CtrlHeader">        
+    <div>        
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
           <header-logged-student ng-if="user.role == 'student'"></header-logged-student>         
           <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>         

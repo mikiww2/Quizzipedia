@@ -153,13 +153,15 @@ exports.parse = function (qml){
     var generateCL = function (question) { // da sistemare quando il form sarà comprensibile
         var stringTitle = '';
         for (var item of question.arrayTitle) {
-            stringTitle = stringTitle + item.text + '[' + item.id + ']' + '§';
+            var stringAttached = generateAttached(item);
+            stringTitle = stringTitle + stringAttached + item.text + '[' + item.id + ']' + '§';
         }
         if (stringTitle.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
             stringTitle = stringTitle.substr(0, stringTitle.length - 1);
         var stringAnswers = '';
         for (var item of question.arrayAnswer){
-            stringAnswers = stringAnswers + item.text + '[' + item.id + ']' + '§';
+            var stringAttached = generateAttached(item);
+            stringAnswers = stringAnswers + stringAttached + item.text + '[' + item.id + ']' + '§';
         }
         if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
             stringAnswers = stringAnswers.substr(0, stringAnswers.length - 1);
@@ -273,7 +275,10 @@ exports.parse = function (qml){
         for (var item of arrayTitles){
             var txt = extract(item, '', '[');
             var id = extract(item, '[', ']');
-            arrayJsonTitle.push({'text': txt, 'id': id});
+            if (item.includes('{') && item.endsWith('}'))
+                arrayJsonTitle.push({'attachment': appendAttached(extract(text, '{', '}')), 'id': id});
+            else
+                arrayJsonTitle.push({'text': txt, 'id': id});
         }
         var answer = extract(qml, '#a#', '#££#'); //estrae la stringa delle risposte
         var arrayAnswers = answer.split('§'); //array che contiene le stringhe delle risposte
@@ -281,7 +286,10 @@ exports.parse = function (qml){
         for (var item of arrayAnswers){
             var txt = extract(item, '', '[');
             var id = extract(item, '[', ']');
-            arrayJsonAns.push({'text': txt, 'id': id});
+            if (item.includes('{') && item.endsWith('}'))
+                arrayJsonAns.push({'attachment': appendAttached(extract(text, '{', '}')), 'id': id});
+            else
+                arrayJsonAns.push({'text': txt, 'id': id});
         }
         question.title = arrayJsonTitle;
         question.ans = arrayJsonAns;

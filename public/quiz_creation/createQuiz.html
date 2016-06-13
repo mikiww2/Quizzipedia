@@ -42,6 +42,7 @@
     <script type="text/javascript" src="./public/core.js"></script>
     <script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
     <script type="text/javascript" src="./public/quiz_creation/CtrlQuizManager.js" ></script>
+    <script type="text/javascript" src="./public/footer/Pagination.js" ></script>
       
     <script type="text/javascript" src="./public/question_creation/CtrlQuestion.js"></script>    
       
@@ -113,7 +114,7 @@
                 <div>SEARCHQUESTIONS: {{searchQuestions}}</div>
                 <div>SEARCHQ: {{searchQ}}</div>
         
-        <form class="form">
+        <form class="form" ng-submit = "saveQuiz()">
             
             <!-- title -->
             <div class="form-group row">
@@ -234,7 +235,7 @@
             </div>
             </fieldset>
                     
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Conferma</button>
+            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Conferma">
             </form>
         </div> <!-- /container -->
       </div>

@@ -45,9 +45,9 @@
             
             <br/>
                 <h3 class="panel-title"><span class="badge">{{searchQuestions.length}}</span> domande trovate</h3>
-                
-                <table class="table table-hover table-striped table-compact qTable" ng-if = "searchQuestions.length != 0">
-                    
+            
+            
+            <table class="table table-hover table-striped table-compact qTable" ng-if = "searchQuestions.length != 0" ng-controller = "CtrlPagination">                    
                     <thead>
                         <tr>
                             <th class="text-center">Titolo</th>
@@ -58,20 +58,20 @@
                     </thead>
                     
                     <tbody class="text-center">
-                        <tr ng-repeat="(index, question) in searchQuestions.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))"> 
+                        <tr ng-repeat = "(index, question) in searchQuestions.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))"> 
                             <td>{{question.title}} </td>
                             <td>{{question.topic}}</td>
                             <td>{{question.type}}</td>
                             <td>{{question.difficulty}}</td>
                             <td>
-                                <span data-placement="top" data-toggle="tooltip" title="Add"><button class="btn btn-primary  pull-right"><span class="glyphicon glyphicon-plus" ng-click = "addQuestion(question._id)"></span> Aggiungi</button></span>
+                                <span data-placement="top" data-toggle="tooltip" title="Aggiungi"><button class="btn btn-primary  pull-right" ng-click = "addQuestion(question)"><span class="glyphicon glyphicon-plus"></span> Aggiungi</button></span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
         
         <div class="modal-footer ">
-            <button type="button" class="btn btn-default" data-dismiss="modal"> Fine</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click = "clearSearch()"> Fine</button>
         </div>
     </div> 
 </div>

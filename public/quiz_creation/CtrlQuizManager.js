@@ -14,6 +14,11 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', 'GenericQues
     $scope.searchQuestions = []; //domande che corrispondono ai criteri di ricerca
     
     
+    $scope.clearSearch = function() {
+        $scope.searchQ = {author : null, topic : null, keyword : null, difficulty : null};
+        $scope.searchQuestions = [];
+    };
+    
     $scope.loadQuizzes = function() {
         $http.get('some api').success(function(response) {
             $scope.quizzes = response;
@@ -43,6 +48,25 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', 'GenericQues
     $scope.searchQuestion = function() {
         $http.post('/api/question/search', $scope.searchQ).success(function(response) {
             $scope.searchQuestions = response;
+            
+             angular.forEach ($scope.searchQuestions, function(question) {
+                if (question.difficulty == 1)
+                    question.difficulty = "Facile";
+                else if (question.difficulty == 2)
+                    question.difficulty = "Medio";
+                else if (question.difficulty == 3)
+                    question.difficulty = "Difficile";
+                else if (question.difficulty == 4)
+                    question.difficulty = "Molto difficile";
+                 
+                 if (question.type == "trfs")
+                     question.type = "Risposta vero/falso";
+                 else if (question.type == "mult")
+                     question.type = "Risposta multipla";
+                 else if (question.type == "open")
+                     question.type = "Risposta aperta";
+            });
+            
         });        
     };
     
@@ -50,16 +74,18 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', 'GenericQues
         //aggiunge la domanda corrente a myquiz.questions e la rimuove da searchQuestions, no chiamate ad db, lo facciamo in conferma
         var index = $scope.searchQuestions.indexOf(question);
         $scope.searchQuestions.splice(index, 1);
-        var index = $scope.myQuiz.questions.indexOf(question);
-        $scope.myQuiz.questions.splice(index, 1);        
+        
+        $scope.myQuiz.questions.push({_id : question._id, title : question.title});        
     };
     
     $scope.removeQuestion = function (indexOfQuestion) {
         $scope.myQuiz.questions.splice(indexOfQuestion, 1);
     };
     
-    $scope.createQuiz = function () {        
-        
+    $scope.saveQuiz = function () { 
+        console.log("Sono in create");
+        var request = JSON.stringify($scope.myQuiz);
+        console.log(request);        
     };    
         
     $scope.modifyQuiz = function(quiz){

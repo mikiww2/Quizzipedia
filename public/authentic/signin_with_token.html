@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="./assets/js/jquery-1.11.0.min/jquery-1.11.0.min.js"></script>
     <script src="./assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     <meta name="description" content="">
     <meta name="author" content="">
@@ -24,11 +24,15 @@
 	
 	 <script type="text/javascript" src="./public/core.js"></script>
 	
-    <!-- HEADER -->
-    <script type="text/javascript" src="./public/header/headerNotLogged.js"></script>
-	
 	<!--Directive angular (FOOTER)-->
     <script type="text/javascript" src="./public/footer/pageFooter.js"></script> 
+
+    <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./public/core.js"></script>
+    <script type="text/javascript" src="./public/header/CtrlHeader.js"></script>
+
+    <!-- HEADER -->
+    <script type="text/javascript" src="./public/header/headerNotLogged.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -55,15 +59,14 @@
 	<div class="container">
 		  <form class="form" action="/api/auth/signin_with_token" method="post">
 			 <h3 class="form-heading description text-center">Accedi</h3>
+             <p style="text-align: center">Ti è stata inviata una e-mail alla casella di posta da te indicata.
+             <br>Utilizzalo per accedere al sistema in tutta sicurezza!</p>
 			<label for="inputEmail" class="sr-only">Indirizzo email</label>
 			<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Indirizzo email" required autofocus>
-			<label for="inputPassword" class="sr-only">Password</label>
-			<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+			<label for="inputPassword" class="sr-only">Token</label>
+			<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Token" required>
 			 <div class="help-block text-right"><a href="/Quizzipedia/recover_pswd">Hai dimenticato la tua password?</a></div>
 			<div class="checkbox">
-			  <label>
-				<input type="checkbox" value="remember-me"> Ricordami
-			  </label>
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Accedi</button>
 		  </form>

@@ -69,7 +69,7 @@ exports.signin_with_token = function(req, res) {
                     console.log('user trovato: ' + user._id + ' con pass corretta');
                     req.session.user = user;
                     //req.session.pswd = user.password;
-                    res.redirect('/Quizzipedia/profile/change_pswd');
+                    res.redirect('/Quizzipedia/profile/changePswd');
                 }
                 else {  //SE LA PASS NON CORRISPONDE
                     console.log('user trovato: ' + user._id + ' con pass errata');
@@ -152,12 +152,12 @@ exports.recoverPswd = function (req, res) {
                 user.tmpPassword = token;
                 user.save(function (err) {
                     if (err) return handleError(err);
-                    res.redirect('/Quizzipedia/signin');
+                    res.send({ code: 0, message: '/Quizzipedia/signin_with_token' });
                 });
             }
             else {  //SE NON TROVA UN UTENTE NEL DB
                 console.log('user non trovato');
-                res.redirect('/Quizzipedia/signup');
+                res.send({ code: 1, message: 'Utente non trovato nel sistema' });
             }
         }
     });

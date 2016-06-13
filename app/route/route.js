@@ -145,6 +145,11 @@ module.exports = function (app) {
     res.sendFile(path.resolve('./public/aboutUs.html'));
   });
 
+  //ISSUES
+  app.route('/Quizzipedia/issues').get(function (req, res) {
+    res.sendFile(path.resolve('./public/issues.html'));
+  });
+
   //SEARCH ---------------------------------------------------------------------------------------
   app.route('/Quizzipedia/searchQuiz').get(function (req, res) {
     res.sendFile(path.resolve('./public/search/searchQuizzes.html'));

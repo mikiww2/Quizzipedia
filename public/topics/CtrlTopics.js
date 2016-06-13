@@ -32,7 +32,7 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
 
          //$scope.topicsList.addTopic(name);
 
-         $http.post('/api/topic/save',value)
+         $http.post('/api/topic/save', value)
                 .success(function(response){
                     //$window.location.href = '/Quizzipedia/topicMgmt';
                     //res_code res_msg
@@ -41,7 +41,7 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
              
                     switch(response.res_code){
                         case 0: alert(response.res_msg); break;
-                        case 1: $scope.topicsList.addTopic(name); break;
+                        case 1: $scope.topicsList.addTopic(value); break;
                         default: $window.location.href= response.res_msg;
                     }
              
@@ -56,12 +56,12 @@ angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$htt
          //rimuovo il topic in locale e invio una richiesta al serve
 
          
-         var value = { topicName: $scope.topicsList.topics[index]};
+         var value = { topicName: $scope.topicsList.topics[index].topicName};
          
 
          //$scope.topicsList.addTopic(name);
 
-         $http.post('/api/topic/erase',value)
+         $http.post('/api/topic/erase', value)
                 .success(function(response){
              
                     //$window.location.href = '/Quizzipedia/topicMgmt';

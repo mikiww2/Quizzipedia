@@ -1,6 +1,5 @@
 angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ','ShortAnswerQ','MultipleChoiceQ','AnswerMultipleChoice','Attachment','Upload','$window','CompletionQ', function($scope, $http, TrueFalseQ,ShortAnswerQ,MultipleChoiceQ,AnswerMultipleChoice,Attachment,Upload,$window,CompletionQ){ //dipendenze verso tutti i tipi di domande e Topics
     
-    $scope.topics = []; //inizializzato dal server
     
     $scope.domande = [];
     
@@ -13,16 +12,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         topic: null,
         questionType: null,
         difficulty: null,
-        keywords: [],
-        reset: function(){ //Non pulisce le keywords
-            this.title = null;
-            this.description = null;
-            this.attachment = new Attachment();
-            this.topic = null;
-            this.questionType = null;
-            this.difficulty = null;
-            this.keywords = [];
-        }
+        keywords: []
     };
     
     
@@ -200,10 +190,6 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
       },
       removeAnswer: function(answer){
           
-      },
-      reset: function(){
-          this.answer = [];
-          this.allAnswers = [];
       }
     };
     
@@ -272,9 +258,6 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             setGenericPart(generic,completion);
             
             $scope.save(completion,generic.questionType);
-            
-            generic.reset();
-            $scope.MyCompletionQ.question = new CompletionQ();
         }
         
         
@@ -289,9 +272,6 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         //questionShort.setCorrectAnswer(shortAnswer.answer);
         
         $scope.save(shortAnswer,generic.questionType);
-        
-        generic.reset();
-        $scope.MyShortAnswerQ = new ShortAnswerQ();
        
     };
     
@@ -299,9 +279,6 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
        setGenericPart(generic,multipleChoice);
         
         $scope.save(multipleChoice,generic.questionType);
-        generic.reset();
-        $scope.MyMultipleChoiceQ.question = new MultipleChoiceQ();
-        $scope.MyMultipleChoiceQ.size = 0;
     };
     
     
@@ -309,12 +286,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     $scope.saveTrueFalseQ = function(generic,trueFalse){
        
         setGenericPart(generic,trueFalse);
-        
-            
         $scope.save(trueFalse,generic.questionType);
-        
-        generic.reset();
-        $scope.MyTrueFalseQ = new TrueFalseQ();
         
         
     };
@@ -409,6 +381,8 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
            
             
         });
+        
+        $window.location.href = '/Quzzipedia/createQuestion';
     };
     
     $scope.topicsList = [];

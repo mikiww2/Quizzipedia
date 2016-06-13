@@ -19,25 +19,56 @@ angular.module('CreateQuestion').factory('MatchingQ',['GenericQuestion','AnswerM
     
     MatchingQ.prototype = GenericQuestion.prototype;
     
+    MatchingQ.prototype.getSizeText = function(){
+      return this.text.length;  
+    };
     
-    MatchingQ.prototype.insertText = function(id,txt){
+    MatchingQ.prototype.getSizeAnswer = function(){
+      return this.answer.length;  
+    };
+    
+    
+    MatchingQ.prototype.insertTextIntoText = function(id,txt){
         
         var element = new AnswerMatchingElement();
         element.setId(id);
         element.setTxt(txt);
         
         this.text.push(element);
+        
     };
     
-    MatchingQ.prototype.insertAttachment = function(id,attachment,type){
+    MatchingQ.prototype.insertTextIntoAnswer = function(id,txt){
+        
         var element = new AnswerMatchingElement();
         element.setId(id);
-        element.setEmptyAttachment();
-        element.attachment.setPath(attachment);
-        element.attachment.setType(type);
+        element.setTxt(txt);
         
         this.answer.push(element);
         
+    };
+    
+    
+    
+    MatchingQ.prototype.insertAttachmentIntoText = function(id,nameAttachment,type){
+        var element = new AnswerMatchingElement();
+        element.setId(id);
+        element.setEmptyAttachment();
+        element.attachment.setPath(nameAttachment);
+        element.attachment.setType(type);
+        
+        this.text.push(element);
+            
+    };
+    
+    MatchingQ.prototype.insertAttachmentIntoAnswer = function(id,nameAttachment,type){
+        var element = new AnswerMatchingElement();
+        element.setId(id);
+        element.setEmptyAttachment();
+        element.attachment.setPath(nameAttachment);
+        element.attachment.setType(type);
+        
+        this.answer.push(element);
     };
     
     MatchingQ.prototype.removeText = function(index){

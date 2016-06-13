@@ -79,4 +79,30 @@ exports.search = function (req,res) { //ricerca quiz
 
 exports.save = function (req,res) { //salvataggio quiz
 
+	//aggiungere sessione e docente
+	var quiz = new Quiz({
+		author: req.session.user._id,
+		creationDate: new Date(),
+		classes: req.body.classes,
+		topics: req.body.topics,
+		description: req.body.description,
+		difficulty: req.body.difficulty,
+		questions: req.body.questions,
+		keywords: req.body.keywords,
+		title: req.body.title,
+		institution: req.session.user.institution
+	});
+	
+	quiz.save(function (err){
+		if (err) {
+      console.log('errore nell\'inserimento della classe: ' + err);
+      res.send({ code: 1, message: 'Errore nella creazione del quiz: ' + err });
+    }
+    else{
+    	console.log('Quiz creato correttamente');
+      res.send({ code: 0, message: '/Quizzipedia/createQuiz' });
+    }
+
+	});
+
 }

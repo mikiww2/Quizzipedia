@@ -48,8 +48,8 @@ describe('Attachment test', function() {
     });
 
     it('test setType() method', function(){
-        mock_att.setType("audio");
-        expect(mock_att.type).toBe("audio");
+        mock_att.setType("immagine");
+        expect(mock_att.type).toBe("immagine");
     });
 
     it('test setPath() method', function(){

@@ -9,7 +9,7 @@
  *
  * * Diario delle modifiche:
  *  07.06.2016 Test superato - Rudy Berton
- *  07.06.2016 Creazione del test - Rudy Berton
+ *  06.06.2016 Creazione del test - Rudy Berton
  *
  */
 

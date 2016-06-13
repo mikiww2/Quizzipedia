@@ -100,14 +100,18 @@
         </div>
         
         <div class = "container" ng-controller = "CtrlQuizManager">
-            <div ng-hide = "mode == 1"> 
+            
             <h4 class="text-center description"><i class="glyphicon glyphicon-pencil"></i> Crea un nuovo quiz</h4>
             
+            <div class="alert alert-danger text-center">
+                <div>
+                    <span class="glyphicon glyphicon-warning-sign"></span> Prima di procedere alla creazione di quiz, assicurati di aver creato tutte le domande.</div>
+                <div><a href = "/Quizzipedia/createQuestion">Creale qui.</a></div>
+            </div>
+            
                 <div>MYQUIZ :{{myQuiz}}</div>
-                <div>JSONQUIZ: {{myJSONQuiz}}</div>
+                <div>SEARCHQUESTIONS: {{searchQuestions}}</div>
                 <div>SEARCHQ: {{searchQ}}</div>
-                
-            {{searchQ}}
         
         <form class="form">
             
@@ -121,12 +125,6 @@
             <div class="form-group row">
                 <label for="inputDescription" class=" form-control-label">Descrizione</label>
                 <textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" ng-model = "myQuiz.description" required></textarea>
-            </div>
-            
-            <!-- missing upload thing here -->
-            <div class="form-group row">
-                <label for="inputDescription" class=" form-control-label">Allegato</label><br>
-                <span class="btn btn-default btn-file">Carica <input type="file"></span>
             </div>
             
             <!-- permission-->
@@ -211,14 +209,15 @@
         <fieldset class="form-group">
             <label for="questions">Domande aggiunte</label>
            <!-- added questions -->
-            <div class="table-responsive">
+            <div ng-if = "myQuiz.questions.length == 0">Nessuna domanda aggiunta</div>
+            <div class="table-responsive" ng-if = "myQuiz.questions.length != 0">
                 <table id="classTable" class="table table-borderless table-striped table-hover table-compact">                    
                     <thead>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Titolo domanda</td>
-                            <td style="width:10%"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Remove" data-toggle="modal" data-target="#remove" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
+                        <tr ng-repeat = "(index, question) in myQuiz.questions">
+                            <td>{{question.title}}</td>
+                            <td style="width:10%"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Remove" data-toggle="modal" data-target="#remove" ng-click = "removeQuestion(index)"><span class="glyphicon glyphicon-remove"></span></button></p></td>
                         </tr>
                     </tbody>
                 </table>
@@ -227,9 +226,8 @@
             
              <!-- add question button -->
             <br>
-            <button type="button" class="btn btn-primary btn-small" data-title="Crea"><i class="glyphicon glyphicon-plus" ng-click = "toString()"></i> Crea nuova</button>
             
-            <button type="button" class="btn btn-primary btn-small" data-title="Cerca" data-toggle="modal" data-target="#qSearchBar"><i class="glyphicon glyphicon-search"></i> Cerca esistente</button><br><br>
+            <button type="button" class="btn btn-lg btn-primary btn-small" data-title="Cerca" data-toggle="modal" data-target="#qSearchBar"><i class="glyphicon glyphicon-search"></i> Cerca domanda esistente</button><br><br>
             
             <div class="modal fade" id="qSearchBar" tabindex="-1" role="dialog" aria-labelledby="search" aria-hidden="true">            
                 <search_questions></search_questions>
@@ -238,7 +236,6 @@
                     
             <button class="btn btn-lg btn-primary btn-block" type="submit">Conferma</button>
             </form>
-            </div>
         </div> <!-- /container -->
       </div>
       <page-footer></page-footer>

@@ -89,6 +89,7 @@ exports.save = function (req, res) {
 exports.search = function (req, res, next) {
     
     var results = [];
+    var resultsParsed = [];
     if(req.session.user /*&& req.session.user.role == 'teacher'*/) {
         Question.find({ 'institution': req.session.user.institution }, function (err, questions){
             for(var i=0;i<questions.length;i++){ //fetch all questions in institution
@@ -127,7 +128,7 @@ exports.search = function (req, res, next) {
             if(req.body.keyword){
                 for(var i=0;i<results.length;i++){ //filtra parola chiave
                     var topicFound = false;
-                    for(var j=0;j<results[i].keywords.length || topicfound;j++){
+                    for(var j=0;j<results[i].keywords.length || topicFound;j++){
                         if(results[i].keywords[j] == req.body.keyword)
                             topicFound = true;
                     }
@@ -136,9 +137,24 @@ exports.search = function (req, res, next) {
                         i--;
                     }
                 }
-            }         
+            }
 
-            res.send(results);
+            for(var i=0;i<results.length;i++){
+                var parsed = agent.parse(results[i].qml);
+                resultsParsed.push({
+                    _id: results[i]._id,
+                    type: parsed.type,
+                    title: parsed.results.title,
+                    institution: results[i].institution,
+                    difficulty: results[i].difficulty,
+                    topic: results[i].topic,
+                    description: results[i].description,
+                    author: results[i].author,
+                    keywords: results[i].keywords
+                });
+            }        
+
+            res.send(resultsParsed);
         });
     }
     else {

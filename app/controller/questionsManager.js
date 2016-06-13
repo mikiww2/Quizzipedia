@@ -12,9 +12,14 @@
  */
 "use strict";
 
+var async = require('async');
+
 var Question = require('../model/question.model');
 var upload = require('../controller/uploadManager'); // usata per salvare gli allegati
 var agent = require('./QMLAgent');
+
+var callback = function(){ //callback fake per sincronismo
+}
 
 exports.save = function (req, res) {
     console.log("body");
@@ -86,41 +91,68 @@ exports.search = function (req, res, next) {
     var results = [];
     if(req.session.user /*&& req.session.user.role == 'teacher'*/) {
         Question.find({ 'institution': req.session.user.institution }, function (err, questions){
-            console.log(req.body);
-            for(var i=0;i<questions.length;i++){ //fetch all questions in institution
-                results.push(questions[i]);
-            }
 
-            if(req.body.author)
-                for(var i=0;i<results.length;i++){ //filtra autore
-                    if(results[i].author != req.body.author)
-                        results.splice(i,1);
-                }
-
-            if(req.body.difficulty){
-                console.log(); //da testare ancora
-                for(var i=0;i<results.length;i++){ //filtra difficoltà
-                    if(results[i].difficulty != req.body.difficulty)
-                        results.splice(i,1);                                                                                                                            
-                }
-            }
-
-            if(req.body.topic)
-                for(var i=0;i<results.length;i++){
-                    if(results[i].topic == req.body.topic)
-                        results.splice(i,1);
-                }
-
-            if(req.body.keyword)
-                for(var i=0;i<results.length;i++){ //filtra parola chiave
-                    var topicFound = false;
-                    for(var j=0;j<results[i].keywords.length || topicfound;j++){
-                        if(results[i].keywords[j] == req.body.keyword)
-                            topicFound = true;
+            async.series([
+                function(callback){
+                    for(var i=0;i<questions.length;i++){ //fetch all questions in institution
+                        results.push(questions[i]);
                     }
-                    if(topicFound == false)
-                        results.splice(i,1);
-                }
+                    callback();
+                },
+                function(callback){
+                    if(req.body.author){
+                        console.log('A');
+                        for(var i=0;i<results.length;i++){ //filtra autore
+                            if(results[i].author != req.body.author)
+                                results.splice(i,1);
+                        }
+                    }
+                    callback();
+                },
+                function(callback){
+                    if(req.body.difficulty){
+                        console.log('B');
+                        console.log(req.body.difficulty);
+                        for(var i=0;i<results.length;i++){ //filtra difficoltà
+                            console.log(results[i].difficulty);
+                            if(results[i].difficulty != req.body.difficulty){
+                                results.splice(i,1);
+                                i--;                                                                                                                            
+                            }
+                        }
+                    }
+                    callback();
+                },
+                function(callback){
+                    if(req.body.topic){
+                        console.log('C');
+                        for(var i=0;i<results.length;i++){
+                            if(results[i].topic != req.body.topic)
+                                results.splice(i,1);
+                        }
+                    }
+                    callback();
+                },
+                function(callback){
+                    if(req.body.keyword){
+                        console.log('D');
+                        for(var i=0;i<results.length;i++){ //filtra parola chiave
+                            var topicFound = false;
+                            for(var j=0;j<results[i].keywords.length || topicfound;j++){
+                                if(results[i].keywords[j] == req.body.keyword)
+                                    topicFound = true;
+                            }
+                            if(topicFound == false)
+                                results.splice(i,1);
+                        }
+                    }
+                }],function(err){
+                    if(err)
+                        console.log(err);
+                    else{
+                        res.send(results);
+                    }
+                });           
 
             res.send(results);
         });
@@ -133,7 +165,7 @@ exports.search = function (req, res, next) {
 
 exports.fetchQuestionsNumber = function (req, res, next) {
 
-    if(req.session.user){ //&& req.session.user.role == 'teacher' da aggiungere dopo
+    if(req.session.user && req.session.user.role == 'teacher'){
 
         Question.find({ 'institution': req.session.user.institution }, function (err, questions) {
             if (err) {
@@ -169,9 +201,8 @@ exports.fetchTeacherQuestions = function (req, res, next) {
                 if(questions){
                     for(var i=0;i<questions.length;i++){
                         var parsed = agent.parse(questions[i].qml);
-                        /*console.log(parsed);
-                        console.log(questions[i]);*/
                         results.push({
+                            _id: questions[i]._id,
                             title: parsed.question.title,
                             institution: questions[i].institution,
                             difficulty: questions[i].difficulty,

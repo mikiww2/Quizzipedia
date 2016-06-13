@@ -161,16 +161,16 @@ exports.parse = function (qml){
 
     var generateCL = function (question) { // da sistemare quando il form sarà comprensibile
         var stringTitle = '';
-        for (var item of question.arrayTitle) {
+        for (var item of question.text) {
             var stringAttached = generateAttached(item);
-            stringTitle = stringTitle + stringAttached + item.text + '[' + item.id + ']' + '§';
+            stringTitle = stringTitle + item.txt + '[' + item.id + ']' + stringAttached + '§';
         }
         if (stringTitle.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
             stringTitle = stringTitle.substr(0, stringTitle.length - 1);
         var stringAnswers = '';
-        for (var item of question.arrayAnswer){
+        for (var item of question.answer){
             var stringAttached = generateAttached(item);
-            stringAnswers = stringAnswers + stringAttached + item.text + '[' + item.id + ']' + '§';
+            stringAnswers = stringAnswers + item.txt + '[' + item.id + ']' + stringAttached + '§';
         }
         if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
             stringAnswers = stringAnswers.substr(0, stringAnswers.length - 1);

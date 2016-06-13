@@ -91,68 +91,52 @@ exports.search = function (req, res, next) {
     var results = [];
     if(req.session.user /*&& req.session.user.role == 'teacher'*/) {
         Question.find({ 'institution': req.session.user.institution }, function (err, questions){
+            for(var i=0;i<questions.length;i++){ //fetch all questions in institution
+                results.push(questions[i]);
+            }
 
-            async.series([
-                function(callback){
-                    for(var i=0;i<questions.length;i++){ //fetch all questions in institution
-                        results.push(questions[i]);
+            if(req.body.author){
+                for(var i=0;i<results.length;i++){ //filtra autore
+                    if(results[i].author != req.body.author){
+                        results.splice(i,1);
+                        i--;
                     }
-                    callback();
-                },
-                function(callback){
-                    if(req.body.author){
-                        console.log('A');
-                        for(var i=0;i<results.length;i++){ //filtra autore
-                            if(results[i].author != req.body.author)
-                                results.splice(i,1);
-                        }
+                }
+            }
+
+            if(req.body.difficulty){
+                console.log(req.body.difficulty);
+                for(var i=0;i<results.length;i++){ //filtra difficoltà
+                    console.log(results[i].difficulty);
+                    if(results[i].difficulty != req.body.difficulty){
+                        results.splice(i,1);
+                        i--;                                                                                                                            
                     }
-                    callback();
-                },
-                function(callback){
-                    if(req.body.difficulty){
-                        console.log('B');
-                        console.log(req.body.difficulty);
-                        for(var i=0;i<results.length;i++){ //filtra difficoltà
-                            console.log(results[i].difficulty);
-                            if(results[i].difficulty != req.body.difficulty){
-                                results.splice(i,1);
-                                i--;                                                                                                                            
-                            }
-                        }
+                }
+            }
+                    
+            if(req.body.topic){
+                for(var i=0;i<results.length;i++){
+                    if(results[i].topic != req.body.topic){
+                        results.splice(i,1);
+                        i--;
                     }
-                    callback();
-                },
-                function(callback){
-                    if(req.body.topic){
-                        console.log('C');
-                        for(var i=0;i<results.length;i++){
-                            if(results[i].topic != req.body.topic)
-                                results.splice(i,1);
-                        }
+                }
+            }
+
+            if(req.body.keyword){
+                for(var i=0;i<results.length;i++){ //filtra parola chiave
+                    var topicFound = false;
+                    for(var j=0;j<results[i].keywords.length || topicfound;j++){
+                        if(results[i].keywords[j] == req.body.keyword)
+                            topicFound = true;
                     }
-                    callback();
-                },
-                function(callback){
-                    if(req.body.keyword){
-                        console.log('D');
-                        for(var i=0;i<results.length;i++){ //filtra parola chiave
-                            var topicFound = false;
-                            for(var j=0;j<results[i].keywords.length || topicfound;j++){
-                                if(results[i].keywords[j] == req.body.keyword)
-                                    topicFound = true;
-                            }
-                            if(topicFound == false)
-                                results.splice(i,1);
-                        }
+                    if(topicFound == false){
+                        results.splice(i,1);
+                        i--;
                     }
-                }],function(err){
-                    if(err)
-                        console.log(err);
-                    else{
-                        res.send(results);
-                    }
-                });           
+                }
+            }         
 
             res.send(results);
         });

@@ -144,7 +144,7 @@ exports.search = function (req, res, next) {
                 resultsParsed.push({
                     _id: results[i]._id,
                     type: parsed.type,
-                    title: parsed.results.title,
+                    title: parsed.question.title,
                     institution: results[i].institution,
                     difficulty: results[i].difficulty,
                     topic: results[i].topic,

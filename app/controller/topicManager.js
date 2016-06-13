@@ -26,7 +26,9 @@ exports.fetch = function (req, res) {
 	      else{
 	       	if(org){
 	       		for(var i=0;i<org.topics.length;i++){
-	       				response.push(org.topics[i]);
+	       				response.push({
+	       					topicName: org.topics[i]
+	       				});
 	       		}
 	       		res.send(response);
 	       	}

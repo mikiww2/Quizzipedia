@@ -100,7 +100,7 @@
                     <span class="list-group-item" ng-repeat = "member in classMembers[index] | orderBy : 'role'">
                         {{member.firstName}} {{member.lastName}} - {{member.role}}
                         
-                        <span data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-sm  pull-right" data-title="Delete" data-toggle="modal" data-target="#delete"  ng-if = "(user.role == 'teacher' && member.role == 'Studente') || (user.role == 'director' && member.role == 'Docente')" ng-click = "setIndex(index); setMemberToRemove(member)"> <span class="glyphicon glyphicon-trash"> </span> Rimuovi dalla classe</button></span>
+                        <span data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-sm btn-danger pull-right" data-title="Delete" data-toggle="modal" data-target="#delete"  ng-if = "(user.role == 'teacher' && member.role == 'Studente') || (user.role == 'director' && member.role == 'Docente')" ng-click = "setIndex(index); setMemberToRemove(member)"> <span class="glyphicon glyphicon-trash"> </span> Rimuovi dalla classe</button></span>
                     </span>
                 </div>              
             </div>
@@ -113,7 +113,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             </button>
-                            <h4 class="modal-title custom_align" id="Heading">Rimuozione utente</h4>
+                            <h4 class="modal-title custom_align" id="Heading">Rimozione utente</h4>
                         </div>
                         <div class="modal-body">
                             <div class="alert alert-danger">

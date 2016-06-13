@@ -10,6 +10,7 @@
  * * Diario delle modifiche:
  *
  */
+"use strict";
 
 var Question = require('../model/question.model');
 var upload = require('../controller/uploadManager'); // usata per salvare gli allegati
@@ -46,9 +47,7 @@ exports.save = function (req, res) {
         delete req.body.question.questionAttachement;
 
     }
-
-
-
+    
     if(req.body.question.arrayAnswer) {
         req.body.question.arrayAnswer.forEach(function(answer) {
             if(answer.attachment) {
@@ -82,53 +81,64 @@ exports.save = function (req, res) {
     res.send({ result: "done" });
 };
 
-exports.fetch = function (req, res) {
-
-    if(req.session.user){ //&& req.session.user.role == 'teacher' da aggiungere dopo
-
-        Question.find({ 'author': req.session.user._id, 'institution': req.session.user.institution }, function (err, questions) {
-            if (err) {
-                console.log('error: ' + err);
-                res.redirect('/');
-            }
-            else{
-                if(questions)
-                    res.send(questions);
-                else{
-                    console.log('Nessuna domanda trovata');
-                    res.send('Null');
-                }
-            }
-        });
-
-    }
-    else res.redirect('/');
-
-};
-
 exports.search = function (req, res, next) {
-    var option = req.body;
+    var option = req.body
+        ,institution = req.session.user.institution
+        ,user = req.session.user._id
+        ,role = req.session.user.role
+        ,query;
 
-    author  = req.session.user._id; //b author sempre definito
-    var query = Question.find({ author: author });
+    if(user && institution && role && role == 'teacher') {
+        console.log(user + ' è autorizzato');
+        
+        query = Question.find({ institution: institution });
 
-    if(option.topic)
-       query.where('topic').equals(option.topic);
+        if(option.author)
+            query.where('author').equals(option.author);
 
-    if(option.keywords)
-        query.where('keywords').in(keywords);
-    
-    if(option.difficulty)
-        query.where('difficulty').equals(difficulty);
+        if(option.keywords)
+            query.where('keywords').in(keywords); // forse sbagliato, lista di keywords
 
-    query.exec(function(err, questions) {
-        if (err) {
-            console.log('error: ' + err);
+        if(option.difficulty)
+            query.where('difficulty').equals(option.difficulty);
+
+        query.exec()
+        .then(function(questions) {
+            if(questions && questions.length) {
+                var result;
+
+                questions.forEach(function(question) {
+                    var q = agent.generate(question.qml);
+
+                    q.question.difficulty = question.difficulty;
+                    q.question.author = question.author;
+
+                    if(question.topic)
+                        q.question.topic = question.topic;
+
+                    if(question.keywords && keywords.length)
+                        q.question.keywords = question.keywords;
+
+                    if(question.description)
+                        q.question.description = question.description;
+
+                    result.push(q);
+                });
+
+                return res.send({ result: "done", questions: result });
+            }
+            else
+                res.send({ result: "done", questions: null });
+
+        }, function(err) {
+            console.log('errore in Question.find ' + err);
             res.send({ result: "error" });
-        }
-        else
-            res.send(questions);
-    });
+        });
+    }
+    else {
+        console.log(user + ' non è autorizzato');
+        res.redirect('/');
+    }
 };
 
 exports.fetchQuestionsNumber = function (req, res, next) {
@@ -154,50 +164,3 @@ exports.fetchQuestionsNumber = function (req, res, next) {
     }
     else res.redirect('/');
 };
-
-// exports.test = function (req, res) {
-//     console.log("body");
-//     console.log(JSON.stringify(req.body, undefined, 2));
-//
-//     var question = new Question({
-//         //author: req.session.user._id
-//         author: author
-//         ,description: req.body.question.description
-//         ,topic: req.body.question.topic
-//         ,difficulty: req.body.question.difficulty
-//         ,keywords: req.body.question.keywords
-//     });
-//
-//     //sistemo gli allegati, author da recuperare da session
-//     if(req.body.question.questionAttachement) {
-//         var path = upload.save(author, req.body.question.questionAttachement, question._id);
-//         delete req.body.question.attachment;
-//         req.body.question.attachment = { // senza x e y
-//             type: "img"
-//             ,path: path
-//         };
-//     }
-//
-//     //inserisco il qml
-//     question.qml = agent.generate(req.body);
-//
-//     console.log("model della domanda");
-//     console.log(question);
-//
-//     //salvo la domanda
-//     return question.save(function(err) {
-//         if (err) {
-//             console.log('errore nel salvataggio della domanda : ' + err);
-//
-//             return res.send({ result: "error" });
-//
-//         }
-//         else {
-//             console.log('domanda salvata correttamente');
-//
-//             // res.redirect('/Quizzipedia/mgmtQuestion');
-//             return res.send({ result: "done" });
-//         }
-//
-//     });
-// };

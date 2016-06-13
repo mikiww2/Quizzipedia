@@ -2,10 +2,17 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
     
     $scope.quizzes = [];
     $scope.index = null;
-    $scope.myQuiz = new Quiz();
+    $scope.myQuiz = null;
     $scope.userClasses = [];
     $scope.topics = [];
     $scope.permission = null;
+    $scope.quizCookie = null;
+    $scope.mode = 0;
+    
+    $scope.loadQuiz = function() {
+        if ($scope.myQuiz == null)
+            $scope.myQuiz == new Quiz();
+    };
     
     $scope.loadQuizzes = function() {
         $http.get('some api').success(function(response) {
@@ -23,7 +30,7 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
         $http.get('/api/topic/fetch').success(function(response) {
             $scope.topics = response;
         });
-    };    
+    }; 
     
     $scope.removeQuiz = function(){
         var request = {_id : $scope.quizzes[$scope.index]._id};
@@ -31,6 +38,10 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
         $scope.quizzes.splice($scope.index, 1);
         //$scope.myQuiz = new Quiz();
         $scope.index = null;        
+    };
+    
+    $scope.changeMode = function(int) {
+        $scope.mode = int;
     };
     
     $scope.createQuiz = function () {
@@ -43,5 +54,6 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
     
     $scope.loadUserClasses();
     $scope.loadTopics();
+    $scope.loadQuiz();
     
 }]);

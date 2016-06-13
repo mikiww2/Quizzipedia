@@ -37,7 +37,7 @@
     <script type="text/javascript" src="./public/core.js"></script>
 	<script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
     <script type="text/javascript" src="./public/quiz_creation/CtrlQuizManager.js" ></script>
-    <script type="text/javascript" src="./public/orgManager/CtrlClassManager.js" ></script>
+    <script type="text/javascript" src="./public/quiz_creation/searchQuestions.js" ></script>
     <script type="text/javascript" src="./public/services/Quiz.js" ></script>
     <script type="text/javascript" src="./public/services/Class.js" ></script>
     <script type="text/javascript" src="./public/services/genericQuestion.js" ></script>
@@ -78,7 +78,10 @@
         </div>
         
         <div class = "container" ng-controller = "CtrlQuizManager">
+            <div ng-hide = "mode == 1"> 
             <h4 class="text-center description"><i class="glyphicon glyphicon-pencil"></i> Crea un nuovo quiz</h4>
+            
+            {{myQuiz}}
         
         <form class="form">
             
@@ -123,10 +126,11 @@
                 <fieldset class="form-group">
                     <label for="class">Classe</label>
                     <!-- load classes for selected institution -->
-                    
-                    <span ng-repeat = "(index, class) in userClasses">
+                    <div>
+                        <span ng-repeat = "(index, class) in userClasses">
                         <input type = "checkbox" id="classSelect" name="class" ng-model = "myQuiz.classes[index]" ng-true-value="'{{class.class_id}}'" ng-false-value="null"> {{class.className}}
-                    </span>
+                        </span>
+                    </div>
                 </fieldset>
             </div>
             
@@ -179,14 +183,8 @@
         
         <!-- questions -->
         <fieldset class="form-group">
-            <label for="questions">Domande</label>
-            <!-- add question button -->
-            <br>
-            <button type="button" class="btn btn-primary btn-small" data-title="Crea"><i class="glyphicon glyphicon-plus"></i> Crea nuova</button>
-            
-            <button type="button" class="btn btn-primary btn-small" data-title="Cerca" ><i class="glyphicon glyphicon-search"></i> Cerca esistente</button><br><br>
-            
-            <!-- added questions -->
+            <label for="questions">Domande aggiunte</label>
+           <!-- added questions -->
             <div class="table-responsive">
                 <table id="classTable" class="table table-borderless table-striped table-hover table-compact">                    
                     <thead>
@@ -200,10 +198,22 @@
                 </table>
                 <!-- end of table -->
             </div>
-            </fieldset>
+            
+             <!-- add question button -->
+            <br>
+            <button type="button" class="btn btn-primary btn-small" data-title="Crea"><i class="glyphicon glyphicon-plus"></i> Crea nuova</button>
+            
+            <button type="button" class="btn btn-primary btn-small" data-title="Cerca" data-toggle="modal" data-target="#qSearchBar"><i class="glyphicon glyphicon-search"></i> Cerca esistente</button><br><br>
+            
+            <div class="modal fade" id="qSearchBar" tabindex="-1" role="dialog" aria-labelledby="search" aria-hidden="true">            
+                <search_questions></search_questions>
+            </div>
+            </fieldset>            
             
             <button class="btn btn-lg btn-primary btn-block" type="submit">Conferma</button>
             </form>
+            </div>
+            <div ng-hide = "mode == 0" ng-if = "mode == 1" ng-include = "'/Quizzipedia/searchQuestions'"></div>
         </div> <!-- /container -->
       </div>
       <page-footer></page-footer>

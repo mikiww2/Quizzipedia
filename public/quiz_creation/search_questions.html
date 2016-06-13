@@ -1,0 +1,87 @@
+	<!-- search bar -->
+
+<div id="qSearchBar" class="modal-dialog">
+    <div class="modal-content">  
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-center" id="Heading"><i class="glyphicon glyphicon-search"></i> Cerca domande</h4>
+        </div>
+        
+        <div class="modal-body form">
+            <form role="form">
+                <br style="clear:both">
+                <label for="inputTitle">Titolo</label>
+					<input type="text" id="inputTitle" class="form-control" placeholder="Titolo.." autofocus><br>
+					
+					<label for="inputAuthor">Autore</label>
+					<input type="text" id="inputAuthor" class="form-control" placeholder="Autore.."><br>
+					
+					<fieldset class="form-group">
+					<label for="topics">Materie</label>
+					<select multiple class="form-control" id="topics">
+					  <option>Arte</option>
+					  <option>Informatica</option>
+					  <option>Matematica</option>
+					  <option>Fisica</option>
+					</select>
+					</fieldset>
+				  
+					<fieldset class="form-group">
+					<label for="inputTags">Parole chiave</label>
+					<select id="inputTags" multiple="multiple" class="form-control">
+						<option selected="selected">Scienza</option>
+						<option selected="selected">Biologia</option>
+					</select>
+					<script>
+					$('#inputTags').select2({
+						tags: true,
+						tokenSeparators: [','], 
+						placeholder: "Add your tags here"
+					});
+					</script>
+                        </fieldset>
+
+				  
+					<fieldset class="form-group">
+					<label for="difficultyLevel">Livello di difficoltà</label>
+					<select class="form-control" id="difficultyLevel">
+						<option>Facile</option>
+						<option>Media</option>
+						<option>Difficile</option>
+						<option>Molto difficile</option>
+					</select>
+					</fieldset>
+	
+					
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Cerca</button>
+				  </form>
+        </div>
+        <div class="modal-footer ">
+            <button type="button" class="btn btn-primary" data-dismiss="modal"> Aggiungi</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"> Annulla</button>
+        </div>
+    </div> 
+</div>
+    
+
+    
+    
+    <!-- searchBar
+
+div id="searchResults">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4>Titolo del quiz 1</h4>
+                    <p><a href="#">Materia</a></p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                    <p><a href="#" class="btn btn-primary" role="button">Svolgi il quiz</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+	

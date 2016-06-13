@@ -1,33 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app = "QuizManager">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="./assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../favicon.ico">
+    <meta name="Autore" content="">
+    <link rel="icon" href="./assets/img/favicon.ico">
 
-    <title>Edit Quiz</title>
+    <title>Modifica quiz</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="./assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
 	<!-- quizzipedia.base.css -->
-	<link href="../../css/quizzipedia.base.css" rel="stylesheet">
+	<link href="./assets/css/quizzipedia.base.css" rel="stylesheet">
+	
+	<!-- Merge others eventually -->
+	<link href="./assets/css/split/forms.css" rel="stylesheet">
 	
 	<!-- select2.js -->
-	<link href="../../js/select2-4.0.2/dist/css/select2.min.css" rel="stylesheet" />
-	<script src="../../js/select2-4.0.2/dist/js/select2.min.js"></script>
+	<link href="./assets/js/select2-4.0.2/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="./assets/js/select2-4.0.2/dist/js/select2.min.js"></script>
 	
 	<!-- chained.js -->
-	<script src="../../js/jquery.chained.min.js"></script>
+	<script src="./assets/js/jquery.chained.min.js"></script>
+      
+    <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./assets/js/ui-bootstrap-tpls-1.3.2.min.js"></script>
+      
+    <script type="text/javascript" src="./public/core.js"></script>
+	<script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
+    <script type="text/javascript" src="./public/quiz_creation/CtrlQuizManager.js" ></script>
+    <script type="text/javascript" src="./public/orgManager/CtrlClassManager.js" ></script>
+    <script type="text/javascript" src="./public/services/Quiz.js" ></script>
+    <script type="text/javascript" src="./public/services/Class.js" ></script>
+    <script type="text/javascript" src="./public/services/genericQuestion.js" ></script>
+      
+    <!-- Directive angular (HEADER)-->
+    <script src="./public/header/headerLoggedTeacher.js"></script>
+    
+    <!--Directive angular (FOOTER)-->
+    <script type="text/javascript" src="./public/footer/pageFooter.js"></script> 
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -38,150 +57,159 @@
   </head>
 
   <body>
-  <!-- same as create quiz just put saved values as placeholders & only edit the ones that the user changes -->
-  
-	<div class="pagewrap">
-	
-	  <div class="row-fluid breadcrumb-div">
+	<div class="pagewrap"  ng-controller="CtrlHeader">
+        
+        <div>        
+			  <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher> 
+		</div>
+        
+        <div class="row-fluid breadcrumb-div">
             <ol class="breadcrumb" id="breadcrumb">
                 <li>
                     Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
+                </li>
+                <li>
+                    <a href = "/Quizzipedia/quizMgmt"><i class="glyphicon glyphicon-list-alt"> </i> Gestione quiz </a>               
                 </li>
                 <li class="active">
                     <i class="glyphicon glyphicon-pencil"> </i> Modifica quiz
                 </li>
             </ol>
         </div>
-	
-	<div class="container">
-		<h2 class="text-center description"><i class="glyphicon glyphicon-pencil"></i> Modifica il quiz</h2>
-		  <form class="form">
-			<!-- title -->
-			<div class="form-group row">
-				<label for="inputTitle" class=" form-control-label">Title</label>
-				<input type="text" class="form-control" id="inputTitle" placeholder="Title" required autofocus>
-			</div>
-			<!-- description -->
-			<div class="form-group row">
-				<label for="inputDescription" class=" form-control-label">Description</label>
-				<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Description" maxlength="140" rows="7" required></textarea>
-			</div>
-			<!-- missing upload thing here -->
-			
-			<!-- permission-->
-			<fieldset class="form-group">
-				<label for="permission">Permission</label>
-				<select class="form-control" id="permission">
-				  <option value="public">Public</option>
-				  <option value="private">Private</option>
-				</select>
-			</fieldset>
-			
-			<!-- private inst/class select - maybe make only visible if private is selected (dropdown?) -->
-			<fieldset class="form-group">
-			<label for="inst">Institution</label><br>
-			<!-- load all institutions the teacher belongs to -->
-			<select id="instSelectClass" name="instClass" class="form-control"><br>
-			  <option value="">--</option>
-			  <option value="inst1" class="private">University X</option>
-			  <option value="inst2" class="private">NDLS Center</option>
-			</select>
-			</fieldset>
-			
-			<script>$("#instSelectClass").chained("#permission");</script>
-			
-			<fieldset class="form-group">
-			<label for="class">Class</label>
-			<!-- load classes for selected institution -->
-			<select id="classSelect" name="class" class="form-control">
-			  <option value="">--</option>
-			  <option value="art" class="inst1">Art</option>
-			  <option value="maths" class="inst1">Maths</option>
-			  <option value="dla" class="inst2">Driving Licence 'A'</option>
-			  <option value="dlb" class="inst2">Driving Licence 'B'</option>
-			</select>
-			</fieldset>
-			
-			<script>$("#classSelect").chained("#instSelectClass");</script>
-			<!-- end of private inst/class select -->
-			
-			<!-- topic-->
-			<fieldset class="form-group">
-				<label for="topic">Topic</label>
-				<select class="form-control" id="topic">
-				<!-- load options from existing topics -->
-				  <option>Art</option>
-				  <option>Computer Science</option>
-				  <option>Maths</option>
-				  <option>Physics</option>
-				</select>
-			</fieldset>
-			
-			<script type="text/javascript">
-				$(document).ready(function() {
-				  $("#topic").select2();
-				});
-			</script>
-			
-			<!-- diff level -->
-			<fieldset class="form-group">
-			<!-- idk the stars are cool, animate them w jquery if theres time -->
-				<label for="difficultyLevel">Level <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i></label>
-				<select class="form-control" id="difficultyLevel">
-				  <option>Easy</option>
-				  <option>Medium</option>
-				  <option>Hard</option>
-				  <option>Nightmare</option>
-				</select>
-			</fieldset>
-			
-			<fieldset class="form-group">
-			<label for="inputTags">Tags</label>
-			<select id="inputTags" multiple="multiple" class="form-control">
-			</select><br><br>
-			<script>
-			$('#inputTags').select2({
-				tags: true,
-				tokenSeparators: [','], 
-				placeholder: "Add your tags here"
-			});
-			</script>
-			</form>
-			
-			<!-- questions -->
-			<fieldset class="form-group">
-			<label for="questions">Questions</label>
-			<!-- add question button -->
-			<br><button class="btn btn-primary btn-small" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button><br><br>
-			<!-- added questions -->
-			<div class="table-responsive">
-				<table id="classTable" class="table table-borderless table-striped table-hover table-compact">
-				<thead>
-				</thead>
-				<tbody>
-				<tr>
-					<td><a href="#">@title</a></td>
-					<td style="width:10%"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
-				</tr>
-				<tr>
-					<td><a href="#">@title</a></td>
-					<td style="width:10%"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
-				</tr>
-				<tr>
-					<td><a href="#">@title</a></td>
-					<td style="width:10%"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
-				</tr>
-				</tbody>
-				</table>
-				<!-- end of table -->
-			</div>
-			</form>
-
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
-		  </form>
-		</div> <!-- /container -->
-	</div>
-  </body>
+        
+        <div class = "container" ng-controller = "CtrlQuizManager">
+            <h4 class="text-center description"><i class="glyphicon glyphicon-pencil"></i> Modifica quiz</h4>
+            
+            QUIZ: {{myQuiz}}
+        
+        <form class="form">
+            
+            <!-- title -->
+            <div class="form-group row">
+                <label for="inputTitle" class=" form-control-label">Titolo</label>
+                <input type="text" class="form-control" id="inputTitle" placeholder="myQuiz.title"  ng-model = "myQuiz.title" required autofocus>
+            </div>
+            
+            <!-- description -->
+            <div class="form-group row">
+                <label for="inputDescription" class=" form-control-label">Descrizione</label>
+                <textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" ng-model = "myQuiz.description" required></textarea>
+            </div>
+            
+            <!-- missing upload thing here -->
+            <div class="form-group row">
+                <label for="inputDescription" class=" form-control-label">Allegato</label><br>
+                <span class="btn btn-default btn-file">Carica <input type="file"></span>
+            </div>
+            
+            <!-- permission-->
+            <div class="form-group row">
+                <fieldset class="form-group">
+                    <label for="permission">Permesso</label>
+                    <select class="form-control" id="permission" ng-model = "permission">
+                        <option value="public">Pubblico</option>
+                        <option value="private">Privato</option>
+                    </select>
+                </fieldset>
+            </div>
+            
+            <!-- private inst/class select - maybe make only visible if private is selected (dropdown?) -->
+            <div class="form-group row">
+                <fieldset class="form-group">
+                    <label for="inst">Ente</label>
+                    <p>{{user.institution}}</p>
+                </fieldset>
+            </div>
+            
+            <div class="form-group row" ng-if = "permission == 'private'">
+                <fieldset class="form-group">
+                    <label for="class">Classe</label>
+                    <!-- load classes for selected institution -->
+                    
+                    <span ng-repeat = "(index, class) in userClasses">
+                        <input type = "checkbox" id="classSelect" name="class" ng-model = "myQuiz.classes[index]" ng-true-value="'{{class.class_id}}'" ng-false-value="null"> {{class.className}}
+                    </span>
+                </fieldset>
+            </div>
+            
+            <!-- end of private inst/class select -->
+            
+            <!-- topic-->
+            <div class="form-group row">
+                <fieldset class="form-group">
+                    <label for="topic">Argomento</label>
+                    <select class="form-control" id="topic" ng-model = "myQuiz.topic">
+                        <option ng-repeat = "topic in topics">{{topic}}</option>
+                    </select>
+                </fieldset>
+            </div>
+            
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#topic").select2();
+                });
+            </script>
+            
+            <!-- diff level
+            <div class="form-group row">
+                <fieldset class="form-group">
+                    <--idk the stars are cool, animate them w jquery if theres time
+                    <label for="difficultyLevel">Livello di difficoltà <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i></label>
+                    <select class="form-control" id="difficultyLevel" ng-model = "myQuiz.">
+                        <option value = "1">Facile</option>
+                        <option value = "2">Media</option>
+                        <option value = "3">Difficile</option>
+                        <option value = "4">Molto difficile</option>
+                    </select>
+                </fieldset>
+            </div> -->
+            
+            <div class="form-group row">
+                <fieldset class="form-group">
+                    <label for="inputTags">Parole chiave</label>
+                    <select id="inputTags" multiple="multiple" class="form-control">
+                    </select><br><br>
+                    <script>
+                        $('#inputTags').select2({
+                            tags: true,
+                            tokenSeparators: [','], 
+                            placeholder: "Aggiungi parole chiave"
+                        });
+                    </script>
+                </fieldset>
+            </div>
+        
+        <!-- questions -->
+        <fieldset class="form-group">
+            <label for="questions">Domande</label>
+            <!-- add question button -->
+            <br>
+            <button type="button" class="btn btn-primary btn-small" data-title="Crea"><i class="glyphicon glyphicon-plus"></i> Crea nuova</button>
+            
+            <button type="button" class="btn btn-primary btn-small" data-title="Cerca" ><i class="glyphicon glyphicon-search"></i> Cerca esistente</button><br><br>
+            
+            <!-- added questions -->
+            <div class="table-responsive">
+                <table id="classTable" class="table table-borderless table-striped table-hover table-compact">                    
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Titolo domanda</td>
+                            <td style="width:10%"><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Remove" data-toggle="modal" data-target="#remove" ><span class="glyphicon glyphicon-remove"></span></button></p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- end of table -->
+            </div>
+            </fieldset>
+            
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Conferma</button>
+            </form>
+        </div> <!-- /container -->
+      </div>
+      <page-footer></page-footer>
+    </body>
 </html>
 
 

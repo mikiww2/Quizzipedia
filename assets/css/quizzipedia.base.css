@@ -611,6 +611,7 @@ h6.description, h4.description, h3.description{
 	display: inline-block; 
 	vertical-align: top;
 	margin-top: 4px;
+	font-weight: bold;
 } 
 
 .answerBlock input[type="file"]{

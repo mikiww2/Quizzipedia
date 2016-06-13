@@ -11,24 +11,18 @@
 								<!-- new upload -->
 								<div class="form-group row form grey-btn">
 									<span class="btn btn-default btn-file" id="newAttach1" data-placement="top" data-toggle="tooltip" title="Carica allegato"><i class="glyphicon glyphicon-upload"></i> <input type="file"></span>
-									<span class="btn btn-default" type="button" id="newAText1" data-placement="top" data-toggle="tooltip" title="Nuova casella di testo"><i class="glyphicon glyphicon-align-left"></i></span>
+									<span class="btn btn-default" type="button" id="newAText1" data-placement="top" data-toggle="tooltip" title="Nuova casella di testo" ng-click="MyMatchingQ.createTextArea(true)"><i class="glyphicon glyphicon-align-left"></i></span>
 								</div>
 							</div>
-							<div class="drag ui-widget-content">
-								<input id="answNumber1" type="number" min="-1" step="1" placeholder="1" required />
-								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
-								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-							</div>
-							<div class="drag ui-widget-content">
-								<input id="answNumber1" type="number" min="-1" step="1" placeholder="2" required />
-								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
-								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-							</div>
-							<div class="drag ui-widget-content">
-								<input id="answNumber1" type="number" min="-1" step="1" placeholder="3" required />
-								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
-								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-							</div>
+                            <div ng-repeat="element in MyMatchingQ.questionMatch.text track by $index">
+							     <div class="drag ui-widget-content">
+								    <input id="answNumber+{{$index}}" type="number" min="0" step="1" placeholder="1" ng-model="element.id" required />
+								    <textarea type="textarea" placeholder="Answer..." name="ta1" id="ta+{{$index}}" cols="8" rows="1" ng-model="element.txt"></textarea>
+                                     <!-- QUI VA L'INPUT PER GLI ALLEGATI-->
+								    <span class="btn btn-xs" ng-click="MyMatchingQ.removeTextElement($index)"><i class="glyphicon glyphicon-remove"></i></span>
+							     </div>
+                            
+                            </div>
 						</div>
 					</div>
 					
@@ -40,24 +34,17 @@
 								<!-- new upload -->
 								<div class="form-group row form grey-btn">
 									<span class="btn btn-default btn-file" id="newAttach2" data-placement="top" data-toggle="tooltip" title="Carica allegato"><i class="glyphicon glyphicon-upload"></i> <input type="file"></span>
-									<span class="btn btn-default" type="button" id="newAText2" data-placement="top" data-toggle="tooltip" title="Nuova casella di testo"><i class="glyphicon glyphicon-align-left"></i></span>
+									<span class="btn btn-default" type="button" id="newAText2" data-placement="top" data-toggle="tooltip" title="Nuova casella di testo" ng-click="MyMatchingQ.createTextArea(false)"><i class="glyphicon glyphicon-align-left"></i></span>
 								</div>
 							</div>
-							<div class="drag ui-widget-content">
-								<input id="answNumber1" type="number" min="-1" step="1" placeholder="1" required />
-								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
-								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-							</div>
-							<div class="drag ui-widget-content">
-								<input id="answNumber1" type="number" min="-1" step="1" placeholder="2" required />
-								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
-								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-							</div>
-							<div class="drag ui-widget-content">
-								<input id="answNumber1" type="number" min="-1" step="1" placeholder="3" required />
-								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
-								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-							</div>
+                            <div ng-repeat="element in MyMatchingQ.questionMatch.answer track by $index">
+							     <div class="drag ui-widget-content">
+								    <input id="answNumber+{{$index}}" type="number" min="-1" step="1" placeholder="1" ng-model="element.id" required />
+								    <textarea type="textarea" placeholder="Answer..." name="ta+{{$index}}" id="ta1" cols="8" rows="1" ng-model="element.txt"></textarea>
+								    <span class="btn btn-xs" ng-click="MyMatchingQ.removeAnswerElement($index)"><i class="glyphicon glyphicon-remove"></i></span>
+							     </div>
+                            </div>
+							
 						</div>
 					</div>						
 					

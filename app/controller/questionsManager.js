@@ -12,14 +12,9 @@
  */
 "use strict";
 
-var async = require('async');
-
 var Question = require('../model/question.model');
 var upload = require('../controller/uploadManager'); // usata per salvare gli allegati
 var agent = require('./QMLAgent');
-
-var callback = function(){ //callback fake per sincronismo
-}
 
 exports.save = function (req, res) {
     console.log("body");
@@ -86,6 +81,10 @@ exports.save = function (req, res) {
     res.send({ result: "done" });
 };
 
+exports.erase = function (req, res) {
+
+}
+
 exports.search = function (req, res, next) {
     
     var results = [];
@@ -128,7 +127,7 @@ exports.search = function (req, res, next) {
             if(req.body.keyword){
                 for(var i=0;i<results.length;i++){ //filtra parola chiave
                     var topicFound = false;
-                    for(var j=0;j<results[i].keywords.length || topicFound;j++){
+                    for(var j=0;j<results[i].keywords.length && !topicFound;j++){
                         if(results[i].keywords[j] == req.body.keyword)
                             topicFound = true;
                     }

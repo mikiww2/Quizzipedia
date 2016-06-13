@@ -11,21 +11,20 @@
 			<img src="./assets/img/placeholder1.jpg"/>
 			<div class="carousel-caption">
 			  <h1>Crea quiz personalizzati!</h1>
-			  <p><a href="/Quizzipedia/signup" class="btn btn-primary btn-sm">Registrati</a></p>
+			  <p ng-if="user.role== null"><a href="/Quizzipedia/signup" class="btn btn-primary btn-sm">Registrati</a></p>
 			</div>
 		</div>
 	  <div class="item">
 	  <img src="./assets/img/placeholder2.jpg"/>
 		  <div class="carousel-caption">
-			<h1>Improve your skills!</h1>
-			<p>Blah blah catchy phrase</p>
+			<h1>Iscriviti ai nostri enti</h1>
+			<p>Potrai accedere ai quiz privati!</p>
 		  </div>
 	  </div>
 	  <div class="item">
 	  <img src="./assets/img/placeholder3.jpg"/>
 		  <div class="carousel-caption">
-		  <h1>Many Materias. Much knowledge. So school. Wow</h1>
-		  <p>Someone write this part pls</p>
+		  <h1>Diverse materie e livelli di difficoltà</h1>
 		  </div>
 	  </div>
 	  </div>
@@ -152,11 +151,22 @@
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-12 col-sx-12">
 						<h4><i class="glyphicon glyphicon-pencil"></i> Crea diversi tipi di domande</h4>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a mi vitae quam gravida vulputate sit amet sit amet enim. Curabitur vitae urna suscipit, commodo arcu at, dapibus neque. Integer at neque elementum, eleifend dolor non, semper erat. Vivamus id convallis libero, sit amet dictum metus. Nulla convallis euismod placerat. Praesent vel euismod felis. Nullam non risus eget tellus laoreet faucibus at ac lorem. Fusce imperdiet volutpat magna, a finibus dolor semper in. Cras blandit nisi in nulla vulputate bibendum. Ut dictum eros sed dui feugiat, sit amet mollis sem interdum. Praesent at justo venenatis, faucibus justo et, feugiat ex. Nunc faucibus quis nibh ac hendrerit. Donec sit amet arcu elit. Curabitur maximus ligula et purus rutrum, a auctor odio porttitor.
+						<p>Quizzipedia semplificherà la creazione di test per i docenti!</p>
+						<p>Richiedi l'accesso alle classi del tue ente e potrai creare <strong>quiz</strong>  personalizzati, <strong>pubblici</strong> o riservati a singole <strong>classi</strong>. </p><p>Potrai inoltre creare <strong>domande</strong> di vario tipo da inserire nei tuoi quiz:</p>
+						<ul>
+							<li>Domande vero o falso</li>
+							<li>Domande a risposta aperta</li>
+							<li>Domande a risposta multipla</li>
+							<li>Domande a collegamenti</li>
+							<li>Domande a completamento testo </li>
+						</ul>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-12 col-sx-12">
+						<h4><i class="glyphicon glyphicon-education"></i> Prova i nostri quiz</h4>
+						<p>Quizzipedia fornisce una vasta selezione di <strong>quiz pubblici</strong> che non richiedono un account!</p><p>Gli studenti registrati possono svolgere i quiz privati delle loro classi e visualizzare uno <strong>storico</strong> dei quiz svolti.</p>
+						<div class="spacer"></div>
 						<h4><i class="glyphicon glyphicon-book"></i> Gestisci le tue classi</h4>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a mi vitae quam gravida vulputate sit amet sit amet enim. Curabitur vitae urna suscipit, commodo arcu at, dapibus neque. Integer at neque elementum, eleifend dolor non, semper erat. Vivamus id convallis libero, sit amet dictum metus. Nulla convallis euismod placerat. Praesent vel euismod felis. Nullam non risus eget tellus laoreet faucibus at ac lorem. Fusce imperdiet volutpat magna, a finibus dolor semper in. Cras blandit nisi in nulla vulputate bibendum. Ut dictum eros sed dui feugiat, sit amet mollis sem interdum. Praesent at justo venenatis, faucibus justo et, feugiat ex. Nunc faucibus quis nibh ac hendrerit. Donec sit amet arcu elit. Curabitur maximus ligula et purus rutrum, a auctor odio porttitor.
+						<p>Quizzipedia ti consentirà una gestione delle <strong>classi</strong> semplice e intuitiva.</p><p>Potrai gestire le richieste di accesso degli utenti, visualizzare i tuoi <strong>studenti</strong> e le loro <strong>statistiche</strong>.</p>
 					</div>
 				</div>
 			</div>

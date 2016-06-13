@@ -34,19 +34,41 @@
     <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
     <script type="text/javascript" src="./assets/js/ui-bootstrap-tpls-1.3.2.min.js"></script> 
       
-    <script type="text/javascript" src="./public/core.js"></script>
-	<script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
-    <script type="text/javascript" src="./public/quiz_creation/CtrlQuizManager.js" ></script>
-    <script type="text/javascript" src="./public/quiz_creation/searchQuestions.js" ></script>
-    <script type="text/javascript" src="./public/services/Quiz.js" ></script>
-    <script type="text/javascript" src="./public/services/Class.js" ></script>
-    <script type="text/javascript" src="./public/services/genericQuestion.js" ></script>
+    <!-- SCRIPT PER ng-file-upload-->
+      <script src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload-shim.min.js"></script>
+      <script src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload.min.js"></script>
       
-    <!-- Directive angular (HEADER)-->
+    <!-- CONTROLLER E CORE -->      
+    <script type="text/javascript" src="./public/core.js"></script>
+    <script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
+    <script type="text/javascript" src="./public/quiz_creation/CtrlQuizManager.js" ></script>
+      
+    <script type="text/javascript" src="./public/question_creation/CtrlQuestion.js"></script>    
+      
+    <!-- FACTORY -->	
+    <script type="text/javascript" src="./public/services/Quiz.js" ></script>
+    <script type = "text/javascript" src = "./public/services/Class.js"></script>
+      
+    <script type="text/javascript" src="./public/services/GenericQuestion.js"></script>
+    <script type="text/javascript" src="./public/services/TrueFalseQ.js"></script>
+    <script type="text/javascript" src="./public/services/ShortAnswerQ.js"></script>
+    <script type="text/javascript" src="./public/services/Attachment.js"></script>
+    <script type="text/javascript" src="./public/services/AnswerMultipleChoice.js"></script>
+    <script type="text/javascript" src="./public/services/MultipleChoiceQ.js"></script>
+    <script type="text/javascript" src="./public/services/AnswerCompletion.js"></script>
+    <script type="text/javascript" src="./public/services/TextCompletion.js"></script>
+    <script type="text/javascript" src="./public/services/CompletionQ.js"></script>
+      
+    <!-- Directive angular-->
     <script src="./public/header/headerLoggedTeacher.js"></script>
-    
-    <!--Directive angular (FOOTER)-->
-    <script type="text/javascript" src="./public/footer/pageFooter.js"></script> 
+    <script type="text/javascript" src="./public/footer/pageFooter.js"></script>
+    <script type="text/javascript" src="./public/quiz_creation/searchQuestions.js" ></script>
+      
+    <script type="text/javascript" src="./public/question_creation/createQtf.js"></script>
+    <script type="text/javascript" src="./public/question_creation/createQcompletion.js"></script>
+    <script type="text/javascript" src="./public/question_creation/createQmultiple.js"></script>
+    <script type="text/javascript" src="./public/question_creation/createQmatch.js"></script>
+    <script type="text/javascript" src="./public/question_creation/createQopen.js"></script>
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -57,9 +79,9 @@
   </head>
 
   <body>
-	<div class="pagewrap"  ng-controller="CtrlHeader">
+	<div class="pagewrap"   ng-controller="CtrlHeader">
         
-        <div>        
+        <div >        
 			  <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher> 
 		</div>
         
@@ -81,7 +103,11 @@
             <div ng-hide = "mode == 1"> 
             <h4 class="text-center description"><i class="glyphicon glyphicon-pencil"></i> Crea un nuovo quiz</h4>
             
-            {{myQuiz}}
+                <div>MYQUIZ :{{myQuiz}}</div>
+                <div>JSONQUIZ: {{myJSONQuiz}}</div>
+                <div>SEARCHQ: {{searchQ}}</div>
+                
+            {{searchQ}}
         
         <form class="form">
             
@@ -141,7 +167,7 @@
                 <fieldset class="form-group">
                     <label for="topic">Argomento</label>
                     <select class="form-control" id="topic" ng-model = "myQuiz.topic">
-                        <option ng-repeat = "topic in topics">{{topic}}</option>
+                        <option ng-repeat = "topic in topics">{{topic.topicName}}</option>
                     </select>
                 </fieldset>
             </div>
@@ -169,8 +195,8 @@
             <div class="form-group row">
                 <fieldset class="form-group">
                     <label for="inputTags">Parole chiave</label>
-                    <select id="inputTags" multiple="multiple" class="form-control">
-                    </select>
+                    <select id="inputTags" multiple="multiple" class="form-control" ng-model = "myQuiz.keywords">
+                    </select><br><br>
                     <script>
                         $('#inputTags').select2({
                             tags: true,
@@ -200,21 +226,19 @@
             </div>
             
              <!-- add question button -->
-            <div class="spacer"></div>
-            <button type="button" class="btn btn-primary btn-small" data-title="Crea"><i class="glyphicon glyphicon-plus"></i> Crea nuova</button>
+            <br>
+            <button type="button" class="btn btn-primary btn-small" data-title="Crea"><i class="glyphicon glyphicon-plus" ng-click = "toString()"></i> Crea nuova</button>
             
-            <button type="button" class="btn btn-primary btn-small" data-title="Cerca" data-toggle="modal" data-target="#qSearchBar"><i class="glyphicon glyphicon-search"></i> Cerca esistente</button>
-			<div class="spacer"></div>
+            <button type="button" class="btn btn-primary btn-small" data-title="Cerca" data-toggle="modal" data-target="#qSearchBar"><i class="glyphicon glyphicon-search"></i> Cerca esistente</button><br><br>
             
             <div class="modal fade" id="qSearchBar" tabindex="-1" role="dialog" aria-labelledby="search" aria-hidden="true">            
                 <search_questions></search_questions>
             </div>
-            </fieldset>            
-            
+            </fieldset>
+                    
             <button class="btn btn-lg btn-primary btn-block" type="submit">Conferma</button>
             </form>
             </div>
-            <div ng-hide = "mode == 0" ng-if = "mode == 1" ng-include = "'/Quizzipedia/searchQuestions'"></div>
         </div> <!-- /container -->
       </div>
       <page-footer></page-footer>

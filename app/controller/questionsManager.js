@@ -95,6 +95,12 @@ exports.search = function (req, res, next) {
 
         if(option.author)
             query.where('author').equals(option.author);
+        
+        if(option.title)
+            query.where('title').equals(option.title);
+        
+        if(option.topic)
+            query.where('topic').equals(option.topic);
 
         if(option.keywords)
             query.where('keywords').in(keywords); // forse sbagliato, lista di keywords

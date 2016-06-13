@@ -10,51 +10,63 @@
         <div class="modal-body form">
             <form role="form">
                 <br style="clear:both">
+                
+                <!-- Titolo -->
                 <label for="inputTitle">Titolo</label>
-					<input type="text" id="inputTitle" class="form-control" placeholder="Titolo.." autofocus><br>
-					
+					<input type="text" id="inputTitle" class="form-control" placeholder="Titolo" ng-model = "searchQ.title" autofocus><br>
+                
+                <!-- Autore -->					
 					<label for="inputAuthor">Autore</label>
-					<input type="text" id="inputAuthor" class="form-control" placeholder="Autore.."><br>
+					<input type="text" id="inputAuthor" class="form-control" placeholder="Autore" ng-model = "searchQ.author"><br>
+                
+                <!-- Argomenti -->
 					
 					<fieldset class="form-group">
-					<label for="topics">Materie</label>
-					<select multiple class="form-control" id="topics">
-					  <option>Arte</option>
-					  <option>Informatica</option>
-					  <option>Matematica</option>
-					  <option>Fisica</option>
-					</select>
+					<label for="topics">Argomento</label>
+					<select class="form-control" id="topic" ng-model = "searchQ.topic">
+                        <option ng-repeat = "topic in topics">{{topic.topicName}}</option>
+                    </select>
 					</fieldset>
+                
+                <script type="text/javascript">
+                    $(document).ready(function() {                    $("#topic").select2();
+                                                 });
+                </script>
+                
+                <!-- Parola chiave -->
 				  
-					<fieldset class="form-group">
-					<label for="inputTags">Parole chiave</label>
-					<select id="inputTags" multiple="multiple" class="form-control">
-						<option selected="selected">Scienza</option>
-						<option selected="selected">Biologia</option>
-					</select>
-					<script>
-					$('#inputTags').select2({
-						tags: true,
-						tokenSeparators: [','], 
-						placeholder: "Add your tags here"
-					});
-					</script>
+					<div class="form-group row">
+                       <fieldset class="form-group">
+                           <label for="inputTags">Parola chiave</label>                    
+                           <select id="inputTags" multiple="multiple" class="form-control" ng-model = "searchQ.keywords">
+                           </select><br><br>
+                           
+                           <script>
+                               $('#inputTags').select2({
+                                   tags: true,
+                                   tokenSeparators: [','], 
+                                   placeholder: "Aggiungi parole chiave"
+                               });
+                           </script>
                         </fieldset>
+                </div>
 
 				  
 					<fieldset class="form-group">
-					<label for="difficultyLevel">Livello di difficoltà</label>
-					<select class="form-control" id="difficultyLevel">
-						<option>Facile</option>
-						<option>Media</option>
-						<option>Difficile</option>
-						<option>Molto difficile</option>
-					</select>
-					</fieldset>
+                        <label for="difficultyLevel">Livello di difficoltà</label>
+                        <select class="form-control" id="difficultyLevel" ng-model = "searchQ.difficulty">
+                            <option value = "1">Facile</option>
+                            <option value = "2">Media</option>
+                            <option value = "3">Difficile</option>
+                            <option value = "4">Molto Difficile </option>
+                        </select>
+                        </fieldset>
 	
 					
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Cerca</button>
+					<button class="btn btn-lg btn-primary btn-block" ng-click = "searchQuestion()">Cerca</button>
 				  </form>
+            
+            {{searchQuestions}}
         </div>
         <div class="modal-footer ">
             <button type="button" class="btn btn-primary" data-dismiss="modal"> Aggiungi</button>

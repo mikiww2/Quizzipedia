@@ -1,13 +1,14 @@
-angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$http', function (Quiz, $scope, $http){
+angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', 'GenericQuestion', '$scope', '$http', function (Quiz, GenericQuestion, $scope, $http){
     
-    $scope.quizzes = [];
+    $scope.questions = [];
     $scope.index = null;
-    $scope.myQuiz = null;
+    $scope.myQuiz = new Quiz();
     $scope.userClasses = [];
     $scope.topics = [];
     $scope.permission = null;
-    $scope.quizCookie = null;
-    $scope.mode = 0;
+    $scope.searchQ = {title : null, author : null, topic : null, keywords : [], difficulty : null};
+    
+    $scope.myJSONQuiz=null;
     
     $scope.loadQuiz = function() {
         if ($scope.myQuiz == null)
@@ -38,10 +39,17 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
         $scope.quizzes.splice($scope.index, 1);
         //$scope.myQuiz = new Quiz();
         $scope.index = null;        
+    }; 
+    
+    $scope.searchQuestion = function() {
+        $http.post('/api/question/search', $scope.searchQ).success(function(response) {
+            $scope.questions = response;
+        });        
     };
     
-    $scope.changeMode = function(int) {
-        $scope.mode = int;
+    $scope.toString = function () {
+        console.log("Sono in stringify");
+        $scope.myJSONQuiz = JSON.stringify($scope.myQuiz);
     };
     
     $scope.createQuiz = function () {

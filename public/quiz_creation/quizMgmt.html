@@ -25,19 +25,41 @@
 	<script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
     <script type="text/javascript" src="./assets/js/ui-bootstrap-tpls-1.3.2.min.js"></script>   
       
-    <script type="text/javascript" src="./public/core.js"></script>
-	<script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
-    <script type="text/javascript" src="./public/quiz_creation/CtrlQuizManager.js" ></script>
-    <script type="text/javascript" src="./public/footer/Pagination.js"></script>
-    <script type="text/javascript" src="./public/services/Quiz.js" ></script>
-    <script type="text/javascript" src="./public/services/Class.js" ></script>
-    <script type="text/javascript" src="./public/services/genericQuestion.js" ></script>
+    <!-- SCRIPT PER ng-file-upload-->
+      <script src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload-shim.min.js"></script>
+      <script src="./assets/ng-file-upload-bower-12.0.4/ng-file-upload.min.js"></script>
       
-    <!-- Directive angular (HEADER)-->
+    <!-- CONTROLLER E CORE -->      
+    <script type="text/javascript" src="./public/core.js"></script>
+    <script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
+    <script type="text/javascript" src="./public/quiz_creation/CtrlQuizManager.js" ></script>
+      
+    <script type="text/javascript" src="./public/question_creation/CtrlQuestion.js"></script>    
+      
+    <!-- FACTORY -->	
+    <script type="text/javascript" src="./public/services/Quiz.js" ></script>
+    <script type = "text/javascript" src = "./public/services/Class.js"></script>
+      
+    <script type="text/javascript" src="./public/services/GenericQuestion.js"></script>
+    <script type="text/javascript" src="./public/services/TrueFalseQ.js"></script>
+    <script type="text/javascript" src="./public/services/ShortAnswerQ.js"></script>
+    <script type="text/javascript" src="./public/services/Attachment.js"></script>
+    <script type="text/javascript" src="./public/services/AnswerMultipleChoice.js"></script>
+    <script type="text/javascript" src="./public/services/MultipleChoiceQ.js"></script>
+    <script type="text/javascript" src="./public/services/AnswerCompletion.js"></script>
+    <script type="text/javascript" src="./public/services/TextCompletion.js"></script>
+    <script type="text/javascript" src="./public/services/CompletionQ.js"></script>
+      
+    <!-- Directive angular-->
     <script src="./public/header/headerLoggedTeacher.js"></script>
-    
-    <!--Directive angular (FOOTER)-->
-    <script type="text/javascript" src="./public/footer/pageFooter.js"></script> 
+    <script type="text/javascript" src="./public/footer/pageFooter.js"></script>
+    <script type="text/javascript" src="./public/quiz_creation/searchQuestions.js" ></script>
+      
+    <script type="text/javascript" src="./public/question_creation/createQtf.js"></script>
+    <script type="text/javascript" src="./public/question_creation/createQcompletion.js"></script>
+    <script type="text/javascript" src="./public/question_creation/createQmultiple.js"></script>
+    <script type="text/javascript" src="./public/question_creation/createQmatch.js"></script>
+    <script type="text/javascript" src="./public/question_creation/createQopen.js"></script>
       
       
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

@@ -352,10 +352,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
                     }
                     
                 }
-            }
-            
-            
-            
+            }        
             
         }
                    

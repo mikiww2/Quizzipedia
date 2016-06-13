@@ -20,11 +20,15 @@ module.exports = function (app) {
   });
 
   app.post('/api/question/search',function (req, res, next) {
-    questionM.search(req, res);
+    questionM.search(req, res);	
   });
 
   app.get('/api/question/fetch_questions_number',function (req, res, next) { //numero domande nell'istituto
     questionM.fetchQuestionsNumber(req, res);
+  });
+
+  app.get('/api/question/fetch_teacher_questions',function (req, res, next) { //numero domande nell'istituto
+    questionM.fetchTeacherQuestions(req, res);
   });
 
 }; 

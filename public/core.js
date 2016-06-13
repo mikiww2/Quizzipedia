@@ -2,6 +2,7 @@ angular.module('userApp', ['userController', 'userService']);
 
 angular.module('Quizzipedia',[]);
 angular.module('Registration',['Quizzipedia']);
+angular.module('RecoverPswd',['Quizzipedia']);
 angular.module('QuestionManager',['Quizzipedia', 'CreateQuestion', 'ui.bootstrap']);
 angular.module('CreateQuestion',['Quizzipedia', 'ngFileUpload']);
 angular.module('ProfileManager', ['Quizzipedia']);

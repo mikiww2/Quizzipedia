@@ -1252,3 +1252,6 @@ input {
 	height: 100%;
 }
 
+.grey-btn i{
+	color: #333333;
+}

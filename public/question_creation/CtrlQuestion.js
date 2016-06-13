@@ -184,6 +184,10 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     $scope.MyMatchingQ = {
         questionMatch: new MatchingQ(),
+        destinationAttachment: "",
+        setDestination: function(value){
+            this.destinationAttachment = value;
+        },
         createTextArea: function(isPortionText){
             if(isPortionText){
                 this.questionMatch.insertTextIntoText(-1,"");
@@ -192,6 +196,16 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
                 this.questionMatch.insertTextIntoAnswer(-1,"");    
             }
             
+        },
+        createAttachment: function(isPortionText){
+            if(isPortionText){
+                
+                this.questionMatch.insertAttachmentIntoText(-1);
+            }
+            else{
+                
+                this.questionMatch.insertAttachmentIntoAnswer(-1);
+            }
         },
         removeTextElement: function(index){
             console.log('Index remove:' + index);
@@ -268,13 +282,23 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             var k = 0;
             for(k; k < matching.getSizeText() && !indexNegative; k++){
                 if(matching.text[k].getId() == -1){
+                    console.log('id:'+ matching.text[k].getId() + '== -1');
                     indexNegative = true;
                 }
             }
+            console.log("condition:" + indexNegative);
             
             if(indexNegative){
                 questionIsValid = false;
-                alert("il frammento di testo:" + matching.text[k-1].getTxt() + " ha un id = -1 che non è valido nel testo ma è valido solo nelle risposte");
+                
+                if(matching.text[k-1].txt != null){
+                    alert("il frammento di testo:" + matching.text[k-1].getTxt() + " ha un id = -1 che non è valido nel testo ma è valido solo nelle risposte");              
+                }
+                else if(matching.text[k-1].attachment != null){
+                    alert("il frammento di testo:" + matching.text[k-1].getAttachment().getPath() + " ha un id = -1 che non è valido nel testo ma è valido solo nelle risposte");
+                    
+                }
+                
             }
             
             
@@ -299,12 +323,24 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
                     if(conta == 0){
                         questionIsValid = false;
                         condition = false;
-                        alert("Il frammento di testo: "+ matching.text[i].getTxt() + " non ha nessuna risposta associata! La domanda non è stata salvata");
+                        if(matching.text[i].txt != null){
+                            alert("Il frammento di testo: "+ matching.text[i].getTxt() + " non ha nessuna risposta associata! La domanda non è stata salvata");    
+                        }
+                        else if(matching.text[i].attachment != null){
+                            alert("Il frammento di testo: "+ matching.text[i].getAttachment().getPath() + " non ha nessuna risposta associata! La domanda non è stata salvata");    
+                        }
+                        
                     }
                     else if(conta > 1){
                         questionIsValid = false;
                         condition = false;
-                        alert("Il frammento di testo: "+ matching.text[i].getTxt() + " ha " + conta + " risposte assegnate! Ne deve avere solo una. Domanda non salvata");
+                        if(matching.text[i].txt != null){
+                            alert("Il frammento di testo: "+ matching.text[i].getTxt() + " ha " + conta + " risposte assegnate! Ne deve avere solo una. Domanda non salvata");    
+                        }
+                        else if(matching.text[i].attachment != null){
+                            alert("Il frammento di testo: "+ matching.text[i].getAttachment().getPath() + " ha " + conta + " risposte assegnate! Ne deve avere solo una. Domanda non salvata");    
+                        }
+                        
                     }
                 
                 }
@@ -394,6 +430,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     $scope.uploadFiles = function(files,isQuestion,index){
         console.log(files[0]);
         $scope.files = files[0];
+        var imgRegExp = new RegExp(/^image/g);
         
         var notDuplicate = true;
         
@@ -404,25 +441,51 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
                 
             }
             
-            if(notDuplicate && $scope.MyGenericQ.questionType == 'mult'){
+            if(notDuplicate){
                 
+                if($scope.MyGenericQ.questionType == 'mult'){
                     var q = $scope.MyMultipleChoiceQ.question.arrayAnswer;
-                for(var i = 0; i< q.length && notDuplicate;i++){ //controllo allegati risposte
+                    for(var i = 0; i< q.length && notDuplicate;i++){ //controllo allegati risposte
                     
-                    if(q[i].attachment != null){
+                        if(q[i].attachment != null){
                         
-                        if(q[i].getAttachment().getPath() == files[0].name){
-                            notDuplicate = false;
+                            if(q[i].getAttachment().getPath() == files[0].name){
+                                notDuplicate = false;
+                            }
+                        }
+                    
+                    }
+                }
+                else if($scope.MyGenericQ.questionType == 'mtch'){
+                    var text = $scope.MyMatchingQ.questionMatch.text;
+                    var answer = $scope.MyMatchingQ.questionMatch.answer;
+                    
+                    for(var i =0; i < text.length && notDuplicate; i++){
+                        if(text[i].attachment != null){
+                            if(text[i].getAttachment().getPath() == files[0].name){
+                                notDuplicate = false;
+                            }
                         }
                     }
                     
+                    if(notDuplicate){
+                        for(var j = 0; j < answer.length && notDuplicate; j++){
+                            if(answer[j].attachment != null){
+                                if(answer[j].getAttachment().getPath() == files[0].name){
+                                    notDuplicate = false;
+                                }
+                            }
+                        }
+                    }
                 }
+                
+                    
             }
             
             console.log(notDuplicate);
                     
             if(!notDuplicate){
-                    alert("Immagine con lo stesso nome già presente in questa domanda");
+                    alert("File con lo stesso nome già presente in questa domanda");
             }
             
         }
@@ -441,14 +504,31 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
                 $scope.MyGenericQ.attachment.setType('img');
             }
             else if(isQuestion == 'answer'){
+                
                 if($scope.MyGenericQ.questionType == 'mult'){
                     $scope.MyMultipleChoiceQ.setNameAttachment(index,files[0].name);
                     
-                    var imgRegExp = new RegExp(/^image/g);
+                    
                     if(files[0].type.search(imgRegExp) != -1){ //imgRegExp.test(files[0].type) != -1
                         $scope.MyMultipleChoiceQ.question.setTypeAttachment(index,'img');
                     }
                     
+                }
+                else if($scope.MyGenericQ.questionType == 'mtch'){
+                        if($scope.MyMatchingQ.destinationAttachment == 'text'){
+                            $scope.MyMatchingQ.questionMatch.text[index].setNameAttachment(files[0].name);
+                            
+                            if(files[0].type.search(imgRegExp) != -1){
+                                $scope.MyMatchingQ.questionMatch.text[index].setTypeAttachment('img');
+                            }
+                        }
+                        else{ // answer
+                            $scope.MyMatchingQ.questionMatch.answer[index].setNameAttachment(files[0].name);
+                            
+                            if(files[0].type.search(imgRegExp) != -1){
+                                $scope.MyMatchingQ.questionMatch.answer[index].setTypeAttachment('img');
+                            }
+                        }
                 }
             }        
             
@@ -471,7 +551,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         console.log(question);
         
         var json = {type: type, question: question};
-        
+       
        $http.post('/api/question/save',json).success(function(response){
            
             

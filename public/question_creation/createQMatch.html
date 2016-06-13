@@ -10,15 +10,16 @@
 								<h4>Prima parte</h4>
 								<!-- new upload -->
 								<div class="form-group row form grey-btn">
-									<span class="btn btn-default btn-file" id="newAttach1" data-placement="top" data-toggle="tooltip" title="Carica allegato"><i class="glyphicon glyphicon-upload"></i> <input type="file"></span>
+									<span class="btn btn-default" type="button" id="newAttach1" data-placement="top" data-toggle="tooltip" title="Carica allegato" ng-click="MyMatchingQ.createAttachment(true)"><i class="glyphicon glyphicon-upload"></i> </span>
 									<span class="btn btn-default" type="button" id="newAText1" data-placement="top" data-toggle="tooltip" title="Nuova casella di testo" ng-click="MyMatchingQ.createTextArea(true)"><i class="glyphicon glyphicon-align-left"></i></span>
 								</div>
 							</div>
                             <div ng-repeat="element in MyMatchingQ.questionMatch.text track by $index">
 							     <div class="drag ui-widget-content">
-								    <input id="answNumber+{{$index}}" type="number" min="0" step="1" placeholder="1" ng-model="element.id" required />
-								    <textarea type="textarea" placeholder="Answer..." name="ta1" id="ta+{{$index}}" cols="8" rows="1" ng-model="element.txt"></textarea>
+								    <input id="answNumber+{{$index}}" type="number" min="-1" step="1" placeholder="1" ng-model="element.id" required />
+								    <textarea ng-if="element.txt != null" type="textarea" placeholder="Answer..." name="ta1" id="ta+{{$index}}" cols="8" rows="1" ng-model="element.txt"></textarea>
                                      <!-- QUI VA L'INPUT PER GLI ALLEGATI-->
+                                     <input ng-if="element.attachment != null" type="file" ng-click="MyMatchingQ.setDestination('text')" ngf-select="uploadFiles($files,'answer',{{$index}})" name="file+{{$index}}" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB">
 								    <span class="btn btn-xs" ng-click="MyMatchingQ.removeTextElement($index)"><i class="glyphicon glyphicon-remove"></i></span>
 							     </div>
                             
@@ -33,14 +34,15 @@
 								<h4>Seconda parte</h4>
 								<!-- new upload -->
 								<div class="form-group row form grey-btn">
-									<span class="btn btn-default btn-file" id="newAttach2" data-placement="top" data-toggle="tooltip" title="Carica allegato"><i class="glyphicon glyphicon-upload"></i> <input type="file"></span>
+									<span class="btn btn-default" type="button" id="newAttach2" data-placement="top" data-toggle="tooltip" title="Carica allegato" ng-click="MyMatchingQ.createAttachment(false)"><i class="glyphicon glyphicon-upload"></i> </span>
 									<span class="btn btn-default" type="button" id="newAText2" data-placement="top" data-toggle="tooltip" title="Nuova casella di testo" ng-click="MyMatchingQ.createTextArea(false)"><i class="glyphicon glyphicon-align-left"></i></span>
 								</div>
 							</div>
                             <div ng-repeat="element in MyMatchingQ.questionMatch.answer track by $index">
 							     <div class="drag ui-widget-content">
 								    <input id="answNumber+{{$index}}" type="number" min="-1" step="1" placeholder="1" ng-model="element.id" required />
-								    <textarea type="textarea" placeholder="Answer..." name="ta+{{$index}}" id="ta1" cols="8" rows="1" ng-model="element.txt"></textarea>
+								    <textarea ng-if="element.txt != null" type="textarea" placeholder="Answer..." name="ta+{{$index}}" id="ta1" cols="8" rows="1" ng-model="element.txt"></textarea>
+                                     <input ng-if="element.attachment != null" type="file" ng-click="MyMatchingQ.setDestination('answer')" ngf-select="uploadFiles($files,'answer',{{$index}})" name="file+{{$index}}" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" >
 								    <span class="btn btn-xs" ng-click="MyMatchingQ.removeAnswerElement($index)"><i class="glyphicon glyphicon-remove"></i></span>
 							     </div>
                             </div>

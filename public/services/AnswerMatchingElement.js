@@ -37,6 +37,15 @@ angular.module('CreateQuestion').factory('AnswerMatchingElement',['Attachment',f
         this.txt = txt;
     };
     
+    AnswerMatchingElement.prototype.setNameAttachment = function(path){
+        this.attachment.setPath(path);
+    };
+    
+    AnswerMatchingElement.prototype.setTypeAttachment = function(type){
+        this.attachment.setType(type);
+    };
+    
+    
     return AnswerMatchingElement;
     
 }]);

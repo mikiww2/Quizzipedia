@@ -50,23 +50,21 @@ angular.module('CreateQuestion').factory('MatchingQ',['GenericQuestion','AnswerM
     
     
     
-    MatchingQ.prototype.insertAttachmentIntoText = function(id,nameAttachment,type){
+    MatchingQ.prototype.insertAttachmentIntoText = function(id){
+        console.log('id: '+id);
         var element = new AnswerMatchingElement();
-        element.setId(id);
-        element.setEmptyAttachment();
-        element.attachment.setPath(nameAttachment);
-        element.attachment.setType(type);
+        element.id = id;
         
+        element.setEmptyAttachment();
+        console.log(element);
         this.text.push(element);
             
     };
     
-    MatchingQ.prototype.insertAttachmentIntoAnswer = function(id,nameAttachment,type){
+    MatchingQ.prototype.insertAttachmentIntoAnswer = function(id){
         var element = new AnswerMatchingElement();
         element.setId(id);
         element.setEmptyAttachment();
-        element.attachment.setPath(nameAttachment);
-        element.attachment.setType(type);
         
         this.answer.push(element);
     };

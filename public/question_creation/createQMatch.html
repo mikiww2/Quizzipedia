@@ -3,123 +3,59 @@
 			<h4 class="text-center">Risposte</h4>
 				<!-- new upload -->
 				<div class="form-group row form">
-					<span class="btn btn-default" type="button" id="newColumn" data-placement="top" data-toggle="tooltip" title="Nuova riga"><i class="glyphicon glyphicon-plus"></i></span> <!-- nuova riga di risposte -->
 					<span class="btn btn-default btn-file" id="newAttach" data-placement="top" data-toggle="tooltip" title="Carica allegato"><i class="glyphicon glyphicon-upload"></i> <input type="file"></span>
 					<span class="btn btn-default" type="button" id="newAText" data-placement="top" data-toggle="tooltip" title="Nuova casella di testo"><i class="glyphicon glyphicon-align-left"></i></span>
 				</div>
 				
 				<div class="matching answContainer">
 					<div class="row">
-						<div class="answerBlock col-md-8"> <!-- riga di elementi della stessa categoria-->
+						<div class="answerBlock col-md-12"> <!-- riga di elementi della stessa categoria-->
 							<div>
 								<a href="#"><span class="label-as-badge label-yellow text-center">A</span></a> <!-- # riga, variabile -->
-								<input class="rowTitle" type="text" name="rowtitle1" placeholder="Titolo riga.." > <!-- titolo riga (non c'è nell'ar ma potenzialmente utile, ignoratelo se volete) -->
+								<h4>Prima parte</h4>
 							</div>
 							<div class="drag ui-widget-content">
-								<span class="label label-danger">1</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
+								<input id="answNumber1" type="number" min="-1" step="1" placeholder="1" required />
+								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
 							</div>
 							<div class="drag ui-widget-content">
-								<span class="label label-danger">2</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
+								<input id="answNumber1" type="number" min="-1" step="1" placeholder="2" required />
+								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
 							</div>
 							<div class="drag ui-widget-content">
-								<span class="label label-danger">3</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
+								<input id="answNumber1" type="number" min="-1" step="1" placeholder="3" required />
+								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
 							</div>
-						</div>
-						<div class="col-md-4 droppable ui-widget-header">
-							<span class="badge">A</span><p>Trascinare qui</p>
 						</div>
 					</div>
 					
 					<div class="row">					
-						<div class="answerBlock col-md-8">
+						<div class="answerBlock col-md-12">
 							<div>
 								<a href="#"><span class="label-as-badge label-yellow text-center">B</span></a>
-								<input class="rowTitle" type="text" name="rowtitle1" placeholder="Titolo riga.." > 
+								<h4>Seconda parte</h4>
 							</div>
 							<div class="drag ui-widget-content">
-								<span class="label label-danger">1</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
+								<input id="answNumber1" type="number" min="-1" step="1" placeholder="1" required />
+								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
 							</div>
 							<div class="drag ui-widget-content">
-								<span class="label label-danger">2</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
+								<input id="answNumber1" type="number" min="-1" step="1" placeholder="2" required />
+								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
 							</div>
 							<div class="drag ui-widget-content">
-								<span class="label label-danger">3</span><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
-								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-							</div>
-						</div>
-						<div class="col-md-4 droppable ui-widget-header">
-							<span class="badge">B</span><p>Trascinare qui</p>
-						</div>
-					</div>
-						
-					<div class="row">
-						<div class="answerBlock col-md-8">
-							<div>
-								<a href="#"><span class="label-as-badge label-yellow text-center">C</span></a>
-								<input class="rowTitle" type="text" name="rowtitle1" placeholder="Titolo riga.." > 								
-							</div>
-							<div class="drag ui-widget-content">
-								<span class="label label-danger">1</span><img src="./assets/img/portraits/usr1.jpg"/>
-								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-							</div>
-							<div class="drag ui-widget-content">
-								<span class="label label-danger">2</span><img src="./assets/img/portraits/usr2.jpg" />
-								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-							</div>
-							<div class="drag ui-widget-content">
-								<span class="label label-danger">3</span><img src="./assets/img/portraits/usr3.jpg"/>
+								<input id="answNumber1" type="number" min="-1" step="1" placeholder="3" required />
+								<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="8" rows="1"></textarea>
 								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
 							</div>
 						</div>
-						<div class="col-md-4 droppable ui-widget-header">
-							<span class="badge">C</span><p>Trascinare qui</p>
-						</div>
-					</div>
+					</div>						
 					
-					<div class="col-md-4 col-md-offset-8">
-					<button class="btn btn-default btn-success" type="button" id="linkAnswers" data-placement="top" data-toggle="tooltip" title="Collega le risposte"><i class="glyphicon glyphicon-ok"></i></button> <!-- collega, compaiono sotto -->
-					</div><br>
-					
-					<div class="row text-center" id="linksList">
-					<h6 class="text-center">Collegamenti:</h6>
-						<div class="list-group">
-							<div class="list-group-item">
-								<span class="label label-danger">A1</span> - 
-								<span class="label label-danger">B2</span> - 
-								<span class="label label-danger">C3</span>
-								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-							</div>
-							<div class="list-group-item">
-								<span class="label label-danger">A2</span> - 
-								<span class="label label-danger">B1</span> - 
-								<span class="label label-danger">C1</span>
-								<button class="btn btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-							</div>
-						</div>
-					</div>
-
-				<script language="javascript" type="text/javascript">
-				$(document).ready(function() { 
-					$('.drag').draggable({ 
-					revert: false, 
-					stack: ".drag"
-					}); //ogni nuovo elemento creato deve essere reso draggable
-					$( ".droppable" ).droppable({
-					hoverClass: 'drop-hover',
-							accept: '.drag',
-							hoverClass: "ui-state-active",
-							drop: function( event, ui ) {
-								$( this )
-								.addClass( "ui-state-highlight" ).find( "p" ).html( "Accettato!" );
-						  }
-						});
-				});
-				</script>
 		</div>
 </div>
 

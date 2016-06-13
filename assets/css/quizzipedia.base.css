@@ -424,7 +424,7 @@ h6.description, h4.description, h3.description{
 	display:inline;
 }
 
-.answerBlock button {
+.answerBlock .btn {
 	vertical-align: top;
 	border-radius: 10px;
 }
@@ -612,7 +612,13 @@ h6.description, h4.description, h3.description{
 	vertical-align: top;
 	margin-top: 4px;
 	font-weight: bold;
+	max-width: 30px;
 } 
+
+.matching input[type="number"]{
+	margin-top: 5px; 
+	margin-right: 5px;
+}
 
 .answerBlock input[type="file"]{
 	display: inline-block; 

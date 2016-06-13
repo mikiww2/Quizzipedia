@@ -11,6 +11,6 @@ angular.module('InstClassManager', ['Quizzipedia', 'ui.bootstrap']);
 angular.module('TopicsManager', ['Quizzipedia']);
 angular.module('UsersManager', ['Quizzipedia']);
 angular.module('SearchManager', ['Quizzipedia']);
-angular.module('QuizManager', ['Quizzipedia', 'ui.bootstrap']);
+angular.module('QuizManager', ['Quizzipedia', 'ui.bootstrap', 'CreateQuestion']);
 
 angular.module('InstitutionManager', ['Quizzipedia']);

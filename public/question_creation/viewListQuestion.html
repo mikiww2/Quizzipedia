@@ -1,12 +1,12 @@
 <h4 class="text-center description"><i class="glyphicon glyphicon-question-sign"></i> Le tue domande</h4><br>
 
-<h3 class="panel-title">Hai creato <span class="badge">{{Questionlist.length}}</span> quiz</h3>
+<h3 class="panel-title">Hai creato <span class="badge">{{Questionlist.length}}</span> domande</h3>
 
 		<div class="text-right">
 			<span data-placement="top" data-toggle="tooltip" title="Create New"><a class="btn btn-primary btn-create" href="/Quizzipedia/createQuestion" ><i class="glyphicon glyphicon-plus"></i> Crea nuova</a></span>
 		</div>
 
-        <div  ng-controller = "CtrlPagination" ng-if = "Questionlist.length != 0">           
+        <div  ng-controller = "CtrlPagination" ng-if = "QuestionList.length != 0">           
           <div class="padded">
 			<p>Visualizza
                 <select ng-model="itemsPerPage" ng-change="setItemsPerPage()"><option>3</option><option selected>5</option><option>10</option><option>20</option><option>30</option>
@@ -24,12 +24,14 @@
 		<th></th>
 		</thead>
 		<tbody>
-		<tr ng-repeat="(index,question) in Questionlist"><!-- for each quiz -->
+		<tr ng-repeat="(index, question) in Questionlist"><!-- for each quiz -->
 			<td><input type="checkbox" class="checkClass" /></td>
-			<td><a href="#">{{question.title}}</a></td>
-			<td><a href="#">{{question.topic}}</a></td>
-			<td><a href="#">{{question.difficulty}}</a></td>
-			<td><span data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger  pull-right" data-title="Elimina" data-toggle="modal" data-target="#delete" ng-click="removeQuestion(index)" ><span class="glyphicon glyphicon-trash"></span> </button></span><span data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary  pull-right" data-title="Modifica" data-toggle="modal" data-target="#edit" ng-click="setModifyQuestion(question)"><span class="glyphicon glyphicon-pencil" data-placement="top" data-toggle="tooltip" title="Modifica"></span> </button></span></td>
+			<td>{{question.title}}</td>
+			<td>{{question.topic}}</td>
+			<td>{{question.difficulty}}</td>
+			<td>
+                <span data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger  pull-right" data-title="Elimina" data-toggle="modal" data-target="#delete" ng-click="setDeleteQ(index)" ><span class="glyphicon glyphicon-trash"></span> </button></span>
+                <span data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary  pull-right" data-title="Modifica" data-toggle="modal" data-target="#edit" ng-click="setModifyQuestion(question)"><span class="glyphicon glyphicon-pencil" data-placement="top" data-toggle="tooltip" title="Modifica"></span> </button></span></td>
 		</tr>
 		
 		</tbody>
@@ -41,6 +43,29 @@
             <div class="text-right">
 			<uib-pagination total-items="classes.length" ng-model="currentPage" class="pagination-sm" items-per-page="itemsPerPage" boundary-link-numbers="true" force-ellipses="true" max-size="maxSize"></uib-pagination>
 			</div>
+            
+             <!-- delete class popup -->
+            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </button>
+                            <h4 class="modal-title custom_align" id="Heading">Rimozione domanda</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-danger">
+                                <span class="glyphicon glyphicon-warning-sign"></span> Sei sicuro di voler rimuovere la domanda "{{Questionlist[deleteQuestion].title}}"?
+                            </div>
+                        </div>
+                        <div class="modal-footer ">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="removeQuestion()">Sì</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="setDeleteQ(null)">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
 </div>           
 

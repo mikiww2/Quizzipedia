@@ -5,16 +5,24 @@ angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$h
     $scope.Questionlist = [];
     
     $scope.modifyQuestion = null;
-    $scope.typeQuestion = "";
-    
-        
+    $scope.deleteQuestion = null; //indice della domanda da eliminare
+    $scope.typeQuestion = "";       
     
     $scope.loadQuestionList = function(){
         //chiedo al server di inviarmi tutte le domande create dal teacher loggato
-        $http.get('/api/question/fetch').success(function(response){
-            $scope.Questionlist = response;
+        $http.get('/api/question/fetch_teacher_questions').success(function(response){
+            $scope.Questionlist = response; 
             
-            
+            angular.forEach ($scope.Questionlist, function(question) {
+                if (question.difficulty == 1)
+                    question.difficulty = "Facile"
+                else if (question.difficulty == 2)
+                    question.difficulty = "Medio"
+                else if (question.difficulty == 3)
+                    question.difficulty = "Difficile"
+                else if (question.difficulty == 4)
+                    question.difficulty = "Molto difficile"
+            });
         });
     };
     
@@ -22,15 +30,20 @@ angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$h
       //chiedo al server di inviarmi i dati per creare un utente Teacher  
     };
     
-    $scope.removeQuestion = function(indexOfQuestion){ //int
+    $scope.setDeleteQ = function(index) {
+        $scope.deleteQuestion = index;        
+    };
+    
+    $scope.removeQuestion = function(){ //int
         //rimuovo la domanda localmente e invio una richiesta al server per eliminare definitivamente la domanda
-        var id = $scope.Questionlist[indexOfQuestion]._id;
+        //var id = $scope.Questionlist[indexOfQuestion]._id;
         
-        /*$http.post('',id).success(function(response){
-            $scope.Questionlist.splice(indexOfQuestion,1);    
-        });*/
-        
-        
+       $http.post('SOME API', $scope.Questionlist[$scope.deleteQuestion]).success(function(response){
+            $scope.Questionlist.splice($scope.deleteQuestion, 1);
+           $scope.deleteQuestion = null;
+       }).error(function() {
+           alert("Errore nell'eliminazione");
+       });       
     };
     
     $scope.setModifyQuestion = function(question){ //GenericQuestion
@@ -66,5 +79,5 @@ angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$h
         });
     };
     
-    
+    $scope.loadQuestionList();    
 }]);

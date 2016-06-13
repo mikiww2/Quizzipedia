@@ -38,7 +38,6 @@ exports.signin = function (req, res) {
                         ,role: 'noRole'
                     };
 
-                    console.log(user);
                     res.redirect('/');
                 }
                 else {  //SE LA PASS NON CORRISPONDE
@@ -67,7 +66,14 @@ exports.signin_with_token = function(req, res) {
             if (user) {  //SE TROVA UN UTENTE NEL DB
                 if (user.tmpPassword == pass) {  //SE LA PASS CORRISPONDE
                     console.log('user trovato: ' + user._id + ' con pass corretta');
-                    req.session.user = user;
+                    req.session.user = {
+                        _id: user._id
+                        ,firstName: user.firstName
+                        ,lastName: user.lastName
+                        ,password: user.password
+                        ,institution: 'none'
+                        ,role: 'noRole'
+                    };
                     //req.session.pswd = user.password;
                     res.redirect('/Quizzipedia/profile/changePswd');
                 }

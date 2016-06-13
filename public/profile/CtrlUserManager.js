@@ -9,14 +9,13 @@ angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http',
     
     $scope.loadUser = function() {
        //assegno l'oggetto utente ricevuto dal server a $scope.user  
-         $http.get('/api/profile/get_full_info_user').success(function(response){
+         $http.get('/api/profile/get_user').success(function(response){
              $scope.user = response;            
-             if(response.tmpPassword)  //nel caso ci si trovi nella pagina recuperoPswd
+             if(response.tmpPassword != undefined)  //nel caso ci si trovi nella pagina recuperoPswd
              $scope.recovering = true;
-            //console.log($scope.recovering);
          })
          .error(function(response){
-             $window.location.href = '/Quizzipedia/home.html';
+             $window.location.href = '/Quizzipedia/home';
              alert("Sessione scaduta");
          });        
      };

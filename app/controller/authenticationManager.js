@@ -14,6 +14,8 @@
 var nodemailer = require('nodemailer');
 var randomstring = require("randomstring");
 
+var configMail = require("../../config/email.js");
+
 var User = require('../model/user.model');
 
 exports.signin = function (req, res) {
@@ -143,7 +145,7 @@ exports.recoverPswd = function (req, res) {
                 console.log(token);
                 var transporter = nodemailer.createTransport('smtps://helpservice.quizzipedia%40gmail.com:n54t1r2!@smtp.gmail.com');
                 var mailOptions = {
-                    from: '"Quizzipedia Help Service" <helpservice.quizzipedia@gmail.com>', // sender address
+                    from: configMail.compose, // sender address
                     to: email, // list of receivers
                     subject: 'Recover Password', // Subject line
                     text: 'Follow the link to recover your password: http://vault-tech.tk:8080/Quizzipedia/signin', // plaintext body

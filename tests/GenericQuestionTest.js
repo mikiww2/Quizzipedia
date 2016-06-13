@@ -29,7 +29,7 @@ describe('GenericQuestion test', function () {
         var $injector = angular.injector(['CreateQuestion']);
         Attachment=$injector.get('Attachment');
         mock_att=new Attachment();
-        mock_att.setType("audio");
+        mock_att.setType("immagine");
         mock_att.setPath("/img/TFquestions/pluto.png");
         mock_att.setX(3.17);
         mock_att.setY(4.44);

@@ -122,7 +122,7 @@ exports.parse = function (qml){
 
     var generateCM = function (question) { // teoricamente ok, da testare casi particolari
         var stringTitle = '';
-        for (var item of question.title) {
+        for (var item of question.text) {
             if (item.type == 'txt') {
                 stringTitle = stringTitle + item.value;
             }
@@ -132,7 +132,7 @@ exports.parse = function (qml){
             stringTitle = stringTitle + '§';
         }
         var stringAnswers = '';
-        for (var item of question.arrayAnswer){
+        for (var item of question.answer){
             if (item.text) // se la risposta è testuale
                 stringAnswers = stringAnswers + item.text + '[' + item.id + ']§';
             if (item.attachment) // se la risposta è un media
@@ -243,8 +243,8 @@ exports.parse = function (qml){
                 jsonAns.text = answerValue;
             arrayJsonAns.push(jsonAns);
         }
-        question.title = arrayJsonTitle;
-        question.ans = arrayJsonAns;
+        question.text = arrayJsonTitle;
+        question.answer = arrayJsonAns;
         qson.question = question;
         return qson;
     };

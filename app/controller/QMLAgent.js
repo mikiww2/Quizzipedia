@@ -2,12 +2,16 @@
  * Nome del file: QMLAgent.js
  * Percorso: app/controller/QMLAgent.js
  * Autore: Vault-Tech
- * Data creazione:
+ * Data creazione: 02.05.2016
  * E-mail: vaulttech.swe@gmail.com
  *
  *  Controller che contiene i metodi per generazione e parsing QML <-> JSON
  *
  * * Diario delle modifiche:
+ *  09.05.2016 Stesura metodo generate e parse - Filippo Tesser
+ *  12.05.2016 Stesura funzioni specifiche per tipo - Filippo Tesser
+ *  19.05.2016 Stesura funzioni extract, generateAttached e appendAttached - Filippo Tesser
+ *  21.05.2016 Inserita gestione allegati per ogni funzione - Filippo Tesser
  *
  */
 
@@ -213,7 +217,6 @@ exports.parse = function (qml){
         qson.question = question;
         return qson;
         };
-
 
     var parserCM = function (qml) { // teoricamente ok, da testare casi particolari
         var qson = {'type': 'cmpl'};

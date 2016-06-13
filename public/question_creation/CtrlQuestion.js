@@ -477,7 +477,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             
         });
         
-        $window.location.href = '/Quzzipedia/createQuestion';
+        $window.location.href = '/Quizzipedia/createQuestion';
     };
     
     $scope.topicsList = [];

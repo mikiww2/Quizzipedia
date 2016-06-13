@@ -94,7 +94,6 @@ exports.save = function(user, filename, questionId) {
                     newPathFile = null;
                 }
                 else if(matches[0]) {
-
                     fs.rename(matches[0], newPathFile, function(err) {
                         if (err) {
                             console.log(err);

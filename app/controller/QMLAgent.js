@@ -121,8 +121,11 @@ exports.parse = function (qml){
         var attached = generateAttached(question);
         var stringAnswers = '';
         for (var item of question.arrayAnswer) {
+            var txt = '';
+            if (item.textAnswer)
+                txt = item.textAnswer;
             var stringAttached = generateAttached(item);
-            stringAnswers = stringAnswers + item.textAnswer + '[' + item.isTrue + ']' + stringAttached + '§';
+            stringAnswers = stringAnswers + txt + stringAttached + '[' + item.isTrue + ']' + '§';
         }
         if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
             stringAnswers = stringAnswers.substr(0, stringAnswers.length - 1);
@@ -162,15 +165,21 @@ exports.parse = function (qml){
     var generateCL = function (question) { // da sistemare quando il form sarà comprensibile
         var stringTitle = '';
         for (var item of question.text) {
+            var txt = '';
+            if (item.txt)
+                txt = item.txt;
             var stringAttached = generateAttached(item);
-            stringTitle = stringTitle + item.txt + '[' + item.id + ']' + stringAttached + '§';
+            stringTitle = stringTitle + txt + stringAttached + '[' + item.id + ']' + '§';
         }
         if (stringTitle.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
             stringTitle = stringTitle.substr(0, stringTitle.length - 1);
         var stringAnswers = '';
         for (var item of question.answer){
+            var txt = '';
+            if (item.txt)
+                txt = item.txt;
             var stringAttached = generateAttached(item);
-            stringAnswers = stringAnswers + item.txt + '[' + item.id + ']' + stringAttached + '§';
+            stringAnswers = stringAnswers + txt + stringAttached + '[' + item.id + ']' + '§';
         }
         if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
             stringAnswers = stringAnswers.substr(0, stringAnswers.length - 1);
@@ -202,7 +211,7 @@ exports.parse = function (qml){
         var question = {};  //creazione json vuoto
         var text = extract(qml, '#t#', '#a#'); //estrazione stringa di domanda
         if (text.includes('{') && text.endsWith('}')) {  // se presente allegato nella stringa
-            question.title = extract(text, '', '{');
+            //question.title = extract(text, '', '{');
             question.attachment = appendAttached(extract(text, '{', '}'));
         }
         else //se non presente allegato

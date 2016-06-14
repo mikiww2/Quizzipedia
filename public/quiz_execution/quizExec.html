@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="QuizSolver">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,10 @@
     <link href="./assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
 	<!-- quizzipedia.base.css -->
-	<link href=".+/assets/css/quizzipedia.base.css" rel="stylesheet">
+	<link href="./assets/css/quizzipedia.base.css" rel="stylesheet">
+      
+      <!-- ANGULAR -->
+      <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -59,7 +62,7 @@
 			</div>
 			<!-- end of panel heading -->
 			<!-- beginning of body -->
-			<div class="panel-body">
+			<div class="panel-body"> <!-- DA NASCONDERE SE LO SVOLGIMENTO è INIZIATO-->
 				<!-- description -->
 				<div class="panel panel-default quizDescr">
 					<div class="panel-heading">
@@ -74,18 +77,30 @@
 				<div>
 					<canvas class="qCanvas col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" id="quizCanvas" width="500" height="200"></canvas>
 				</div>
-				<div class="clearfix"></div>
+				<div class="clearfix"></div> <!-- DA TOGLIERE -->
 				<div class="text-center pull-bottom"><button class="btn btn-lg btn-primary" id="startQuiz" type="button">Inizia</button></div>
 				<!-- end of canvas -->
 			</div>
+            
+            <div class="panel-body">
+                <!-- QUI INSERISCO LE DIRETTIVE DELLE DOMANDE-->
+            
+            
+            </div>
 		</div>
 			<!-- end of panel body -->
+        
+        
+        
+        
+       <!-- 
+        
 			
-		<!-- question example. heading stays the same, body changes. footer saves page? -->
+		<!-- question example. heading stays the same, body changes. footer saves page? 
 		<div class="panel panel-default qPanel">
-			<!-- panel heading -->
+			<!-- panel heading 
 			<div class="panel-heading">
-				<!-- if quiz is private -->
+				<!-- if quiz is private 
 				<div class="row instClass">
 					<p class="col-md-6 ">Ente</p>
 					<p class="col-md-6 text-right">Classe</p>
@@ -97,7 +112,7 @@
 					</div>
 					<div class="col-md-2 tinybox">
 						<p class="text-center">Materia</p>
-						<!-- custom stars according to difficulty -->
+						<!-- custom stars according to difficulty
 						<span class="diffStars">
 							<i class="glyphicon glyphicon-star"></i>
 							<i class="glyphicon glyphicon-star"></i>
@@ -108,11 +123,11 @@
 				</div>
 			</div>
 			<!-- end of panel heading -->
-			<!-- beginning of body -->
+			<!-- beginning of body 
 			<div class="panel-body">
-				<!-- description -->
+				<!-- description 
 					<div class="row">
-						<!-- title -->
+						<!-- title 
 						<div class="col-md-3">
 							<h6 class="text-center">Materia 
 								<span class="diffStars">
@@ -125,21 +140,21 @@
 							<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i> Titolo della domanda</h4>
 
 						</div>
-						<!-- description -->
+						<!-- description
 						<div class="col-md-6">
 							<div class="well">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi nisl, pellentesque vitae hendrerit ut, lacinia non quam. </div>
 						</div>
-						<!-- attachment -->
+						<!-- attachment
 						<div class="col-md-3">
 							<canvas class="qCanvas" id="questCanvas" width="80" height="80"></canvas>
 						</div>
 					</div>
 					<!-- end of row -->
-					<!-- question body - variable structure depending on qtype -->
+					<!-- question body - variable structure depending on qtype 
 						<div>
 							<canvas class="qCanvas col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" id="quizCanvas" width="500" height="400"></canvas>
 						</div>
-					<!-- end of question body -->
+					<!-- end of question body 
 					<div class="clearfix"></div>
 					<div class="row qFooting">
 						<div class="col-md-offset-1 text-center">
@@ -151,11 +166,11 @@
 		</div>
 		<!-- end of panel body -->
 		
-		<!-- MIDDLE question -->
+		<!-- MIDDLE question 
 		<div class="panel panel-default qPanel">
-			<!-- panel heading -->
+			<!-- panel heading 
 			<div class="panel-heading">
-				<!-- if quiz is private -->
+				<!-- if quiz is private 
 				<div class="row instClass">
 					<p class="col-md-6 ">Ente</p>
 					<p class="col-md-6 text-right">Classe</p>
@@ -167,7 +182,7 @@
 					</div>
 					<div class="col-md-2 tinybox">
 						<p class="text-center">Materia</p>
-						<!-- custom stars according to difficulty -->
+						<!-- custom stars according to difficulty 
 						<span class="diffStars">
 							<i class="glyphicon glyphicon-star"></i>
 							<i class="glyphicon glyphicon-star"></i>
@@ -178,11 +193,11 @@
 				</div>
 			</div>
 			<!-- end of panel heading -->
-			<!-- beginning of body -->
+			<!-- beginning of body 
 			<div class="panel-body">
-				<!-- description -->
+				<!-- description 
 					<div class="row">
-						<!-- title -->
+						<!-- title 
 						<div class="col-md-3">
 							<h6 class="text-center">Materia 
 								<span class="diffStars">
@@ -195,21 +210,21 @@
 							<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i> Titolo della domanda</h4>
 
 						</div>
-						<!-- description -->
+						<!-- description 
 						<div class="col-md-6">
 							<div class="well">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi nisl, pellentesque vitae hendrerit ut, lacinia non quam. </div>
 						</div>
-						<!-- attachment -->
+						<!-- attachment 
 						<div class="col-md-3">
 							<canvas class="qCanvas" id="questCanvas" width="80" height="80"></canvas>
 						</div>
 					</div>
 					<!-- end of row -->
-					<!-- question body - variable structure depending on qtype -->
+					<!-- question body - variable structure depending on qtype 
 						<div>
 							<canvas class="qCanvas col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" id="quizCanvas" width="500" height="400"></canvas>
 						</div>
-					<!-- end of question body -->
+					<!-- end of question body 
 					<div class="clearfix"></div>
 					<div class="row qFooting">
 						<div class="col-md-6">
@@ -224,11 +239,11 @@
 			</div>
 		<!-- end of panel body -->
 		
-		<!-- LAST question -->
+		<!-- LAST question 
 		<div class="panel panel-default qPanel">
-			<!-- panel heading -->
+			<!-- panel heading 
 			<div class="panel-heading">
-				<!-- if quiz is private -->
+				<!-- if quiz is private 
 				<div class="row instClass">
 					<p class="col-md-6 ">Ente</p>
 					<p class="col-md-6 text-right">Classe</p>
@@ -240,7 +255,7 @@
 					</div>
 					<div class="col-md-2 tinybox">
 						<p class="text-center">Materia</p>
-						<!-- custom stars according to difficulty -->
+						<!-- custom stars according to difficulty 
 						<span class="diffStars">
 							<i class="glyphicon glyphicon-star"></i>
 							<i class="glyphicon glyphicon-star"></i>
@@ -251,11 +266,11 @@
 				</div>
 			</div>
 			<!-- end of panel heading -->
-			<!-- beginning of body -->
+			<!-- beginning of body 
 			<div class="panel-body">
-				<!-- description -->
+				<!-- description 
 					<div class="row">
-						<!-- title -->
+						<!-- title
 						<div class="col-md-3">
 							<h6 class="text-center">Materia 
 								<span class="diffStars">
@@ -268,21 +283,21 @@
 							<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i> Titolo della domanda</h4>
 
 						</div>
-						<!-- description -->
+						<!-- description 
 						<div class="col-md-6">
 							<div class="well">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi nisl, pellentesque vitae hendrerit ut, lacinia non quam. </div>
 						</div>
-						<!-- attachment -->
+						<!-- attachment 
 						<div class="col-md-3">
 							<canvas class="qCanvas" id="questCanvas" width="80" height="80"></canvas>
 						</div>
 					</div>
 					<!-- end of row -->
-					<!-- question body - variable structure depending on qtype -->
+					<!-- question body - variable structure depending on qtype 
 						<div>
 							<canvas class="qCanvas col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" id="quizCanvas" width="500" height="400"></canvas>
 						</div>
-					<!-- end of question body -->
+					<!-- end of question body 
 					<div class="clearfix"></div>
 					<div class="row qFooting">
 						<div class="col-md-6">
@@ -297,11 +312,11 @@
 			</div>
 		<!-- end of panel body -->
 		
-		<!-- GRADE -->
+		<!-- GRADE 
 		<div class="panel panel-default qPanel">
-			<!-- panel heading -->
+			<!-- panel heading 
 			<div class="panel-heading">
-				<!-- if quiz is private -->
+				<!-- if quiz is private 
 				<div class="row instClass">
 					<p class="col-md-6 ">Ente</p>
 					<p class="col-md-6 text-right">Class</p>
@@ -313,7 +328,7 @@
 					</div>
 					<div class="col-md-2 tinybox">
 						<p class="text-center">Materia</p>
-						<!-- custom stars according to difficulty -->
+						<!-- custom stars according to difficulty 
 						<span class="diffStars">
 							<i class="glyphicon glyphicon-star"></i>
 							<i class="glyphicon glyphicon-star"></i>
@@ -324,9 +339,9 @@
 				</div>
 			</div>
 			<!-- end of panel heading -->
-			<!-- beginning of body -->
+			<!-- beginning of body 
 			<div class="panel-body qResult">
-			<!-- grade -->
+			<!-- grade 
 				<div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -348,7 +363,7 @@
 				</div>
 			</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- end of panel body -->
 	</div>
   </body>

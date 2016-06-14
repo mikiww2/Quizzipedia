@@ -205,7 +205,7 @@ exports.save = function (req,res) { //salvataggio quiz
       },
 
       function(callback){
-        cosnole.log(req.body.topics);
+        console.log(req.body.topics);
         var quiz = new Quiz({
           author: req.session.user._id,
           creationDate: new Date(),

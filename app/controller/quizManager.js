@@ -83,7 +83,7 @@ exports.search = function (req,res) { //ricerca quiz
   var results = [];
   var resultsParsed = [];
 
-    Quiz.find({ classes: {$not: {$size: 0} } }, function (err, quiz){
+    Quiz.find(function (err, quiz){
       if (err) {
           console.log('error: ' + err);
           res.redirect('/');
@@ -146,6 +146,7 @@ exports.search = function (req,res) { //ricerca quiz
               }
           }      
           console.log(results);
+          console.log(results.length);
           res.send(results);
         }
         else res.send({ code: 0, message: 'Nessun quiz trovato'});

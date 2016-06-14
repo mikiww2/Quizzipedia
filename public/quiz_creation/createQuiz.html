@@ -87,8 +87,10 @@
                     <span class="glyphicon glyphicon-warning-sign"></span> Prima di procedere alla creazione di quiz, assicurati di aver creato tutte le domande.</div>
                 <div><a href = "/Quizzipedia/createQuestion">Creale qui.</a></div>
             </div>
+            
+            <p>QUIZ:: {{myQuiz}}</p>
         
-        <form class="form">
+        <form class="form" ng-submit = "saveQuiz()">
             
             <!-- title -->
             <div class="form-group row">
@@ -210,7 +212,7 @@
             </div>
             </fieldset>
                     
-            <button type="submit" class="btn btn-lg btn-primary btn-block" value="Conferma"  ng-click = "saveQuiz()"> Conferma</button>
+            <button type="submit" class="btn btn-lg btn-primary btn-block" value="Conferma"> Conferma</button>
             </form>
         </div> <!-- /container -->
       </div>

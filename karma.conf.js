@@ -19,9 +19,24 @@ module.exports = function(config) {
         'node_modules/angular-mocks/angular-mocks.js',
         'public/core.js',
 
-//         'public/services/*.js',
-        'public/services/AuthenticationData.js',
+        /* NB: per testare i controller commentare le factory e viceversa...sia file sorgenti sia file test*/
+
+/*
+        //CONTROLLER
+        'public/authentic/CtrlData.js',
         'public/profile/CtrlUserManager.js',
+        'public/header/CtrlHeader.js',
+      
+
+		//test Controller
+		'tests/CtrlUserManagerTest.js', 
+		'tests/CtrlDataTest.js',
+		'tests/CtrlHeaderTest.js',
+*/
+
+
+        //FACTORY
+        'public/services/AuthenticationData.js',
         'public/services/Class.js',
         'public/services/User.js',
         'public/services/Director.js',
@@ -36,29 +51,29 @@ module.exports = function(config) {
         'public/services/TrueFalseQ.js',
         'public/services/ShortAnswerQ.js',
         'public/services/Attachment.js',
-
-        'tests/*.js'
-        /*
-         * 
-        'tests/unit/client/AuthenticationDataTest.js', //ok
-        'tests/unit/client/CtrlUserManagerTest.js', //ok
-        'tests/unit/client/ClassTest.js', //ok
-        'tests/unit/client/UserTest.js', //ok
-        'tests/unit/client/DirectorTest.js', //ok
-        'tests/unit/client/StudentTest.js', //DA FINIRE!!!!!!!!!!!!!!!
-        'tests/unit/client/RequestClassTest.js', //ok
-        'tests/unit/client/RequestRoleTest.js', //ok
-        'tests/unit/client/RoleListTest.js',
-        'tests/unit/client/ClassListTest.js',
-        'tests/unit/client/TopicsTest.js', //ok
-        'tests/unit/client/InstitutionTest.js', //ok
-        'tests/unit/client/GenericQuestionTest.js', //ok
-        'tests/unit/client/TrueFalseQTest.js', //ok
-        'tests/unit/client/ShortAnswerQTest.js', //ok
-        'tests/unit/client/AttachmentTest.js' //ok
-        * 
-        */
-
+        'public/services/AnswerMultipleChoice.js',
+        'public/services/MultipleChoiceQ.js',
+      
+      
+		//test factory
+        'tests/AuthenticationDataTest.js',
+        'tests/ClassTest.js', 
+        'tests/UserTest.js',
+        'tests/DirectorTest.js', 
+        'tests/StudentTest.js',
+        'tests/RequestClassTest.js', 
+        'tests/RequestRoleTest.js', 
+        'tests/RoleListTest.js',
+        'tests/ClassListTest.js',
+        'tests/TopicsTest.js', 
+        'tests/InstitutionTest.js', 
+        'tests/GenericQuestionTest.js', 
+        'tests/TrueFalseQTest.js',
+        'tests/ShortAnswerQTest.js', 
+        'tests/AttachmentTest.js' ,
+        'tests/AnswerMultipleChoiceTest.js',
+        'test/MultipleChoiceQTest.js'
+       
     ],
 
 

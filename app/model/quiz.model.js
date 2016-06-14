@@ -32,7 +32,7 @@ var quizSchema = new Schema({
         type: [Schema.Types.ObjectId]
         ,required: false
     }
-    ,topics: {
+    ,topic: {
         type: String
         ,required: false
     }

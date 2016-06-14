@@ -34,7 +34,7 @@ angular.module('CreateQuestion').factory('MultipleChoiceQ',['GenericQuestion','A
     };
     
     
-    MultipleChoiceQ.prototype.removeAnswer = function(position){
+    MultipleChoiceQ.prototype.removeAnsw = function(position){
         this.arrayAnswer.splice(position,1);
        
     };

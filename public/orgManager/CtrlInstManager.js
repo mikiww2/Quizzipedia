@@ -3,7 +3,7 @@ angular.module('InstClassManager').controller('CtrlInstManager',['$scope', '$htt
     $scope.institutions = [];    
     
     $scope.loadInstitutions = function() {
-        $http.get('/api/institution/fetch_all_inst_infos ').success(function(response) {
+        $http.get('/api/institution/fetch_all_inst_infos').success(function(response) {
             $scope.institutions = response;
         });
     };

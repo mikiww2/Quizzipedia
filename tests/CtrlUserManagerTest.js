@@ -32,7 +32,7 @@ describe("CtrlUserManager test", function(){
 
 		/** Per simulare la richiesta fatta dal metodo loadUser() */
 		httpBackend = $injector.get('$httpBackend');
-		request1 = httpBackend.when('GET', '/api/profile/get_full_info_user')
+		request1 = httpBackend.when('GET', '/api/profile/get_user')
 			.respond({firstName : 'Carlo', lastName : 'Conti', mail : 'carlo.conti@gmail.com', password : 'carloconti'});
 
 		/** Per simulare la richiesta fatta dal metodo loadInstitutions() */
@@ -81,7 +81,7 @@ describe("CtrlUserManager test", function(){
 			password : 'carloconti'
 		};
 
-		httpBackend.expectGET('/api/profile/get_full_info_user');
+		httpBackend.expectGET('/api/profile/get_user');
 
 		var controller = createController();
 		scope.loadUser();

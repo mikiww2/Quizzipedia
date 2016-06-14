@@ -44,7 +44,7 @@ var quizSchema = new Schema({
         type: Number
         ,min: 1
         ,max: 4
-        ,required: [true, 'difficulty is required']
+        ,required: false
         
     }
     ,questions: {

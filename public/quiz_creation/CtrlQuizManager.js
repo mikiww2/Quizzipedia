@@ -70,12 +70,23 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', 'GenericQues
         });        
     };
     
-    $scope.addQuestion = function (question) {
+    $scope.addQuestion = function (questionToCheck) {
         //aggiunge la domanda corrente a myquiz.questions e la rimuove da searchQuestions, no chiamate ad db, lo facciamo in conferma
-        var index = $scope.searchQuestions.indexOf(question);
-        $scope.searchQuestions.splice(index, 1);
+        var index = $scope.searchQuestions.indexOf(questionToCheck); 
+        var presente = false;
         
-        $scope.myQuiz.questions.push({_id : question._id, title : question.title});        
+        if ($scope.myQuiz.questions.length == 0)
+             $scope.myQuiz.questions.push({_id : questionToCheck._id, title : questionToCheck.title});
+        
+        angular.forEach ($scope.myQuiz.questions, function(question) {
+            if ($scope.searchQuestions[index]._id == question._id) 
+                presente=true;
+        });
+        
+        if (presente == false)
+             $scope.myQuiz.questions.push({_id : questionToCheck._id, title : questionToCheck.title});
+        
+        $scope.searchQuestions.splice(index, 1);
     };
     
     $scope.removeQuestion = function (indexOfQuestion) {

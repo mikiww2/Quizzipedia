@@ -24,6 +24,7 @@ exports.save = function (req, res) {
 
     var question = new Question({
         author: author
+        ,title: req.body.question.title
         ,description: req.body.question.description
         ,topic: req.body.question.topic // ignorante o controlla che esistano veramente ?
         ,difficulty: req.body.question.difficulty

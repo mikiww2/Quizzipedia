@@ -1071,7 +1071,7 @@ h6.description{
 .profile .img-box:after{
 	content:"";
 	opacity: 0;
-	background-color: rgba(0, 0, 0, 0.75);
+	background-color: rgba(192, 225, 243, 0.46);
 	position: absolute;
 	right: 0;
 	left: 0;

@@ -198,8 +198,10 @@ exports.parse = function (qml){
             console.log(extract(text, '{', '}'));
             question.questionAttachment = appendAttached(extract(text, '{', '}'));
         }
-        else
+        else {
             question.title = text;
+            question.questionAttachment = null;
+        }
         var answer = extract(qml, '#a#', '#££#');
         question.correctAnswer = answer;
         qson.question = question;
@@ -211,22 +213,33 @@ exports.parse = function (qml){
         var question = {};  //creazione json vuoto
         var text = extract(qml, '#t#', '#a#'); //estrazione stringa di domanda
         if (text.includes('{') && text.endsWith('}')) {  // se presente allegato nella stringa
-            //question.title = extract(text, '', '{');
-            question.attachment = appendAttached(extract(text, '{', '}'));
+            question.title = extract(text, '', '{');
+            question.questionAttachment = appendAttached(extract(text, '{', '}'));
         }
-        else //se non presente allegato
+        else { //se non presente allegato
             question.title = text;
+            question.questionAttachment = null;
+        }
         var answer = extract(qml, '#a#', '#££#'); //estrae le risposte
         var arrayAns = answer.split('§'); //array di stringhe delle risposte
         var arrayJsonAns = []; //conterrà i json delle risposte
         for (var item of arrayAns) {
+            var isTrue = extract(item, '[', ']');
+            if (item.includes('{') && item.includes('}')) {
+                arrayJsonAns.push({'attachment': appendAttached(extract(item, '{', '}')), 'isTrue': isTrue, 'textAnswer': null});
+            }
+            else{
+                var txt = extract(item, '', '[');
+                arrayJsonAns.push({'textAnswer': txt, 'isTrue': isTrue, 'attachment': null});
+            }
+            /*
             var ansTxt = extract(item, '', '['); // estrae il testo della risposta
             var ansIsTrue = extract(item, '[', ']'); // estrate la soluzione della risposta
             var jsonAnswer = {"textAnswer": ansTxt, "isTrue": ansIsTrue};
             if (item.includes('{') && item.endsWith('}')){ // se presente allegato nella stringa
                 jsonAnswer.attachment = appendAttached(extract(item, '{', '}')); //estrae l'allegato della risposta
             }
-            arrayJsonAns.push(jsonAnswer);
+            arrayJsonAns.push(jsonAnswer);*/
         }
         question.arrayAnswer = arrayJsonAns;
         qson.question = question;
@@ -275,10 +288,12 @@ exports.parse = function (qml){
         var text = extract(qml, '#t#', '#a#'); //estrae la stringa della domanda
         if (text.includes('{') && text.endsWith('}')) {  // se presente allegato nella stringa
             question.title = extract(text, '', '{');
-            question.attachment = appendAttached(extract(text, '{', '}'));
+            question.questionAttachment = appendAttached(extract(text, '{', '}'));
         }
-        else // se non presente allegato
+        else { // se non presente allegato
             question.title = text;
+            question.questionAttachment = null;
+        }
         question.correctAnswer = extract(qml, '#a#', '#££#');
         qson.question = question;
         return qson;
@@ -291,26 +306,30 @@ exports.parse = function (qml){
         var arrayTitles = text.split('§'); //array che contiene le stringhe delle risposte
         var arrayJsonTitle = []; //conterrà i json delle risposte
         for (var item of arrayTitles){
-            var txt = extract(item, '', '[');
             var id = extract(item, '[', ']');
-            if (item.includes('{') && item.endsWith('}'))
-                arrayJsonTitle.push({'attachment': appendAttached(extract(text, '{', '}')), 'id': id});
-            else
-                arrayJsonTitle.push({'text': txt, 'id': id});
+            if (item.includes('{') && item.includes('}')) {
+                arrayJsonTitle.push({'attachment': appendAttached(extract(item, '{', '}')), 'id': id, 'txt': null});
+            }
+            else{
+                var txt = extract(item, '', '[');
+                arrayJsonTitle.push({'txt': txt, 'id': id, 'attachment': null});
+            }
         }
         var answer = extract(qml, '#a#', '#££#'); //estrae la stringa delle risposte
         var arrayAnswers = answer.split('§'); //array che contiene le stringhe delle risposte
         var arrayJsonAns = []; //conterrà i json delle risposte
         for (var item of arrayAnswers){
-            var txt = extract(item, '', '[');
             var id = extract(item, '[', ']');
-            if (item.includes('{') && item.endsWith('}'))
-                arrayJsonAns.push({'attachment': appendAttached(extract(text, '{', '}')), 'id': id});
-            else
-                arrayJsonAns.push({'text': txt, 'id': id});
+            if (item.includes('{') && item.includes('}')) {
+                arrayJsonAns.push({'attachment': appendAttached(extract(item, '{', '}')), 'id': id, 'txt': null});
+            }
+            else{
+                var txt = extract(item, '', '[');
+                arrayJsonAns.push({'txt': txt, 'id': id, 'attachment': null});
+            }
         }
-        question.title = arrayJsonTitle;
-        question.ans = arrayJsonAns;
+        question.text = arrayJsonTitle;
+        question.answer = arrayJsonAns;
         qson.question = question;
         return qson;
     };

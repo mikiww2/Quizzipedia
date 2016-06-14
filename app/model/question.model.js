@@ -23,6 +23,10 @@ var questionSchema = new Schema({
         type: String
         ,required: [true, 'qml question is required']
         }
+    ,title: {
+        type: String
+        ,required: [true, 'title question is required']
+    }
     ,topic: {
         type: String
         ,required: false

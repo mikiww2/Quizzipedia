@@ -13,7 +13,9 @@
 
 var path = require('path');
 
-module.exports = function (app) {
+module.exports = function (app) {   
+    
+    
 
   //TEST ROUTING -----------------------------------------------------------------------------
 
@@ -179,6 +181,10 @@ app.route('/Quizzipedia/createQuiz').get(function (req, res) {
           res.sendFile(path. resolve('./public/quiz_creation/createQuiz.html'));
       else
          res.redirect('/Quizzipedia/home'); 
+  });
+    
+app.route('/Quizzipedia/quizExec').get(function (req, res) {
+    res.sendFile(path.resolve('./public/quiz_execution/quizExec.html'));
   });
       
 // STATISTICS -------------------------------------------------------------------------------------

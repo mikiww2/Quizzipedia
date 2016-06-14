@@ -76,9 +76,9 @@ exports.fetchQuizNumber = function (req, res, next) {
 
 exports.prepareQuizExecution = function (req,res) { //storage delle informazioni nella sessione relative al quiz da eseguire
 
-  /*req.session.quiz = req.body;
-  res.redirect('/Quizzipedia/quizExec');*/
-  res.send('porcodio');
+  req.session.quiz = req.body;
+  console.log(req.session.quiz);
+  res.send('Ok');
 
 }
 
@@ -201,7 +201,7 @@ exports.save = function (req,res) { //salvataggio quiz
           author: req.session.user._id,
           creationDate: new Date(),
           classes: req.body.classes,
-          topics: req.body.topic,
+          topic: req.body.topic,
           description: req.body.description,
           difficulty: quizDifficulty,
           questions: req.body.questions,

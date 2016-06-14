@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlStudentQuizStats.js
+ * Percorso: public/CtrlStudentQuizStats.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller che gestisce le statistiche degli studenti
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module().controller('CtrlStudentQuizStats',['$scope','$http',function($scope,$http){
     
     

@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlSearchQuestion.js
+ * Percorso: public/CtrlSearchQuestion.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller che gestisce le ricerche delle domande
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module().controller('CtrlSearchQuestion',['Topics','Teacher','$scope','$http','CompletionQ','MatchingQ','MultipleChoiceQ','ShortAnswerQ','TrueFlaseQ',function(Topics,Teacher,$scope,$http){
     
     $scope.mySearchQuestion = {

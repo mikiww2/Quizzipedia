@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlQuizManager.js
+ * Percorso: public/CtrlQuizManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller che gestisce i quiz
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module().controller('CtrlQuizManager',['Teacher','$scope','$http',function(Teacher,$scope,$http){
     
     $scope.teacher = null;

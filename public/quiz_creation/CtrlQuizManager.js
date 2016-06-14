@@ -96,7 +96,14 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', 'GenericQues
     $scope.saveQuiz = function () { 
         console.log("Sono in create");
         var request = JSON.stringify($scope.myQuiz);
-        console.log(request);        
+        console.log(request);
+        $http.post('/api/quiz/save', request)
+            .success(function(response) {
+                $scope.myQuiz = new Quiz();
+                alert(response.message);
+            }).error(function(){
+                alert('Errore nel sistema');
+            });
     };    
         
     $scope.modifyQuiz = function(quiz){

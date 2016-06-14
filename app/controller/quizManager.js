@@ -74,7 +74,10 @@ exports.fetchQuizNumber = function (req, res, next) {
     else res.redirect('/');
 };
 
-exports.fetchPublicQuiz = function (req,res) { //quiz dell'ente pubblici
+exports.prepareQuizExecution = function (req,res) { //storage delle informazioni nella sessione relative al quiz da eseguire
+
+  req.session.quiz = req.body;
+  res.redirect('/Quizzipedia/quizExec');
 
 }
 
@@ -83,7 +86,7 @@ exports.search = function (req,res) { //ricerca quiz
   var results = [];
   var resultsParsed = [];
 
-    Quiz.find(function (err, quiz){
+    Quiz.find({ classes: {$not: {$size: 0} } }, function (err, quiz){
       if (err) {
           console.log('error: ' + err);
           res.redirect('/');

@@ -709,6 +709,10 @@ h6.description, h4.description, h3.description{
 	vertical-align: bottom;
 }
 
+.right-ctr-btn {
+	position: absolute; right: 5px; bottom: 5px;
+}
+
 #linkAnswers {
 	margin-bottom: 20px;
 }

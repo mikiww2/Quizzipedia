@@ -18,7 +18,7 @@ angular.module('QuizManager').controller('CtrlSearchQuiz',['Quiz', '$scope', '$h
     };
     
     $scope.searchQuiz = function() {
-        $http.post('/api/quiz/search', $scope.searchQuiz).success(function(response) {
+        $http.post('/api/quiz/search', $scope.searchQ).success(function(response) {
             $scope.searchQuizzes = response;
             
              angular.forEach ($scope.searchQuizzes, function(quiz) {

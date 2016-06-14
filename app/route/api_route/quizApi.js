@@ -27,8 +27,8 @@ module.exports = function (app) {
     quizM.fetchQuizNumber(req, res);
   });
 
-  app.get('/api/quiz/fetch_public_quiz',function (req, res, next) { //quiz dell'ente pubblici
-    quizM.fetchPublicQuiz(req, res);
+  app.post('/api/quiz/prepare_quiz_execution',function (req, res, next) { //quiz dell'ente pubblici
+    quizM.prepareQuizExecution(req, res);
   });
 
   app.post('/api/quiz/search',function (req, res, next) { //ricerca quiz

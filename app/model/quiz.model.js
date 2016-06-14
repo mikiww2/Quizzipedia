@@ -33,7 +33,7 @@ var quizSchema = new Schema({
         ,required: false
     }
     ,topics: {
-        type: [String]
+        type: String
         ,required: false
     }
     ,description: {

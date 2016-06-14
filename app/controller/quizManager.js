@@ -76,8 +76,9 @@ exports.fetchQuizNumber = function (req, res, next) {
 
 exports.prepareQuizExecution = function (req,res) { //storage delle informazioni nella sessione relative al quiz da eseguire
 
-  req.session.quiz = req.body;
-  res.redirect('/Quizzipedia/quizExec');
+  /*req.session.quiz = req.body;
+  res.redirect('/Quizzipedia/quizExec');*/
+  res.send('porcodio');
 
 }
 
@@ -86,7 +87,7 @@ exports.search = function (req,res) { //ricerca quiz
   var results = [];
   var resultsParsed = [];
 
-    Quiz.find({ classes: {$not: {$size: 0} } }, function (err, quiz){
+    Quiz.find({ classes: {$size: 0} }, function (err, quiz){
       if (err) {
           console.log('error: ' + err);
           res.redirect('/');

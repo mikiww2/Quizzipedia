@@ -80,7 +80,7 @@ exports.fetchPublicQuiz = function (req,res) { //quiz dell'ente pubblici
 
 exports.search = function (req,res) { //ricerca quiz
 
-  var results = [];
+  var resultsParsed = [];
 
     Quiz.find({ classes: {$not: {$size: 0} } }, function (err, quiz){
       if (err) {
@@ -205,6 +205,7 @@ exports.save = function (req,res) { //salvataggio quiz
       },
 
       function(callback){
+        cosnole.log(req.body.topics);
         var quiz = new Quiz({
           author: req.session.user._id,
           creationDate: new Date(),

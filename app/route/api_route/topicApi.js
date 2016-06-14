@@ -19,6 +19,10 @@ module.exports = function (app) {
     topicM.fetch(req, res);
   });
 
+  app.get('/api/topic/fetch_all',function (req, res, next) {
+    topicM.fetchAll(req, res);
+  });
+
 	app.post('/api/topic/save',function (req, res, next) {
     topicM.save(req, res);
   });

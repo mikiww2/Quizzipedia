@@ -26,9 +26,14 @@
       
     <script type="text/javascript" src="./public/core.js"></script>
 	<script type="text/javascript" src="./public/authentic/CtrlData.js" ></script>
+    <script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
       
     <!-- Directive angular (HEADER)-->
     <script type="text/javascript" src="./public/header/headerNotLogged.js"></script>
+    <script type="text/javascript" src="./public/header/headerLogged.js"></script>
+    <script type="text/javascript" src="./public/header/headerLoggedStudent.js"></script>
+    <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
+    <script type="text/javascript" src="./public/header/headerLoggedDirector.js"></script>
     <!--Directive angular (FOOTER)-->
     <script type="text/javascript" src="./public/footer/pageFooter.js"></script> 
 
@@ -41,9 +46,15 @@
 
   <body>
 
-    <div class="pagewrap">
+    <div class="pagewrap" ng-controller="CtrlHeader">
         
-        <header-not-logged></header-not-logged>
+        <div> 
+          <header-Not-Logged ng-if="user.role == null"></header-Not-Logged>         
+          <header-Logged ng-if="user.role == 'noRole'"></header-Logged>        
+          <header-logged-student ng-if="user.role == 'student'"></header-logged-student>         
+          <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>         
+          <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
+        </div>
 		
 		 <div class="row-fluid breadcrumb-div">
             <ol class="breadcrumb" id="breadcrumb">

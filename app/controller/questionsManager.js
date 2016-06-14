@@ -221,7 +221,7 @@ exports.fetchTeacherQuestions = function (req, res, next) {
                         var parsed = agent.parse(questions[i].qml);
                         results.push({
                             _id: questions[i]._id,
-                            title: parsed.question.title,
+                            title: questions[i].title,
                             institution: questions[i].institution,
                             difficulty: questions[i].difficulty,
                             topic: questions[i].topic,

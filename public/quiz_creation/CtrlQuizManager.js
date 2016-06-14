@@ -20,13 +20,26 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
     };
     
     $scope.loadQuizzes = function() {
-        $http.get('some api').success(function(response) {
+        $http.get('/api/quiz/fetch_user_quiz').success(function(response) {
             $scope.quizzes = response;
+            var newClasses = [];
+            
+            angular.forEach($scope.quizzes, function(quiz) {
+                if (quiz.classes != null) {
+                    angular.forEach(quiz.classes, function(classs, key) {
+                        if (classs != null) {
+                            newClasses.push($scope.userClasses[key].className + '; ');
+                        }
+                    });
+                    quiz.classes = newClasses;
+                    newClasses = [];
+                }
+            });
         });
     };
     
     $scope.loadUserClasses = function () {
-        $http.get(' /api/class/fetch_classes_details').success(function(response) {
+        $http.get('/api/class/fetch_classes_details').success(function(response) {
             $scope.userClasses = response;
         });
     };
@@ -113,5 +126,6 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
     
     $scope.loadUserClasses();
     $scope.loadTopics();
+    $scope.loadQuizzes();
     
 }]);

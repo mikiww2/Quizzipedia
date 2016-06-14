@@ -90,7 +90,7 @@
 			<!-- fix checkall - not working -->
 			<th><input type="checkbox" id="checkall"/></th>
 			<th><i class="glyphicon glyphicon-pencil"></i> Titolo</th>
-			<th><i class="glyphicon glyphicon-list-alt"></i> Materia</th>
+			<th><i class="glyphicon glyphicon-list-alt"></i> Argomento</th>
 			<th class="col-sm-2"><i class="glyphicon glyphicon-book"></i> Classe</th>
 			<th></th>
 			</thead>
@@ -99,7 +99,10 @@
 				<td><input type="checkbox" class="checkClass" /></td>
 				<td>{{quiz.title}}</td>
 				<td>{{quiz.topic}}></td>
-				<td>{{quiz.classes}}</td>
+                <td ng-if = "quiz.classes.length == 0">Quiz pubblico</td>
+				<td ng-if = "quiz.classes.length != 0">
+                    <span ng-repeat = "class in quiz.classes">{{class}}</span>
+                </td>
 				<td>
 					<span data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger  pull-right" data-title="Elimina" data-toggle="modal" data-target="#delete" ng-click="selectQuiz(((currentPage-1)*itemsPerPage)+index)"><span class="glyphicon glyphicon-trash"></span> </button></span>
 					

@@ -232,14 +232,6 @@ exports.parse = function (qml){
                 var txt = extract(item, '', '[');
                 arrayJsonAns.push({'textAnswer': txt, 'isTrue': isTrue, 'attachment': null});
             }
-            /*
-            var ansTxt = extract(item, '', '['); // estrae il testo della risposta
-            var ansIsTrue = extract(item, '[', ']'); // estrate la soluzione della risposta
-            var jsonAnswer = {"textAnswer": ansTxt, "isTrue": ansIsTrue};
-            if (item.includes('{') && item.endsWith('}')){ // se presente allegato nella stringa
-                jsonAnswer.attachment = appendAttached(extract(item, '{', '}')); //estrae l'allegato della risposta
-            }
-            arrayJsonAns.push(jsonAnswer);*/
         }
         question.arrayAnswer = arrayJsonAns;
         qson.question = question;

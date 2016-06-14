@@ -1,38 +1,41 @@
-angular.module().controller('CtrlSearchQuiz',['Topics','User', 'Quiz','$scope','$http',function(Topics, User, Quiz, $scope, $http){
+angular.module('QuizManager').controller('CtrlSearchQuiz',['Quiz', '$scope', '$http', function (Quiz, $scope, $http){
     
-    $scope.MySearchQuiz = {
-      
-        title: null,
-        author: null,
-        selectedTopic: null,
-        selectedKeywords: [],
-        difficulty: null,
-        permission: null,        
+    $scope.searchQ = {title : null, author : null, topic : null, keyword : null, difficulty : null}; //parametri da cercare
+    $scope.searchQuizzes = []; //quiz che corrispondono ai criteri di ricerca
+    
+    $scope.topics = [];
+    $scope.difficolta = [{id : 1, name : 'Facile'}, {id : 2, name : 'Media'},  {id : 3, name : 'Difficile'}, {id : 4, name : 'Molto difficile'}];
+    
+    $scope.clearSearch = function() {
+        $scope.searchQ = {title : null, author : null, topic : null, keyword : null, difficulty : null};
+        $scope.searchQuizzes = [];
     };
     
-    $scope.topics = null; //carico l'array facendo una chiamata al server
-    $scope.keywords = [];//carico l'array facendo una chiama al server
-    $scope.user = null; //carico l'utente leggendo la sessione nel server
-    $scope.quizList = null; //aggiorno questo oggetto con il metodo searchQuiz
-    
-    
-    $scope.loadUser = function(){
-      //creo l'oggetto utente loggato in questo momento  
+    $scope.loadTopics = function () {
+        $http.get('/api/topic/fetch').success(function(response) {
+            $scope.topics = response;
+        });
     };
     
-    $scope.loadKeywords = function(){
-        //leggo tutte le keywords di ogni quiz dal server
+    $scope.searchQuiz = function() {
+        $http.post('SOME API', $scope.searchQuiz).success(function(response) {
+            $scope.searchQuizzes = response;
+            
+             angular.forEach ($scope.searchQuizzes, function(quiz) {
+                if (quiz.difficulty == 1)
+                    quiz.difficulty = "Facile";
+                else if (quiz.difficulty == 2)
+                    quiz.difficulty = "Medio";
+                else if (quiz.difficulty == 3)
+                    quiz.difficulty = "Difficile";
+                else if (quiz.difficulty == 4)
+                    quiz.difficulty = "Molto difficile";
+            });
+            
+        });        
     };
     
-    $scope.loadTopics = function(){
-        //carico i topics leggendoli dal server
-    };
-    
-    $scope.searchQuiz = function(search: MySearchQuiz){
-        
-        //passo al server tutti i dati necessari per avviare la ricerca
-        //infine faccio $scope.quizList = Quiz[]       
-    };   
+    $scope.loadTopics();
    
     
 }]);

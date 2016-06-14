@@ -1,4 +1,4 @@
-angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', 'GenericQuestion', '$scope', '$http', function (Quiz, GenericQuestion, $scope, $http){
+angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$http', function (Quiz, $scope, $http){
     
     $scope.index = null; //PER LA RIMOZIONE, SE SUPERFLUO TOGLI
     

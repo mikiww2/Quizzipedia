@@ -78,6 +78,10 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
                      question.type = "Risposta multipla";
                  else if (question.type == "open")
                      question.type = "Risposta aperta";
+                 else if (question.type == "cmpl")
+                     question.type = "Risposta a completamento";
+                 else if (question.type == "mtch")
+                     question.type = "Risposta a collegamenti";                 
             });
             
         });        

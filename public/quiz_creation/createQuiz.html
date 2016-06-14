@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="./assets/js/jquery-1.11.0.min/jquery-1.11.0.min.js"></script>
     <script src="./assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     <meta name="description" content="">
     <meta name="Autore" content="">
@@ -152,7 +152,8 @@
                     <label for="class">Classe</label>
                     <!-- load classes for selected institution -->
                     <div>
-                        <span ng-repeat = "(index, class) in userClasses">
+                        <p ng-if = "userClassess.length == 0">Non sei docente di nessuna classe</p>
+                        <span ng-if = "userClasses.length != 0" ng-repeat = "(index, class) in userClasses">
                         <input type = "checkbox" id="classSelect" name="class" ng-model = "myQuiz.classes[index]" ng-true-value="'{{class.class_id}}'" ng-false-value="null"> {{class.className}}
                         </span>
                     </div>

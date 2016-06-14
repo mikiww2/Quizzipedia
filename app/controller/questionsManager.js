@@ -81,7 +81,26 @@ exports.save = function (req, res) {
     res.send({ result: "done" });
 };
 
-exports.erase = function (req, res) {
+exports.remove = function (req, res) {
+    if(req.sesison.user && req.session.user.role == 'teacher'){
+        Question.remove({ '_id': req.body._id }, function (err, question){
+            if (err) {
+                console.log('error: ' + err);
+                res.redirect('/');
+            }
+            else{
+                if(question){
+                    console.log('Domanda rimossa correttamente: '+question);
+                    res.send({ code: 0, message: 'Domanda rimossa correttamente!' });
+                }
+                else{
+                    console.log('Nessuna domanda trovata');
+                    res.send({ number: 0, message: '/Quizzipedia/questionMgmt' });
+                }
+            }
+        });
+    }
+    else res.redirect('/');
 
 }
 

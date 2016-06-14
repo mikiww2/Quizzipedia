@@ -80,6 +80,91 @@ exports.fetchPublicQuiz = function (req,res) { //quiz dell'ente pubblici
 
 exports.search = function (req,res) { //ricerca quiz
 
+  var results = [];
+
+    Quiz.find({ classes: {$not: {$size: 0} } }, function (err, quiz){
+      if (err) {
+          console.log('error: ' + err);
+          res.redirect('/');
+      }
+      else{
+        if(quiz){
+          for(var i=0;i<quiz.length;i++){ //fetch all questions in institution
+              results.push(quiz[i]);
+          }
+
+          if(req.body.title){
+              for(var i=0;i<results.length;i++){ //filtra autore
+                  if(results[i].title != req.body.title){
+                      results.splice(i,1);
+                      i--;
+                  }
+              }
+          }
+
+          if(req.body.author){
+              for(var i=0;i<results.length;i++){ //filtra autore
+                  if(results[i].author != req.body.author){
+                      results.splice(i,1);
+                      i--;
+                  }
+              }
+          }
+
+          if(req.body.difficulty){
+              console.log(req.body.difficulty);
+              for(var i=0;i<results.length;i++){ //filtra difficoltà
+                  console.log(results[i].difficulty);
+                  if(results[i].difficulty != req.body.difficulty){
+                      results.splice(i,1);
+                      i--;                                                                                                                            
+                  }
+              }
+          }
+                  
+          if(req.body.topic){
+              for(var i=0;i<results.length;i++){
+                  if(results[i].topic != req.body.topic){
+                      results.splice(i,1);
+                      i--;
+                  }
+              }
+          }
+
+          if(req.body.keyword){
+              for(var i=0;i<results.length;i++){ //filtra parola chiave
+                  var topicFound = false;
+                  for(var j=0;j<results[i].keywords.length && !topicFound;j++){
+                      if(results[i].keywords[j] == req.body.keyword)
+                          topicFound = true;
+                  }
+                  if(topicFound == false){
+                      results.splice(i,1);
+                      i--;
+                  }
+              }
+          }
+
+          for(var i=0;i<results.length;i++){
+              var parsed = agent.parse(results[i].qml);
+              resultsParsed.push({
+                  _id: results[i]._id,
+                  type: parsed.type,
+                  title: parsed.question.title,
+                  institution: results[i].institution,
+                  difficulty: results[i].difficulty,
+                  topic: results[i].topic,
+                  description: results[i].description,
+                  author: results[i].author,
+                  keywords: results[i].keywords
+              });
+          }        
+
+          res.send(resultsParsed);
+        }
+        else res.send({ code: 0, message: 'Nessun quiz trovato'});
+      }
+    });
 }
 
 exports.save = function (req,res) { //salvataggio quiz

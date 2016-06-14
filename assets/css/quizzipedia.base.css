@@ -535,7 +535,15 @@ h6.description, h4.description, h3.description{
 
 .matching .drag {
 	margin: 10px;
+	display: block;
+	max-width: 150px;
 }
+
+.matching .drag input[type="number"]{
+	font-size: 0.9em;
+	margin-top:0px;
+}
+
 
 .qComplContainer .answerBlock{
 	line-height: 200%;
@@ -639,6 +647,10 @@ h6.description, h4.description, h3.description{
 	display: inline-block;
 	vertical-align: top;
 	margin-top: 3px;
+}
+
+.border-right {
+	border-right: 1px solid white;
 }
 
 .matching .answerBlock {

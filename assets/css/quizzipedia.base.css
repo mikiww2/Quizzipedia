@@ -537,15 +537,16 @@ h6.description, h4.description, h3.description{
 	padding: 0 20px;
 }
 
-.matching .drag {
+.solveMatching .drag {
 	margin: 10px;
 	display: block;
 	max-width: 150px;
 }
 
-.matching .drag input[type="number"]{
+.solveMatching .drag input[type="number"]{
 	font-size: 0.9em;
 	margin-top:0px;
+	margin-right: 5px;
 }
 
 
@@ -643,7 +644,7 @@ h6.description, h4.description, h3.description{
 	margin-top: 5px;
 } 
 
-.matching {
+.matching, .solveMatching {
 	margin: 0 auto;
 }
 
@@ -657,7 +658,7 @@ h6.description, h4.description, h3.description{
 	border-right: 1px solid white;
 }
 
-.matching .answerBlock {
+.matching .answerBlock , .solveMatching .answerBlock{
 	padding: 20px 0 10px 10px;
 	margin-bottom: 10px;
 	border-radius: 10px;
@@ -668,15 +669,15 @@ h6.description, h4.description, h3.description{
     max-width: 110px;
 }
 
-.matching img {
+.matching img, .solveMacthing img {
 	width: 80px; height: auto;
 }
 
-.matching .label-margin{
+.matching .label-margin, .solveMatching .label-margin{
 	margin-left: 10px;
 }
 
-.matching h4 {
+.matching h4 , .solveMatching h4{
 	color: white;
 	display: inline;
 	margin-bottom: 10px;

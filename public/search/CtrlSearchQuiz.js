@@ -12,7 +12,7 @@ angular.module('QuizManager').controller('CtrlSearchQuiz',['Quiz', '$scope', '$h
     };
     
     $scope.loadTopics = function () {
-        $http.get('/api/topic/fetch').success(function(response) {
+        $http.get('/api/topic/fetch_all').success(function(response) {
             $scope.topics = response;
         });
     };

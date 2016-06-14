@@ -19,6 +19,10 @@ module.exports = function (app) {
     questionM.save(req, res);
   });
 
+  app.post('/api/question/erase',function (req, res, next) {
+    questionM.erase(req, res);
+  });
+
   app.post('/api/question/search',function (req, res, next) {
     questionM.search(req, res);	
   });

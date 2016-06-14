@@ -81,7 +81,7 @@ exports.save = function (req, res) {
     res.send({ result: "done" });
 };
 
-exports.remove = function (req, res) {
+exports.erase = function (req, res) {
     if(req.sesison.user && req.session.user.role == 'teacher'){
         Question.remove({ '_id': req.body._id }, function (err, question){
             if (err) {
@@ -101,7 +101,6 @@ exports.remove = function (req, res) {
         });
     }
     else res.redirect('/');
-
 }
 
 exports.search = function (req, res, next) {

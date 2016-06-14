@@ -38,7 +38,7 @@ angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$h
         //rimuovo la domanda localmente e invio una richiesta al server per eliminare definitivamente la domanda
         //var id = $scope.Questionlist[indexOfQuestion]._id;
         
-       $http.post('SOME API', $scope.Questionlist[$scope.deleteQuestion]).success(function(response){
+       $http.post('/api/question/erase', $scope.Questionlist[$scope.deleteQuestion]).success(function(response){
             $scope.Questionlist.splice($scope.deleteQuestion, 1);
            $scope.deleteQuestion = null;
        }).error(function() {

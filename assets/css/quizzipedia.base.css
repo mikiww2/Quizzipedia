@@ -219,7 +219,7 @@ h6.description, h4.description, h3.description{
 	color: white;
 }
 
-.panel-default .panel-heading i{
+.panel-default .panel-heading i, .yellow-glyphs span{
 	color: #ffcb35;
 }
 
@@ -310,6 +310,20 @@ h6.description, h4.description, h3.description{
 
 .prevBtn {
 	margin-left: 5px;
+}
+
+.yellowbg {
+	background-color: #ffcb35;
+}
+
+.redbg {
+	background-color: #e14825;
+}
+
+.qTitle {
+	color: white;
+	border-radius: 10px;
+	padding: 10px;
 }
 
 .label-yellow {
@@ -892,6 +906,7 @@ img{
 .blue {
 	color: #22A7F0;
 }
+
 
 .bgblue {
 	background-color: #22A7F0;

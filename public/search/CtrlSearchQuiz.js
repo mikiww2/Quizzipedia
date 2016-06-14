@@ -37,6 +37,8 @@ angular.module('QuizManager').controller('CtrlSearchQuiz',['Quiz', '$scope', '$h
     
     $scope.selectQuiz = function(quizToSolve) {
         $http.post('/api/quiz/prepare_quiz_execution ', quizToSolve);
-    };   
+    };
+
+    $scope.loadTopics(); 
     
 }]);

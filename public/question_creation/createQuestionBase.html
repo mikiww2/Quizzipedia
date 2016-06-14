@@ -110,12 +110,12 @@
 			  
 			<div class="form-group row">
 				<label for="inputTitle" class=" form-control-label">Titolo</label>
-				<input type="text" class="form-control" id="inputTitle" placeholder="Titolo" ng-model="MyGenericQ.title" required autofocus>
+				<input type="text" class="form-control" id="inputTitle" placeholder="Inserire la domanda" ng-model="MyGenericQ.title" required autofocus>
 			</div>
 			<!-- description-->
 			<div class="form-group row">
 				<label for="inputDescription" class=" form-control-label">Descrizione</label>
-				<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" ng-model="MyGenericQ.description" required></textarea>
+				<textarea class="form-control" type="textarea" id="inputDescription" placeholder="Inserire la descrizione" maxlength="140" rows="7" ng-model="MyGenericQ.description" required></textarea>
 			</div>
 			<!-- missing upload thing here -->
 			<div class="form-group row">
@@ -142,6 +142,7 @@
 				<fieldset class="form-group">
 					<label for="topic">Argomento</label>
 					<select class="form-control" id="topic" ng-model="MyGenericQ.topic">
+						<option value="">---</option>
 					  <option ng-repeat="topic in topicsList track by $index" value={{topic.topicName}}>{{topic.topicName}}</option>
 					</select>
 				</fieldset>
@@ -157,8 +158,9 @@
 			<div class="form-group row">
 				<fieldset class="form-group">
 				<!-- idk the stars are cool, animate them w jquery if theres time -->
-					<label for="difficultyLevel">Livello di difficoltà <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i><i class="glyphicon glyphicon-star-empty"></i></label>
+					<label for="difficultyLevel">Livello di difficoltà </label>
 					<select class="form-control" id="difficultyLevel" ng-model="MyGenericQ.difficulty">
+						<option value="">---</option>
 					  <option value="1">Facile</option>
 					  <option value="2">Media</option>
 					  <option value="3">Difficile</option>
@@ -177,7 +179,7 @@
 				$('#inputTags').select2({
 					tags: true,
 					tokenSeparators: [','], 
-					placeholder: "Add your tags here"
+					placeholder: "Aggiungi qui le parole chiave"
 				});
 				</script>
 				</fieldset>
@@ -189,7 +191,7 @@
 				<fieldset class="form-group">
 					<label for="qtype">Tipo</label>
 					<select class="form-control" id="qtype" ng-model="MyGenericQ.questionType">
-					  <option value="">--</option>
+					  <option value="">---</option>
 					  <option value="mtch">Collegamenti</option>
 					  <option value="cmpl">Completamento</option>
 					  <option value="open">Risposta aperta</option>

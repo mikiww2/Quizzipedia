@@ -88,6 +88,10 @@ h6.description, h4.description, h3.description{
 	text-transform: uppercase;
 }
 
+.qSearchBar .qTable {
+	min-width:100%;
+}
+
 .btn-create {
 	margin-bottom: 10px;
 	padding:10px 15px;

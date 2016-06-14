@@ -83,8 +83,6 @@
 				<div class="form-area">  
 					<h3 class="description"><i class="glyphicon glyphicon-search"></i> Cerca quiz pubblici</h3>
                     
-                    <p>SEARCHQ: {{searchQ}}</p>
-                    
 					<form role="form">
                         
                         <!--Titolo-->
@@ -134,143 +132,32 @@
 			
 			<!-- search results -->
             
-             <h3 class="panel-title"><span class="badge">{{searchQuizzes.length}}</span> domande trovate</h3>
+            <div ng-controller = "CtrlPagination">
+                
+            <h3 class="panel-title"><span class="badge">{{searchQuizzes.length}}</span> quiz trovati</h3>        
 			
-			<div class="col-lg-8 col-md-6 col-sm-12 col-xs-12" id="searchResults">
+			<div class="col-lg-8 col-md-6 col-sm-12 col-xs-12" id="searchResults" ng-if = "searchQuizzes.length != 0">
 				<div class="row">
-				  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+				  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-repeat = "quiz in searchQuizzes.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
 					<div class="thumbnail">
 					  <div class="caption">
-						<h4>Titolo del quiz 1</h4>
-						<p><a href="#">Materia</a></p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-						<p><a href="#" class="btn btn-primary" role="button">Svolgi il quiz</a></p>
+						<h4>{{quiz.title}}</h4>
+                          <p>{{quiz.institution}} - {{quiz.topic}}</p>
+                          <p>Livello: {{quiz.difficulty}}</p>
+                          <p>{{quiz.description[0]}}</p>
+                          <p><span class="badge">{{quiz.questions.length}}</span> domande</p>
+                          <p><button type="btn btn-primary" role="button" ng-click = "selectQuiz(quiz)">Svolgi il quiz</button>
 					  </div>
 					  </div>
-				  </div>
-					<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<div class="thumbnail">
-					  <div class="caption">
-						<h4>Titolo del quiz 2</h4>
-						<p><a href="#">Materia</a></p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-						<p><a href="#" class="btn btn-primary" role="button">Svolgi il quiz</a></p>
-					  </div>
-					</div>
-				  </div>
-				  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<div class="thumbnail">
-					  <div class="caption">
-						<h4>Titolo del quiz 1</h4>
-						<p><a href="#">Materia</a></p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-						<p><a href="#" class="btn btn-primary" role="button">Svolgi il quiz</a></p>
-					  </div>
-					  </div>
-				  </div>
-					<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<div class="thumbnail">
-					  <div class="caption">
-						<h4>Titolo del quiz 2</h4>
-						<p><a href="#">Materia</a></p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-						<p><a href="#" class="btn btn-primary" role="button">Svolgi il quiz</a></p>
-					  </div>
-					</div>
-				  </div>
-				  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<div class="thumbnail">
-					  
-					  <div class="caption">
-						<h4>Titolo del quiz 2</h4>
-						<p><a href="#">Materia</a></p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-						<p><a href="#" class="btn btn-primary" role="button">Svolgi il quiz</a></p>
-					  </div>
-					</div>
-				  </div>
-				  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<div class="thumbnail">
-					  
-					  <div class="caption">
-						<h4>Titolo del quiz 3</h4>
-						<p><a href="#">Materia</a></p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-						<p><a href="#" class="btn btn-primary" role="button">Svolgi il quiz</a></p>
-					  </div>
-					</div>
-				  </div>
-				  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<div class="thumbnail">
-					  
-					  <div class="caption">
-						<h4>Titolo del quiz 4</h4>
-						<p><a href="#">Materia</a></p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-						<p><a href="#" class="btn btn-primary" role="button">Svolgi il quiz</a></p>
-					  </div>
-					</div>
-				  </div>
-				  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<div class="thumbnail">
-					  
-					  <div class="caption">
-						<h4>Titolo del quiz 5</h4>
-						<p><a href="#">Materia</a></p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-						<p><a href="#" class="btn btn-primary" role="button">Svolgi il quiz</a></p>
-					  </div>
-					</div>
-				  </div>
-				  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<div class="thumbnail">
-					  
-					  <div class="caption">
-						<h4>Titolo del quiz 6</h4>
-						<p><a href="#">Materia</a></p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-						<p><a href="#" class="btn btn-primary" role="button">Svolgi il quiz</a></p>
-					  </div>
-					</div>
-				  </div>
-				  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<div class="thumbnail">
-					  
-					  <div class="caption">
-						<h4>Titolo del quiz 6</h4>
-						<p><a href="#">Materia</a></p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-						<p><a href="#" class="btn btn-primary" role="button">Svolgi il quiz</a></p>
-					  </div>
-					</div>
-				  </div>
-				  <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-					<div class="thumbnail">
-					  
-					  <div class="caption">
-						<h4>Titolo del quiz 8</h4>
-						<p><a href="#">Materia</a></p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-						<p><a href="#" class="btn btn-primary" role="button">Svolgi il quiz</a></p>
-					  </div>
-					</div>
-				  </div>
+				  </div>		  
 				</div>
 			</div>
+            
 			<!-- numerazione pagine -->
 			<div class="clear text-center">
-				<nav>
-				<ul class="pagination">
-					<li class="page-item disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-					<li class="page-item active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-				</ul>
-				</nav>
+				<uib-pagination total-items="setTotalItems(searchQuizzes.length)" ng-model="currentPage" class="pagination-sm" items-per-page="itemsPerPage" boundary-link-numbers="true" force-ellipses="true" max-size="maxSize"></uib-pagination>
 			</div>
+            </div>
 				
 		</div> <!-- end of rowfluid -->
     </div> <!-- end of pagewrap -->

@@ -77,12 +77,12 @@ exports.save = function (req, res) {
         else
             console.log('domanda salvata correttamente');
     });
-    // res.redirect('/Quizzipedia/mgmtQuestion');
+
     res.send({ result: "done" });
 };
 
 exports.erase = function (req, res) {
-    if(req.sesison.user && req.session.user.role == 'teacher'){
+    if(req.session.user && req.session.user.role == 'teacher'){
         Question.remove({ '_id': req.body._id }, function (err, question){
             if (err) {
                 console.log('error: ' + err);

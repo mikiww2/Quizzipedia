@@ -1,3 +1,16 @@
+/*
+ * Nome del file: headerLoggedStudent.js
+ * Percorso: public/header/headerLoggedStudent.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la visualizzazione del header da studente
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('Quizzipedia').directive('headerLoggedStudent',function(){
     
     return{

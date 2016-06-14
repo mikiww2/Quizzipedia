@@ -1,3 +1,16 @@
+/*
+ * Nome del file: Pagination.js
+ * Percorso: public/footer/Pagination.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller che gestisce la paginazione
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('Quizzipedia').controller ('CtrlPagination', ['$scope', function ($scope) { 
     
     $scope.currentPage = 1;

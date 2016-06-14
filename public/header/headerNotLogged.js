@@ -1,3 +1,16 @@
+/*
+ * Nome del file: headerNotLogged.js
+ * Percorso: public/header/headerNotLogged.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la visualizzazione del header da non loggati
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('Quizzipedia').directive('headerNotLogged',function(){
     
     return{

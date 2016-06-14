@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlHeader.js
+ * Percorso: public/header/CtrlHeader.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la gestione del header
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('Quizzipedia').controller('CtrlHeader',['$scope','$http',function($scope,$http){    
     
     $scope.user = null;

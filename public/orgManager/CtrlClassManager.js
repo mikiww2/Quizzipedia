@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlClassManager.js
+ * Percorso: public/orgManager/CtrlClassManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per il reperimento della lista di classi, modifica e eliminazione
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$scope', '$http', function (Class, $scope, $http){
     
     $scope.classes = [];

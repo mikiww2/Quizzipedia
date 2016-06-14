@@ -6,6 +6,8 @@ angular.module().factory('AnswerShortAnswerQ',['AnswerQuestion',function(AnswerQ
         this.givenAnswer = answer; //String
     };
     
+    AnswerShortAnswerQ.prototype = AnswerQuestion.prototype;
+    
     AnswerShortAnswerQ.prototype.check = function(){
         
     };
@@ -13,6 +15,8 @@ angular.module().factory('AnswerShortAnswerQ',['AnswerQuestion',function(AnswerQ
     AnswerShortAnswerQ.prototype.getGivenAnswer = function(){
       return this.givenAnswer;  
     };
+    
+    
     
     return AnswerShortAnswerQ;
     

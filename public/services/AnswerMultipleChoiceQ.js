@@ -5,6 +5,8 @@ angular.module().factory('AnswerMultipleChoiceQ',['AnswerQuestion',function(Answ
         this.givenAnswer = answer; //bool[]
     };
     
+    AnswerMultipleChoiceQ.prototype = AnswerQuestion.prototype;
+    
     AnswerMultipleChoiceQ.prototype.check = function(){
         
     };
@@ -12,6 +14,8 @@ angular.module().factory('AnswerMultipleChoiceQ',['AnswerQuestion',function(Answ
     AnswerMultipleChoiceQ.prototype.getGivenAnswer = function(){
       return this.givenAnswer;  
     };
+    
+    
     
     return AnswerMultipleChoiceQ;
     

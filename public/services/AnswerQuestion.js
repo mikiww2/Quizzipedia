@@ -1,7 +1,8 @@
 angular.module().factory('AnswerQuestion',['GenericQuestion',function(){
     
     function AnswerQuestion(solver,question){        
-        this.question = question; //GenericQuestion       
+        this.question = question; //GenericQuestion 
+        this.solver = solver; //studente che ha risolto la domanda
     };   
     
     AnswerQuestion.prototype.getQuestion = function(){

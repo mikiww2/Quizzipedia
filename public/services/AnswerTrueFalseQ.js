@@ -7,13 +7,19 @@ angular.module().factory('AnswerTrueFalseQ',['AnswerQuestion',function(AnswerQue
         
     };
     
+    AnswerTrueFalseQ.prototype = AnswerQuestion.prototype;
+    
     
     AnswerTrueFalseQ.prototype.check = function(){
-        
+        //guardo la givenAnswer e vedo se è uguale alla risposta dentro il riferimento question
     };
     
     AnswerTrueFalseQ.prototype.getGivenAnswer = function(){
       return this.givenAnswer;  
+    };
+    
+    AnswerTrueFalseQ.prototype.setGivenAnswer = function(answer){
+      this.givenAnswer = answer;  
     };
     
     return AnswerTrueFalseQ;

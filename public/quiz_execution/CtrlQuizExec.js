@@ -1,9 +1,9 @@
-angular.module('QuizSolver').controller('CtrlExecutionQuiz',[function(){
+angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope',function($scope){
     
     
     $scope.indexQuestion = 0;
     $scope.question = null; //GenericQuestion
-    $scope.answerQuiz = new AnswerQuiz();
+    $scope.answerQuiz = null; //new AnswerQuiz();
     $scope.answer = null;
     $scope.loadQuestion = function(indexQuestion){
         //localmente recupero la domanda in posizione indexQuestion e la assegno a $scope.question.

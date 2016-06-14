@@ -100,7 +100,8 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', 'GenericQues
         $http.post('/api/quiz/save', request)
             .success(function(response) {
                 $scope.myQuiz = new Quiz();
-                alert(response.message);
+                alert(response.message)
+                $window.location.href = '/Quizzipedia/createQuiz';
             }).error(function(){
                 alert('Errore nel sistema');
             });

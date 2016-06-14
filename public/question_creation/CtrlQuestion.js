@@ -30,7 +30,14 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             this.size = this.size +1;
         },
         remove: function(index){
-            this.question.removeAnswer(index);
+            console.log("MyMultipleChoiceQ.remove");
+            if(this.question instanceof MultipleChoiceQ){
+                console.log("sono un MultipleChoiceQ" + (this.question instanceof MultipleChoiceQ) );
+            }
+            else{
+                console.log("non sono un MultipleChoiceQ");
+            }
+            this.question.removeAnsw(index);
             this.size = this.size -1;
         },
         preUpload: function(index){

@@ -452,21 +452,21 @@ h6.description, h4.description, h3.description{
 	width:500px; margin:0 auto;
 }
 
-#classes .badge, #instList .badge {
+#classes .badge, #instList .badge, #classList .badge {
 	background-color: #ffcb35;
 }
 
- #instList > .list-group-item{
+ #instList > .list-group-item,  #classList > .list-group-item{
 	background-color: #f3f3f3;
 	padding-bottom: 20px;
 }
 
-#instList a {
+#instList a, #classList a {
 	text-decoration: underline;
 	color: #22A7F0;
 }
 
-#instList .collapse a, #instList .btn  a{
+#instList .collapse a, #instList .btn  a, #classList .collapse a, #classList .btn a{
 	text-decoration: none;
 }
 
@@ -502,7 +502,7 @@ h6.description, h4.description, h3.description{
 		font-weight: bold;
 }
 
-#instList {
+#instList, #classList {
 	width: 800px; margin: 0 auto;
 }
 
@@ -980,11 +980,11 @@ ul.alert-dropdown {
 
 @media(max-width:768px){
     #login-dp{
-        background-color: inherit;
+        background-color: white;
         color: #fff;
     }
     #login-dp .bottom{
-        background-color: inherit;
+        background-color: white;
         border-top:0 none;
     }
 }

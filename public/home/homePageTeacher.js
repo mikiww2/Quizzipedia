@@ -1,3 +1,16 @@
+/*
+ * Nome del file: homePageTeacher.js
+ * Percorso: public/home/homePageTeacher.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la visualizzazione della homepage docente
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('Quizzipedia').directive('homePageTeacher', function() {
     return {
         restrict: 'E',

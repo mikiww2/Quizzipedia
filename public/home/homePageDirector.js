@@ -1,3 +1,16 @@
+/*
+ * Nome del file: homePageDirector.js
+ * Percorso: public/home/homePageDirector.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la visualizzazione della homepage responsabile
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('Quizzipedia').directive('homePageDirector',function(){
     return {
       restrict: 'E',

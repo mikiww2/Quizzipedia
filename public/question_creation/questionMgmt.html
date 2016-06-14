@@ -122,7 +122,7 @@
                   </thead>
                   
                   <tbody>
-                      <tr ng-repeat="(index, question) in Questionlist"><!-- for each quiz -->
+                      <tr ng-repeat="(index, question) in Questionlist.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))"><!-- for each quiz -->
                           <td><input type="checkbox" class="checkClass" /></td>
                           <td>{{question.title}}</td>
                           <td>{{question.topic}}</td>

@@ -8,8 +8,7 @@ var Schema = mongoose.Schema;
 var topicSchema = new Schema({
     name: {
         type: String
-        ,lowercase: true
-        ,trim: true
+        ,required: [true, 'name is required']
     }
 }, {
     strict: true

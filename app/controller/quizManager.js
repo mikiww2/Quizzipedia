@@ -80,9 +80,10 @@ exports.fetchPublicQuiz = function (req,res) { //quiz dell'ente pubblici
 
 exports.search = function (req,res) { //ricerca quiz
 
+  var results = [];
   var resultsParsed = [];
 
-    Quiz.find({ classes: {$not: {$size: 0} } }, function (err, quiz){
+    Quiz.find(function (err, quiz){
       if (err) {
           console.log('error: ' + err);
           res.redirect('/');
@@ -143,24 +144,10 @@ exports.search = function (req,res) { //ricerca quiz
                       i--;
                   }
               }
-          }
-
-          for(var i=0;i<results.length;i++){
-              var parsed = agent.parse(results[i].qml);
-              resultsParsed.push({
-                  _id: results[i]._id,
-                  type: parsed.type,
-                  title: parsed.question.title,
-                  institution: results[i].institution,
-                  difficulty: results[i].difficulty,
-                  topic: results[i].topic,
-                  description: results[i].description,
-                  author: results[i].author,
-                  keywords: results[i].keywords
-              });
-          }        
-
-          res.send(resultsParsed);
+          }      
+          console.log(results);
+          console.log(results.length);
+          res.send(results);
         }
         else res.send({ code: 0, message: 'Nessun quiz trovato'});
       }

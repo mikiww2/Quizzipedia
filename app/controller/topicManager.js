@@ -44,21 +44,18 @@ exports.fetchAll = function (req, res) {
 
 		var response = [];
 
-		if(req.session.user){
-			Topic.find(function (err,topic){
-				if (err) {
-	            console.log('error: ' + err);
-	            res.redirect('/');
-	      }
-	      else{
-	       	if(topic){
-	       		res.send(topic);
-	       	}
-	       	else console.log('Nessun argomento trovato');      		
-	    	}
-			});
-		}
-		else res.redirect('/');
+		Topic.find(function (err,topic){
+			if (err) {
+            console.log('error: ' + err);
+            res.redirect('/');
+      }
+      else{
+       	if(topic){
+       		res.send(topic);
+       	}
+       	else console.log('Nessun argomento trovato');      		
+    	}
+		});
 }
 
 exports.save = function (req, res) {

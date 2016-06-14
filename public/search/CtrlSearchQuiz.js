@@ -12,13 +12,13 @@ angular.module('QuizManager').controller('CtrlSearchQuiz',['Quiz', '$scope', '$h
     };
     
     $scope.loadTopics = function () {
-        $http.get('/api/topic/fetch').success(function(response) {
+        $http.get('/api/topic/fetch_all').success(function(response) {
             $scope.topics = response;
         });
     };
     
     $scope.searchQuiz = function() {
-        $http.post('/api/quiz/search', $scope.searchQuiz).success(function(response) {
+        $http.post('/api/quiz/search', $scope.searchQ).success(function(response) {
             $scope.searchQuizzes = response;
             
              angular.forEach ($scope.searchQuizzes, function(quiz) {

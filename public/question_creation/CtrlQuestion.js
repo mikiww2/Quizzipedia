@@ -553,11 +553,10 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         var json = {type: type, question: question};
        
        $http.post('/api/question/save',json).success(function(response){
-           
-            
+            $window.location.href = '/Quizzipedia/questionMgmt';          
         });
         
-        $window.location.href = '/Quizzipedia/createQuestion';
+        
     };
     
     $scope.topicsList = [];

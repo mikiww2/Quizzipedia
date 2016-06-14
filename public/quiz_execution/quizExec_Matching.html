@@ -94,127 +94,47 @@
 						</div>
 					</div>
 					<!-- end of row -->
-					<!-- question body - variable structure depending on qtype -->
+						<!-- question body - variable structure depending on qtype -->
 					<div class="well matching">
-						<div class="col-md-10 col-md-offset-2">
-							<div class="row">
-								<div class="answerBlock col-md-8"> <!-- riga di elementi della stessa categoria-->
-									<div>
-										<a href="#"><span>
-										<span class="label-as-badge label-yellow text-center label-margin">A</span>
-										<h4>Titolo riga</h4></span></a><!-- titolo riga (non c'è nell'ar ma potenzialmente utile, ignoratelo se volete) -->
-									</div>
-									<div class="drag ui-widget-content">
-										<span class="label label-danger label-exec">1</span> Risposta
-										
-									</div>
-									<div class="drag ui-widget-content">
-										<span class="label label-danger label-exec">2</span><span>Risposta</span>
-										
-									</div>
-									<div class="drag ui-widget-content">
-										<span class="label label-danger label-exec">3</span><span>Risposta</span>
-										
-									</div>
-								</div>
-								<div class="col-md-4 droppable ui-widget-header droppable-exec">
-									<span class="badge">A</span><p>Trascinare qui</p>
-								</div>
+
+					<div class="row answerBlock center-div">
+						<div class="col-lg-6 col-md-6 border-right">
+							<div>
+								<a href="#"><span class="label-as-badge label-yellow text-center">A</span></a>
+								<h4>Prima parte</h4>
 							</div>
-							
-							<div class="row">					
-								<div class="answerBlock col-md-8">
-									<div>
-										<a href="#"><span>
-										<span class="label-as-badge label-yellow text-center label-margin">B</span>
-										<h4>Titolo riga</h4></span></a>
-									</div>
-									<div class="drag ui-widget-content">
-										<span class="label label-danger label-exec">1</span><span>Risposta</span>
-										
-									</div>
-									<div class="drag ui-widget-content">
-										<span class="label label-danger label-exec">2</span><span>Risposta</span>
-										
-									</div>
-									<div class="drag ui-widget-content">
-										<span class="label label-danger label-exec">3</span><span>Risposta</span>
-										
-									</div>
-								</div>
-								<div class="col-md-4 droppable ui-widget-header droppable-exec">
-									<span class="badge">B</span><p>Trascinare qui</p>
-								</div>
+							<div class="spacer"></div>
+							<div class="drag">
+								<span class="label label-danger label-exec">1</span><span>Risposta</span>			
 							</div>
-								
-							<div class="row">
-								<div class="answerBlock col-md-8">
-									<div>
-										<a href="#"><span>
-										<span class="label-as-badge label-yellow text-center label-margin">C</span>
-										<h4>Titolo riga</h4></span></a>							
-									</div>
-									<div class="drag ui-widget-content">
-										<span class="label label-danger">1</span><img src="./assets/img/portraits/usr1.jpg"/>
-										
-									</div>
-									<div class="drag ui-widget-content">
-										<span class="label label-danger">2</span><img src="./assets/img/portraits/usr2.jpg" />
-										
-									</div>
-									<div class="drag ui-widget-content">
-										<span class="label label-danger">3</span><img src="./assets/img/portraits/usr3.jpg"/>
-										
-									</div>
-								</div>
-								<div class="col-md-4 droppable ui-widget-header droppable-exec">
-									<span class="badge">C</span><p>Trascinare qui</p>
-								</div>
+							<div class="drag">
+								<span class="label label-danger label-exec">2</span><span>Risposta</span>								
 							</div>
-							
-							<div class="col-md-4 col-md-offset-8">
-							<button class="btn btn-default btn-success" type="button" id="linkAnswers" data-placement="top" data-toggle="tooltip" title="Collega le risposte"><i class="glyphicon glyphicon-ok"></i></button> 
+							<div class="drag">
+								<span class="label label-danger label-exec">3</span><img src="../../assets/img/portraits/usr1.jpg"/>		
 							</div>
-							
 						</div>
 						
-						<div class="row text-center" id="linksList">
-						<h6 class="text-center">Collegamenti:</h6>
-							<div class="list-group">
-								<div class="list-group-item">
-									<span class="label label-danger">A1</span> - 
-									<span class="label label-danger">B2</span> - 
-									<span class="label label-danger">C3</span>
-									
-								</div>
-								<div class="list-group-item">
-									<span class="label label-danger">A2</span> - 
-									<span class="label label-danger">B1</span> - 
-									<span class="label label-danger">C1</span>
-									
-								</div>
+						<div class="col-lg-6 col-md-6">
+							<div>
+								<a href="#"><span class="label-as-badge label-yellow text-center">B</span></a>
+								<h4>Seconda parte</h4>
+							</div>
+							<div class="spacer"></div>
+							<div class="drag">
+								<input id="id1" type="number" min="-1" step="1" placeholder="1"required /><span>Risposta</span>				
+							</div>
+							<div class="drag">
+								<input id="id2" type="number" min="-1" step="1" placeholder="2"required /><span>Risposta</span>								
+							</div>
+							<div class="drag">
+								<input id="id3" type="number" min="-1" step="1" placeholder="3"required /><span>Risposta</span>		
 							</div>
 						</div>
+					</div>
 
-					<script language="javascript" type="text/javascript">
-					$(document).ready(function() { 
-						$('.drag').draggable({ 
-						revert: false, 
-						stack: ".drag"
-						}); //ogni nuovo elemento creato deve essere reso draggable
-						$( ".droppable" ).droppable({
-						hoverClass: 'drop-hover',
-								accept: '.drag',
-								hoverClass: "ui-state-active",
-								drop: function( event, ui ) {
-									$( this )
-									.addClass( "ui-state-highlight" ).find( "p" ).html( "Accettato!" );
-							  }
-							});
-					});
-					</script>
-				</div>
 					<!-- end of question body -->
+					
 					<div class="clearfix"></div>
 					<div class="row qFooting">
 						<div class="col-md-offset-1 text-center">

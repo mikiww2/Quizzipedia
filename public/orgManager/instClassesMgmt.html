@@ -156,6 +156,7 @@
 		</div>
 		<!-- create class popup -->
 		<div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="create" aria-hidden="true">
+		<form ng-submit = "createClass()">
 			<div class="modal-dialog">
 				<div class="modal-content">
 				<div class="modal-header">
@@ -164,19 +165,20 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<input class="form-control " type="text" placeholder="Nome della classe" ng-model="myClass.name">
+						<input class="form-control " type="text" placeholder="Nome della classe" ng-model="myClass.name" required>
 					</div>
 					<div class="form-group">
-						<input class="form-control " type="text" placeholder="Anno" ng-model="myClass.academicYear">
+						<input class="form-control " type="text" placeholder="Anno" ng-model="myClass.academicYear" required>
 					</div>
                     <div class="form-group">
-					<input class="form-control " type="text" placeholder="Descrizione della classe" ng-model="myClass.description">
+					<input class="form-control " type="text" placeholder="Descrizione della classe" ng-model="myClass.description" required>
 				</div>
-					<div class=text-right><button type="button" class="btn btn-primary" ng-click = "createClass()">Conferma</button></div>
+					<div class=text-right><button type="submit" class="btn btn-primary">Conferma</button></div>
 				</div>
 			</div>
 		</div>
 			  <!-- end of create popup --> 
+			  </form>
 		</div>
 	</div>
        <page-footer></page-footer>

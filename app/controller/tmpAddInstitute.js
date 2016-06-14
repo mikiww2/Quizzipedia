@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var Organisation = require('../model/organisation.model'); 
+var Organisation = require('../model/organization.model'); 
 
 var database = require('../../config/database');
 mongoose.connect(database.localUrl);

@@ -26,7 +26,7 @@ exports.save = function (req, res) {
         author: author
         ,title: req.body.question.title
         ,description: req.body.question.description
-        ,topic: req.body.question.topic // ignorante o controlla che esistano veramente ?
+        ,topic: req.body.question.topic
         ,difficulty: req.body.question.difficulty
         ,keywords: req.body.question.keywords
         ,institution: req.session.user.institution
@@ -162,7 +162,7 @@ exports.search = function (req, res, next) {
                 resultsParsed.push({
                     _id: results[i]._id,
                     type: parsed.type,
-                    title: parsed.question.title,
+                    title: results[i].title,
                     institution: results[i].institution,
                     difficulty: results[i].difficulty,
                     topic: results[i].topic,

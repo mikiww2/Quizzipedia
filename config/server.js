@@ -13,7 +13,7 @@
 
 //change here
 var defaultPort = '8080',
-    cookieMaxAge = '86400000';
+    cookieMaxAge = 86400000;
 
 //
 

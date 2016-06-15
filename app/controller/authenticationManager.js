@@ -40,6 +40,9 @@ exports.signin = function (req, res) {
                         ,role: 'noRole'
                     };
 
+                    if(email == 'admin@quizzipedia.it')
+                        req.session.user.role = 'admin';
+
                     res.redirect('/');
                 }
                 else {  //SE LA PASS NON CORRISPONDE

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="Quizzipedia">
+<html lang="en" ng-app="RecoverPswd">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
       
     <script type="text/javascript" src="./public/core.js"></script>
-	<script type="text/javascript" src="./public/authentic/CtrlData.js" ></script>
+	<script type="text/javascript" src="./public/authentic/CtrlRecover.js" ></script>
       
     <!-- Directive angular (HEADER)-->
     <script type="text/javascript" src="./public/header/headerNotLogged.js"></script>
@@ -57,12 +57,12 @@
         </div>
 		
 		
-	<div class="container">
-		  <form class="form" action="/api/auth/recover_pswd" method="post">
+	<div class="container" ng-controller="CtrlRecover">
+		  <form class="form" ng-submit="sendRequest()">
 			 <h3 class="form-heading description text-center">Recupero password</h3>
 			 <div class="spacer"></div>
 			<label for="inputEmail" class="sr-only">Indirizzo email</label>
-			<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Indirizzo email" required autofocus>
+			<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Indirizzo email" ng-model="email" required autofocus>
 			<small class="text-muted">Una password temporanea sarà inviata all'indirizzo email inserito.</small>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Invia</button>
 		  </form>

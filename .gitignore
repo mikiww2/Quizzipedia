@@ -45,6 +45,7 @@ npm-debug.log
 #quizzipedia
 upload/**
 upload_tmp/**
+config/admin.txt
 
 #windows
 Thumbs.db

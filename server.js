@@ -63,3 +63,5 @@ app.get('/Quizzipedia/aut', function (req, res) {
 });
 
 app.listen(port);
+
+console.log("server quizzipedia avviato sulla porta :" + port);

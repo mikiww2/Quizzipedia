@@ -11,6 +11,8 @@ var question,
     qml2 = '|dpr|',
     topic1 = 'Matematica',
     topic2 = 'Storia',
+    title1 = 'titolo 1',
+    title2 = 'titolo 2',
     keywords1 = ['eee', 'rtyut'],
     keywords2 = ['wert', 'cvgyu n'],
     difficulty1 = 1,
@@ -38,6 +40,7 @@ describe('question.model.js unit tests :', function() {
                 ,difficulty: difficulty1
                 ,author: author1
                 ,institution: institution
+                ,title: title1
             });
 
             should.exist(question);
@@ -45,6 +48,7 @@ describe('question.model.js unit tests :', function() {
             should.exist(question.difficulty);
             should.exist(question.author);
             should.exist(question.institution);
+            should.exist(question.title);
             should.not.exist(question.topic);
             should.exist(question.keywords);
             should.not.exist(question.description);
@@ -53,6 +57,7 @@ describe('question.model.js unit tests :', function() {
             question.difficulty.should.be.a.Number().and.be.exactly(difficulty1);
             question.author.should.be.a.String().and.be.exactly(author1);
             question.institution.should.be.a.String().and.be.exactly(institution);
+            question.title.should.be.a.String().and.be.exactly(title1);
             question.keywords.should.be.a.Array();
             question.keywords.length.should.be.exactly(0);
 
@@ -75,6 +80,7 @@ describe('question.model.js unit tests :', function() {
                     should.exist(qq.difficulty);
                     should.exist(qq.author);
                     should.exist(qq.institution);
+                    should.exist(qq.title);
                     should.not.exist(qq.topic);
                     should.exist(qq.keywords);
                     should.not.exist(qq.description);
@@ -83,6 +89,7 @@ describe('question.model.js unit tests :', function() {
                     qq.difficulty.should.be.a.Number().and.be.exactly(difficulty1);
                     qq.author.should.be.a.String().and.be.exactly(author1);
                     qq.institution.should.be.a.String().and.be.exactly(institution);
+                    qq.title.should.be.a.String().and.be.exactly(title1);
                     qq.keywords.should.be.a.Array();
                     qq.keywords.length.should.be.exactly(0);
                     
@@ -97,6 +104,7 @@ describe('question.model.js unit tests :', function() {
                 ,difficulty: difficulty2
                 ,author: author2
                 ,institution: institution
+                ,title: title2
             });
 
             should.exist(question);
@@ -104,6 +112,7 @@ describe('question.model.js unit tests :', function() {
             should.exist(question.difficulty);
             should.exist(question.author);
             should.exist(question.institution);
+            should.exist(question.title);
             should.not.exist(question.topic);
             should.exist(question.keywords);
             should.not.exist(question.description);
@@ -112,6 +121,7 @@ describe('question.model.js unit tests :', function() {
             question.difficulty.should.be.a.Number().and.be.exactly(difficulty2);
             question.author.should.be.a.String().and.be.exactly(author2);
             question.institution.should.be.a.String().and.be.exactly(institution);
+            question.title.should.be.a.String().and.be.exactly(title2);
             question.keywords.should.be.a.Array();
             question.keywords.length.should.be.exactly(0);
 
@@ -134,6 +144,7 @@ describe('question.model.js unit tests :', function() {
                     should.exist(qq.difficulty);
                     should.exist(qq.author);
                     should.exist(qq.institution);
+                    should.exist(qq.title);
                     should.not.exist(qq.topic);
                     should.exist(qq.keywords);
                     should.not.exist(qq.description);
@@ -142,6 +153,7 @@ describe('question.model.js unit tests :', function() {
                     qq.difficulty.should.be.a.Number().and.be.exactly(difficulty2);
                     qq.author.should.be.a.String().and.be.exactly(author2);
                     qq.institution.should.be.a.String().and.be.exactly(institution);
+                    qq.title.should.be.a.String().and.be.exactly(title2);
                     qq.keywords.should.be.a.Array();
                     qq.keywords.length.should.be.exactly(0);
                     
@@ -157,6 +169,7 @@ describe('question.model.js unit tests :', function() {
                 ,author: author1
                 ,topic: topic1
                 ,institution: institution
+                ,title: title1
             });
 
             should.exist(question);
@@ -164,6 +177,7 @@ describe('question.model.js unit tests :', function() {
             should.exist(question.difficulty);
             should.exist(question.author);
             should.exist(question.institution);
+            should.exist(question.title);
             should.exist(question.topic);
             should.exist(question.keywords);
             should.not.exist(question.description);
@@ -172,6 +186,7 @@ describe('question.model.js unit tests :', function() {
             question.difficulty.should.be.a.Number().and.be.exactly(difficulty1);
             question.author.should.be.a.String().and.be.exactly(author1);
             question.institution.should.be.a.String().and.be.exactly(institution);
+            question.title.should.be.a.String().and.be.exactly(title1);
             question.topic.should.be.a.String().and.be.exactly(topic1);
             question.keywords.should.be.a.Array();
             question.keywords.length.should.be.exactly(0);
@@ -219,6 +234,7 @@ describe('question.model.js unit tests :', function() {
                 ,author: author1
                 ,keywords: keywords1
                 ,institution: institution
+                ,title: title1
             });
 
             should.exist(question);
@@ -226,6 +242,7 @@ describe('question.model.js unit tests :', function() {
             should.exist(question.difficulty);
             should.exist(question.author);
             should.exist(question.institution);
+            should.exist(question.title);
             should.exist(question.keywords);
             should.not.exist(question.topic);
             should.not.exist(question.description);
@@ -234,6 +251,7 @@ describe('question.model.js unit tests :', function() {
             question.difficulty.should.be.a.Number().and.be.exactly(difficulty1);
             question.author.should.be.a.String().and.be.exactly(author1);
             question.institution.should.be.a.String().and.be.exactly(institution);
+            question.title.should.be.a.String().and.be.exactly(title1);
             question.keywords.should.be.a.Array();
             question.keywords.length.should.be.exactly(2);
 
@@ -256,6 +274,7 @@ describe('question.model.js unit tests :', function() {
                     should.exist(qq.difficulty);
                     should.exist(qq.author);
                     should.exist(qq.institution);
+                    should.exist(qq.title);
                     should.exist(qq.keywords);
                     should.not.exist(qq.topic);
                     should.not.exist(qq.description);
@@ -264,6 +283,7 @@ describe('question.model.js unit tests :', function() {
                     qq.difficulty.should.be.a.Number().and.be.exactly(difficulty1);
                     qq.author.should.be.a.String().and.be.exactly(author1);
                     qq.institution.should.be.a.String().and.be.exactly(institution);
+                    qq.title.should.be.a.String().and.be.exactly(title1);
                     qq.keywords.should.be.a.Array();
                     q.keywords.length.should.be.exactly(2);
 
@@ -279,6 +299,7 @@ describe('question.model.js unit tests :', function() {
                 ,author: author1
                 ,description: description1
                 ,institution: institution
+                ,title: title1
             });
 
             should.exist(question);
@@ -286,6 +307,7 @@ describe('question.model.js unit tests :', function() {
             should.exist(question.difficulty);
             should.exist(question.author);
             should.exist(question.institution);
+            should.exist(question.title);
             should.exist(question.description);
             should.not.exist(question.topic);
             should.exist(question.keywords);
@@ -294,6 +316,7 @@ describe('question.model.js unit tests :', function() {
             question.difficulty.should.be.a.Number().and.be.exactly(difficulty1);
             question.author.should.be.a.String().and.be.exactly(author1);
             question.institution.should.be.a.String().and.be.exactly(institution);
+            question.title.should.be.a.String().and.be.exactly(title1);
             question.description.should.be.a.String().and.be.exactly(description1);
             question.keywords.should.be.a.Array();
             question.keywords.length.should.be.exactly(0);
@@ -317,6 +340,7 @@ describe('question.model.js unit tests :', function() {
                     should.exist(qq.difficulty);
                     should.exist(qq.author);
                     should.exist(qq.institution);
+                    should.exist(qq.title);
                     should.exist(qq.description);
                     should.not.exist(qq.topic);
                     should.exist(qq.keywords);
@@ -325,6 +349,7 @@ describe('question.model.js unit tests :', function() {
                     qq.difficulty.should.be.a.Number().and.be.exactly(difficulty1);
                     qq.author.should.be.a.String().and.be.exactly(author1);
                     qq.institution.should.be.a.String().and.be.exactly(institution);
+                    qq.title.should.be.a.String().and.be.exactly(title1);
                     qq.description.should.be.a.String().and.be.exactly(description1);
                     q.keywords.should.be.a.Array();
                     q.keywords.length.should.be.exactly(0);
@@ -343,6 +368,7 @@ describe('question.model.js unit tests :', function() {
                 , keywords: keywords1
                 , description: description1
                 ,institution: institution
+                ,title: title1
             }).save(function (e, q) {
                 should.not.exist(e);
                 should.exist(q);
@@ -352,6 +378,7 @@ describe('question.model.js unit tests :', function() {
                 should.exist(q.difficulty);
                 should.exist(q.author);
                 should.exist(q.institution);
+                should.exist(q.title);
                 should.exist(q.topic);
                 should.exist(q.keywords);
                 should.exist(q.description);
@@ -360,6 +387,7 @@ describe('question.model.js unit tests :', function() {
                 q.difficulty.should.be.a.Number().and.be.exactly(difficulty1);
                 q.author.should.be.a.String().and.be.exactly(author1);
                 q.institution.should.be.a.String().and.be.exactly(institution);
+                q.title.should.be.a.String().and.be.exactly(title1);
                 q.topic.should.be.a.String().and.be.exactly(topic1);
                 q.keywords.should.be.a.Array();
                 q.keywords.length.should.be.exactly(2);
@@ -375,6 +403,7 @@ describe('question.model.js unit tests :', function() {
                     , keywords: keywords1
                     , description: description1
                     ,institution: institution
+                    ,title: title1
                 }).save(function (er, qq) {
                     should.not.exist(er);
                     should.exist(qq);
@@ -384,6 +413,7 @@ describe('question.model.js unit tests :', function() {
                     should.exist(qq.difficulty);
                     should.exist(qq.author);
                     should.exist(qq.institution);
+                    should.exist(qq.title);
                     should.exist(qq.topic);
                     should.exist(qq.keywords);
                     should.exist(qq.description);
@@ -392,6 +422,7 @@ describe('question.model.js unit tests :', function() {
                     qq.difficulty.should.be.a.Number().and.be.exactly(difficulty1);
                     qq.author.should.be.a.String().and.be.exactly(author1);
                     qq.institution.should.be.a.String().and.be.exactly(institution);
+                    qq.title.should.be.a.String().and.be.exactly(title1);
                     qq.topic.should.be.a.String().and.be.exactly(topic1);
                     qq.keywords.should.be.a.Array();
                     qq.keywords.length.should.be.exactly(2);
@@ -411,6 +442,7 @@ describe('question.model.js unit tests :', function() {
                 difficulty: difficulty1
                 , author: author1
                 ,institution: institution
+                ,title: title1
             }).save(function (er) {
                 should.exist(er);
 
@@ -423,6 +455,7 @@ describe('question.model.js unit tests :', function() {
                 qml: qml1
                 , author: author1
                 ,institution: institution
+                ,title: title1
             }).save(function (er) {
                 should.exist(er);
 
@@ -436,6 +469,7 @@ describe('question.model.js unit tests :', function() {
                 , difficulty: 0
                 , author: author1
                 ,institution: institution
+                ,title: title1
             }).save(function (er) {
                 should.exist(er);
 
@@ -449,6 +483,7 @@ describe('question.model.js unit tests :', function() {
                 , difficulty: 5
                 , author: author1
                 ,institution: institution
+                ,title: title1
             }).save(function (er) {
                 should.exist(er);
 
@@ -461,6 +496,7 @@ describe('question.model.js unit tests :', function() {
                 qml: qml1
                 , difficulty: difficulty1
                 ,institution: institution
+                ,title: title1
             }).save(function (er) {
                 should.exist(er);
 
@@ -473,6 +509,20 @@ describe('question.model.js unit tests :', function() {
                 qml: qml1
                 , difficulty: difficulty1
                 , author: author1
+                ,title: title1
+            }).save(function (er) {
+                should.exist(er);
+
+                return done();
+            });
+        });
+
+        it('without title', function (done) {
+            return new Question({
+                qml: qml1
+                , difficulty: difficulty1
+                , author: author1
+                ,institution: institution
             }).save(function (er) {
                 should.exist(er);
 
@@ -491,6 +541,7 @@ describe('question.model.js unit tests :', function() {
                 , keywords: keywords1
                 , description: description1
                 ,institution: institution
+                ,title: title1
             }).save(function(e, question) {
                 should.not.exist(e);
 
@@ -504,6 +555,7 @@ describe('question.model.js unit tests :', function() {
                     , keywords: keywords2
                     , description: description2
                     ,institution: "altro id ente"
+                    ,title: title2
                 } }, function(er) {
                     should.not.exist(er);
 
@@ -515,6 +567,7 @@ describe('question.model.js unit tests :', function() {
                         should.exist(qq.difficulty);
                         should.exist(qq.author);
                         should.exist(qq.institution);
+                        should.exist(qq.title);
                         should.exist(qq.topic);
                         should.exist(qq.keywords);
                         should.exist(qq.description);
@@ -523,6 +576,7 @@ describe('question.model.js unit tests :', function() {
                         qq.difficulty.should.be.a.Number().and.be.exactly(difficulty2);
                         qq.author.should.be.a.String().and.be.exactly(author2);
                         qq.institution.should.be.a.String().and.be.exactly("altro id ente");
+                        qq.title.should.be.a.String().and.be.exactly(title2);
                         qq.topic.should.be.a.String().and.be.exactly(topic2);
                         qq.keywords.should.be.a.Array();
                         qq.keywords.length.should.be.exactly(2);
@@ -542,6 +596,7 @@ describe('question.model.js unit tests :', function() {
                 , difficulty: difficulty1
                 , author: author1
                 ,institution: institution
+                ,title: title1
             }).save(function(e) {
                 should.not.exist(e);
 
@@ -553,6 +608,7 @@ describe('question.model.js unit tests :', function() {
                     should.exist(q.difficulty);
                     should.exist(q.author);
                     should.exist(q.institution);
+                    should.exist(q.title);
                     should.not.exist(q.topic);
 
                     q.topic = topic1;
@@ -568,6 +624,7 @@ describe('question.model.js unit tests :', function() {
                             should.exist(qq.difficulty);
                             should.exist(qq.author);
                             should.exist(qq.institution);
+                            should.exist(qq.title);
                             should.exist(qq.topic);
 
                             qq.topic.should.be.a.String().and.be.exactly(topic1);
@@ -585,6 +642,7 @@ describe('question.model.js unit tests :', function() {
                 , difficulty: difficulty1
                 , author: author1
                 ,institution: institution
+                ,title: title1
             }).save(function(e) {
                 should.not.exist(e);
 
@@ -596,6 +654,7 @@ describe('question.model.js unit tests :', function() {
                     should.exist(q.difficulty);
                     should.exist(q.author);
                     should.exist(q.institution);
+                    should.exist(q.title);
                     should.not.exist(q.description);
 
                     q.description = description1;
@@ -611,6 +670,7 @@ describe('question.model.js unit tests :', function() {
                             should.exist(qq.difficulty);
                             should.exist(qq.author);
                             should.exist(qq.institution);
+                            should.exist(qq.title);
                             should.exist(qq.description);
 
                             qq.description.should.be.a.String().and.be.exactly(description1);
@@ -628,6 +688,7 @@ describe('question.model.js unit tests :', function() {
                 , difficulty: difficulty1
                 , author: author1
                 ,institution: institution
+                ,title: title1
             }).save(function(e) {
                 should.not.exist(e);
 
@@ -639,6 +700,7 @@ describe('question.model.js unit tests :', function() {
                     should.exist(q.difficulty);
                     should.exist(q.author);
                     should.exist(q.institution);
+                    should.exist(q.title);
                     should.exist(q.keywords);
 
                     q.keywords.should.be.a.Array();
@@ -657,6 +719,7 @@ describe('question.model.js unit tests :', function() {
                             should.exist(qq.difficulty);
                             should.exist(qq.author);
                             should.exist(qq.institution);
+                            should.exist(qq.title);
                             should.exist(qq.keywords);
 
                             qq.keywords.should.be.a.Array();
@@ -678,6 +741,7 @@ describe('question.model.js unit tests :', function() {
                 ,author: author1
                 ,topic: topic1
                 ,institution: institution
+                ,title: title1
             }).save(function(e) {
                 should.not.exist(e);
 
@@ -689,6 +753,7 @@ describe('question.model.js unit tests :', function() {
                     should.exist(q.difficulty);
                     should.exist(q.author);
                     should.exist(q.institution);
+                    should.exist(q.title);
                     should.exist(q.topic);
 
                     q.topic.should.be.a.String().and.be.exactly(topic1);
@@ -706,6 +771,7 @@ describe('question.model.js unit tests :', function() {
                             should.exist(qq.difficulty);
                             should.exist(qq.author);
                             should.exist(qq.institution);
+                            should.exist(qq.title);
                             should.not.exist(qq.topic);
 
                             return done();
@@ -722,6 +788,7 @@ describe('question.model.js unit tests :', function() {
                 ,author: author1
                 ,description: description1
                 ,institution: institution
+                ,title: title1
             }).save(function(e) {
                 should.not.exist(e);
 
@@ -733,6 +800,7 @@ describe('question.model.js unit tests :', function() {
                     should.exist(q.difficulty);
                     should.exist(q.author);
                     should.exist(q.institution);
+                    should.exist(q.title);
                     should.exist(q.description);
 
                     q.description.should.be.a.String().and.be.exactly(description1);
@@ -750,6 +818,7 @@ describe('question.model.js unit tests :', function() {
                             should.exist(qq.difficulty);
                             should.exist(qq.author);
                             should.exist(qq.institution);
+                            should.exist(qq.title);
                             should.not.exist(qq.description);
 
                             return done();
@@ -766,6 +835,7 @@ describe('question.model.js unit tests :', function() {
                 ,author: author1
                 ,keywords: keywords1
                 ,institution: institution
+                ,title: title1
             }).save(function(e) {
                 should.not.exist(e);
 
@@ -777,6 +847,7 @@ describe('question.model.js unit tests :', function() {
                     should.exist(q.difficulty);
                     should.exist(q.author);
                     should.exist(q.institution);
+                    should.exist(q.title);
                     should.exist(q.keywords);
 
                     q.keywords.should.be.a.Array();
@@ -797,6 +868,7 @@ describe('question.model.js unit tests :', function() {
                             should.exist(qq.difficulty);
                             should.exist(qq.author);
                             should.exist(qq.institution);
+                            should.exist(qq.title);
                             should.exist(qq.keywords);
 
                             qq.keywords.should.be.a.Array();

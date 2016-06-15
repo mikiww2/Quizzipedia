@@ -11,19 +11,22 @@
  *
  */
 
-angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope',function($scope){
+angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','AnswerQuiz','AnswerQuestion',function($scope,$http,AnswerQuiz,AnswerQuestion){
     
     
     $scope.currentQuestion = 0;
     $scope.quiz = null;
     $scope.quizQuestions = [];
-    $scope.answerQuiz = null; //new AnswerQuiz();
+    $scope.answerQuiz = new AnswerQuiz();
     $scope.results = []; //bool
     
     
     
     $scope.loadQuiz = function(){
         //fare get
+        $http.get('/api/quiz/fetch_quiz_to_execute').success(function(response){
+            $scope.quiz = response;
+        });
         
     };
     
@@ -43,6 +46,6 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope',function($
         //salvo il quiz localmente dentro a $sope.user e poi invio la richesta al server
     };
     
-    
+    $scope.loadQuiz();
     
 }]);

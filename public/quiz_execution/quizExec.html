@@ -43,6 +43,8 @@
       <script type="text/javascript" src="./public/core.js"></script>
       <script type="text/javascript" src="./public/quiz_execution/quizExecDirectives.js"></script>
       <script type="text/javascript" src="./public/quiz_execution/CtrlQuizExec.js"></script>
+      <script type="text/javascript" src="./public/services/AnswerQuestion.js"></script>
+      <script type="text/javascript" src="./public/services/AnswerQuiz.js"></script>
        <!--<script type="text/javascript" src="./public/header/CtrlHeader.js"></script>
       <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
       -->
@@ -123,7 +125,7 @@
 				<!-- end of canvas -->
 			</div>
             
-            <div class="panel-body">
+            <div class="panel-body" >
                 <!-- QUI INSERISCO LE DIRETTIVE DELLE DOMANDE-->
                 <quiz-exec-true-false ng-if="false"></quiz-exec-true-false>
                 <quiz-exec-multiple ng-if="false"></quiz-exec-multiple>
@@ -134,6 +136,11 @@
             
             </div>
 		</div>
+        
+        
+        {{quiz | json}}
+        {{quizQuestion | json}}
+        
 			<!-- end of panel body -->
         
         

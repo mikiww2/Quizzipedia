@@ -2,7 +2,7 @@
         <!-- MULTIPLE EXEC-->
 					
 			<div class="qOpenContainer thumbnail">
-				<div class="answerBlock" ng-repeat = "(index, option) in answer.question.details.arrayAnswer">
+				<div class="answerBlock" ng-repeat = "(index, option) in answer.question.details.arrayAnswer track by $index">
 					<input type="checkbox" ng-model = "answer.givenAnswer[index]">
 					<span type = "textarea" ng-if = "option.textAnswer != null">{{option.textAnswer}}</span>
 					<span type = "textarea" ng-if = "(option.textAnswer == null) && (option.attachment != null)">
@@ -23,7 +23,7 @@
 					</video>	-->						
 
 					</div>
-<p>DOMANDA: {{answer.question.details}}</p>
+<p>DOMANDA: {{answer}}</p>
 <p>RISULTATO: {{answer.givenAnswer}}</p>
 					<!-- end of question body -->
 		

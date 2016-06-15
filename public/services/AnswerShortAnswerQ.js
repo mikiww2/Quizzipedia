@@ -11,7 +11,7 @@
  *
  */
 
-angular.module().factory('AnswerShortAnswerQ',['AnswerQuestion',function(AnswerQuestion){
+angular.module('QuizSolver').factory('AnswerShortAnswerQ',['AnswerQuestion',function(AnswerQuestion){
     
     function AnswerShortAnswerQ(solver,question,answer){
       

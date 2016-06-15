@@ -11,7 +11,7 @@
  *
  */
 
-angular.module().factory('AnswerMatchingQ',['AnswerQuestion','AnswerMatchingQElement',function(AnswerQuestion,AnswerMatchingQElement){
+angular.module('QuizSolver').factory('AnswerMatchingQ',['AnswerQuestion','AnswerMatchingQElement',function(AnswerQuestion,AnswerMatchingQElement){
     
     function AnswerMatchingQ(solver,question,answer){
         

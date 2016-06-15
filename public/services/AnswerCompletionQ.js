@@ -11,7 +11,7 @@
  *
  */
 
-angular.module().factory('AnswerCompletionQ',['AnswerQuestion',function(AnswerQuestion){
+angular.module('QuizSolver').factory('AnswerCompletionQ',['AnswerQuestion',function(AnswerQuestion){
     
     function AnswerCompletionQ(solver,question,answer){
       

@@ -11,7 +11,7 @@
  *
  */
 
-angular.module().factory('AnswerMultipleChoiceQ',['AnswerQuestion',function(AnswerQuestion){
+angular.module('QuizSolver').factory('AnswerMultipleChoiceQ',['AnswerQuestion',function(AnswerQuestion){
     
     function AnswerMultipleChoiceQ(solver,question,answer){
         AnswerQuestion.call(this,solver,question);

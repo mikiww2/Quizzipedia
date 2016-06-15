@@ -14,7 +14,7 @@ angular.module('CreateQuestion').factory('AnswerMultipleChoice',['Attachment',fu
       return this.textAnswer;  
     };
     
-    AnswerMultipleChoice.prototype.isTrue = function(){
+    AnswerMultipleChoice.prototype.getIsTrue = function(){
       return this.isTrue;  
     };
     

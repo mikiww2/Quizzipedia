@@ -1,3 +1,16 @@
+/*
+ * Nome del file: AnswerMatchingQ.js
+ * Percorso: public/services/AnswerMatchingQ.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per la domanda di tipo collegamenti
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module().factory('AnswerMatchingQ',['AnswerQuestion','AnswerMatchingQElement',function(AnswerQuestion,AnswerMatchingQElement){
     
     function AnswerMatchingQ(solver,question,answer){

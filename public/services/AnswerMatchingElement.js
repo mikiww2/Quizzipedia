@@ -1,3 +1,16 @@
+/*
+ * Nome del file: AnswerMatchingElement.js
+ * Percorso: public/services/AnswerMatchingElement.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per la domanda di tipo collegamenti (rappresenta un elemento da collegare)
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('CreateQuestion').factory('AnswerMatchingElement',['Attachment',function(Attachment){
     
     function AnswerMatchingElement(){

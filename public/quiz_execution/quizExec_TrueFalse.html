@@ -1,10 +1,10 @@
 
 			<!-- TRUE FALSE EXEC-->
 				<!-- description -->
-<img src="./upload/question.details.questionAttachment.path" ng-if = "question.details.questionAttachment.type == 'img'"/>
+<!--<img src="{{'./upload/' + question.details.questionAttachment.path | currency}}" ng-if = "question.details.questionAttachment.type == 'img'"/>
 <img src="./upload/question.details.questionAttachment.path" ng-if = "question.details.questionAttachment.type == 'vid'"/>
 <img src="./upload/question.details.questionAttachment.path" ng-if = "question.details.questionAttachment.type == 'aud'"/>
-
+-->
 <div class="well qtfContainer text-center">
     <div class="form-group row">
         <div class="radio">
@@ -17,6 +17,7 @@
 </div>
 
 <p> RISULTATO: {{answer.givenAnswer}}</p>
+<p>OGGETTO: {{answerQuiz.answerQuestion[$index] | json}}</p>
 
 					<!-- end of question body -->
 					

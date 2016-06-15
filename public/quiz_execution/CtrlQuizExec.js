@@ -47,24 +47,54 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
                 
                 var answer = null;
                 
-                if(response[i].type == 'trfs'){
+                if(response[i].type == 'trfs'){ //ok
                     answer = new AnswerTrueFalseQ(response[i],null);
                     console.log(answer);
                 }
-                else if(response[i].type == 'open'){
-                    answer = new AnswerShortAnswerQ(response[i],null);
+                else if(response[i].type == 'open'){ //ok
+                    answer = new AnswerShortAnswerQ(response[i],"");
                     console.log(answer);
                 }
-                else if(response[i].type == 'mult'){
+                else if(response[i].type == 'mult'){//ok
                     answer = new AnswerMultipleChoiceQ(response[i]);
+                    for(var j = 0; j < answer.question.details.arrayAnswer.length;j++){
+                        answer.addAnswer(false);    
+                    }
+                    
                     console.log(answer);
                 }
-                else if(response[i].type == 'mtch'){
+                else if(response[i].type == 'mtch'){ //ok
                     answer = new AnswerMatchingQ(response[i]);
+                    
+                    var array = answer.question.details.arrayAnswer;
+                    
+                    for(var j = 0; j < array.length; j++){
+                        var element = new AnswerMatchingQElement();
+                        
+                        element.setId(-1);
+                        if(array[j].attachment != null){
+                            element.setValueAnswer(array[j].attachment.path);
+                        }
+                        else if (array[j].text != null){
+                            element.setValueAnswer(array[j].text);
+                        }
+                        
+                        answer.addAnswer(element);
+                    }
+                    
                     console.log(answer);
                 }
-                else if(response[i].type == 'cmpl'){
+                else if(response[i].type == 'cmpl'){//ok
                     answer = new AnswerCompletionQ(response[i]);
+                    
+                    var array = answer.question.details.text;
+                    
+                    for(var k = 0; k < array.length; k++){
+                        if(array[k].type == 'id'){
+                            answer.addAnswer("");
+                        }
+                    }
+                    
                     console.log(answer);
                 }
                 

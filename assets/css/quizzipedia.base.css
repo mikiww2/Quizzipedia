@@ -296,10 +296,10 @@ h6.description, h4.description, h3.description{
 	margin: 0 auto;
 }
 
-.nextBtn {
+/* .nextBtn {
 	margin-right: 20px;
 }
-
+ */
 .diffStars i {
 	color: #ffcb35;
 }
@@ -560,6 +560,7 @@ h6.description, h4.description, h3.description{
 	border-radius: 10px;
 	margin: 0 auto;
 }
+
 
 
 .solveMatching .drag {

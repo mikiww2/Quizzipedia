@@ -15,7 +15,7 @@ angular.module('Quizzipedia').controller ('CtrlPagination', ['$scope', function 
     
     $scope.currentPage = 1;
 
-    $scope.itemsPerPage = 5;
+    $scope.itemsPerPage = 6;
 
     $scope.maxSize = 5; //Number of pager buttons to show
     

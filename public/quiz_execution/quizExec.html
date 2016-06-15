@@ -135,28 +135,28 @@
 						<!-- custom stars according to difficulty -->
 						<p><span class="diffStars">
 							<span class="yellow-glyphs" ng-if="quiz.difficulty=='1'">
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star-empty"></span>
-								<span class="glyphicon glyphicon-star-empty"></span>
-								<span class="glyphicon glyphicon-star-empty"></span>
+								<i class="glyphicon glyphicon-star"></i>
+								<i class="glyphicon glyphicon-star-empty"></i>
+								<i class="glyphicon glyphicon-star-empty"></i>
+								<i class="glyphicon glyphicon-star-empty"></i>
 							</span>
 							 <span class="yellow-glyphs" ng-if="quiz.difficulty=='2'">
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star-empty"></span>
-								<span class="glyphicon glyphicon-star-empty"></span>
+								<i class="glyphicon glyphicon-star"></i>
+								<i class="glyphicon glyphicon-star"></i>
+								<i class="glyphicon glyphicon-star-empty"></i>
+								<i class="glyphicon glyphicon-star-empty"></i>
 							</span>
 							 <span class="yellow-glyphs" ng-if="quiz.difficulty=='3'">
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star-empty"></span>
+								<i class="glyphicon glyphicon-star"></i>
+								<i class="glyphicon glyphicon-star"></i>
+								<i class="glyphicon glyphicon-star"></i>
+								<i class="glyphicon glyphicon-star-empty"></i>
 							</span>
 							 <span class="yellow-glyphs" ng-if="quiz.difficulty=='4'">
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
-								<span class="glyphicon glyphicon-star"></span>
+								<i class="glyphicon glyphicon-star"></i>
+								<i class="glyphicon glyphicon-star"></i>
+								<i class="glyphicon glyphicon-star"></i>
+								<i class="glyphicon glyphicon-star"></i>
 							</span>
 						</span></p>
 					</div>
@@ -187,32 +187,32 @@
 					<div class="row"> 
 						<!-- title -->
 						<div class="col-md-3">							
-							<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i> {{answer.question.title}}</h4>
-                            <h6 class="text-center">{{answer.question.topic}}
-								<p class="diffStars">
-                                    <span class="yellow-glyphs" ng-if="answer.question.difficulty=='1'">
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
+							<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i>{{answer.question.title}}</h4>
+                            <h6 class="text-center">{{answer.question.topic}}</h6>
+								<p class="diffStars"> 
+                                    <span class="yellow-glyphs" ng-if="quiz.difficulty=='1'">
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star-empty"></i>
+										<i class="glyphicon glyphicon-star-empty"></i>
+										<i class="glyphicon glyphicon-star-empty"></i>
 									</span>
-									 <span class="yellow-glyphs" ng-if="answer.question.difficulty=='2'">
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
+									 <span class="yellow-glyphs" ng-if="quiz.difficulty=='2'">
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star-empty"></i>
+										<i class="glyphicon glyphicon-star-empty"></i>
 									</span>
-									 <span class="yellow-glyphs" ng-if="answer.question.difficulty=='3'">
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
+									 <span class="yellow-glyphs" ng-if="quiz.difficulty=='3'">
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star-empty"></i>
 									</span>
-									 <span class="yellow-glyphs" ng-if="answer.question.difficulty=='4'">
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
+									 <span class="yellow-glyphs" ng-if="quiz.difficulty=='4'">
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star"></i>
 									</span>
 								</p>
 							</h6>
@@ -259,7 +259,7 @@
                     
                     <div class="clearfix"></div>
 					<div class="row qFooting">
-						<div class="col-md-offset-1 col-xs-offset-2 text-center">
+						<div class="center-div text-center">
                             
 						<span class="badge qNumber"><span class="qCurrent">{{index+1}}</span>/{{answerQuiz.answerQuestion.length}}</span>
                             

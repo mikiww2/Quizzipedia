@@ -9,16 +9,16 @@
 				</div>
 				<div class="row" ng-if = "userClasses.length != 0">
 					<!-- panel -->
-					<div class="col-lg-6 col-md-6 col-sm-6" ng-repeat = "(index, class) in userClasses | limitTo: 4"> <!-- ng-repeat -->
+					<div class="col-lg-6 col-md-6 col-sm-6" ng-repeat = "class in userClasses | limitTo: 4"> <!-- ng-repeat -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<div class="row">
 									<div class="col-xs-6">
-										<i class="glyphicon glyphicon-book"></i> {{class.className}}
+										<i class="glyphicon glyphicon-book"></i> {{class.class_name}}
 									</div>
 									<div class="col-xs-6 text-right">
-										<div class="huge"><span class="label label-danger">10</span></div> <!-- numero quiz privati della classe -->
-										<div>Nuovi quiz</div>
+										<div class="huge"><span class="label label-danger">{{class.quizzes.length}}</span></div> <!-- numero quiz privati della classe -->
+										<div>Quiz totali</div>
 									</div>
 								</div>
 							</div>

@@ -1,29 +1,24 @@
 
 			<!-- question body - variable structure depending on qtype -->
 			<div class="well answContainer qComplContainer row">
-				<div class="answerBlock bluebg">
-					<span>Text without holes blabla bla</span>
-					<input id="id1" type="number" min="-1" step="1" placeholder="1"required />
-					<span>lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi nisl, pellentesque vitae hendrerit ut, lacinia non quam. </span>
-					<input id="id1" type="number" min="-1" step="1" placeholder="2"required />
-					<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-				</div>
+				<p class="answerBlock bluebg">
+                    <span ng-repeat = "(index, textChunk) in answer.question.details.text">
+                        <span ng-if = "textChunk.type == 'txt'">{{textChunk.value}}</span>
+                        <input ng-if = "textChunk.type == 'id'" type="text"  placeholder=" inserisci parola esatta" ng-model = "answer.givenAnswer[index -1]" required />
+                    </span>
+				.</p>
+                
 				<div class="spacer"></div>
+                
 				<div class="answerBlock bluebg text-center">
-					<div class="drag">
-						<span><span class="badge">1</span> Answer text</span>
-					</div>
-					<div class="drag">
-						<span><span class="badge">2</span> Answer text</span>
-					</div>
-					<div class="drag">
-						<span><span class="badge">3</span> Answer text</span>
-					</div>
-					<div class="drag">
-						<span><span class="badge">4</span> Answer text</span>
-					</div>
+					<div class="drag" ng-repeat = "(index, textChunk) in answer.question.details.answer">
+						<span>{{textChunk.text}}</span>
+					</div>				
 				</div>
 			</div>
+
+<p>DOMANDA: {{answer.question.details}}</p>
+<p>RISULTATO: {{answer.givenAnswer}}</p>
 
 			<!-- end of question body -->
 					

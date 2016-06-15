@@ -188,7 +188,7 @@ module.exports = function (app) {
   });
 
   app.route('/Quizzipedia/privateQuizzes').get(function (req, res) {
-    res.sendFile(path.resolve('./public/quiz_execution/privateQuizzesList.html'));
+    res.sendFile(path.resolve('./public/orgManager/privateQuizzesList.html'));
   });
       
   // STATISTICS -------------------------------------------------------------------------------------

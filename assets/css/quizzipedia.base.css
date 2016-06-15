@@ -251,6 +251,18 @@ h6.description, h4.description, h3.description{
 	background-color: white;
 }
 
+.no-resize {
+    resize: none;
+}
+
+.wordwrap { 
+   white-space: pre-wrap;     
+   white-space: -moz-pre-wrap;  
+   white-space: -pre-wrap;     
+   white-space: -o-pre-wrap;      
+   word-wrap: break-word;   
+}
+
 .tinybox p{
 	padding-top: 10px;
 	font-family: 'Raleway', sans-serif;

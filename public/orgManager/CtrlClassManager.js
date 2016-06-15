@@ -19,6 +19,13 @@ angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$sco
     $scope.myClass = new Class();
     $scope.index = null;
     $scope.memberToRemove = null;
+    $scope.userClassesWithQuizzes = [];
+          
+    $scope.fetchClassesWithQuiz = function () {
+      $http.get('/api/class/fetch_classes_with_quiz').success(function(response) {
+          $scope.userClassesWithQuizzes = response;
+      });
+    }
     
     $scope.loadClasses = function() { 
         $http.get('/api/class/fetch_inst_classes').success(function(response) {
@@ -97,6 +104,7 @@ angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$sco
     
     $scope.loadClasses(); 
     $scope.loadUserClasses();
+    $scope.fetchClassesWithQuiz();
 }]);
     
     

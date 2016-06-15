@@ -11,13 +11,13 @@
  *
  */
 
-angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','AnswerQuiz','AnswerQuestion',function($scope,$http,AnswerQuiz,AnswerQuestion){
+angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','AnswerQuiz','AnswerQuestion','AnswerTrueFalseQ','AnswerCompletionQ','AnswerShortAnswerQ','AnswerMatchingQ','AnswerMultipleChoiceQ',function($scope,$http,AnswerQuiz,AnswerQuestion,AnswerTrueFalseQ,AnswerCompletionQ,ANswerShortAnswerQ,AnswerMatchingQ,AnswerMultipleChoiceQ){
     
     
     $scope.currentQuestion = 0;
     $scope.quiz = null;
-    $scope.quizQuestions = null;
-    $scope.answerQuiz = new AnswerQuiz();
+    //$scope.quizQuestions = null;
+    $scope.answerQuiz = new AnswerQuiz(null);
     $scope.results = []; //bool
     
     
@@ -35,7 +35,20 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
     $scope.loadQuizQuestions = function(){
         //fa la get e creiamo gli answer dentro answerQuiz
         $http.get('/api/question/fetch_quiz_questions').success(function(response){
-            $scope.quizQuestions = response;
+            
+            
+            //setto i parametri di answerQuiz
+            $scope.answerQuiz.setIdQuiz($scope.quiz._id);
+            
+            //popolare l'array answerQuestion dentro a answerQuiz
+            
+            var size = response.length;
+            
+            for(var i = 0; i < size; i++){
+                
+            }
+            
+            
         });
     };
     

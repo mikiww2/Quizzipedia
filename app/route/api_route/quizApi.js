@@ -31,6 +31,10 @@ module.exports = function (app) {
     quizM.prepareQuizExecution(req, res);
   });
 
+  app.get('/api/quiz/fetch_quiz_to_execute',function (req, res, next) { //quiz dell'ente pubblici
+    quizM.fetchQuizToExecute(req, res);
+  });
+
   app.post('/api/quiz/search',function (req, res, next) { //ricerca quiz
     quizM.search(req, res);
   });

@@ -82,6 +82,18 @@ exports.prepareQuizExecution = function (req,res) { //storage delle informazioni
 
 }
 
+exports.fetchQuizToExecute = function (req,res) {
+
+  if(req.session.quiz){
+    console.log('Invio dai quiz da eseguire al client');
+    res.send(res.session.quiz);
+  }
+  else{
+    console.log('Quiz da eseguire non trovato in sessione');
+    res.send({ code: 1, message: 'Errore nella selezione del quiz'});
+  }
+}
+
 exports.search = function (req,res) { //ricerca quiz
 
   var results = [];

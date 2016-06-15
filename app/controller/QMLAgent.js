@@ -15,6 +15,8 @@
  *
  */
 
+var pathAtt = require('../../config/upload').pathFiles;
+
 var extract = function(string, start, end){ // estrae una data sottostringa tramite sentinelle, usare con attenzione
     var lenght = start.length;
     return string.slice(string.indexOf(start) + lenght, string.indexOf(end));
@@ -41,7 +43,7 @@ var appendAttached = function (attached){ // funzione che gestisce gli allegati 
     if (attached.includes(':x.') && attached.includes(':y.')){
         var attachedcoordX = extract(attached, ':x.', ':y');
         var attachedcoordY = attached.substr(attached.indexOf(':y.') + 3);
-        var attachedpath = extract(attached, ':', ':x');
+        var attachedpath = pathAtt + '/' + extract(attached, ':', ':x');
         return {'type': attachedtype, 'path': attachedpath, 'x': null, 'y': null};
     }
     else

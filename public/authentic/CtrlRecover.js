@@ -22,17 +22,15 @@ angular.module('RecoverPswd').controller('CtrlRecover',['$scope','$http','$windo
     		email: $scope.email
     	}
 
-    	$http.post('/api/auth/recover_pswd', value).success(function(response){
+    	$http.post('/api/auth/recover_pswd', value)
+            .success(function(response){
     			if(response.code == 0)
     				$window.location.href = '/Quizzipedia/signin_with_token';
     			else{
-    				console.log(response.message);
-    				console.log(response.code);
-    				$scope.message = response.message;
-    				alert($scope.message);
+    				alert(response.message);
     			}
-    			}).error(function(response){
-              alert("Errore");
-          });
+			}).error(function(response){
+                alert("Errore");
+            });
     };
 }]);

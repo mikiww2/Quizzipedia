@@ -15,6 +15,7 @@ var async = require('async');
 var Quiz = require('../model/quiz.model');
 var Question = require('../model/question.model');
 var ResultQuiz = require('../model/resultQuiz.model');
+var agent = require('./QMLAgent');
 
 var callback = function () { //mock function per chiamate async
 };
@@ -72,9 +73,47 @@ exports.fetchQuizNumber = function (req, res, next) {
 
 exports.prepareQuizExecution = function (req,res) { //storage delle informazioni nella sessione relative al quiz da eseguire
 
-  req.session.quiz = req.body;
-  console.log(req.session.quiz);
-  res.send('Ok');
+  console.log('------------------------ooo');
+  console.log(req.body);
+  console.log('------------------------ooo');
+
+  Quiz.findOne({ '_id': req.body._id }, function (err,quiz){
+    if (err) {
+        console.log('error: ' + err);
+        res.redirect('/');
+    }
+    else{
+        if(quiz){
+          req.session.quiz = {
+            description: quiz.description,
+            questions: quiz.questions,
+            keywords: quiz.keywords,
+            institution: quiz.institution,
+            title: quiz.title,
+            author: quiz.author,
+            _id: quiz._id
+          };
+          if(quiz.difficulty == 1)
+            req.session.quiz.difficulty = 'Facile';
+          if(quiz.difficulty == 2)
+            req.session.quiz.difficulty = 'Medio';
+          if(quiz.difficulty == 3)
+            req.session.quiz.difficulty = 'Difficile';
+          if(quiz.difficulty == 4)
+            req.session.quiz.difficulty = 'Molto difficile';
+
+          console.log('------------------------AAA');
+          console.log(req.session.quiz);
+          console.log('------------------------AAA');
+          res.send('Ok');
+        }
+        else{
+            console.log('Nessun quiz trovato');
+            res.send('Null');
+        }
+    }
+  });
+  
 };
 
 exports.fetchQuizToExecute = function (req,res) {
@@ -243,78 +282,28 @@ exports.save = function (req,res) { //salvataggio quiz
   else res.redirect('/');
 };
 
-exports.saveResults = function (req,res) { //salvataggio quiz
+exports.saveResults = function (req,res) { //salvataggio risultati quiz
 
-  var quizDifficulty = 0;
+  console.log(req.body);
+  var qml = agent.generate(req.body);
+  //var answers = 
+  var resultQuiz = new ResultQuiz({
+    user: req.session.user._id,
+    date: new Date(),
+    answers: answers,
+    quiz: req.body.topic
+  });
+  
+  resultQuiz.save(function (err){
+    if (err) {
+      console.log('errore nel salvataggio dei risultati del quiz: ' + err);
+      res.send({ code: 1, message: 'Errore nel salvataggio dei risultati del quiz: ' + err });
+    }
+    else{
+      console.log('Risultati del quiz salvati correttamente!');
+      res.send({ code: 0, message: 'Risultati del quiz salvati correttamente!' });
+    }
 
-  if(req.session.user && req.session.user.role == 'teacher'){
+  });
 
-    async.series([
-
-      function(callback){
-        Question.find({ 'institution': req.session.user.institution }, function (err, questions) {
-            if (err) {
-                console.log('error: ' + err);
-                res.redirect('/');
-            }
-            else{
-                if(questions){
-                    var sum = 0;
-                    var counter = 0;
-                    for(var i=0;i<questions.length;i++){
-                      for(var j=0;j<req.body.questions.length;j++){
-                        if(questions[i]._id == req.body.questions[j]._id){
-                          counter++;
-                          sum = sum + questions[i].difficulty;
-                        }
-                      }
-                    }
-                    quizDifficulty = Math.round(sum / counter);
-                    callback();
-                }
-                else{
-                    console.log('Nessuna domanda trovata');
-                    res.send({ message: 'Non esistono domande' });
-                }
-            }
-          });
-      },
-
-      function(callback){
-        console.log(req.body.topic);
-        var quiz = new Quiz({
-          author: req.session.user._id,
-          creationDate: new Date(),
-          classes: req.body.classes,
-          topic: req.body.topic,
-          description: req.body.description,
-          difficulty: quizDifficulty,
-          questions: req.body.questions,
-          keywords: req.body.keywords,
-          title: req.body.title,
-          institution: req.session.user.institution
-        });
-        
-        quiz.save(function (err){
-          if (err) {
-            console.log('errore nell\'inserimento della classe: ' + err);
-            res.send({ code: 1, message: 'Errore nella creazione del quiz: ' + err });
-          }
-          else{
-            console.log('Quiz creato correttamente');
-            res.send({ code: 0, message: 'Quiz creato correttamente!' });
-          }
-
-        });
-
-      }],function(err){
-            if(err)
-              console.log(err);
-            else{
-              res.send({ message: 'Errore a fine async' });
-            }
-        });
-  }
-  else res.redirect('/');
-};
-
+}; // da finire quando arriva json

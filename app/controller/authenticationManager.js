@@ -103,7 +103,7 @@ exports.signup = function (req, res) {
         else {
             if (user) { //SE LA EMAIL è GIA PRESENTE NEL DB
                 console.log('user gia esistente: ' + user.email);
-                res.redirect('/Quizzipedia/signup');
+                res.send({ code: 1, message: 'L\'indirizzo email esiste già!' });
             }
             else { //SE LA EMAIL NON è PRESENTE NEL DB
                 console.log('account disponibile ' + email);
@@ -118,13 +118,9 @@ exports.signup = function (req, res) {
                     }
                     else {
                         console.log('salvato utente: ' + email);
-                        //res.json({'ok' : true, 'msg' : 'utente salvato ' + email});
-
-                        //req.session.user = newUser;
+                        res.send({code: 0, message: 'La registrazione è andata a buon fine'});
                     }
                 });
-                res.redirect('/');
-                //res.json({'ok' : true, 'msg' : 'utente salvato ' + email});
                 
             }
         }

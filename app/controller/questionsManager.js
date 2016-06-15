@@ -11,7 +11,7 @@
  *
  */
 "use strict";
-var async = require('')
+var async = require('async');
 var Question = require('../model/question.model');
 var upload = require('../controller/uploadManager'); // usata per salvare gli allegati
 var agent = require('./QMLAgent');
@@ -266,9 +266,11 @@ exports.fetchQuizQuestions = function (req, res, next) {
                             type: parsed.type,
                             description: questions[i].description,
                             author: questions[i].author,
-                            details: parsed
+                            details: parsed.question
                         });
                     }
+                    console.log('-------------------------res---------------------------');
+                    console.log(results);
                     res.send(results);
                 }
                 else{

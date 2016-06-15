@@ -113,8 +113,6 @@
               <table class="table table-hover table-compact qTable" id="questionTable">
                   
                   <thead>
-                      <!-- fix checkall - not working -->
-                      <th><input type="checkbox" id="checkall"/></th>
                       <th><i class="glyphicon glyphicon-pencil"></i> Titolo</th>
                       <th><i class="glyphicon glyphicon-list-alt"></i> Argomento</th>
                       <th><i class="glyphicon glyphicon-star"></i> Livello</th>
@@ -124,7 +122,6 @@
                   
                   <tbody>
                       <tr ng-repeat="(index, question) in Questionlist.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))"><!-- for each quiz -->
-                          <td><input type="checkbox" class="checkClass" /></td>
                           <td>{{question.title}}</td>
                           <td>{{question.topic}}</td>
                           <td>{{question.difficulty}}</td>

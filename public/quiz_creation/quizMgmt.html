@@ -87,8 +87,6 @@
 				
 			<table class="table table-hover table-compact qTable">
 			<thead>
-			<!-- fix checkall - not working -->
-			<th><input type="checkbox" id="checkall"/></th>
 			<th><i class="glyphicon glyphicon-pencil"></i> Titolo</th>
 			<th><i class="glyphicon glyphicon-list-alt"></i> Argomento</th>
 			<th class="col-sm-2"><i class="glyphicon glyphicon-book"></i> Classe</th>
@@ -97,7 +95,6 @@
 			</thead>
 			<tbody>
 			<tr ng-repeat="(index, quiz) in quizzes.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
-				<td><input type="checkbox" class="checkClass" /></td>
 				<td>{{quiz.title}}</td>
 				<td>{{quiz.topic}}</td>
                 <td ng-if = "quiz.classes.length == 0">Quiz pubblico</td>

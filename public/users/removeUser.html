@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="UsersManager">
+<html lang="it" ng-app="UsersManager">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +8,7 @@
 	 <script src="./assets/js/jquery-1.11.0.min/jquery-1.11.0.min.js"></script>
     <script src="./assets/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="Autore" content="">
     <link rel="icon" href="./assets/img/favicon.ico">
 
     <title>Gestione utenti</title>
@@ -48,7 +48,7 @@
           <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
         </div>
         
-        <div class="row-fluid">
+        <div class="row-fluid breadcrumb-div">
             <ol class="breadcrumb" id="breadcrumb">
                 <li>
                     Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
@@ -67,11 +67,11 @@
 				<div ng-if =  "users.length == 0"> Non ci sono utenti in questo ente</div>
 				
 			<!-- for each here -->
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userbox text-center" ng-repeat = "user in users">
+			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 userbox text-center" ng-repeat = "user in users">
 				<div class="img-box">
 					<img src="./assets/img/portraits/usr2.jpg" class="img-rounded" />
 				</div>
-				<h1>{{user.firstName}} {{user.lastName}}</h1>
+				<h4>{{user.firstName}} {{user.lastName}}</h4>
 				<p>{{user.role}}</p>
 				<div class="btn-group btn-group-sx">
 					<span data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger rmUserBtn pull-right" data-title="Delete" data-toggle="modal" data-target="#delete" ng-click="setUserToRemove(user)"><span class="glyphicon glyphicon-trash"></span> Rimuovi dall'ente</button></span>

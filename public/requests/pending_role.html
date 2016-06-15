@@ -6,11 +6,11 @@
             
 			<div class="row pt-md" ng-if="pendingRR.length != 0">
                 
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 userMgmt text-center" ng-repeat = "request in pendingRR">
-				<div>
+			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 userMgmt text-center" ng-repeat = "request in pendingRR">
+				<div class="userMgmt">
 					<img src="./assets/img/portraits/usr1.jpg" class="img-rounded" />
 				</div>               
-			<h1>{{request.firstName}} {{request.lastName}}</h1>
+			<h4>{{request.firstName}} {{request.lastName}}</h4>
 			<p>chiede di diventare <strong>{{request.role}}</strong></p>
             <p>Messaggio:<br>{{request.message}}</p>
 			<div class="btn-group">

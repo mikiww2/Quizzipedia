@@ -147,9 +147,9 @@ exports.recoverPswd = function (req, res) {
                 var mailOptions = {
                     from: configMail.compose, // sender address
                     to: email, // list of receivers
-                    subject: 'Recover Password', // Subject line
-                    text: 'Follow the link to recover your password: http://vault-tech.tk:8080/Quizzipedia/signin', // plaintext body
-                    html: '<p>Follow this <a href="http://vault-tech.tk:8080/Quizzipedia/signin_with_token">link</a> to signin with this temporary password:<br><br>'+token+'</p>' // html body
+                    subject: 'Recupero password', // Subject line
+                    text: 'Segui il ink per recuperare la tua password: http://vault-tech.tk:8080/Quizzipedia/signin', // plaintext body
+                    html: '<p>Clicca questo <a href="http://vault-tech.tk:8080/Quizzipedia/signin_with_token">link</a> per autenticarti con questa password temporanea:<br><br>'+token+'</p>' // html body
                 };
                 transporter.sendMail(mailOptions, function(error, info){
                     if(error){

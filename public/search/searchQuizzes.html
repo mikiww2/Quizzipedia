@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app = "QuizManager">
+<html lang="it" ng-app = "QuizManager">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -139,46 +139,51 @@
 			
 			<div class="col-lg-8 col-md-6 col-sm-12 col-xs-12" id="searchResults" ng-if = "searchQuizzes.length != 0">
 				<div class="row">
-				  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" ng-repeat = "quiz in searchQuizzes.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+				  <div ng-repeat = "quiz in searchQuizzes.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+				   <div class="visible-lg" ng-if="$index % 3 == 0"></div>
+				   <div class="visible-md" ng-if="$index % 3 == 0"></div>
+				   <div class="visible-sm" ng-if="$index % 2 == 0"></div>
+				   <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 					<div class="thumbnail">
 					  <div class="caption text-center">
 						<h4 class="bluebg qTitle">{{quiz.title}}</h4>
 							<div class="list-group">
 							  <div class="list-group-item">{{quiz.institution}}</div>
-							  <div class="list-group-item" ng-if="quiz.topic!=null">{{quiz.topic}}</div>
-							   <div class="list-group-item">Livello: 
-								   <span class="yellow-glyphs" ng-if="quiz.difficulty=='Facile'">
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
-									</span>
-									 <span class="yellow-glyphs" ng-if="quiz.difficulty=='Medio'">
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
-									</span>
-									 <span class="yellow-glyphs" ng-if="quiz.difficulty=='Difficile'">
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star-empty"></span>
-									</span>
-									 <span class="yellow-glyphs" ng-if="quiz.difficulty=='Molto difficile'">
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-									</span>
-							   </div>
-							   <div class="list-group-item" ng-if="quiz.description!=null">{{quiz.description[0]}}</div>
-							   <div class="list-group-item"><span class="label-as-badge label-blue">{{quiz.questions.length}}</span> domande</div>
-							 </div>
-                          <p><button class="btn btn-primary" role="button" ng-click = "selectQuiz(quiz)"><i class="glyphicon glyphicon-pencil"></i> Svolgi il quiz</button></p>
-					  </div>
-					  </div>
-				  </div><div class="clearfix visible-lg-block visible-md-block visible-sm-block"></div>							  
+								  <div class="list-group-item" ng-if="quiz.topic!=null">{{quiz.topic}}</div>
+								   <div class="list-group-item">Livello: 
+									   <span class="yellow-glyphs" ng-if="quiz.difficulty=='Facile'">
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star-empty"></span>
+											<span class="glyphicon glyphicon-star-empty"></span>
+											<span class="glyphicon glyphicon-star-empty"></span>
+										</span>
+										 <span class="yellow-glyphs" ng-if="quiz.difficulty=='Medio'">
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star-empty"></span>
+											<span class="glyphicon glyphicon-star-empty"></span>
+										</span>
+										 <span class="yellow-glyphs" ng-if="quiz.difficulty=='Difficile'">
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star-empty"></span>
+										</span>
+										 <span class="yellow-glyphs" ng-if="quiz.difficulty=='Molto difficile'">
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+											<span class="glyphicon glyphicon-star"></span>
+										</span>
+								   </div>
+								   <div class="list-group-item" ng-if="quiz.description!=null">{{quiz.description[0]}}</div>
+								   <div class="list-group-item"><span class="label-as-badge label-blue">{{quiz.questions.length}}</span> domande</div>
+								 </div>
+							  <p><button class="btn btn-primary" role="button" ng-click = "selectQuiz(quiz)"><i class="glyphicon glyphicon-pencil"></i> Svolgi il quiz</button></p>
+						  </div>
+						  </div>
+					  </div>	
+					</div>					  
 				</div>
 			</div>
             

@@ -51,9 +51,16 @@
       <script type="text/javascript" src="./public/services/AnswerMatchingQElement.js"></script>
       <script type="text/javascript" src="./public/services/AnswerMatchingQ.js"></script>
       <script type="text/javascript" src="./public/services/AnswerQuiz.js"></script>
-       <!--<script type="text/javascript" src="./public/header/CtrlHeader.js"></script>
-      <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
-      -->
+      <script type="text/javascript" src="./public/header/CtrlHeader.js"></script>
+      <!-- Directive angular (HEADER)-->
+    <script type="text/javascript" src="./public/header/headerNotLogged.js"></script>
+    <script type="text/javascript" src="./public/header/headerLogged.js"></script>
+    <script type="text/javascript" src="./public/header/headerLoggedStudent.js"></script>
+    <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
+    <script type="text/javascript" src="./public/header/headerLoggedDirector.js"></script>
+      <!--Directive angular (FOOTER)-->
+    <script type="text/javascript" src="./public/footer/pageFooter.js"></script>
+      
       
       
       <!--<script type="text/javascript" src="./public/services/GenericQuestion.js"></script>
@@ -82,7 +89,32 @@
   </head>
 
   <body>
-	<div class="container pagewrap" ng-controller="CtrlExecutionQuiz">
+	<div class="pagewrap" ng-controller="CtrlExecutionQuiz">
+        
+        <div class="pagewrap" ng-controller="CtrlHeader"> 
+          
+          <header-not-logged ng-if="user.role== null"></header-not-logged>          
+          <header-Logged ng-if="user.role == 'noRole'"></header-Logged>
+          <header-logged-student ng-if="user.role == 'student'"></header-logged-student>
+          <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>          
+          <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
+          
+          <div class="row-fluid breadcrumb-div">
+              <ol class="breadcrumb" id="breadcrumb">
+                  <li>
+                      Sei in: <a href = "/Quizzipedia/home>">
+                      <i class="glyphicon glyphicon-home"> </i> Home
+                      </a>
+                  </li>
+                  <li>
+                      <a href = "/Quizzipedia/searchQuiz>">
+                      <i class="glyphicon glyphicon-search"> </i> Ricerca quiz
+                      </a>
+                  </li>                  
+                  <li class = "active>"><i class="glyphicon glyphicon-pencil"> </i> Risoluzione quiz </li>       
+              </ol>
+          </div> 
+            
 		<!-- first page panel -->
 		<div class="panel panel-default qPanel">
 			<!-- panel heading -->
@@ -201,7 +233,7 @@
                             
                         <span data-placement="top" data-toggle="tooltip" title="Previous" ng-if = "index != 0"><button class="btn btn-lg btn-primary nextBtn pull-left" type="button" ng-click = "changeCurrentQuestion(-1)"><i class="glyphicon glyphicon-arrow-left"></i></button></span>
                          
-                        <span data-placement="top" data-toggle="tooltip" title="Finish" ng-if = "(index + 1) == answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button" ng-click = "saveQuiz()"><i class="glyphicon glyphicon-arrow-right"></i> Bottone fine</button></span>
+                        <span data-placement="top" data-toggle="tooltip" title="Finish" ng-if = "(index + 1) == answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button" ng-click = "saveQuiz()"><i class="glyphicon glyphicon-ok"></i> Correggi</button></span>
 						<span data-placement="top" data-toggle="tooltip" title="Next" ng-if = "(index+1) != answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button" ng-click = "changeCurrentQuestion(1)"><i class="glyphicon glyphicon-arrow-right"></i></button></span>
                             
 						</div>
@@ -212,6 +244,8 @@
 		</div>      
 		<!-- end of panel body -->
 	</div>
+      </div>
+      <page-footer></page-footer>
   </body>
 </html>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="QuizSolver">
+<html lang="it" ng-app="QuizSolver">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -123,11 +123,8 @@
 					</div>
 				</div>
 				<!-- end of description -->
-				<!-- optional canvas for attachment-->
-				<div>
-					<canvas class="qCanvas col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" id="quizCanvas" width="500" height="200"></canvas>
-				</div>
 				<div class="clearfix"></div> <!-- DA TOGLIERE -->
+				<div class="text-center"><span class="label-as-badge label-blue">{{quiz.questions.length}}</span> domande</div>
 				<div class="text-center pull-bottom"><button class="btn btn-lg btn-primary" id="startQuiz" type="button">Inizia</button></div>
 				<!-- end of canvas -->
 			</div>

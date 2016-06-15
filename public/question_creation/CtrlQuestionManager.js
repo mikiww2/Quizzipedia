@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlQuestionManager.js
+ * Percorso: public/question_creation/CtrlQuestionManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la gestione delle domande
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$http','TrueFalseQ',function($scope,$http,TrueFalseQ){
     //Mancano queste dipendenze 'MatchingQ','MultipleChoiceQ','ShortAnswerQ','TrueFalseQ','CompletionQ','Teacher'
     

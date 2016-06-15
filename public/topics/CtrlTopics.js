@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlTopics.js
+ * Percorso: public/topics/CtrlTopics.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la gestione degli argomenti
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('TopicsManager').controller('CtrlTopics',['Topics','$scope','$http','$window',function(Topics,$scope,$http,$window){
     
     

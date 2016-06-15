@@ -5,7 +5,7 @@
  * Data creazione:
  * E-mail: vaulttech.swe@gmail.com
  *
- *  Controller per il footer del sito
+ *  Direttiva per il footer del sito
  *
  * * Diario delle modifiche:
  *

@@ -5,7 +5,7 @@
  * Data creazione:
  * E-mail: vaulttech.swe@gmail.com
  *
- *  Controller per la visualizzazione del header da non loggati
+ *  Direttiva per la visualizzazione del header da non loggati
  *
  * * Diario delle modifiche:
  *

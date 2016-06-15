@@ -610,57 +610,7 @@ describe('user.model.js unit tests :', function() {
             done();
         });
     });
-
-    describe('fullName', function() {
-        it(mail1, function(done) {
-            user = new User({
-                _id: mail1
-                ,firstName: firstName1
-                ,lastName: lastName1
-                ,password: password
-            });
-
-
-            should.exist(user._id);
-            should.exist(user.firstName);
-            should.exist(user.lastName);
-            should.exist(user.password);
-
-            user._id.should.be.a.String().and.be.exactly(mail1);
-            user.firstName.should.be.a.String().and.be.exactly(firstName1);
-            user.lastName.should.be.a.String().and.be.exactly(lastName1);
-            user.password.should.be.a.String().and.be.exactly(password);
-
-            user.fullName.should.be.a.String().and.be.exactly(firstName1 + ' ' + lastName1);
-
-            done();
-        });
-
-        it(mail2, function(done) {
-            user = new User({
-                _id: mail2
-                ,firstName: firstName2
-                ,lastName: lastName2
-                ,password: password
-            });
-
-
-            should.exist(user._id);
-            should.exist(user.firstName);
-            should.exist(user.lastName);
-            should.exist(user.password);
-
-            user._id.should.be.a.String().and.be.exactly(mail2);
-            user.firstName.should.be.a.String().and.be.exactly(firstName2);
-            user.lastName.should.be.a.String().and.be.exactly(lastName2);
-            user.password.should.be.a.String().and.be.exactly(password);
-
-            user.fullName.should.be.a.String().and.be.exactly(firstName2 + ' ' + lastName2);
-
-            done();
-        });
-    });
-
+    
     describe('checkPassword', function() {
         it("expected true", function(done) {
             user = new User({

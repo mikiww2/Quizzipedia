@@ -71,7 +71,7 @@
 		<div class="container">
 			<div class="row" ng-controller = "CtrlClassManager">
 				<h4 class="text-center description"><i class="glyphicon glyphicon-book"> </i>  Quiz privati</h4><br>
-				  <div ng-if = "userClasses.length == 0">
+				  <div ng-if = "userClassesWithQuizzes.length == 0">
 					   <p>Non sei presente in nessuna classe
 						   <button class="btn btn-sm"> 
 							   <a href = "/Quizzipedia/sendRequest">
@@ -82,43 +82,19 @@
 						</p>
 					</div>  
 				<!-- panel -->
-				<div ng-if = "userClasses.length != 0">
-					<div class="col-lg-6 col-md-6" ng-repeat = "(index, class) in userClasses">
+				<div ng-if = "userClassesWithQuizzes.length != 0">
+					<div class="col-lg-6 col-md-6" ng-repeat = "class in userClassesWithQuizzes">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title"><i class="glyphicon glyphicon-book"></i> {{class.className}} <span class="label label-yellow">11</span></h3>
+								<h3 class="panel-title"><i class="glyphicon glyphicon-book"></i> {{class.class_name}} <span class="label label-yellow">{{class.quizzes.length}}</span></h3>
 							</div>
 							<div class="panel-body">
-								<div class="list-group">
-									<a href="#" class="list-group-item">
+								<div class="list-group" ng-repeat = "quiz in class.quizzes">
+									<a href="#" class="list-group-item" ng-click="selectQuiz(quiz._id)">
 										<span class="pull-right">Svolgi il quiz <i class="glyphicon glyphicon-circle-arrow-right"></i></span>
-										<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
-										<i class="glyphicon glyphicon-list-alt"></i> Materia - 
-										<i class="glyphicon glyphicon-user"></i> Autore 
-									</a>
-									<a href="#" class="list-group-item">
-										<span class="pull-right">Svolgi il quiz <i class="glyphicon glyphicon-circle-arrow-right"></i></span>
-										<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
-										<i class="glyphicon glyphicon-list-alt"></i> Materia - 
-										<i class="glyphicon glyphicon-user"></i> Autore 
-									</a>
-									<a href="#" class="list-group-item">
-										<span class="pull-right">Svolgi il quiz <i class="glyphicon glyphicon-circle-arrow-right"></i></span>
-										<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
-										<i class="glyphicon glyphicon-list-alt"></i> Materia - 
-										<i class="glyphicon glyphicon-user"></i> Autore 
-									</a>
-									<a href="#" class="list-group-item">
-										<span class="pull-right">Svolgi il quiz <i class="glyphicon glyphicon-circle-arrow-right"></i></span>
-										<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
-										<i class="glyphicon glyphicon-list-alt"></i> Materia - 
-										<i class="glyphicon glyphicon-user"></i> Autore 
-									</a>
-									<a href="#" class="list-group-item">
-										<span class="pull-right">Svolgi il quiz <i class="glyphicon glyphicon-circle-arrow-right"></i></span>
-										<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz - 
-										<i class="glyphicon glyphicon-list-alt"></i> Materia - 
-										<i class="glyphicon glyphicon-user"></i> Autore 
+										<i class="glyphicon glyphicon-th-list"></i> {{quiz.title}} - 
+										<i class="glyphicon glyphicon-list-alt"></i> {{quiz.topic}} - 
+										<i class="glyphicon glyphicon-user"></i> {{quiz.author}} 
 									</a>
 								</div>
 							</div>

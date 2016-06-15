@@ -11,7 +11,7 @@
  *
  */
 "use strict";
-
+var async = require('')
 var Question = require('../model/question.model');
 var upload = require('../controller/uploadManager'); // usata per salvare gli allegati
 var agent = require('./QMLAgent');
@@ -242,4 +242,45 @@ exports.fetchTeacherQuestions = function (req, res, next) {
 
     }
     else res.redirect('/');
+};
+
+exports.fetchQuizQuestions = function (req, res, next) {
+
+    var results = [];
+
+    if(req.session.quiz){
+        Question.find({ 'institution': req.session.quiz.institution }, function (err, questions) {
+            if (err) {
+                console.log('error: ' + err);
+                res.redirect('/');
+            }
+            else{
+                if(questions){
+                    for(var i=0;i<questions.length;i++){
+                        var parsed = agent.parse(questions[i].qml);
+                        results.push({
+                            _id: questions[i]._id,
+                            title: questions[i].title,
+                            difficulty: questions[i].difficulty,
+                            topic: questions[i].topic,
+                            type: parsed.type,
+                            description: questions[i].description,
+                            author: questions[i].author,
+                            details: parsed
+                        });
+                    }
+                    res.send(results);
+                }
+                else{
+                    console.log('Nessuna domanda trovata');
+                    res.send('Null');
+                }
+            }
+        });
+    }
+    else{
+        console.log('Non è stato recepito il quiz che si vuole svolgere');
+        res.redirect('/');
+    }
+    
 };

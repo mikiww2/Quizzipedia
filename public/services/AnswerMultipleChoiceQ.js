@@ -20,8 +20,21 @@ angular.module('QuizSolver').factory('AnswerMultipleChoiceQ',['AnswerQuestion',f
     
     AnswerMultipleChoiceQ.prototype = AnswerQuestion.prototype;
     
-    AnswerMultipleChoiceQ.prototype.check = function(){
+    AnswerMultipleChoiceQ.prototype.checkMultiple = function(){
         console.log("CHECK MULTIPLECHOICE");
+        
+        var correct = true;
+    console.log(this.givenAnswer.length);
+        for(var i = 0; i < this.givenAnswer.length && correct; i++){
+            console.log('myanswer: '+this.givenAnswer[i]+ ' correct: '+this.question.details.arrayAnswer[i].isTrue);
+            if(this.givenAnswer[i] != this.question.details.arrayAnswer[i].isTrue){
+                console.log("!==");
+                correct = false;
+            }
+        }
+        
+        return correct;
+        
     };
     
     AnswerMultipleChoiceQ.prototype.addAnswer = function(ans){

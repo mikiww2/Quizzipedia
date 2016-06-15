@@ -47,6 +47,7 @@
   </head>
 
   <body>
+      
 	<div class="pagewrap" ng-controller="CtrlHeader">
         
     <div>
@@ -55,20 +56,19 @@
         <header-logged-director ng-if = "user.role == 'director'"></header-logged-director>
 	</div>
             
-        <div class="row-fluid breadcrumb-div">           
-            
+        <div class="row-fluid breadcrumb-div">             
             
             <ol class="breadcrumb" id="breadcrumb">
                 <li>
                     Sei in: <a href = "/Quizzipedia/home"><i class="glyphicon glyphicon-home"> </i> Home</a>
                 </li>
                 <li class="active">
-                    <i class="glyphicon glyphicon-book"> </i> Le tue classi
+                    <i class="glyphicon glyphicon-book"> </i> Quiz privati
                 </li>
             </ol>
         </div>
-		
-		<div class="container">
+        
+   		<div class="container">
 			<div class="row" ng-controller = "CtrlClassManager">
 				<h4 class="text-center description"><i class="glyphicon glyphicon-book"> </i>  Quiz privati</h4><br>
 				  <div ng-if = "userClassesWithQuizzes.length == 0">
@@ -81,21 +81,22 @@
 						   </button>
 						</p>
 					</div>  
-				<!-- panel -->
+				<!-- panel -->		
+                
 				<div ng-if = "userClassesWithQuizzes.length != 0">
 					<div class="col-lg-6 col-md-6" ng-repeat = "class in userClassesWithQuizzes">
-						<div class="panel panel-default">
+						<div class="panel panel-default" id = "{{class.class_name}}">
 							<div class="panel-heading">
 								<h3 class="panel-title"><i class="glyphicon glyphicon-book"></i> {{class.class_name}} <span class="label label-yellow">{{class.quizzes.length}}</span></h3>
 							</div>
 							<div class="panel-body">
 								<div class="list-group" ng-repeat = "quiz in class.quizzes">
-									<a href="#" class="list-group-item" ng-click="selectQuiz(quiz._id)">
+									<button class="list-group-item" ng-click="selectQuiz(quiz._id)">
 										<span class="pull-right">Svolgi il quiz <i class="glyphicon glyphicon-circle-arrow-right"></i></span>
 										<i class="glyphicon glyphicon-th-list"></i> {{quiz.title}} - 
 										<i class="glyphicon glyphicon-list-alt"></i> {{quiz.topic}} - 
 										<i class="glyphicon glyphicon-user"></i> {{quiz.author}} 
-									</a>
+									</button>
 								</div>
 							</div>
 						</div>

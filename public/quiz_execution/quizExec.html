@@ -224,14 +224,14 @@
 						</div>
                         
 						<!--attachment-->
-						<div class="col-md-3">
-                            <div ng-if = "answer.question.details.questionAttachment.type == img">
+						<div class="col-md-3" ng-if = "answer.question.details.questionAttachment != null">
+                            <div ng-if = "answer.question.details.questionAttachment.type == 'img'">
                                 <img ng-src="./{{answer.question.details.questionAttachment.path}}" />
                             </div>
-                            <div ng-if = "answer.question.details.questionAttachment.type == vid">
+                            <div ng-if = "answer.question.details.questionAttachment.type == 'vid'">
                                 <source ng-src="./{{answer.question.details.questionAttachment.path}}" />
                             </div>
-                            <div ng-if = "answer.question.details.questionAttachment.type == aud">
+                            <div ng-if = "answer.question.details.questionAttachment.type == 'aud'">
                                 <source ng-src="./{{answer.question.details.questionAttachment.path}}" />
                             </div>							
 						</div>              

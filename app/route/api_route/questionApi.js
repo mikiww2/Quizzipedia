@@ -35,5 +35,9 @@ module.exports = function (app) {
     questionM.fetchTeacherQuestions(req, res);
   });
 
+  app.get('/api/question/fetch_quiz_questions',function (req, res, next) { //numero domande nell'istituto
+    questionM.fetchQuizQuestions(req, res);
+  });
+
 }; 
  

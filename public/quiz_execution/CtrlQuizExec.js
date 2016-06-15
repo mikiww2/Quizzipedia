@@ -11,7 +11,7 @@
  *
  */
 
-angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','AnswerQuiz','AnswerQuestion','AnswerTrueFalseQ','AnswerCompletionQ','AnswerShortAnswerQ','AnswerMatchingQ','AnswerMultipleChoiceQ',function($scope,$http,AnswerQuiz,AnswerQuestion,AnswerTrueFalseQ,AnswerCompletionQ,ANswerShortAnswerQ,AnswerMatchingQ,AnswerMultipleChoiceQ){
+angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','AnswerQuiz','AnswerQuestion','AnswerTrueFalseQ','AnswerCompletionQ','AnswerShortAnswerQ','AnswerMatchingQ','AnswerMultipleChoiceQ','AnswerMatchingQElement',function($scope,$http,AnswerQuiz,AnswerQuestion,AnswerTrueFalseQ,AnswerCompletionQ,AnswerShortAnswerQ,AnswerMatchingQ,AnswerMultipleChoiceQ,AnswerMatchingQElement){
     
     
     $scope.currentQuestion = 0;
@@ -46,6 +46,25 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
             
             for(var i = 0; i < size; i++){
                 
+                var answer = null;
+                
+                if(response[i].type == 'trfs'){
+                    answer = new AnswerTrueFalseQ(response[i],null);
+                }
+                else if(response[i].type == 'open'){
+                    answer = new AnswerShortAnswerQ(response[i],null);
+                }
+                else if(response[i].type == 'mult'){
+                    answer = new AnswerMultipleChoiceQ(response[i]);
+                }
+                else if(response[i].type == 'mtch'){
+                    answer = new AnswerMatchingQ(response[i]);
+                }
+                else if(response[i].type == 'cmpl'){
+                    answer = new AnswerCompletionQ(response[i]);
+                }
+                
+                $scope.answerQuiz.addAnswer(answer);
             }
             
             

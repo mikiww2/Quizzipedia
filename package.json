@@ -39,6 +39,8 @@
   },
   "scripts": {
     "start": "node config/superadmin.js && node server.js",
+    "foreverStart": "node config/superadmin.js && forever start server.js",
+    "foreverStop": "forever stop server.js",
     "pre-test": "npm install",
     "test": "npm run testDb && npm run testKarma",
     "testDb": "node node_modules/mocha/bin/mocha --colors --recursive tests/*.db.js",

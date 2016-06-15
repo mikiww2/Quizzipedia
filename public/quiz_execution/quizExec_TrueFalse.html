@@ -2,14 +2,15 @@
 			<!-- TRUE FALSE EXEC-->
 				<!-- description -->
 
-<div >
-    <img ng-src="./{{answer.details.questionAttachment.path}}" />
+<div ng-if = "question.question.details.questionAttachment.type == img">
+    <img ng-src="./{{answer.question.details.questionAttachment.path}}" />
 </div>
-<!--
-<img src="./upload/{{question.details.questionAttachment.path}}" ng-if = "question.details.questionAttachment.type == 'img'"/>
-<img src="./upload/{{question.details.questionAttachment.path}}" ng-if = "question.details.questionAttachment.type == 'vid'"/>
-<img src="./upload/{{question.details.questionAttachment.path}}" ng-if = "question.details.questionAttachment.type == 'aud'"/>-->
-
+<div ng-if = "question.question.details.questionAttachment.type == vid">
+    <source ng-src="./{{answer.question.details.questionAttachment.path}}" />
+</div>
+<div ng-if = "question.question.details.questionAttachment.type == aud">
+    <source ng-src="./{{answer.question.details.questionAttachment.path}}" />
+</div>
 
 <div class="well qtfContainer text-center">
     <div class="form-group row">
@@ -24,7 +25,7 @@
 
 <p> RISULTATO: {{answer.givenAnswer}}</p>
 
-<p>PATH: {{answer}}</p>
+<p>PATH: {{answer.question.details.questionAttachment.path}}</p>
 
 
 					<!-- end of question body -->

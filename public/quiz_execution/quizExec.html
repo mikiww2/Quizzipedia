@@ -130,7 +130,7 @@
 						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> {{quiz.title}}</h3>
 						<p class="text-center">{{quiz.author}}</p>
 					</div>
-					<div class="tinybox center-div">
+					<div class="tinybox center-div wordwrap">
 						<p class="text-center">{{quiz.topic}}</p>
 						<!-- custom stars according to difficulty -->
 						<p><span class="diffStars">
@@ -167,7 +167,7 @@
 			<div class="panel-body" ng-if = "currentQuestion == -1"> 
                 
 				<!-- description -->
-				<div class="panel panel-default quizDescr">
+				<div class="panel panel-default quizDescr" ng-if = "quiz.description != null">
 					<div class="panel-heading">
 						<h6 class="text-center">Descrizione</h6>
 					</div>
@@ -177,7 +177,7 @@
 				</div>
 				<!-- end of description -->
 				<div class="clearfix"></div> <!-- DA TOGLIERE -->
-				<div class="text-center"><span class="label-as-badge label-blue">{{quiz.questions.length}}</span> domande</div>
+				<div class="text-center">Questo quiz contiene <span class="label-as-badge label-blue">{{quiz.questions.length}}</span> domande.</div>
 				<div class="text-center pull-bottom"><button class="btn btn-lg btn-primary" id="startQuiz" type="button" ng-click = "changeCurrentQuestion(1)">Inizia</button></div>
 				<!-- end of canvas -->
 			</div>
@@ -265,7 +265,7 @@
                             
                         <span data-placement="top" data-toggle="tooltip" title="Previous" ng-if = "index != 0"><button class="btn btn-lg btn-primary nextBtn pull-left" type="button" ng-click = "changeCurrentQuestion(-1)"><i class="glyphicon glyphicon-arrow-left"></i></button></span>
                          
-                        <span data-placement="top" data-toggle="tooltip" title="Finish" ng-if = "(index + 1) == answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button" ng-click = "saveQuiz()"><i class="glyphicon glyphicon-ok"></i> Correggi</button></span>
+                        <span data-placement="top" data-toggle="tooltip" title="Finish" ng-if = "(index + 1) == answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-success nextBtn pull-right" type="button" ng-click = "saveQuiz()"><i class="glyphicon glyphicon-ok"></i> Correggi</button></span>
 						<span data-placement="top" data-toggle="tooltip" title="Next" ng-if = "(index+1) != answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button" ng-click = "changeCurrentQuestion(1)"><i class="glyphicon glyphicon-arrow-right"></i></button></span>
                             
 						</div>

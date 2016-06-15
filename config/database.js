@@ -11,6 +11,11 @@
  *
  */
 
+//change here
+var path = 'mongodb://localhost/QDB';
+
+//
+
 module.exports = {
-    localUrl: 'mongodb://localhost/QDB'
+    localUrl: path
 };

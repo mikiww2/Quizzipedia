@@ -1048,6 +1048,9 @@ ul.alert-dropdown {
 	.list1-width-fix{
 		margin-left:-10px;
 	}
+	.qPanel{
+		margin-top: 20px;
+	}
 }
 
 .badge {

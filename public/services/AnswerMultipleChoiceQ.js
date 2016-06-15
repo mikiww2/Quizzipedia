@@ -24,6 +24,10 @@ angular.module('QuizSolver').factory('AnswerMultipleChoiceQ',['AnswerQuestion',f
         
     };
     
+    AnswerMultipleChoiceQ.prototype.addAnswer = function(ans){
+        this.givenAnswer.push(ans);
+    };
+    
     AnswerMultipleChoiceQ.prototype.getGivenAnswer = function(){
       return this.givenAnswer;  
     };

@@ -15,6 +15,7 @@ angular.module('QuizSolver').factory('AnswerQuestion',[function(){
     
     function AnswerQuestion(question){        
         this.question = question; //GenericQuestion 
+        this.isCorrect = null;
         
     };   
     

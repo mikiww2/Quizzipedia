@@ -33,6 +33,10 @@ angular.module('QuizSolver').factory('AnswerCompletionQ',['AnswerQuestion',funct
         */
     };
     
+    AnswerCompletionQ.prototype.addAnswer = function(ans){
+        this.giveAnswer.push(ans);
+    };
+    
     AnswerCompletionQ.prototype.getGivenAnswer = function(){
       return this.givenAnswer;  
     };

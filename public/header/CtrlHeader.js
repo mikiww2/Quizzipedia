@@ -11,12 +11,32 @@
  *
  */
 
-angular.module('Quizzipedia').controller('CtrlHeader',['$scope','$http',function($scope,$http){    
+angular.module('Quizzipedia').controller('CtrlHeader',['$scope','$http','$window',function($scope,$http,$window){    
     
     $scope.user = null;
     $scope.institutions = { 'Ancora in nessun ente' : 'Nessun ruolo assegnato' };
     $scope.noInstitution = "Nessun ente selezionato";
-    $scope.currentHeader = null; 
+    $scope.currentHeader = null;
+    $scope.email = null;
+    $scope.password = null;
+
+    $scope.signin = function(){
+      var userr = {
+        email: $scope.email,
+        password: $scope.password
+      };
+      console.log(userr);
+          
+      $http.post('/api/auth/signin', userr)
+          .success(function(response){
+              if(response.code == 0)
+                $window.location.href = '/Quizzipedia/home';
+              if(response.code == 1)
+                alert(response.message);
+          }).error(function(response){
+              alert("Errore");
+          });
+    };
     
     $scope.loadUser = function() {
       //assegno l'oggetto utente ricevuto dal server a $scope.user  

@@ -8,11 +8,11 @@
 				<div id="complText" class="answerBlock lineGap" ng-repeat="text in MyCompletionQ.question.text track by $index">
                     
 					<div id="{{$index}}">
-						<textarea ng-if="text.type == 'txt'" type="textarea" placeholder="inserire testo" name="ta1" id="ta1" ng-model="text.value"></textarea>
-						<span ng-if="text.type == 'txt'" class="btn btn-xs" ng-click="MyCompletionQ.removeText($index,'txt')"><i class="glyphicon glyphicon-remove"></i></span>
-						<div ng-if="text.type == 'id'"><span class="badge">{{text.value | number:0}}</span><span class="prev-text">Anteprima risposta </span><span class="btn btn-xs btn-xxs" ng-click="MyCompletionQ.removeText($index,'hole')"><i class="glyphicon glyphicon-remove"></i></span></div> <!-- numero buco + anteprima + pulsante-->
+						<textarea ng-if="text.type == 'txt'" type="textarea" placeholder="Inserire il testo..." name="ta1" id="ta1" ng-model="text.value"></textarea>
+						<span ng-if="text.type == 'txt'" class="btn btn-xs btn-xxs btn-danger" ng-click="MyCompletionQ.removeText($index,'txt')"><i class="glyphicon glyphicon-remove"></i></span>
+						<div ng-if="text.type == 'id'"><span class="badge">{{text.value | number:0}}</span><span class="prev-text label-as-badge label-blue">Anteprima risposta </span><span class="btn btn-xs btn-xxs btn-danger" ng-click="MyCompletionQ.removeText($index,'hole')"><i class="glyphicon glyphicon-remove"></i></span></div> <!-- numero buco + anteprima + pulsante-->
                     </div>
-					
+					<div class="spacer"></div>
 				</div>
 			</div>
 			<h4 class="text-center">Risposte</h4>
@@ -25,7 +25,7 @@
 					<div class="answerBlock" ng-repeat=" answer in MyCompletionQ.question.answer track by $index">
 						<div>
 							<input id="answNumber1" type="number" min="-1" step="1" ng-model="answer.id" required />
-							<textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="answer.text"></textarea>
+							<textarea type="textarea" placeholder="Risposta..." name="ta1" id="ta1" cols="15" rows="1" ng-model="answer.text"></textarea>
 							<span class="btn btn-xs" ng-click="MyCompletionQ.removeAnswer($index)"><i class="glyphicon glyphicon-remove"></i></span>
 						</div>
 				</div>

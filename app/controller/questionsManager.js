@@ -108,7 +108,7 @@ exports.search = function (req, res, next) {
     
     var results = [];
     var resultsParsed = [];
-    if(req.session.user /*&& req.session.user.role == 'teacher'*/) {
+    if(req.session.user && req.session.user.role == 'teacher') {
         Question.find({ 'institution': req.session.user.institution }, function (err, questions){
             for(var i=0;i<questions.length;i++){ //fetch all questions in institution
                 results.push(questions[i]);
@@ -225,6 +225,7 @@ exports.fetchTeacherQuestions = function (req, res, next) {
                             institution: questions[i].institution,
                             difficulty: questions[i].difficulty,
                             topic: questions[i].topic,
+                            type: parsed.type,
                             description: questions[i].description,
                             author: questions[i].author,
                             keywords: questions[i].keywords

@@ -44,6 +44,12 @@
       <script type="text/javascript" src="./public/quiz_execution/quizExecDirectives.js"></script>
       <script type="text/javascript" src="./public/quiz_execution/CtrlQuizExec.js"></script>
       <script type="text/javascript" src="./public/services/AnswerQuestion.js"></script>
+      <script type="text/javascript" src="./public/services/AnswerTrueFalseQ.js"></script>
+      <script type="text/javascript" src="./public/services/AnswerShortAnswerQ.js"></script>
+      <script type="text/javascript" src="./public/services/AnswerMultipleChoiceQ.js"></script>
+      <script type="text/javascript" src="./public/services/AnswerCompletionQ.js"></script>
+      <script type="text/javascript" src="./public/services/AnswerMatchingQElement.js"></script>
+      <script type="text/javascript" src="./public/services/AnswerMatchingQ.js"></script>
       <script type="text/javascript" src="./public/services/AnswerQuiz.js"></script>
        <!--<script type="text/javascript" src="./public/header/CtrlHeader.js"></script>
       <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
@@ -140,7 +146,7 @@
         
         
         
-        {{quizQuestions | json}}
+        {{answerQuiz | json}}
         
 			<!-- end of panel body -->
         

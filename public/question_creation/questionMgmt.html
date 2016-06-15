@@ -130,7 +130,7 @@
                           <td>{{question.difficulty}}</td>
                           <td>{{question.type}}</td>
                           <td>
-                              <span data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger  pull-right" data-title="Elimina" data-toggle="modal" data-target="#delete" ng-click="setDeleteQ(index)" ><span class="glyphicon glyphicon-trash"></span> Elimina</button></span>
+                              <span data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger  pull-right" data-title="Elimina" data-toggle="modal" data-target="#delete" ng-click="setDeleteQ(((currentPage-1)*itemsPerPage)+index)" ><span class="glyphicon glyphicon-trash"></span> Elimina</button></span>
                           </td>
                       </tr>
                   </tbody>

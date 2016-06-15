@@ -11,13 +11,13 @@
  *
  */
 
-angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','AnswerQuiz','AnswerQuestion',function($scope,$http,AnswerQuiz,AnswerQuestion){
+angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','AnswerQuiz','AnswerQuestion','AnswerTrueFalseQ','AnswerCompletionQ','AnswerShortAnswerQ','AnswerMatchingQ','AnswerMultipleChoiceQ','AnswerMatchingQElement',function($scope,$http,AnswerQuiz,AnswerQuestion,AnswerTrueFalseQ,AnswerCompletionQ,AnswerShortAnswerQ,AnswerMatchingQ,AnswerMultipleChoiceQ,AnswerMatchingQElement){
     
     
     $scope.currentQuestion = 0;
     $scope.quiz = null;
-    $scope.quizQuestions = null;
-    $scope.answerQuiz = new AnswerQuiz();
+    //$scope.quizQuestions = null;
+    $scope.answerQuiz = new AnswerQuiz(null);
     $scope.results = []; //bool
     
     
@@ -35,7 +35,39 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
     $scope.loadQuizQuestions = function(){
         //fa la get e creiamo gli answer dentro answerQuiz
         $http.get('/api/question/fetch_quiz_questions').success(function(response){
-            $scope.quizQuestions = response;
+            
+            
+            //setto i parametri di answerQuiz
+            $scope.answerQuiz.setIdQuiz($scope.quiz._id);
+            
+            //popolare l'array answerQuestion dentro a answerQuiz
+            
+            var size = response.length;
+            
+            for(var i = 0; i < size; i++){
+                
+                var answer = null;
+                
+                if(response[i].type == 'trfs'){
+                    answer = new AnswerTrueFalseQ(response[i],null);
+                }
+                else if(response[i].type == 'open'){
+                    answer = new AnswerShortAnswerQ(response[i],null);
+                }
+                else if(response[i].type == 'mult'){
+                    answer = new AnswerMultipleChoiceQ(response[i]);
+                }
+                else if(response[i].type == 'mtch'){
+                    answer = new AnswerMatchingQ(response[i]);
+                }
+                else if(response[i].type == 'cmpl'){
+                    answer = new AnswerCompletionQ(response[i]);
+                }
+                
+                $scope.answerQuiz.addAnswer(answer);
+            }
+            
+            
         });
     };
     

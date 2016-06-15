@@ -13,10 +13,11 @@
 
 angular.module('QuizSolver').factory('AnswerQuiz',['AnswerQuestion',function(AnswerQuestion){
     
-    function AnswerQuiz(idQuiz,date,answerQuestion){
+    function AnswerQuiz(idQuiz){
         this.quiz = idQuiz; //idQuiz
-        this.date = date; // Data
-        this.answerQuestion = answerQuestion;//AnswerQuestion[]
+        this.date = null; // Data
+        this.solver = null; // chi risolve il quiz
+        this.answerQuestion = [];//AnswerQuestion[]
     };
     
     
@@ -24,9 +25,13 @@ angular.module('QuizSolver').factory('AnswerQuiz',['AnswerQuestion',function(Ans
         //return bool
     };
     
+    AnswerQuiz.prototype.setIdQuiz = function(id){
+      this.quiz = id;  
+    };
+    
     
     AnswerQuiz.prototype.addAnswer = function(answer){ //AnswerQuestion
-        
+        this.answerQuestion.push(answer);
     };
     
     AnswerQuiz.prototype.removeAnswer = function(indexOfAnswer){

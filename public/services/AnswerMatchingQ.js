@@ -11,12 +11,12 @@
  *
  */
 
-angular.module().factory('AnswerMatchingQ',['AnswerQuestion','AnswerMatchingQElement',function(AnswerQuestion,AnswerMatchingQElement){
+angular.module('QuizSolver').factory('AnswerMatchingQ',['AnswerQuestion','AnswerMatchingQElement',function(AnswerQuestion,AnswerMatchingQElement){
     
-    function AnswerMatchingQ(solver,question,answer){
+    function AnswerMatchingQ(solver,question){
         
-        AnswerQuestion.call(this,solver,question);
-        this.givenAnswerColumn = []; //array di AnswerMatchingQElement 
+        AnswerQuestion.call(this,question);
+        this.givenAnswer = []; //array di AnswerMatchingQElement 
         
     };
     

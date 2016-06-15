@@ -11,11 +11,11 @@
  *
  */
 
-angular.module().factory('AnswerTrueFalseQ',['AnswerQuestion',function(AnswerQuestion){
+angular.module('QuizSolver').factory('AnswerTrueFalseQ',['AnswerQuestion',function(AnswerQuestion){
     
-    function AnswerTrueFalseQ(solver,question,answer){
+    function AnswerTrueFalseQ(question,answer){
         
-        AnswerQuestion.call(this,solver,question);
+        AnswerQuestion.call(this,question);
         this.givenAnswer = answer; //bool
         
     };

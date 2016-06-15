@@ -11,7 +11,7 @@
  *
  */
 
-angular.module().factory('AnswerMatchingQElement',[function(){
+angular.module('QuizSolver').factory('AnswerMatchingQElement',[function(){
     
     function AnswerMatchingQElement(){
         this.id = null;

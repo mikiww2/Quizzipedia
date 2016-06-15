@@ -11,15 +11,18 @@
  *
  */
 
-angular.module().factory('AnswerCompletionQ',['AnswerQuestion',function(AnswerQuestion){
+angular.module('QuizSolver').factory('AnswerCompletionQ',['AnswerQuestion',function(AnswerQuestion){
     
-    function AnswerCompletionQ(solver,question,answer){
+    function AnswerCompletionQ(question){
       
-        AnswerQuestion.call(this,solver,question);
-        this.givenAnswer = answer; //String[]
+        AnswerQuestion.call(this,question);
+        this.givenAnswer = []; //String[]
         
         
     };
+    
+    
+    AnswerCompletionQ.prototype = AnswerQuestion.prototype;
     
     AnswerCompletionQ.prototype.check = function(){
         /*

@@ -128,5 +128,3 @@ async.series([
         done();
     }
 ]);
-
-var done = function() {};

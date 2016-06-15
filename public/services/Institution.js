@@ -1,3 +1,16 @@
+/*
+ * Nome del file: Institution.js
+ * Percorso: public/services/Institution.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per l'ente
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('InstitutionManager').factory('Institution', ['Class', 'Director', 'ClassList','RoleList','Topics',function (Class, Director,ClassList,RoleList,Topics) {
 
     function Institution() {

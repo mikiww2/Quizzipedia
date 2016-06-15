@@ -1,3 +1,16 @@
+/*
+ * Nome del file: Quiz.js
+ * Percorso: public/services/Quiz.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per i quiz
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 //  MANCANO DIPENDENZE DA TOPIC, CLASS E GENERICQUESTION
 
 angular.module('QuizManager').factory('Quiz', [function () {

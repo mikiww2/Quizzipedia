@@ -1,3 +1,16 @@
+/*
+ * Nome del file: QuestionStatistics.js
+ * Percorso: public/services/QuestionStatistics.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per le statistiche delle domande
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 //Include Info
 
 angular.module('').factory ('QuestionStatistics', [function() {

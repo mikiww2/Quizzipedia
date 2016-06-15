@@ -1,3 +1,16 @@
+/*
+ * Nome del file: Class.js
+ * Percorso: public/services/Class.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per la classe
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('InstClassManager').factory('Class', [function() {
 
     function Class() {

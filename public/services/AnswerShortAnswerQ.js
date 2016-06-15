@@ -1,3 +1,16 @@
+/*
+ * Nome del file: AnswerShortAnswerQ.js
+ * Percorso: public/services/AnswerShortAnswerQ.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per la domanda di tipo risposta aperta
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module().factory('AnswerShortAnswerQ',['AnswerQuestion',function(AnswerQuestion){
     
     function AnswerShortAnswerQ(solver,question,answer){

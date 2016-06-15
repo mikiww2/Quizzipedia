@@ -1,3 +1,16 @@
+/*
+ * Nome del file: AnswerQuiz.js
+ * Percorso: public/services/AnswerQuiz.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per un quiz
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module().factory('AnswerQuiz',['Quiz','AnswerQuestion',function(Quiz, AnswerQuestion){
     
     function AnswerQuiz(quiz,date,answerQuestion){

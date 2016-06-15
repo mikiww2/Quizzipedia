@@ -1,3 +1,16 @@
+/*
+ * Nome del file: ClassList.js
+ * Percorso: public/services/ClassList.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per la lista delle classi
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('RequestsManager').factory('ClassList',['RequestClass',function(RequestClass){
     function ClassList(){
         this.classRequests = []; // array di RequestClass

@@ -1,3 +1,16 @@
+/*
+ * Nome del file: GenericQuestion.js
+ * Percorso: public/services/GenericQuestion.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per la domanda generica
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('CreateQuestion').factory('GenericQuestion',['Attachment',function(Attachment){
     
     function GenericQuestion(){

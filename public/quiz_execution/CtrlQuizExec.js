@@ -24,6 +24,7 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
         //fare get
         $http.get('/api/quiz/fetch_quiz_to_execute').success(function(response){
             $scope.quiz = response;
+            console.log($scope.quiz);
         });
         
     };
@@ -121,6 +122,9 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
             }
             else if($scope.answerQuiz.answerQuestion[i].question.type == 'mtch'){
                 $scope.answerQuiz.answerQuestion[i].isCorrect = $scope.answerQuiz.answerQuestion[i].checkMatching();
+            }
+            else if($scope.answerQuiz.answerQuestion[i].question.type == 'open'){
+                $scope.answerQuiz.answerQuestion[i].isCorrect = $scope.answerQuiz.answerQuestion[i].checkShortAns();
             }
            
         }

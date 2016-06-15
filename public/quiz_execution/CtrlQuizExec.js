@@ -41,6 +41,7 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
             $scope.answerQuiz.setIdQuiz($scope.quiz._id);
             
             //popolare l'array answerQuestion dentro a answerQuiz
+            console.log(response);
             
             var size = response.length;
             

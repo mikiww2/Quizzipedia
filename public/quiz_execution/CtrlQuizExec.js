@@ -62,6 +62,7 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
                 }
                 else if(response[i].type == 'cmpl'){
                     answer = new AnswerCompletionQ(response[i]);
+                    console.log(answer);
                 }
                 
                 $scope.answerQuiz.addAnswer(answer);

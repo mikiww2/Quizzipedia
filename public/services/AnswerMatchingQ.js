@@ -20,6 +20,8 @@ angular.module('QuizSolver').factory('AnswerMatchingQ',['AnswerQuestion','Answer
         
     };
     
+    AnswerMatchingQ.prototype = AnswerQuestion.prototype;
+    
     
     AnswerMatchingQ.prototype.check = function(){
         /*

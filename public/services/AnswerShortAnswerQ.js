@@ -22,7 +22,7 @@ angular.module('QuizSolver').factory('AnswerShortAnswerQ',['AnswerQuestion',func
     AnswerShortAnswerQ.prototype = AnswerQuestion.prototype;
     
     AnswerShortAnswerQ.prototype.check = function(){
-        
+        console.log("CHECK SHORTANSWER");
     };
     
     AnswerShortAnswerQ.prototype.getGivenAnswer = function(){

@@ -21,7 +21,7 @@ angular.module('QuizSolver').factory('AnswerMultipleChoiceQ',['AnswerQuestion',f
     AnswerMultipleChoiceQ.prototype = AnswerQuestion.prototype;
     
     AnswerMultipleChoiceQ.prototype.check = function(){
-        
+        console.log("CHECK MULTIPLECHOICE");
     };
     
     AnswerMultipleChoiceQ.prototype.addAnswer = function(ans){

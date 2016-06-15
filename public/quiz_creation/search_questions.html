@@ -47,8 +47,13 @@
             <br/>
                 <h3 class="panel-title"><span class="badge">{{searchQuestions.length}}</span> domande trovate</h3>
             
-            
-            <table class="table table-hover table-striped table-compact qTable" ng-if = "searchQuestions.length != 0" ng-controller = "CtrlPagination">                    
+            <div ng-controller = "CtrlPagination">
+                <div class= "text-center">
+                    <uib-pagination total-items="searchQuestions.length" ng-model="currentPage" class="pagination-sm" items-per-page="itemsPerPage" boundary-link-numbers="true" force-ellipses="true" max-size="maxSize"></uib-pagination> 
+                </div>
+                
+            <table class="table table-hover table-striped table-compact qTable" ng-if = "searchQuestions.length != 0">
+                
                     <thead>
                         <tr>
                             <th class="text-center">Titolo</th>
@@ -65,11 +70,13 @@
                             <td>{{question.type}}</td>
                             <td>{{question.difficulty}}</td>
                             <td>
-                                <span data-placement="top" data-toggle="tooltip" title="Aggiungi"<button class="btn btn-primary  pull-right" ng-click = "addQuestion(question)" title="Aggiungi"><span class="glyphicon glyphicon-plus"></span></button></span>
+                                <span data-placement="top" data-toggle="tooltip" title="Aggiungi"><button class="btn btn-primary  pull-right" ng-click = "addQuestion(question)" title="Aggiungi"><span class="glyphicon glyphicon-plus"></span></button></span>
                             </td>
                         </tr>
-                    </tbody>
-                </table>
+                    </tbody>              
+                               
+                </table>                               
+            </div>
         
         <div class="modal-footer ">
             <button type="button" class="btn btn-default" data-dismiss="modal" ng-click = "clearSearch()"> Fine</button>

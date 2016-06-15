@@ -98,7 +98,7 @@
 			<tr ng-repeat="(index, quiz) in quizzes.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
 				<td><input type="checkbox" class="checkClass" /></td>
 				<td>{{quiz.title}}</td>
-				<td>{{quiz.topic}}></td>
+				<td>{{quiz.topic}}</td>
                 <td ng-if = "quiz.classes.length == 0">Quiz pubblico</td>
 				<td ng-if = "quiz.classes.length != 0">
                     <span ng-repeat = "class in quiz.classes">{{class}}</span>

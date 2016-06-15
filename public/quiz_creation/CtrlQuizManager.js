@@ -38,6 +38,15 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
             var newClasses = [];
             
             angular.forEach($scope.quizzes, function(quiz) {
+                if (quiz.difficulty == 1)
+                    quiz.difficulty = "Facile";
+                else if (quiz.difficulty == 2)
+                    quiz.difficulty = "Medio";
+                else if (quiz.difficulty == 3)
+                    quiz.difficulty = "Difficile";
+                else if (quiz.difficulty == 4)
+                    quiz.difficulty = "Molto difficile";
+                
                 if (quiz.classes != null) {
                     angular.forEach(quiz.classes, function(classs, key) {
                         if (classs != null) {

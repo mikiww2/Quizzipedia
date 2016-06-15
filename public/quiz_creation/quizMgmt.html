@@ -92,7 +92,8 @@
 			<th><i class="glyphicon glyphicon-pencil"></i> Titolo</th>
 			<th><i class="glyphicon glyphicon-list-alt"></i> Argomento</th>
 			<th class="col-sm-2"><i class="glyphicon glyphicon-book"></i> Classe</th>
-			<th></th>
+            <th><i class="glyphicon glyphicon-star"></i> Livello</th>
+            <th></th>
 			</thead>
 			<tbody>
 			<tr ng-repeat="(index, quiz) in quizzes.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
@@ -103,10 +104,10 @@
 				<td ng-if = "quiz.classes.length != 0">
                     <span ng-repeat = "class in quiz.classes">{{class}}</span>
                 </td>
+                <td>{{quiz.difficulty}}</td>
 				<td>
-					<span data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger  pull-right" data-title="Elimina" data-toggle="modal" data-target="#delete" ng-click="selectQuiz(((currentPage-1)*itemsPerPage)+index)"><span class="glyphicon glyphicon-trash"></span> </button></span>
-					
-					<span data-placement="top" data-toggle="tooltip" title="Modifica"><button class="btn btn-primary  pull-right" data-title="Modifica" data-toggle="modal" data-target="#edit"  ng-click="selectQuiz(((currentPage-1)*itemsPerPage)+index)"><span class="glyphicon glyphicon-pencil" data-placement="top" data-toggle="tooltip" title="Modifica"></span> </button></span></td>
+					<span data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger  pull-right" data-title="Elimina" data-toggle="modal" data-target="#delete" ng-click="selectQuiz(((currentPage-1)*itemsPerPage)+index)"><span class="glyphicon glyphicon-trash"></span> Elimina</button></span>
+                </td>
 			</tr>	
 			</tbody>
 				

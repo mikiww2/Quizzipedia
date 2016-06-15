@@ -256,19 +256,27 @@ exports.fetchQuizQuestions = function (req, res, next) {
             }
             else{
                 if(questions){
-                    for(var i=0;i<questions.length;i++){
-                        var parsed = agent.parse(questions[i].qml);
-                        results.push({
-                            _id: questions[i]._id,
-                            title: questions[i].title,
-                            difficulty: questions[i].difficulty,
-                            topic: questions[i].topic,
-                            type: parsed.type,
-                            description: questions[i].description,
-                            author: questions[i].author,
-                            details: parsed.question
-                        });
+                    for(var i=0;i<req.session.quiz.questions.length;i++){
+                        for(var j=0;j<questions.length;j++){
+                            console.log(req.session.quiz.questions[i]);
+                            console.log(questions[j]._id);
+                            console.log('---------');
+                            if(req.session.quiz.questions[i] == questions[j]._id){
+                                var parsed = agent.parse(questions[j].qml);
+                                results.push({
+                                    _id: questions[j]._id,
+                                    title: questions[j].title,
+                                    difficulty: questions[j].difficulty,
+                                    topic: questions[j].topic,
+                                    type: parsed.type,
+                                    description: questions[j].description,
+                                    author: questions[j].author,
+                                    details: parsed.question
+                                });
+                            }
+                        }
                     }
+                    
                     console.log('-------------------------res---------------------------');
                     console.log(results);
                     res.send(results);

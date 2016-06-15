@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlUsers.js
+ * Percorso: public/users/CtrlUsers.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la gestione degli utenti
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('UsersManager').controller ('CtrlUsers',[ '$scope', '$http', function($scope, $http){
     
     $scope.users = [];

@@ -1,3 +1,16 @@
+/*
+ * Nome del file: AuthenticationData.js
+ * Percorso: public/services/AuthenticationData.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per i dati di autenticazione
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('RequestsManager').factory('AuthenticationData',function(){
 	
   function AuthenticationData(newFirstName,newLastName,newMail,newPassword){

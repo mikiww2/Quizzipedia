@@ -1,3 +1,16 @@
+/*
+ * Nome del file: pendingClass.js
+ * Percorso: public/requests/pendingClass.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la gestione di richieste pendenti di classe
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('RequestsManager').directive ('pendingClass',['$window', function($window){
     
     return {

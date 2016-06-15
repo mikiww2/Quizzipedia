@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlRecover.js
+ * Percorso: public/authentic/CtrlRecover.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per il recupero password
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('RecoverPswd').controller('CtrlRecover',['$scope','$http','$window',function($scope,$http,$window){
     
     $scope.email = null;

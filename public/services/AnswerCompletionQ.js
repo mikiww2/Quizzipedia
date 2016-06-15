@@ -1,3 +1,16 @@
+/*
+ * Nome del file: AnswerCompletationQ.js
+ * Percorso: public/services/AnswerCompletationQ.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per la domanda di tipo completamento testo
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module().factory('AnswerCompletionQ',['AnswerQuestion',function(AnswerQuestion){
     
     function AnswerCompletionQ(solver,question,answer){

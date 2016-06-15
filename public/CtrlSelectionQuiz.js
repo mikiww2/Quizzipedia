@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlSelectionQuiz.js
+ * Percorso: public/CtrlSelectionQuiz.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller che gestisce i quiz appartenenti a classi
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module().controller('CtrlQuizSelection',['$scope','$http',function(){
     
     

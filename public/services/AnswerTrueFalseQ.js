@@ -1,3 +1,16 @@
+/*
+ * Nome del file: AnswerTrueFalseQ.js
+ * Percorso: public/services/AnswerTrueFalseQ.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per la domanda di tipo vero o falso
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module().factory('AnswerTrueFalseQ',['AnswerQuestion',function(AnswerQuestion){
     
     function AnswerTrueFalseQ(solver,question,answer){

@@ -1,4 +1,17 @@
-angular.module('QuizManager').controller('CtrlSearchQuiz',['Quiz', '$scope', '$http', function (Quiz, $scope, $http){
+/*
+ * Nome del file: CtrlSearchQuiz.js
+ * Percorso: public/search/CtrlSearchQuiz.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la ricerca di quiz
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
+angular.module('QuizManager').controller('CtrlSearchQuiz',['Quiz', '$scope', '$http','$window', function (Quiz, $scope, $http, $window){
     
     $scope.searchQ = {title : null, author : null, topic : null, keyword : null, difficulty : null}; //parametri da cercare
     $scope.searchQuizzes = []; //quiz che corrispondono ai criteri di ricerca
@@ -36,7 +49,11 @@ angular.module('QuizManager').controller('CtrlSearchQuiz',['Quiz', '$scope', '$h
     };
     
     $scope.selectQuiz = function(quizToSolve) {
-        $http.post('/api/quiz/prepare_quiz_execution ', quizToSolve);
+        console.log(quizToSolve);
+        $http.post('/api/quiz/prepare_quiz_execution', quizToSolve)
+                .success(function(response) {
+                    $window.location.href = '/Quizzipedia/quizExec';
+                });
     };
 
     $scope.loadTopics(); 

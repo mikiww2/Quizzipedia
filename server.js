@@ -1,3 +1,16 @@
+/*
+ * Nome del file: server.js
+ * Percorso: server.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  File di avvio del prodotto
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 // set up ======================================================================
 var express = require('express');
 var app = express(); 						// create our app w/ express

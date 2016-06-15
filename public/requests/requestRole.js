@@ -1,3 +1,16 @@
+/*
+ * Nome del file: requestRole.js
+ * Percorso: public/requests/requestRole.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la gestione di richieste di ruolo
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('RequestsManager').directive('requestRole',['$window', function($window){
     
     return {

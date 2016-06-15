@@ -1,3 +1,16 @@
+/*
+ * Nome del file: StudentStatistics.js
+ * Percorso: public/services/StudentStatistics.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per le statistiche studente
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 //Include Info
 
 angular.module('').factory ('StudentStatisticsQuiz', [function() {

@@ -1,3 +1,16 @@
+/*
+ * Nome del file: core.js
+ * Percorso: public/core.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  File che raggruppa i moduli di angular
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('userApp', ['userController', 'userService']);
 
 angular.module('Quizzipedia',[]);

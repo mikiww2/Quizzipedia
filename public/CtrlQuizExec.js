@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlQuizExec.js
+ * Percorso: public/CtrlQuizExec.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller che gestisce l'esecuzione dei quiz
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module().controller('CtrlExecutionQuiz',[function(){
     
     

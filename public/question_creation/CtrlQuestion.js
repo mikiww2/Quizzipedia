@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlQuestion.js
+ * Percorso: public/question_creation/CtrlQuestion.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la creazione dei vari tipi di domanda
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','TrueFalseQ','ShortAnswerQ','MultipleChoiceQ','AnswerMultipleChoice','Attachment','Upload','$window','CompletionQ','MatchingQ', function($scope, $http, TrueFalseQ,ShortAnswerQ,MultipleChoiceQ,AnswerMultipleChoice,Attachment,Upload,$window,CompletionQ,MatchingQ){ //dipendenze verso tutti i tipi di domande e Topics
     
     

@@ -1,3 +1,16 @@
+/*
+ * Nome del file: NoRole.js
+ * Percorso: public/services/NoRole.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per l'utente senza ruolo
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('Quizzipedia').factory('NoRole',['User', 'AnswerQuiz',function(User, AnswerQuiz){
     
     function NoRole(firstName,lastName,mail,password){

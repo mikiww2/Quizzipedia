@@ -1,3 +1,16 @@
+/*
+ * Nome del file: quizExecDirectives.js
+ * Percorso: public/quiz_execution/quizExecDirectives.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la gestione delle direttive di esecuzione quiz
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('QuizSolver').directive('quizExecTrueFalse',function(){
     
     return {

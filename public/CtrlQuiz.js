@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlQuiz.js
+ * Percorso: public/CtrlQuiz.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller che gestisce i quiz
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module().controller('CtrlQuiz',['$scope','$http','Teacher','Topics','Class','CompletionQ','MatchingQ','MultipleChoiceQ','ShortAnswerQ','TrueFalseQ',function($scope,$http,Teacher,Topics,Class,CompletionQ,MatchingQ,MultipleChoiceQ,ShortAnswerQ,TrueFalseQ){
     
     $scope.teacher = null;

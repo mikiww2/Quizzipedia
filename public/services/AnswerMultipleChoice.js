@@ -1,3 +1,16 @@
+/*
+ * Nome del file: AnswerMultipleChoice.js
+ * Percorso: public/services/AnswerMultipleChoice.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per la domanda di tipo risposta multipla (rappresenta la risposta)
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('CreateQuestion').factory('AnswerMultipleChoice',['Attachment',function(Attachment){
     
     

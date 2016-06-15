@@ -1,3 +1,16 @@
+/*
+ * Nome del file: Attachment.js
+ * Percorso: public/services/Attachment.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per un allegato
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('CreateQuestion').factory('Attachment',function(){
     
     function Attachment(){

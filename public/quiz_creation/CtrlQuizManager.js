@@ -1,4 +1,17 @@
-angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$http', function (Quiz, $scope, $http){
+/*
+ * Nome del file: CtrlQuizManager.js
+ * Percorso: public/quiz_creation/CtrlQuizManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la gestione dei quiz
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
+angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$http', '$window', function (Quiz, $scope, $http, $window){
     
     $scope.index = null; //PER LA RIMOZIONE, SE SUPERFLUO TOGLI
     
@@ -118,7 +131,7 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
             .success(function(response) {
                 $scope.myQuiz = new Quiz();
                 alert(response.message)
-                $window.location.href = '/Quizzipedia/createQuiz';
+                $window.location.href = '/Quizzipedia/quizMgmt';
             }).error(function(){
                 alert('Errore nel sistema');
             });

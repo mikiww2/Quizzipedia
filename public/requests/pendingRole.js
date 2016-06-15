@@ -1,3 +1,16 @@
+/*
+ * Nome del file: pendingRole.js
+ * Percorso: public/requests/pendingRole.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la gestione di richieste pendenti di ruolo
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('RequestsManager').directive ('pendingRole',['$window', function($window){
     
     return {

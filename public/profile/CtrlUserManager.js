@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlUserManager.js
+ * Percorso: public/profile/CtrlUserManager.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la gestione del profilo personale
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http',function($scope,$http){
     
     $scope.institutions = { 'Ancora in nessun ente' : 'Nessun ruolo assegnato' };

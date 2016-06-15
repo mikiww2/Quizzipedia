@@ -1,3 +1,16 @@
+/*
+ * Nome del file: requestClass.js
+ * Percorso: public/requests/requestClass.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la gestione di richieste di classe
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('RequestsManager').directive('requestClass',['$window',function($window){    
     return{
       restrict: 'E',

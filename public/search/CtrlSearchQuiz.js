@@ -1,3 +1,16 @@
+/*
+ * Nome del file: CtrlSearchQuiz.js
+ * Percorso: public/search/CtrlSearchQuiz.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Controller per la ricerca di quiz
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('QuizManager').controller('CtrlSearchQuiz',['Quiz', '$scope', '$http','$window', function (Quiz, $scope, $http, $window){
     
     $scope.searchQ = {title : null, author : null, topic : null, keyword : null, difficulty : null}; //parametri da cercare

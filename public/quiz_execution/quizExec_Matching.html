@@ -19,6 +19,9 @@
                                     <span ng-if = "firstPart.attachment.type == 'vid'">
                                         <img ng-src="./{{firstPart.attachment.path}}" />
                                     </span>
+                                    <span ng-if = "firstPart.attachment.type == 'aud'">
+                                        <img ng-src="./{{firstPart.attachment.path}}" />
+                                    </span>
                                 </span>
 							</div>						
 						</div>
@@ -34,13 +37,13 @@
                                 <span ng-if = "secondPart.txt != null">{{secondPart.txt}}</span>
                                 <span ng-if = "secondPart.attachment != null">
                                     <span ng-if = "secondPart.attachment.type == 'img'">
-                                        <img ng-src="./upload/{{secondPart.attachment.path}}" />
+                                        <img ng-src="./{{secondPart.attachment.path}}" />
                                     </span>
                                     <span ng-if = "secondPart.attachment.type == vid">
-                                        <source ng-src="./upload/{{secondPart.attachment.path}}" />
+                                        <source ng-src="./{{secondPart.attachment.path}}" />
                                     </span>
                                     <span ng-if = "secondPart.attachment.type == aud">
-                                        <source ng-src="./upload/{{secondPart.attachment.path}}" />
+                                        <source ng-src="./{{secondPart.attachment.path}}" />
                                     </span>
                                 </span>
 							</div>

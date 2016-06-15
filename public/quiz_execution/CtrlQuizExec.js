@@ -109,11 +109,18 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
     };
     
     $scope.saveQuiz = function(){
+        console.log("SAVEQUIZ");
         
         
-        for(var i = 0; i < answerQuiz.AnswerQuestion.length; i++){
-            var ris = answerQuiz.AnswerQuestion[i].check();
-            answerQuiz.AnswerQuestion[i].setCorrect(ris);
+        for(var i = 0; i < $scope.answerQuiz.answerQuestion.length; i++){
+            
+            if($scope.answerQuiz.answerQuestion[i].question.type == 'trfs'){
+                
+            }
+            var ris = $scope.answerQuiz.answerQuestion[i].check();
+            console.log(ris);
+            $scope.answerQuiz.answerQuestion[i].isCorrect = ris;
+            console.log($scope.answerQuiz.answerQuestion[i]);
         }
         
         //salvo il quiz localmente dentro a $sope.user e poi invio la richesta al server

@@ -20,10 +20,10 @@ angular.module('QuizSolver').factory('AnswerQuiz',['AnswerQuestion',function(Ans
         this.answerQuestion = [];//AnswerQuestion[]
     };
     
-    
+    /*
     AnswerQuiz.prototype.check = function(){
         //return bool
-    };
+    };*/
     
     AnswerQuiz.prototype.setIdQuiz = function(id){
       this.quiz = id;  

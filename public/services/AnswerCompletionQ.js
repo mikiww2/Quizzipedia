@@ -31,6 +31,8 @@ angular.module('QuizSolver').factory('AnswerCompletionQ',['AnswerQuestion',funct
         che ha dato l'utente
         
         */
+        
+        console.log("CHECK COMPLETION");
     };
     
     AnswerCompletionQ.prototype.addAnswer = function(ans){

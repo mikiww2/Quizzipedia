@@ -45,7 +45,9 @@ angular.module('Registration').controller('CtrlData',['$scope','$http','$window'
                 //salva tutto nel server
                 $http.post('/api/auth/signup', $scope.user)
                 .success(function(response){
-                    $window.location.href = '/Quizzipedia/signin';
+                    alert(response.message);
+                    if(response.code == 0)
+                        $window.location.href = '/Quizzipedia/signin';
                 }).error(function(response){
                     alert("Errore");
                 });

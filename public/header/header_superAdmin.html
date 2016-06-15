@@ -12,36 +12,17 @@
             </div>
 			
             <ul class="nav navbar-right top-nav pull-right inline">
-                <li class="userDropdown"> 
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-education"></i> <span class="visible-lg-inline visible-inline"> {{noInstitution}}</span><b class="caret"></b></a>
-                    <ul class="dropdown-menu">                        
-                        <li  ng-repeat = "institution in institutions">
-                            <a href="/Quizzipedia/home" ng-click="changeInst(institution.institution_name)">{{institution.institution_name}}</a>
-                        </li>
-                         <li class="divider"></li>
-                        <li> <a href = "/Quizzipedia/sendRequest"><span class="blue"> Entra in un nuovo ente</span></a></li>                       
-                    </ul>
-                </li>
                 <li class="userDropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> 
-					<span class="visible-lg-inline visible-md-inline">Bentornato, <strong class="blue">{{user.firstName}} {{user.lastName}}</strong></span><b class="caret"></b></a>
+					<span class="visible-lg-inline visible-md-inline">Bentornato, <strong class="blue">amministratore</strong></span><b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="/Quizzipedia/profile"><i class="glyphicon  glyphicon glyphicon-user"></i> Profilo</a>
-                        </li>
-						<!-- class requests if logged in inst, inst requests if not logged in inst -->
-                        <li>
-                            <a href="/Quizzipedia/sendRequest"><i class="glyphicon  glyphicon glyphicon-send"></i> Invia richieste</a>
-                        </li>                        
-						<!-- -->
-                        <li class="divider"></li>
                         <li>
                             <a href="/Quizzipedia/signout"><i class="glyphicon glyphicon-log-out"></i> Esci</a>
                         </li>
                     </ul>
                 </li>
             </ul>
-
+<!-- 
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <li>
@@ -56,7 +37,7 @@
                     <li>
                         <a href="/Quizzipedia/aboutUs"><i class="glyphicon glyphicon-sunglasses"></i> Chi siamo</a>
                     </li>
-                </ul>
+                </ul> -->
             </div>
             <!-- /.navbar-collapse -->
         </nav>

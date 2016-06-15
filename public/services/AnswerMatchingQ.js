@@ -30,6 +30,8 @@ angular.module('QuizSolver').factory('AnswerMatchingQ',['AnswerQuestion','Answer
         nell'answer di question
         
         */
+        
+        console.log("CHECK MATCHING");
     };
     
     AnswerMatchingQ.prototype.setGivenAnswerColumn = function(answer){ //answer:AnswerColumn

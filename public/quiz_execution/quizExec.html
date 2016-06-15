@@ -89,11 +89,11 @@
 				</div>
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-2 col-xs-6 col-xs-offset-1 quizTitle">
-						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> quiz.title</h3>
-						<p class="text-center">Autore</p>
+						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> {{quiz.title}}</h3>
+						<p class="text-center">{{quiz.author}}</p>
 					</div>
 					<div class="col-md-2 col-sm-2 col-xs-2 tinybox">
-						<p class="text-center">quiz.topic</p>
+						<p class="text-center">{{quiz.topic}}</p>
 						<!-- custom stars according to difficulty -->
 						<span class="diffStars">
 							<i class="glyphicon glyphicon-star"></i>
@@ -113,7 +113,7 @@
 						<h6 class="text-center">Descrizione</h6>
 					</div>
 					<div class="panel-body">
-						<p class="text-center">quiz.description[0] </p>
+						<p class="text-center">{{quiz.description[0]}} </p>
 					</div>
 				</div>
 				<!-- end of description -->

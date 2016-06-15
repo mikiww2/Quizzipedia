@@ -15,6 +15,7 @@ var async = require('async');
 
 var Organization = require('../model/organization.model');
 var User = require('../model/user.model');
+var Quiz = require('../model/quiz.model');
 
 var callback = function(){ //callback fake per sincronismo
 }
@@ -83,7 +84,7 @@ exports.fetchNoUserClass = function (req, res) {
 
 exports.fetchClassesList = function (req, res) {
 
-		var classList = [];
+		var classlist = [];
 		if(req.session.user && req.session.user.role == 'director'){
 			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 				if (err) {
@@ -93,12 +94,12 @@ exports.fetchClassesList = function (req, res) {
 	      else{
 	       	if(org){
 	       		for(var i=0;i<org.classes.length;i++){
-	       			classList.push({
+	       			classlist.push({
 	       				class_id: org.classes[i]._id,
 	       				name: org.classes[i].name
 	       			});
 	       		}
-	       		res.send(classList);
+	       		res.send(classlist);
 	       	}
 	       	else console.log('Nessun ente trovato');
 	    	}
@@ -117,20 +118,20 @@ exports.fetchClassesList = function (req, res) {
 		       			if(org.users[i].user == req.session.user._id)
 		       				for(var j=0;j<org.users[i].classes.length;j++){
 		       					if(org.users[i].classes[j].state == 'allowed')
-		       						classList.push({
+		       						classlist.push({
 		       							class_id: org.users[i].classes[j]._id,
 		       							name: null
 		       						});
 		       				}
 		       		}
 		       		for(var i=0;i<org.classes.length;i++){
-		       			for(var j=0;j<classList.length;j++){
-		       				if(org.classes[i]._id.equals(classList[j].class_id))
-		       					classList[j].name = org.classes[i].name;
+		       			for(var j=0;j<classlist.length;j++){
+		       				if(org.classes[i]._id.equals(classlist[j].class_id))
+		       					classlist[j].name = org.classes[i].name;
 		       			}
 		       		}
 
-		       		res.send(classList);
+		       		res.send(classlist);
 		       	}      		
 		    	}
 				});
@@ -141,7 +142,7 @@ exports.fetchClassesList = function (req, res) {
 
 exports.fetchClassesDetails = function (req, res) {
 
-		var classList = [];
+		var classlist = [];
 		if(req.session.user && req.session.user.role == 'director'){
 			Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
 				if (err) {
@@ -151,19 +152,19 @@ exports.fetchClassesDetails = function (req, res) {
 	      else{
 	       	if(org){
 	       		for(var i=0;i<org.classes.length;i++){
-	       			classList.push({
+	       			classlist.push({
 	       				class_id: org.classes[i]._id,
 	       				className: org.classes[i].name
 	       			});
 	       		}
-	       		for(var i=0;i<classList.length;i++){ //passo l'array classlist
+	       		for(var i=0;i<classlist.length;i++){ //passo l'array classlist
        				var numClassTeachers = 0;
        				var numClassStudents = 0;
        				for(var j=0;j<org.users.length;j++){ //scansiono tutti gli utenti
        					if(org.users[j].state == 'allowed') //se sono utenti accettati nell'ente
 	       					for(var k=0;k<org.users[j].classes.length;k++){ //scansiono classi dell'utente
 	       						if(org.users[j].classes[k].state == 'allowed') //se sono stati accettati nella classe
-		       						if(org.users[j].classes[k]._id.equals(classList[i].class_id)){
+		       						if(org.users[j].classes[k]._id.equals(classlist[i].class_id)){
 				       					if(org.users[j].role == 'teacher')
 					       					numClassTeachers++;
 					     					if(org.users[j].role == 'student')
@@ -171,10 +172,10 @@ exports.fetchClassesDetails = function (req, res) {
 				       				}
 	       					}
 	       			}
-	       			classList[i].classTeachers = numClassTeachers;
-	       			classList[i].classStudents = numClassStudents;
+	       			classlist[i].classTeachers = numClassTeachers;
+	       			classlist[i].classStudents = numClassStudents;
        			}
-	       		res.send(classList);
+	       		res.send(classlist);
 	       	}      		
 	    	}
 			});
@@ -192,19 +193,19 @@ exports.fetchClassesDetails = function (req, res) {
 		       			if(org.users[i].user == req.session.user._id)
 		       				for(var j=0;j<org.users[i].classes.length;j++){  //passa le sue classi dove è stato accettato
 		       					if(org.users[i].classes[j].state == 'allowed')
-		       						classList.push({
+		       						classlist.push({
 		       							class_id: org.users[i].classes[j]._id,
 		       						});
 		       				}
 		       		}
-		       		for(var i=0;i<classList.length;i++){ //passo l'array classlist
+		       		for(var i=0;i<classlist.length;i++){ //passo l'array classlist
 	       				var numClassTeachers = 0;
 	       				var numClassStudents = 0;
 	       				for(var j=0;j<org.users.length;j++){ //scansiono tutti gli utenti
 	       					if(org.users[j].state == 'allowed') //se sono utenti accettati nell'ente
 		       					for(var k=0;k<org.users[j].classes.length;k++){ //scansiono classi dell'utente
 		       						if(org.users[j].classes[k].state == 'allowed') //se sono stati accettati nella classe
-			       						if(org.users[j].classes[k]._id.equals(classList[i].class_id)){
+			       						if(org.users[j].classes[k]._id.equals(classlist[i].class_id)){
 					       					if(org.users[j].role == 'teacher')
 						       					numClassTeachers++;
 						     					if(org.users[j].role == 'student')
@@ -212,17 +213,17 @@ exports.fetchClassesDetails = function (req, res) {
 					       				}
 		       					}
 		       			}
-		       			classList[i].classTeachers = numClassTeachers;
-		       			classList[i].classStudents = numClassStudents;
+		       			classlist[i].classTeachers = numClassTeachers;
+		       			classlist[i].classStudents = numClassStudents;
 	       			}
-	       			for(var i=0;i<classList.length;i++){
+	       			for(var i=0;i<classlist.length;i++){
 	       				for(var j=0;j<org.classes.length;j++){ 
-	       					if(classList[i].class_id.equals(org.classes[j]._id))
-	       						classList[i].className = org.classes[j].name;
+	       					if(classlist[i].class_id.equals(org.classes[j]._id))
+	       						classlist[i].className = org.classes[j].name;
 	       				}
 	       			}
 
-		       		res.send(classList);
+		       		res.send(classlist);
 		       	}      		
 		    	}
 				});
@@ -292,6 +293,105 @@ exports.fetchClassMembers = function (req, res) {
 				});			
 		}
 		else res.redirect('/');
+}
+
+exports.fetchClassesWithQuiz = function (req, res) {
+
+	var quizlist = [];
+	var classlist = [];
+	var finalResults = [];
+
+	var counter = 0;
+
+	if(req.session.user && req.session.user.role == 'student'){
+		async.series([
+			function(callback){console.log('Inizio find classes -----------------------------');
+
+				Organization.findOne({ 'name': req.session.user.institution }, function (err,org){
+					if (err) {
+		            console.log('error: ' + err);
+		            res.redirect('/');
+		      }
+		      else{
+		       	if(org){
+		       		for(var i=0;i<org.users.length;i++){ //cerco l'utente
+		       			if(org.users[i].user == req.session.user._id)
+			       			for(var j=0;j<org.users[i].classes.length;j++){ //cerco le sue classi
+			       				if(org.users[i].classes[j].state == 'allowed') //seleziono quelle in cui è accettato
+			       					for(var k=0;k<org.classes.length;k++){ //cerco nome delle classi in cui è l'utente
+			       						if(org.classes[k]._id.equals(org.users[i].classes[j]._id)){
+			       							classlist.push({
+			       								class_id: org.users[i].classes[j]._id,
+			       								class_name: org.classes[k].name
+			       							});
+			       						}
+			       					}
+			       			}
+		       		}
+		       		callback();
+		       	}
+		       	else console.log('Nessuna organizzazione trovata');
+		      }
+				});
+			},
+
+			function(callback){console.log('Inizio find quiz -----------------------------');
+				Quiz.find({ 'institution': req.session.user.institution/*, 'classes': {$size: {$gt: 0}}*/}, function (err,quizzes){
+					if (err) {
+		            console.log('error: ' + err);
+		            res.redirect('/');
+		      }
+		      else{
+		       	if(quizzes){
+		       		for(var i=0;i<quizzes.length;i++){
+		       			quizlist.push({
+		       				_id: quizzes[i]._id,
+		       				title: quizzes[i].title,
+		       				topic: quizzes[i].topic,
+		       				author: quizzes[i].author,
+		       				classes: quizzes[i].classes
+		       			});
+		       		}
+		       		console.log(quizlist);
+		       		callback();
+		       	}
+		       	else console.log('Nessun quiz trovato');
+		      }
+				});
+			},
+
+			function(callback){console.log('Inizio filtro -----------------------------');
+				for(var i=0;i<classlist.length;i++){ //ciclo su classlist
+					var quizID = [];
+					for(var j=0;j<quizlist.length;j++){ //ciclo su quizlist
+						for(var k=0;k<quizlist[j].classes.length;k++){ //ciclo sulle classi del quiz
+							if(classlist[i].class_id.equals(quizlist[j].classes[k])){
+								quizID.push({
+									_id: quizlist[j]._id,
+									title: quizlist[j].title,
+									topic: quizlist[j].topic,
+									author: quizlist[j].author
+								});
+							}
+						}
+					}
+					finalResults.push({
+						class_id: classlist[i].class_id,
+       			class_name: classlist[i].class_name,
+       			quizzes: quizID
+					});
+				}
+				callback();
+			}],function(err){
+					if(err)
+						console.log(err);
+					else{
+						console.log(finalResults);
+						res.send(finalResults);
+					}
+			});
+	}
+	else res.redirect('/');
 }
 
 exports.removeFromClass = function (req, res) {

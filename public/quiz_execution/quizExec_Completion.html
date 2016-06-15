@@ -1,37 +1,31 @@
 
-					<!-- question body - variable structure depending on qtype -->
-					<div class="well answContainer qComplContainer row">
-						<div class="answerBlock bluebg">
-							<span>Text without holes blabla bla</span>
-							<span class="drop well"></span>
-							<span>lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi nisl, pellentesque vitae hendrerit ut, lacinia non quam. </span>
-							<span class="drop well"></span>
-							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-						</div>
-						<div class="spacer"></div>
-						<div class="answerBlock bluebg text-center">
-							<div class="drag">
-								<span>Answer text</span>
-							</div>
-							<div class="drag">
-								<span>Answer text</span>
-							</div>
-							<div class="drag">
-								<span>Answer text</span>
-							</div>
-							<div class="drag">
-								<span>Answer text</span>
-							</div>
-						</div>
+			<!-- question body - variable structure depending on qtype -->
+			<div class="well answContainer qComplContainer row">
+				<div class="answerBlock bluebg">
+					<span>Text without holes blabla bla</span>
+					<input id="id1" type="number" min="-1" step="1" placeholder="1"required />
+					<span>lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi nisl, pellentesque vitae hendrerit ut, lacinia non quam. </span>
+					<input id="id1" type="number" min="-1" step="1" placeholder="2"required />
+					<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+				</div>
+				<div class="spacer"></div>
+				<div class="answerBlock bluebg text-center">
+					<div class="drag">
+						<span><span class="badge">1</span> Answer text</span>
 					</div>
-					
-					<script language="javascript" type="text/javascript">
-					$(document).ready(function() {
-						$('.drag').draggable();
-						$('.drop').droppable();						
-					});
-					</script>
-					<!-- end of question body -->
+					<div class="drag">
+						<span><span class="badge">2</span> Answer text</span>
+					</div>
+					<div class="drag">
+						<span><span class="badge">3</span> Answer text</span>
+					</div>
+					<div class="drag">
+						<span><span class="badge">4</span> Answer text</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- end of question body -->
 					
 
 

@@ -102,6 +102,13 @@ angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$sco
         $scope.index=null;
     };
     
+     $scope.selectQuiz = function(quizToSolve) {
+        $http.post('/api/quiz/prepare_quiz_execution', quizToSolve)
+                .success(function(response) {
+                    $window.location.href = '/Quizzipedia/quizExec';
+                });
+    };
+    
     $scope.loadClasses(); 
     $scope.loadUserClasses();
     $scope.fetchClassesWithQuiz();

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="Quizzipedia">
+<html lang="en" ng-app="Authentication">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,6 +24,7 @@
     <link href="./assets/css/quizzipedia.base.css" rel="stylesheet">
    
     <script type="text/javascript" src="./public/core.js"></script>
+    <script type="text/javascript" src="./public/authentic/CtrlSignin.js"></script>
 	
     <!-- HEADER -->
     <script type="text/javascript" src="./public/header/headerNotLogged.js"></script>
@@ -55,13 +56,13 @@
             </ol>
         </div>
 		
-	<div class="container">
-      <form class="form" action="/api/auth/signin" method="post">
+	<div class="container" ng-controller="CtrlSignin">
+      <form class="form" ng-submit="signin()">
         <h3 class="form-heading description text-center">Accedi</h3>
         <label for="inputEmail" class="sr-only">Indirizzo email</label>
-        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Indirizzo email" required autofocus>
+        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Indirizzo email" ng-model="email" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="password" required>
 		 <div class="help-block text-right"><a href="/Quizzipedia/recover_pswd">Hai dimenticato la tua password?</a></div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Accedi</button>
       </form>

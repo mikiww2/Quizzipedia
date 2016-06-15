@@ -49,7 +49,6 @@ angular.module('QuizManager').controller('CtrlSearchQuiz',['Quiz', '$scope', '$h
     };
     
     $scope.selectQuiz = function(quizToSolve) {
-        console.log(quizToSolve);
         $http.post('/api/quiz/prepare_quiz_execution', quizToSolve)
                 .success(function(response) {
                     $window.location.href = '/Quizzipedia/quizExec';

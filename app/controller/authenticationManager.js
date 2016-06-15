@@ -43,16 +43,17 @@ exports.signin = function (req, res) {
                     if(email == 'admin@quizzipedia.it')
                         req.session.user.role = 'admin';
 
-                    res.redirect('/');
+                    console.log('Autenticato con successo!');
+                    res.send({ code: 0, message: 'Autenticato con successo!' });
                 }
                 else {  //SE LA PASS NON CORRISPONDE
-                    console.log('user trovato: ' + user._id + ' con pass errata');
-                    res.redirect('/Quizzipedia/signin');
+                    console.log('L\'indirizzo email o la password sono errate!');
+                    res.send({ code: 1, message: 'L\'indirizzo email o la password sono errate!' });
                 }
             }
             else {  //SE NON TROVA UN UTENTE NEL DB
-                console.log('user non trovato');
-                res.redirect('/Quizzipedia/signin');
+                console.log('L\'indirizzo email o la password sono errate!');
+                res.send({ code: 1, message: 'L\'indirizzo email o la password sono errate!' });
             }
         }
     });

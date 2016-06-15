@@ -33,7 +33,7 @@ app.use(session({
 	secret: "cat",
 	resave: true,
 	saveUninitialized: true,
-	cookie: { maxAge: 3600000 } //1h session
+	cookie: { maxAge: 86400000 } //1h session
 }));
 
 app.use(b_parser.json());

@@ -13,9 +13,9 @@
 
 angular.module('QuizSolver').factory('AnswerMultipleChoiceQ',['AnswerQuestion',function(AnswerQuestion){
     
-    function AnswerMultipleChoiceQ(solver,question,answer){
-        AnswerQuestion.call(this,solver,question);
-        this.givenAnswer = answer; //bool[]
+    function AnswerMultipleChoiceQ(question){
+        AnswerQuestion.call(this,question);
+        this.givenAnswer = []; //bool[]
     };
     
     AnswerMultipleChoiceQ.prototype = AnswerQuestion.prototype;

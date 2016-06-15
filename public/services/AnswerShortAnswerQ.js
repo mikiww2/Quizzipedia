@@ -13,9 +13,9 @@
 
 angular.module('QuizSolver').factory('AnswerShortAnswerQ',['AnswerQuestion',function(AnswerQuestion){
     
-    function AnswerShortAnswerQ(solver,question,answer){
+    function AnswerShortAnswerQ(question,answer){
       
-        AnswerQuestion.call(this,solver,question);
+        AnswerQuestion.call(this,question);
         this.givenAnswer = answer; //String
     };
     

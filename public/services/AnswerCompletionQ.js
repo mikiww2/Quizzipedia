@@ -13,10 +13,10 @@
 
 angular.module('QuizSolver').factory('AnswerCompletionQ',['AnswerQuestion',function(AnswerQuestion){
     
-    function AnswerCompletionQ(solver,question,answer){
+    function AnswerCompletionQ(question,answer){
       
-        AnswerQuestion.call(this,solver,question);
-        this.givenAnswer = answer; //String[]
+        AnswerQuestion.call(this,question);
+        this.givenAnswer = []; //String[]
         
         
     };

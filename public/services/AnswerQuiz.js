@@ -16,6 +16,7 @@ angular.module('QuizSolver').factory('AnswerQuiz',['AnswerQuestion',function(Ans
     function AnswerQuiz(idQuiz){
         this.quiz = idQuiz; //idQuiz
         this.date = null; // Data
+        this.solver = null; // chi risolve il quiz
         this.answerQuestion = [];//AnswerQuestion[]
     };
     
@@ -30,7 +31,7 @@ angular.module('QuizSolver').factory('AnswerQuiz',['AnswerQuestion',function(Ans
     
     
     AnswerQuiz.prototype.addAnswer = function(answer){ //AnswerQuestion
-        
+        this.answerQuestion.push(answer);
     };
     
     AnswerQuiz.prototype.removeAnswer = function(indexOfAnswer){

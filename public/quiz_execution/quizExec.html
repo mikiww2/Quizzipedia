@@ -102,12 +102,12 @@
           <div class="row-fluid breadcrumb-div">
               <ol class="breadcrumb" id="breadcrumb">
                   <li>
-                      Sei in: <a href = "/Quizzipedia/home>">
+                      Sei in: <a href = "/Quizzipedia/home">
                       <i class="glyphicon glyphicon-home"> </i> Home
                       </a>
                   </li>
                   <li>
-                      <a href = "/Quizzipedia/searchQuiz>">
+                      <a href = "/Quizzipedia/searchQuiz">
                       <i class="glyphicon glyphicon-search"> </i> Ricerca quiz
                       </a>
                   </li>                  
@@ -200,15 +200,23 @@
 							<div class="well">{{answer.question.description}}</div>
 						</div>
                         
-						<!-- attachment
+						<!--attachment-->
 						<div class="col-md-3">
-							<canvas class="qCanvas" id="questCanvas" width="80" height="80"></canvas>
-						</div>-->
-                        
+                            <div ng-if = "answer.question.details.questionAttachment.type == img">
+                                <img ng-src="./{{answer.question.details.questionAttachment.path}}" />
+                            </div>
+                            <div ng-if = "answer.question.details.questionAttachment.type == vid">
+                                <source ng-src="./{{answer.question.details.questionAttachment.path}}" />
+                            </div>
+                            <div ng-if = "answer.question.details.questionAttachment.type == aud">
+                                <source ng-src="./{{answer.question.details.questionAttachment.path}}" />
+                            </div>							
+						</div>              
 					</div>                    
-					<!-- end of row -->
-                    
-					<!-- question body - variable structure depending on qtype -->				
+					<!-- end of row -->              
+					<!-- question body - variable structure depending on qtype -->	       
+       
+
                 
                 <div ng-if="answer.question.type == 'trfs'">
                     <quiz-exec-true-false></quiz-exec-true-false>
@@ -225,6 +233,7 @@
                 <div class="panel-body"  ng-if="answer.question.type == 'mtch'">
                     <quiz-exec-matching></quiz-exec-matching>
                 </div>
+                    
                     <div class="clearfix"></div>
 					<div class="row qFooting">
 						<div class="col-md-offset-1 text-center">

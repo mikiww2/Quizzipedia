@@ -5,38 +5,58 @@
 					<div class="row answerBlock center-div">
 						<div class="col-lg-6 col-md-6 border-right">
 							<div>
-								<a href="#"><span class="label-as-badge label-yellow text-center">A</span></a>
+								<span class="label-as-badge label-yellow text-center">A</span>
 								<h4>Prima parte</h4>
 							</div>
 							<div class="spacer"></div>
-							<div class="drag">
-								<span class="label label-danger label-exec">1</span><span>Risposta</span>			
-							</div>
-							<div class="drag">
-								<span class="label label-danger label-exec">2</span><span>Risposta</span>								
-							</div>
-							<div class="drag">
-								<span class="label label-danger label-exec">3</span><img src="./assets/img/portraits/usr1.jpg"/>		
-							</div>
+							<div class="drag" ng-repeat = "(index, firstPart) in answer.question.details.answer">
+								<span class="label label-danger label-exec">{{index + 1}}</span>
+                                <span ng-if = "firstPart.txt != null">{{firstPart.txt}}</span>
+                                <span ng-if = "firstPart.attachment != null">
+                                    <span ng-if = "firstPart.attachment.type == img">
+                                        <img ng-src="./{{firstPart.attachment.path}}" />
+                                    </span>
+                                    <span ng-if = "firstPart.attachment.type == vid">
+                                        <img ng-src="./{{firstPart.attachment.aud}}" />
+                                    </span>
+                                </span>
+							</div>						
 						</div>
 						
 						<div class="col-lg-6 col-md-6">
 							<div>
-								<a href="#"><span class="label-as-badge label-yellow text-center">B</span></a>
+								<span class="label-as-badge label-yellow text-center">B</span>
 								<h4>Seconda parte</h4>
 							</div>
 							<div class="spacer"></div>
-							<div class="drag">
-								<input id="id1" type="number" min="-1" step="1" placeholder="1"required /><span>Risposta</span>				
+							<div class="drag" ng-repeat = "(index, secondPart) in answer.question.details.text">
+								<input type = "number" min = "-1" step = "1" placeholder = "{{index + 1}}" ng-model = "answer.givenAnswer[index]" required/>
+                                <span ng-if = "secondPart.txt != null">{{secondPart.txt}}</span>
+                                <span ng-if = "secondPart.attachment != null">
+                                    <span ng-if = "secondPart.attachment.type == 'img'">
+                                        <img ng-src="./upload/{{secondPart.attachment.path}}" />
+                                    </span>
+                                    <span ng-if = "secondPart.attachment.type == vid">
+                                        <source ng-src="./upload/{{secondPart.attachment.path}}" />
+                                    </span>
+                                    <span ng-if = "secondPart.attachment.type == aud">
+                                        <source ng-src="./upload/{{secondPart.attachment.path}}" />
+                                    </span>
+                                </span>
 							</div>
+                            <!--
 							<div class="drag">
-								<input id="id2" type="number" min="-1" step="1" placeholder="2"required /><span>Risposta</span>								
-							</div>
-							<div class="drag">
-								<input id="id3" type="number" min="-1" step="1" placeholder="3"required /><span>Risposta</span>		
+								<input id="id3" type="number" min="-1" step="1" placeholder="3"required /><span>Risposta</span>	-->	
 							</div>
 						</div>
+                        
+                                                
+<p>DOMANDA: {{answer.question.details.text}}</p>
+<p>PATH: {{answer.question.details.text[0].attachment.path}}</p>
+<p>RISULTATO: {{answer.givenAnswer}}</p>
+                        
 					</div>
+
 
 					<!-- end of question body -->
 					

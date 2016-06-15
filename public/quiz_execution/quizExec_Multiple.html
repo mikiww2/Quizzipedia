@@ -7,18 +7,21 @@
 							<input type="checkbox" ng-model = "answer.givenAnswer[index]">
                             <span type = "textarea" ng-if = "option.textAnswer != null">{{option.textAnswer}}</span>
                             <span type = "textarea" ng-if = "(option.textAnswer == null) && (option.attachment != null)">
-                                <img src="./upload/{{option.attachment}}" ng-if = "question.details.questionAttachment.type == 'img'"/>
-                                <img src="./upload/{{option.attachment}}" ng-if = "question.details.questionAttachment.type == 'vid'"/>
-                                <img src="./upload/{{option.attachment}}" ng-if = "question.details.questionAttachment.type == 'aud'"/>
+                                <div ng-if = "option.attachment.type == img">
+                                    <img ng-src="./{{option.attachment.path}}" />
+                                </div>
+                                <div ng-if = "option.attachment.type == vid">
+                                    <source ng-src="./{{option.attachment.path}}" />
+                                </div>
+                                <div ng-if = "option.attachment.type == aud">
+                                    <source ng-src="./{{option.attachment.path}}" />
+                                </div>
                             </span>
-                        </div>
-						
-						
+                        </div>						
 							<!--<video id="video1" height="100" style="padding-left: 5px;" controls="controls" onclick="toggleFullScreen()">
 								<source src="http://html5demos.com/assets/dizzy.mp4">
 								<source src="http://html5demos.com/assets/dizzy.ogv">
-							</video>	-->					
-						
+							</video>	-->						
 					</div>
 <p>DOMANDA: {{answer.question.details}}</p>
 <p>RISULTATO: {{answer.givenAnswer}}</p>

@@ -14,9 +14,8 @@
 angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','AnswerQuiz','AnswerQuestion','AnswerTrueFalseQ','AnswerCompletionQ','AnswerShortAnswerQ','AnswerMatchingQ','AnswerMultipleChoiceQ','AnswerMatchingQElement',function($scope,$http,AnswerQuiz,AnswerQuestion,AnswerTrueFalseQ,AnswerCompletionQ,AnswerShortAnswerQ,AnswerMatchingQ,AnswerMultipleChoiceQ,AnswerMatchingQElement){
     
     
-    $scope.currentQuestion = 0;
+    $scope.currentQuestion = -1;
     $scope.quiz = null;
-    //$scope.quizQuestions = null;
     $scope.answerQuiz = new AnswerQuiz(null);
     $scope.results = []; //bool
     
@@ -35,8 +34,7 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
     $scope.loadQuizQuestions = function(){
         //fa la get e creiamo gli answer dentro answerQuiz
         $http.get('/api/question/fetch_quiz_questions').success(function(response){
-            
-            
+                        
             //setto i parametri di answerQuiz
             $scope.answerQuiz.setIdQuiz($scope.quiz._id);
             
@@ -71,8 +69,7 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
                 }
                 
                 $scope.answerQuiz.addAnswer(answer);
-            }
-            
+            }            
             
         });
     };

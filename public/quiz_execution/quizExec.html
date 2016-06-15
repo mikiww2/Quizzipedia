@@ -112,7 +112,7 @@
 			</div>
 			<!-- end of panel heading -->
 			<!-- beginning of body -->
-			<div class="panel-body" ng-if="true"> <!-- DA NASCONDERE SE LO SVOLGIMENTO è INIZIATO-->
+			<div class="panel-body" ng-if = "currentQuestion == -1"> <!-- DA NASCONDERE SE LO SVOLGIMENTO è INIZIATO-->
 				<!-- description -->
 				<div class="panel panel-default quizDescr">
 					<div class="panel-heading">
@@ -129,21 +129,28 @@
 				<!-- end of canvas -->
 			</div>
             
-            <div class="panel-body" >
-                <!-- QUI INSERISCO LE DIRETTIVE DELLE DOMANDE-->
-                <quiz-exec-true-false ng-if="false"></quiz-exec-true-false>
-                <quiz-exec-multiple ng-if="false"></quiz-exec-multiple>
-                <quiz-exec-open ng-if="false"></quiz-exec-open>
-                <quiz-exec-completion ng-if="false"></quiz-exec-completion>
-                <quiz-exec-matching ng-if="false"></quiz-exec-matching>
-            
-            
+            <div class="panel-body" ng-repeat = "answer in answerQuiz.answerQuestion" >  
+                
+                <div  ng-if="answer.question.type == 'trfs'">
+                    <quiz-exec-true-false></quiz-exec-true-false>
+                </div>
+                <div ng-if="answer.question.type == 'mult'">
+                    <quiz-exec-multiple></quiz-exec-multiple>
+                </div>
+                <div  ng-if="answer.question.type == 'open'">
+                    <quiz-exec-open></quiz-exec-open>
+                </div>
+                <div ng-if="answer.question.type == 'cmpl'">
+                    <quiz-exec-completion></quiz-exec-completion>
+                </div>
+                <div ng-if="answer.question.type == 'mtch'">
+                    <quiz-exec-matching></quiz-exec-matching>
             </div>
 		</div>
         
         
         
-        {{answerQuiz | json}}
+        <!--{{answerQuiz | json}}-->
         
 			<!-- end of panel body -->
         

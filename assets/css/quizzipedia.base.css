@@ -255,13 +255,13 @@ h6.description, h4.description, h3.description{
     resize: none;
 }
 
-.wordwrap { 
+/* .wordwrap { 
    white-space: pre-wrap;     
    white-space: -moz-pre-wrap;  
    white-space: -pre-wrap;     
    white-space: -o-pre-wrap;      
    word-wrap: break-word;   
-}
+} */
 
 .tinybox p{
 	padding-top: 10px;
@@ -300,7 +300,12 @@ h6.description, h4.description, h3.description{
 	margin-right: 20px;
 }
  */
-.diffStars i {
+
+.diffStars {
+	margin-left: 35px;
+} 
+ 
+ .diffStars i {
 	color: #ffcb35;
 }
 

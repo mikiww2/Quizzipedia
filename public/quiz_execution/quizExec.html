@@ -130,10 +130,10 @@
 						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> {{quiz.title}}</h3>
 						<p class="text-center">{{quiz.author}}</p>
 					</div>
-					<div class="tinybox center-div wordwrap">
+					<div class="tinybox center-div">
 						<p class="text-center">{{quiz.topic}}</p>
 						<!-- custom stars according to difficulty -->
-						<p><span class="diffStars">
+						<span class="diffStars">
 							<span class="yellow-glyphs" ng-if="quiz.difficulty=='Facile'">
 								<i class="glyphicon glyphicon-star"></i>
 								<i class="glyphicon glyphicon-star-empty"></i>
@@ -158,7 +158,7 @@
 								<i class="glyphicon glyphicon-star"></i>
 								<i class="glyphicon glyphicon-star"></i>
 							</span>
-						</span></p>
+						</span>
 					</div>
 				</div>
 			</div>

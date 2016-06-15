@@ -65,23 +65,24 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
                 else if(response[i].type == 'mtch'){ //ok
                     answer = new AnswerMatchingQ(response[i]);
                     
-                    var array = answer.question.details.arrayAnswer;
+                    var array = answer.question.details.answer;
+                    
                     
                     for(var j = 0; j < array.length; j++){
                         var element = new AnswerMatchingQElement();
                         
                         element.setId(-1);
                         if(array[j].attachment != null){
-                            element.setValueAnswer(array[j].attachment.path);
+                            element.valueAnswer = array[j].attachment.path;
                         }
-                        else if (array[j].text != null){
-                            element.setValueAnswer(array[j].text);
+                        else if (array[j].txt != null){
+                            element.valueAnswer = array[j].txt;
                         }
                         
                         answer.addAnswer(element);
                     }
-                    
                     console.log(answer);
+                    
                 }
                 else if(response[i].type == 'cmpl'){//ok
                     answer = new AnswerCompletionQ(response[i]);
@@ -116,12 +117,15 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
             
             if($scope.answerQuiz.answerQuestion[i].question.type == 'trfs'){
                 
+                $scope.answerQuiz.answerQuestion[i].isCorrect = $scope.answerQuiz.answerQuestion[i].checkTF(); 
             }
-            var ris = $scope.answerQuiz.answerQuestion[i].check();
-            console.log(ris);
-            $scope.answerQuiz.answerQuestion[i].isCorrect = ris;
-            console.log($scope.answerQuiz.answerQuestion[i]);
+            else if($scope.answerQuiz.answerQuestion[i].question.type == 'mtch'){
+                $scope.answerQuiz.answerQuestion[i].isCorrect = $scope.answerQuiz.answerQuestion[i].checkMatching();
+            }
+           
         }
+        
+        console.log($scope.answerQuiz.answerQuestion);
         
         //salvo il quiz localmente dentro a $sope.user e poi invio la richesta al server
     };

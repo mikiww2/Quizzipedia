@@ -13,7 +13,7 @@
 
 angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$http', '$window', function (Quiz, $scope, $http, $window){
     
-    $scope.index = null; //PER LA RIMOZIONE, SE SUPERFLUO TOGLI
+    $scope.deleteQuiz = null; //PER LA RIMOZIONE, SE SUPERFLUO TOGLI
     
     $scope.quizzes = []; //Tutti i quiz del docente
     $scope.userClasses = [];
@@ -72,13 +72,19 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
         });
     }; 
     
+    $scope.setDeleteQ = function(index) {
+        $scope.deleteQuiz = index;
+    };
+    
     $scope.removeQuiz = function(){
-        var request = {_id : $scope.quizzes[$scope.index]._id};
-        $http.post('some api', request);
-        $scope.quizzes.splice($scope.index, 1);
-        //$scope.myQuiz = new Quiz();
-        $scope.index = null;        
-    }; 
+        
+        $http.post('SOME API', $scope.quizzes[$scope.deleteQuiz]).success(function(response){
+            $scope.quizzes.splice($scope.deleteQuiz, 1);
+           $scope.deleteQuiz = null;
+       }).error(function() {
+           alert("Errore nell'eliminazione");
+       });       
+    };
     
     $scope.searchQuestion = function() {
         $http.post('/api/question/search', $scope.searchQ).success(function(response) {
@@ -146,10 +152,6 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
             });
     };    
         
-    $scope.modifyQuiz = function(quiz){
-         //non sono sicuro vada quiz...
-    };
-    
     $scope.loadUserClasses();
     $scope.loadTopics();
     $scope.loadQuizzes();

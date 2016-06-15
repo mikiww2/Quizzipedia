@@ -1,3 +1,16 @@
+/*
+ * Nome del file: RoleList.js
+ * Percorso: public/services/RoleList.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per i ruoli 
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('RequestsManager').factory('RoleList',['RequestRole', function(RequestRole){
     
     function RoleList(){        

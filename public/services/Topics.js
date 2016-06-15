@@ -1,3 +1,16 @@
+/*
+ * Nome del file: Topics.js
+ * Percorso: public/services/Topics.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per gli argomenti
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('TopicsManager').factory('Topics',[function(){
     
     function Topics(){

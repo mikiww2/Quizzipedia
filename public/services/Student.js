@@ -1,3 +1,16 @@
+/*
+ * Nome del file: Student.js
+ * Percorso: public/services/Student.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per lo studente
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module('RequestsManager').factory('Student',['User',function(User){
 
     function Student(firstName,lastName,mail,password){

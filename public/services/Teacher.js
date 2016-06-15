@@ -1,3 +1,16 @@
+/*
+ * Nome del file: Teacher.js
+ * Percorso: public/services/Teacher.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Service per il docente
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 angular.module().factory('Teacher',['User',function(User){
     
     function Teacher(firstName,lastName,mail,password){

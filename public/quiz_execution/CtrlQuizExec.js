@@ -16,7 +16,7 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
     
     $scope.currentQuestion = 0;
     $scope.quiz = null;
-    $scope.quizQuestions = [];
+    $scope.quizQuestions = null;
     $scope.answerQuiz = new AnswerQuiz();
     $scope.results = []; //bool
     
@@ -34,6 +34,9 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
     
     $scope.loadQuizQuestions = function(){
         //fa la get e creiamo gli answer dentro answerQuiz
+        $http.get('/api/question/fetch_quiz_questions').success(function(response){
+            $scope.quizQuestions = response;
+        });
     };
     
     

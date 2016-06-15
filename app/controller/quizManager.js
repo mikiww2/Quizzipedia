@@ -16,8 +16,7 @@ var Quiz = require('../model/quiz.model');
 var Question = require('../model/question.model');
 
 var callback = function () { //mock function per chiamate async
-
-}
+};
 
 exports.fetchUserQuiz = function (req,res) { //quiz creati dal docente loggato nel relativo ente
 
@@ -45,10 +44,6 @@ exports.fetchUserQuiz = function (req,res) { //quiz creati dal docente loggato n
 	}
 	else res.redirect('/');
 };
-
-exports.fetchAllQuiz = function (req,res) { //tutti i quiz dell'ente, non so se serva
-
-}
 
 exports.fetchQuizNumber = function (req, res, next) {
 
@@ -79,8 +74,7 @@ exports.prepareQuizExecution = function (req,res) { //storage delle informazioni
   req.session.quiz = req.body;
   console.log(req.session.quiz);
   res.send('Ok');
-
-}
+};
 
 exports.fetchQuizToExecute = function (req,res) {
 
@@ -92,7 +86,7 @@ exports.fetchQuizToExecute = function (req,res) {
     console.log('Quiz da eseguire non trovato in sessione');
     res.send({ code: 1, message: 'Errore nella selezione del quiz'});
   }
-}
+};
 
 exports.search = function (req,res) { //ricerca quiz
 
@@ -168,7 +162,7 @@ exports.search = function (req,res) { //ricerca quiz
         else res.send({ code: 0, message: 'Nessun quiz trovato'});
       }
     });
-}
+};
 
 exports.save = function (req,res) { //salvataggio quiz
 
@@ -243,4 +237,4 @@ exports.save = function (req,res) { //salvataggio quiz
         });
   }
   else res.redirect('/');
-}
+};

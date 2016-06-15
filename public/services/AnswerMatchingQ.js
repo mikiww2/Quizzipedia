@@ -13,7 +13,7 @@
 
 angular.module('QuizSolver').factory('AnswerMatchingQ',['AnswerQuestion','AnswerMatchingQElement',function(AnswerQuestion,AnswerMatchingQElement){
     
-    function AnswerMatchingQ(solver,question){
+    function AnswerMatchingQ(question){
         
         AnswerQuestion.call(this,question);
         this.givenAnswer = []; //array di AnswerMatchingQElement 

@@ -13,15 +13,19 @@
 
 angular.module('QuizSolver').factory('AnswerQuiz',['AnswerQuestion',function(AnswerQuestion){
     
-    function AnswerQuiz(idQuiz,date,answerQuestion){
+    function AnswerQuiz(idQuiz){
         this.quiz = idQuiz; //idQuiz
-        this.date = date; // Data
-        this.answerQuestion = answerQuestion;//AnswerQuestion[]
+        this.date = null; // Data
+        this.answerQuestion = [];//AnswerQuestion[]
     };
     
     
     AnswerQuiz.prototype.check = function(){
         //return bool
+    };
+    
+    AnswerQuiz.prototype.setIdQuiz = function(id){
+      this.quiz = id;  
     };
     
     

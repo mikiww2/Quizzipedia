@@ -21,8 +21,14 @@ angular.module('QuizSolver').factory('AnswerShortAnswerQ',['AnswerQuestion',func
     
     AnswerShortAnswerQ.prototype = AnswerQuestion.prototype;
     
-    AnswerShortAnswerQ.prototype.check = function(){
+    AnswerShortAnswerQ.prototype.checkShortAns = function(){
         console.log("CHECK SHORTANSWER");
+        
+        if(this.givenAnswer == this.question.details.correctAnswer){
+            return true;
+        }
+        return false;
+        
     };
     
     AnswerShortAnswerQ.prototype.getGivenAnswer = function(){

@@ -11,10 +11,10 @@
  *
  */
 
-angular.module().factory('AnswerQuiz',['Quiz','AnswerQuestion',function(Quiz, AnswerQuestion){
+angular.module('QuizSolver').factory('AnswerQuiz',['AnswerQuestion',function(AnswerQuestion){
     
-    function AnswerQuiz(quiz,date,answerQuestion){
-        this.quiz = quiz; //Quiz
+    function AnswerQuiz(idQuiz,date,answerQuestion){
+        this.quiz = idQuiz; //idQuiz
         this.date = date; // Data
         this.answerQuestion = answerQuestion;//AnswerQuestion[]
     };
@@ -34,8 +34,8 @@ angular.module().factory('AnswerQuiz',['Quiz','AnswerQuestion',function(Quiz, An
     };
     
     
-    AnswerQuiz.prototype.getQuiz = function(){
-      return this.quiz;
+    AnswerQuiz.prototype.getIdQuiz = function(){
+      return this.idQuiz;
     };
     
     

@@ -11,18 +11,18 @@
  *
  */
 
-angular.module().factory('AnswerQuestion',['GenericQuestion',function(){
+angular.module('QuizSolver').factory('AnswerQuestion',[function(){
     
-    function AnswerQuestion(solver,question){        
+    function AnswerQuestion(question){        
         this.question = question; //GenericQuestion 
-        this.solver = solver; //studente che ha risolto la domanda
+        
     };   
     
     AnswerQuestion.prototype.getQuestion = function(){
       return this.question;  
     };
     
-    AnswerQuestion.prototype.check(){
+    AnswerQuestion.prototype.check = function(){
       //metodo astratto ritorna bool
     };
     

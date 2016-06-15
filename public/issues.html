@@ -71,9 +71,13 @@
 	<div class="container">
 		  <form class="form">
 			 <h3 class="form-heading description text-center">Segnalazioni</h3>
+       <div class="spacer"></div>
+        <label for="email" class="sr-only">Recapito email</label>
+        <input type="text" class="form-control" id="inputEmail" name= "email" placeholder="Inserire un proprio recapito email" required>
+      
 			 <div class="spacer"></div>
 			<label for="issues" class="sr-only">Descrivi il problema riscontrato </label>
-			<textarea class="form-control" type="textarea" id="inputIssue" placeholder="Descrizione" maxlength="140" rows="7"></textarea>
+			<textarea class="form-control" type="textarea" id="inputIssue" name= "issue" placeholder="Descrizione del problema riscontrato" maxlength="140" rows="7"></textarea>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Invia</button>
 		  </form>
 		</div>

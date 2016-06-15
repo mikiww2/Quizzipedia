@@ -15,7 +15,7 @@
 var express = require('express');
 var app = express(); 						// create our app w/ express
 var mongoose = require('mongoose'); 				// mongoose for mongodb
-var port = process.env.PORT || 8080; 				// set the port
+var server = require('./config/server'); 				// set the port
 var database = require('./config/database'); 			// load the database config
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -33,7 +33,7 @@ app.use(session({
 	secret: "cat",
 	resave: true,
 	saveUninitialized: true,
-	cookie: { maxAge: 86400000 } //1h session
+	cookie: { maxAge: server.cookieAge } //1h session
 }));
 
 app.use(b_parser.json());
@@ -62,6 +62,6 @@ app.get('/Quizzipedia/aut', function (req, res) {
         res.send('non sei autenticato :(');
 });
 
-app.listen(port);
+app.listen(server.port);
 
-console.log("server quizzipedia avviato sulla porta :" + port);
+console.log("server quizzipedia avviato sulla porta :" + server.port);

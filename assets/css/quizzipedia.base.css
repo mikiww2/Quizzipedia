@@ -555,14 +555,12 @@ h6.description, h4.description, h3.description{
 }
 
 .qOpenContainer {
-	width: 370px;
 	background-color: white;
+	max-width: 370px;
+	border-radius: 10px;
 	margin: 0 auto;
 }
 
-.qOpenContainer .form-group{
-	padding: 0 20px;
-}
 
 .solveMatching .drag {
 	margin: 10px;
@@ -994,6 +992,10 @@ li.message-footer {
 
 ul.alert-dropdown {
     width: 200px;
+}
+
+.limit-width {
+	max-width:100%; overflow: hidden;
 }
 
 .header {

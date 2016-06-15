@@ -2,7 +2,7 @@
         <!-- MULTIPLE EXEC-->
 
 					<!-- question body - variable structure depending on qtype -->
-					<div class="well qOpenContainer">
+					<div class="well qOpenContainer list1-width-fix">
 						<div class="answerBlock" ng-repeat = "(index, option) in answer.question.details.arrayAnswer">
 							<input type="checkbox" ng-model = "answer.givenAnswer[index]">
                             <span type = "textarea" ng-if = "option.textAnswer != null">{{option.textAnswer}}</span>

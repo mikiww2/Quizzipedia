@@ -1027,6 +1027,9 @@ ul.alert-dropdown {
         background-color: white;
         border-top:0 none;
     }
+}
+
+@media(max-width:400px){
 	.list1-width-fix{
 		margin-left:-10px;
 	}

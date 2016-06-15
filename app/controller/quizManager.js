@@ -80,7 +80,7 @@ exports.fetchQuizToExecute = function (req,res) {
 
   if(req.session.quiz){
     console.log('Invio dai quiz da eseguire al client');
-    res.send(res.session.quiz);
+    res.send(req.session.quiz);
   }
   else{
     console.log('Quiz da eseguire non trovato in sessione');

@@ -90,8 +90,8 @@
 				<!-- if quiz is private -->
 				<div class="row instClass">
 					<p class="col-md-6 col-sm-6 col-xs-6">{{quiz.institution}}</p>
-					<p class="col-md-6 col-sm-6 col-xs-6 text-right" ng-if="quiz.classes.length == 0">Pubblico</p>
-                    <p class="col-md-6 col-sm-6 col-xs-6 text-right" ng-if="quiz.classes.length > 0">Privato</p>
+					<p class="col-md-6 col-sm-6 col-xs-6 text-right" ng-if="quiz.classes.length == 0">Quiz pubblico</p>
+                    <p class="col-md-6 col-sm-6 col-xs-6 text-right" ng-if="quiz.classes.length > 0">Quiz privato</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-2 col-xs-6 col-xs-offset-1 quizTitle">
@@ -102,17 +102,15 @@
 						<p class="text-center">{{quiz.topic}}</p>
 						<!-- custom stars according to difficulty -->
 						<span class="diffStars">
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star-empty"></i>
+							INSERIRE DIFFICOLTA'
 						</span>
 					</div>
 				</div>
 			</div>
 			<!-- end of panel heading -->
 			<!-- beginning of body -->
-			<div class="panel-body" ng-if = "currentQuestion == -1"> <!-- DA NASCONDERE SE LO SVOLGIMENTO è INIZIATO-->
+			<div class="panel-body" ng-if = "currentQuestion == -1"> 
+                
 				<!-- description -->
 				<div class="panel panel-default quizDescr">
 					<div class="panel-heading">
@@ -125,309 +123,93 @@
 				<!-- end of description -->
 				<div class="clearfix"></div> <!-- DA TOGLIERE -->
 				<div class="text-center"><span class="label-as-badge label-blue">{{quiz.questions.length}}</span> domande</div>
-				<div class="text-center pull-bottom"><button class="btn btn-lg btn-primary" id="startQuiz" type="button">Inizia</button></div>
+				<div class="text-center pull-bottom"><button class="btn btn-lg btn-primary" id="startQuiz" type="button" ng-click = "changeCurrentQuestion(1)">Inizia</button></div>
 				<!-- end of canvas -->
 			</div>
-            
-            <div class="panel-body" ng-repeat = "answer in answerQuiz.answerQuestion" >  
-                
-                <div  ng-if="answer.question.type == 'trfs'">
-                    <quiz-exec-true-false></quiz-exec-true-false>
-                </div>
-                <div ng-if="answer.question.type == 'mult'">
-                    <quiz-exec-multiple></quiz-exec-multiple>
-                </div>
-                <div  ng-if="answer.question.type == 'open'">
-                    <quiz-exec-open></quiz-exec-open>
-                </div>
-                <div ng-if="answer.question.type == 'cmpl'">
-                    <quiz-exec-completion></quiz-exec-completion>
-                </div>
-                <div ng-if="answer.question.type == 'mtch'">
-                    <quiz-exec-matching></quiz-exec-matching>
-            </div>
-		</div>
-        
-        
-        
-        <!--{{answerQuiz | json}}-->
-        
-			<!-- end of panel body -->
-        
-        
-        
-        
-       <!-- 
-        
-			
-		<!-- question example. heading stays the same, body changes. footer saves page? 
-		<div class="panel panel-default qPanel">
-			<!-- panel heading 
-			<div class="panel-heading">
-				<!-- if quiz is private 
-				<div class="row instClass">
-					<p class="col-md-6 ">Ente</p>
-					<p class="col-md-6 text-right">Classe</p>
-				</div>
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 quizTitle">
-						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> Titolo del quiz</h3>
-						<p class="text-center">Autore</p>
-					</div>
-					<div class="col-md-2 tinybox">
-						<p class="text-center">Materia</p>
-						<!-- custom stars according to difficulty
-						<span class="diffStars">
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star-empty"></i>
-						</span>
-					</div>
-				</div>
-			</div>
-			<!-- end of panel heading -->
-			<!-- beginning of body 
-			<div class="panel-body">
-				<!-- description 
-					<div class="row">
-						<!-- title 
-						<div class="col-md-3">
-							<h6 class="text-center">Materia 
-								<span class="diffStars">
-									<i class="glyphicon glyphicon-star"></i>
-									<i class="glyphicon glyphicon-star"></i>
-									<i class="glyphicon glyphicon-star"></i>
-									<i class="glyphicon glyphicon-star-empty"></i>
-								</span>
+                        
+            <div ng-repeat = "(index, answer) in answerQuiz.answerQuestion track by $index">  
+                <div class="panel-body" ng-if = "currentQuestion == index">
+					<div class="row"> 
+						<!-- title -->
+						<div class="col-md-3">							
+							<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i> {{answer.question.title}}</h4>
+                            <h6 class="text-center">{{answer.question.topic}}
+								<p class="diffStars">
+                                    <span class="yellow-glyphs" ng-if="answer.question.difficulty=='1'">
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star-empty"></span>
+										<span class="glyphicon glyphicon-star-empty"></span>
+										<span class="glyphicon glyphicon-star-empty"></span>
+									</span>
+									 <span class="yellow-glyphs" ng-if="answer.question.difficulty=='2'">
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star-empty"></span>
+										<span class="glyphicon glyphicon-star-empty"></span>
+									</span>
+									 <span class="yellow-glyphs" ng-if="answer.question.difficulty=='3'">
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star-empty"></span>
+									</span>
+									 <span class="yellow-glyphs" ng-if="answer.question.difficulty=='4'">
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+									</span>
+								</p>
 							</h6>
-							<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i> Titolo della domanda</h4>
-
 						</div>
-						<!-- description
+                        
+						<!-- description -->                        
 						<div class="col-md-6">
-							<div class="well">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi nisl, pellentesque vitae hendrerit ut, lacinia non quam. </div>
+							<div class="well">{{answer.question.description}}</div>
 						</div>
+                        
 						<!-- attachment
 						<div class="col-md-3">
 							<canvas class="qCanvas" id="questCanvas" width="80" height="80"></canvas>
-						</div>
-					</div>
+						</div>-->
+                        
+					</div>                    
 					<!-- end of row -->
-					<!-- question body - variable structure depending on qtype 
-						<div>
-							<canvas class="qCanvas col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" id="quizCanvas" width="500" height="400"></canvas>
-						</div>
-					<!-- end of question body 
-					<div class="clearfix"></div>
+                    
+					<!-- question body - variable structure depending on qtype -->				
+                
+                <div ng-if="answer.question.type == 'trfs'">
+                    <quiz-exec-true-false></quiz-exec-true-false>
+                </div>
+                <div class="panel-body" ng-if="answer.question.type == 'mult'">
+                    <quiz-exec-multiple></quiz-exec-multiple>
+                </div>
+                <div class="panel-body"  ng-if="answer.question.type == 'open'">
+                    <quiz-exec-open></quiz-exec-open>
+                </div>
+                <div class="panel-body" ng-if="answer.question.type == 'cmpl'">
+                    <quiz-exec-completion></quiz-exec-completion>
+                </div>
+                <div class="panel-body"  ng-if="answer.question.type == 'mtch'">
+                    <quiz-exec-matching></quiz-exec-matching>
+                </div>
+                    <div class="clearfix"></div>
 					<div class="row qFooting">
 						<div class="col-md-offset-1 text-center">
-						<span class="badge qNumber"><span class="qCurrent">1</span>/10</span>
-						<span data-placement="top" data-toggle="tooltip" title="Next"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button"><i class="glyphicon glyphicon-arrow-right"></i></button></span>
+                            
+						<span class="badge qNumber"><span class="qCurrent">{{index+1}}</span>/{{answerQuiz.answerQuestion.length}}</span>
+                            
+                        <span data-placement="top" data-toggle="tooltip" title="Previous" ng-if = "index != 0"><button class="btn btn-lg btn-primary nextBtn pull-left" type="button" ng-click = "changeCurrentQuestion(-1)"><i class="glyphicon glyphicon-arrow-left"></i></button></span>
+                         
+                        <span data-placement="top" data-toggle="tooltip" title="Finish" ng-if = "(index + 1) == answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button" ng-click = "saveQuiz()"><i class="glyphicon glyphicon-arrow-right"></i> Bottone fine</button></span>
+						<span data-placement="top" data-toggle="tooltip" title="Next" ng-if = "(index+1) != answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button" ng-click = "changeCurrentQuestion(1)"><i class="glyphicon glyphicon-arrow-right"></i></button></span>
+                            
 						</div>
 				 </div>
-			</div>
-		</div>
-		<!-- end of panel body -->
-		
-		<!-- MIDDLE question 
-		<div class="panel panel-default qPanel">
-			<!-- panel heading 
-			<div class="panel-heading">
-				<!-- if quiz is private 
-				<div class="row instClass">
-					<p class="col-md-6 ">Ente</p>
-					<p class="col-md-6 text-right">Classe</p>
-				</div>
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 quizTitle">
-						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> Titolo del quiz</h3>
-						<p class="text-center">Autore</p>
-					</div>
-					<div class="col-md-2 tinybox">
-						<p class="text-center">Materia</p>
-						<!-- custom stars according to difficulty 
-						<span class="diffStars">
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star-empty"></i>
-						</span>
-					</div>
-				</div>
-			</div>
-			<!-- end of panel heading -->
-			<!-- beginning of body 
-			<div class="panel-body">
-				<!-- description 
-					<div class="row">
-						<!-- title 
-						<div class="col-md-3">
-							<h6 class="text-center">Materia 
-								<span class="diffStars">
-									<i class="glyphicon glyphicon-star"></i>
-									<i class="glyphicon glyphicon-star"></i>
-									<i class="glyphicon glyphicon-star"></i>
-									<i class="glyphicon glyphicon-star-empty"></i>
-								</span>
-							</h6>
-							<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i> Titolo della domanda</h4>
-
-						</div>
-						<!-- description 
-						<div class="col-md-6">
-							<div class="well">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi nisl, pellentesque vitae hendrerit ut, lacinia non quam. </div>
-						</div>
-						<!-- attachment 
-						<div class="col-md-3">
-							<canvas class="qCanvas" id="questCanvas" width="80" height="80"></canvas>
-						</div>
-					</div>
-					<!-- end of row -->
-					<!-- question body - variable structure depending on qtype 
-						<div>
-							<canvas class="qCanvas col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" id="quizCanvas" width="500" height="400"></canvas>
-						</div>
-					<!-- end of question body 
-					<div class="clearfix"></div>
-					<div class="row qFooting">
-						<div class="col-md-6">
-							<span data-placement="top" data-toggle="tooltip" title="Previous"><button class="btn btn-lg btn-primary prevBtn pull-left" type="button"><i class="glyphicon glyphicon-arrow-left"></i></button></span>
-						</div>
-						<div class="col-md-offset-1 text-center">
-						<span class="badge qNumber"><span class="qCurrent">2</span>/10</span>
-						<span data-placement="top" data-toggle="tooltip" title="Next"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button"><i class="glyphicon glyphicon-arrow-right"></i></button></span>
-						</div>
-					</div>
-				 </div>
-			</div>
-		<!-- end of panel body -->
-		
-		<!-- LAST question 
-		<div class="panel panel-default qPanel">
-			<!-- panel heading 
-			<div class="panel-heading">
-				<!-- if quiz is private 
-				<div class="row instClass">
-					<p class="col-md-6 ">Ente</p>
-					<p class="col-md-6 text-right">Classe</p>
-				</div>
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 quizTitle">
-						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> Titolo del quiz</h3>
-						<p class="text-center">Autore</p>
-					</div>
-					<div class="col-md-2 tinybox">
-						<p class="text-center">Materia</p>
-						<!-- custom stars according to difficulty 
-						<span class="diffStars">
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star-empty"></i>
-						</span>
-					</div>
-				</div>
-			</div>
-			<!-- end of panel heading -->
-			<!-- beginning of body 
-			<div class="panel-body">
-				<!-- description 
-					<div class="row">
-						<!-- title
-						<div class="col-md-3">
-							<h6 class="text-center">Materia 
-								<span class="diffStars">
-									<i class="glyphicon glyphicon-star"></i>
-									<i class="glyphicon glyphicon-star"></i>
-									<i class="glyphicon glyphicon-star"></i>
-									<i class="glyphicon glyphicon-star-empty"></i>
-								</span>
-							</h6>
-							<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i> Titolo della domanda</h4>
-
-						</div>
-						<!-- description 
-						<div class="col-md-6">
-							<div class="well">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi nisl, pellentesque vitae hendrerit ut, lacinia non quam. </div>
-						</div>
-						<!-- attachment 
-						<div class="col-md-3">
-							<canvas class="qCanvas" id="questCanvas" width="80" height="80"></canvas>
-						</div>
-					</div>
-					<!-- end of row -->
-					<!-- question body - variable structure depending on qtype 
-						<div>
-							<canvas class="qCanvas col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3" id="quizCanvas" width="500" height="400"></canvas>
-						</div>
-					<!-- end of question body 
-					<div class="clearfix"></div>
-					<div class="row qFooting">
-						<div class="col-md-6">
-							<span data-placement="top" data-toggle="tooltip" title="Previous"><button class="btn btn-lg btn-primary prevBtn pull-left" type="button"><i class="glyphicon glyphicon-arrow-left"></i></button></span>
-						</div>
-						<div class="col-md-offset-1 text-center">
-						<span class="badge qNumber"><span class="qCurrent">10</span>/10</span>
-						<span data-placement="top" data-toggle="tooltip" title="Last"><button class="btn btn-lg btn-primary nextBtn btn-success pull-right" type="button"><i class="glyphicon glyphicon-ok"></i></button></span>
-						</div>
-					</div>
-				 </div>
-			</div>
-		<!-- end of panel body -->
-		
-		<!-- GRADE 
-		<div class="panel panel-default qPanel">
-			<!-- panel heading 
-			<div class="panel-heading">
-				<!-- if quiz is private 
-				<div class="row instClass">
-					<p class="col-md-6 ">Ente</p>
-					<p class="col-md-6 text-right">Class</p>
-				</div>
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 quizTitle">
-						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> Titolo del quiz</h3>
-						<p class="text-center">Autore</p>
-					</div>
-					<div class="col-md-2 tinybox">
-						<p class="text-center">Materia</p>
-						<!-- custom stars according to difficulty 
-						<span class="diffStars">
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star"></i>
-							<i class="glyphicon glyphicon-star-empty"></i>
-						</span>
-					</div>
-				</div>
-			</div>
-			<!-- end of panel heading -->
-			<!-- beginning of body 
-			<div class="panel-body qResult">
-			<!-- grade 
-				<div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title text-center">
-							<i class="glyphicon glyphicon-pencil"></i> RISULTATO 
-							<span class="label label-success">18/30</span>
-						</h3>
-					</div>
-					<div class="panel-body">
-						<div class="list-group">
-							<a href="#" class="list-group-item">
-								<i class="success glyphicon glyphicon-ok pull-right" style="color: #179917;"></i> 1. Title
-							</a>
-							<a href="#" class="list-group-item">
-								<i class="danger glyphicon glyphicon-remove pull-right" style="color: #e14825;"></i> 2. Title
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			</div>
-		</div> -->
+</div>
+            </div>
+            
+		</div>      
 		<!-- end of panel body -->
 	</div>
   </body>

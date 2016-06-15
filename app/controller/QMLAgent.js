@@ -114,7 +114,7 @@ exports.parse = function (qml){
 {
     var generateTF = function (question) { //teoricamente ok
         var stringAttached = generateAttached(question);
-        return question.title + stringAttached + '#a#' + question.correctAnswer + '#££#';
+        return question.description + stringAttached + '#a#' + question.correctAnswer + '#££#';
     };
 
     var generateRM = function (question) { // teoricamente ok

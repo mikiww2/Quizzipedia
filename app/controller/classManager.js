@@ -336,7 +336,7 @@ exports.fetchClassesWithQuiz = function (req, res) {
 			},
 
 			function(callback){console.log('Inizio find quiz -----------------------------');
-				Quiz.find({ 'institution': req.session.user.institution/*, 'classes': {$size: {$gt: 0}}*/}, function (err,quizzes){
+				Quiz.find({ 'institution': req.session.user.institution, 'classes': {$gt: []}}, function (err,quizzes){
 					if (err) {
 		            console.log('error: ' + err);
 		            res.redirect('/');

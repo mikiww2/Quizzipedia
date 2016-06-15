@@ -21,6 +21,9 @@ angular.module('QuizSolver').factory('AnswerCompletionQ',['AnswerQuestion',funct
         
     };
     
+    
+    AnswerCompletionQ.prototype = AnswerQuestion.prototype;
+    
     AnswerCompletionQ.prototype.check = function(){
         /*
         so che i buchi si trovano nell'array testo con indice dispari e lo incremento ogni volta di 2

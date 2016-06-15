@@ -50,15 +50,19 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
                 
                 if(response[i].type == 'trfs'){
                     answer = new AnswerTrueFalseQ(response[i],null);
+                    console.log(answer);
                 }
                 else if(response[i].type == 'open'){
                     answer = new AnswerShortAnswerQ(response[i],null);
+                    console.log(answer);
                 }
                 else if(response[i].type == 'mult'){
                     answer = new AnswerMultipleChoiceQ(response[i]);
+                    console.log(answer);
                 }
                 else if(response[i].type == 'mtch'){
                     answer = new AnswerMatchingQ(response[i]);
+                    console.log(answer);
                 }
                 else if(response[i].type == 'cmpl'){
                     answer = new AnswerCompletionQ(response[i]);

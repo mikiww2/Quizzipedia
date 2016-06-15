@@ -76,7 +76,8 @@ exports.remove = function (req, res, next) {
 
 // funzione usata da questionManager per salvare un allegato, ritorna il path o null se c'è stato un errore
 exports.save = function(user, filename, questionId) {
-    var newPathFile = config.pathFiles + "/" + questionId + "_" + Date.now() + "_" + filename;
+    var newPath = config.pathFiles+ "/",
+        newFile = questionId + "_" + Date.now() + "_" + filename;
     var pattern = config.pathTmpFiles + "/" + user + "_*_" + filename;
 
     // console.log("old pattern file : " + pattern);
@@ -85,19 +86,19 @@ exports.save = function(user, filename, questionId) {
     mkdirp(config.pathFiles, function(err) {
         if (err) {
             console.log(err);
-            return newPathFile = null
+            return newFile = null
         }
         else {
             glob(pattern, function (err, matches) {
                 if(err) {
                     console.log(err);
-                    newPathFile = null;
+                    newFile = null;
                 }
                 else if(matches[0]) {
-                    fs.rename(matches[0], newPathFile, function(err) {
+                    fs.rename(matches[0], newPath + newFile, function(err) {
                         if (err) {
                             console.log(err);
-                            newPathFile = null;
+                            newFile = null;
                         }
                     });
                 }
@@ -105,7 +106,7 @@ exports.save = function(user, filename, questionId) {
         }
     });
 
-    return newPathFile;
+    return newFile;
 };
 
 //profile image

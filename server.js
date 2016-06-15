@@ -23,7 +23,10 @@ var b_parser = require('body-parser');
 var morgan = require('morgan');
 
 // configuration ===============================================================
-mongoose.connect(database.localUrl); 	// Connect to local MongoDB instance.
+mongoose.connect(database.localUrl, function (err) {
+    if (err)
+        console.log('Errore di connessione al database');
+}); 	// Connect to local MongoDB instance.
 app.use('/Quizzipedia',express.static(__dirname));  // statics resources for all /Quizzipedia path
 app.use('/Quizzipedia/profile',express.static(__dirname));  // statics resources for all /Quizzipedia/profile path
 
@@ -33,7 +36,7 @@ app.use(session({
 	secret: "cat",
 	resave: true,
 	saveUninitialized: true,
-	cookie: { maxAge: server.cookieAge } //1h session
+	cookie: { maxAge: server.cookieAge } // session maxAge defined in config/server.js
 }));
 
 app.use(b_parser.json());

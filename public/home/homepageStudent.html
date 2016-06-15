@@ -110,7 +110,11 @@
 								<h3 class="panel-title"><i class="glyphicon glyphicon-edit"></i> Quiz svolti recentemente</h3>
 							</div>
 							<div class="panel-body">
-								<div class="list-group">
+							   <div> <!--  ng-if storico quiz == empty -->
+                                <p>Non hai svolto nessun quiz </p>
+                                    <button class="btn btn-sm"> <a href = "/Quizzipedia/searchQuiz"><i class="glyphicon glyphicon-search"></i>Cerca quiz </a></button>
+                                </div>
+<!-- 								<div class="list-group">
 									<a href="#" class="list-group-item">
 										<span class="badge">ora</span>
 										<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz
@@ -127,10 +131,10 @@
 										<span class="badge">11 minuti fa</span>
 										<i class="glyphicon glyphicon-th-list"></i> Titolo del quiz
 									</a>
-								</div>
+								</div> 
 								<div class="text-right">
 									<a href="#">Tutti i quiz <i class="glyphicon glyphicon-circle-arrow-right"></i></a>
-								</div>
+								</div>-->
 							</div>
 						</div>
 					</div>

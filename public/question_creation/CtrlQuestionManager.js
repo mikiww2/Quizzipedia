@@ -28,13 +28,24 @@ angular.module('QuestionManager').controller('CtrlQuestionManager',['$scope','$h
             
             angular.forEach ($scope.Questionlist, function(question) {
                 if (question.difficulty == 1)
-                    question.difficulty = "Facile"
+                    question.difficulty = "Facile";
                 else if (question.difficulty == 2)
-                    question.difficulty = "Medio"
+                    question.difficulty = "Medio";
                 else if (question.difficulty == 3)
-                    question.difficulty = "Difficile"
+                    question.difficulty = "Difficile";
                 else if (question.difficulty == 4)
-                    question.difficulty = "Molto difficile"
+                    question.difficulty = "Molto difficile";
+                
+                if (question.type == "trfs")
+                     question.type = "Risposta vero/falso";
+                 else if (question.type == "mult")
+                     question.type = "Risposta multipla";
+                 else if (question.type == "open")
+                     question.type = "Risposta aperta";
+                 else if (question.type == "cmpl")
+                     question.type = "Risposta a completamento";
+                 else if (question.type == "mtch")
+                     question.type = "Risposta a collegamenti";
             });
         });
     };

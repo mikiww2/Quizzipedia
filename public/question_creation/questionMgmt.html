@@ -118,6 +118,7 @@
                       <th><i class="glyphicon glyphicon-pencil"></i> Titolo</th>
                       <th><i class="glyphicon glyphicon-list-alt"></i> Argomento</th>
                       <th><i class="glyphicon glyphicon-star"></i> Livello</th>
+                      <th> Tipo</th>
                       <th></th>
                   </thead>
                   
@@ -127,6 +128,7 @@
                           <td>{{question.title}}</td>
                           <td>{{question.topic}}</td>
                           <td>{{question.difficulty}}</td>
+                          <td>{{question.type}}</td>
                           <td>
                               <span data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger  pull-right" data-title="Elimina" data-toggle="modal" data-target="#delete" ng-click="setDeleteQ(index)" ><span class="glyphicon glyphicon-trash"></span> Elimina</button></span>
                           </td>

@@ -1,3 +1,16 @@
+/*
+ * Nome del file: topic.model.js
+ * Percorso: app/model/topic.model.js
+ * Autore: Vault-Tech
+ * Data creazione:
+ * E-mail: vaulttech.swe@gmail.com
+ *
+ *  Model che rappresenta i topic nel database
+ *
+ * * Diario delle modifiche:
+ *
+ */
+
 'use strict';
 
 //declare required
@@ -10,19 +23,9 @@ var topicSchema = new Schema({
         type: String
         ,required: [true, 'name is required']
     }
-}, {
-    strict: true
-});
+}, { strict: true });
 
-//find topics
-topicSchema.statics.findTopics = function findTopics() {
-    return this.find({ });
-};
-
-//has topic
-topicSchema.statics.hasTopic = function hasTopic(topic) {
-    return !!this.findOne({_id: topic});
-};
+topicSchema.index({ name: 1 }, { unique: true, sparse: true });
 
 //export
 module.exports = mongoose.model('Topic', topicSchema); 

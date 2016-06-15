@@ -16,18 +16,22 @@ angular.module('QuizSolver').factory('AnswerMatchingQElement',[function(){
     function AnswerMatchingQElement(){
         this.id = null;
         this.valueAnswer = null;
+        //this.valuAnswerAttachment = null;
     };
     
     AnswerMatchingQElement.prototype.setId = function(id){
         this.id = id;
     };
     
-    AnswerMatchingQElement.prototype.setValueAnswer = function(value){
+    AnswerMatchingQElement.prototype.setAnswer = function(value){
+        console.log("SETANSWER DI MATCHINGQE");
         this.valueAnswer = value;
     };
     
-    
-    
+    /*AnswerMatchingQElement.prototype.setValueAnswerAttachment = function(value){
+      this.valuAnswerAttachment = value;  
+    };
+    */
     return AnswerMatchingQElement;
     
     

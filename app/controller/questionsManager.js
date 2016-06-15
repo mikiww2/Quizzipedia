@@ -65,6 +65,38 @@ exports.save = function (req, res) {
         });
     }
 
+    if(req.body.question.answer) {
+        req.body.question.answer.forEach(function(answer) {
+            if(answer.attachment) {
+                var path = upload.save(author, answer.attachment.path, question._id);
+
+                if(path) {
+                    console.log("salvataggio file " + path + " riuscito");
+
+                    answer.attachment.path = path;
+                }
+                else
+                    console.log("salvataggio file " + answer.attachment.path + " non riuscito");
+            }
+        });
+    }
+
+    if(req.body.question.text) {
+        req.body.question.text.forEach(function(text) {
+            if(text.attachment) {
+                var path = upload.save(author, text.attachment.path, question._id);
+
+                if(path) {
+                    console.log("salvataggio file " + path + " riuscito");
+
+                    text.attachment.path = path;
+                }
+                else
+                    console.log("salvataggio file " + text.attachment.path + " non riuscito");
+            }
+        });
+    }
+
     //inserisco il qml
     question.qml = agent.generate(req.body);
 

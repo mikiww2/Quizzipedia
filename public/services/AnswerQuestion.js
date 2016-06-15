@@ -23,6 +23,10 @@ angular.module('QuizSolver').factory('AnswerQuestion',[function(){
       return this.question;  
     };
     
+    AnswerQuestion.prototype.setCorrect = function(value){
+      this.isCorrect = value;  
+    };
+    
     AnswerQuestion.prototype.check = function(){
       //metodo astratto ritorna bool
     };

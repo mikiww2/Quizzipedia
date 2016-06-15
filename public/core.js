@@ -25,6 +25,8 @@ angular.module('TopicsManager', ['Quizzipedia']);
 angular.module('UsersManager', ['Quizzipedia']);
 angular.module('SearchManager', ['Quizzipedia']);
 angular.module('QuizManager', ['Quizzipedia', 'ui.bootstrap']);
-angular.module('QuizSolver', ['Quizzipedia','CreateQuestion']);  
+angular.module('QuizSolver', ['Quizzipedia','CreateQuestion']).config(function($sceProvider) {
+    $sceProvider.enabled(false);
+});
 
 angular.module('InstitutionManager', ['Quizzipedia']);

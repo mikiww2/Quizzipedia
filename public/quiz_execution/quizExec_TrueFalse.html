@@ -1,9 +1,12 @@
 
 			<!-- TRUE FALSE EXEC-->
 				<!-- description -->
-<img src="./upload/{{question.details.questionAttachment.path}}" ng-if = "question.details.questionAttachment.type == 'img'"/>
+<div >
+    <img ng-src="./{{answer.details.questionAttachment.path}}" />
+</div>
+<!--
 <img src="./upload/{{question.details.questionAttachment.path}}" ng-if = "question.details.questionAttachment.type == 'vid'"/>
-<img src="./upload/{{question.details.questionAttachment.path}}" ng-if = "question.details.questionAttachment.type == 'aud'"/>
+<img src="./upload/{{question.details.questionAttachment.path}}" ng-if = "question.details.questionAttachment.type == 'aud'"/>-->
 
 <div class="well qtfContainer text-center">
     <div class="form-group row">
@@ -17,6 +20,7 @@
 </div>
 
 <p> RISULTATO: {{answer.givenAnswer}}</p>
+<p>PATH: {{answer}}</p>
 
 					<!-- end of question body -->
 					

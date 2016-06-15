@@ -6,8 +6,12 @@
 						<div class="answerBlock" ng-repeat = "(index, option) in answer.question.details.arrayAnswer">
 							<input type="checkbox" ng-model = "answer.givenAnswer[index]">
                             <span type = "textarea" ng-if = "option.textAnswer != null">{{option.textAnswer}}</span>
-                            <span type = "textarea" ng-if = "(option.textAnswer == null) && (option.attachment != null)">{{option.attachment}}</span>
-						</div>
+                            <span type = "textarea" ng-if = "(option.textAnswer == null) && (option.attachment != null)">
+                                <img src="./upload/{{option.attachment}}" ng-if = "question.details.questionAttachment.type == 'img'"/>
+                                <img src="./upload/{{option.attachment}}" ng-if = "question.details.questionAttachment.type == 'vid'"/>
+                                <img src="./upload/{{option.attachment}}" ng-if = "question.details.questionAttachment.type == 'aud'"/>
+                            </span>
+                        </div>
 						
 						
 							<!--<video id="video1" height="100" style="padding-left: 5px;" controls="controls" onclick="toggleFullScreen()">

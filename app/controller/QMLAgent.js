@@ -129,7 +129,7 @@ exports.parse = function (qml){
         }
         if (stringAnswers.endsWith('§')) //elimina la ultima § dalla stringa per evitare problemi nel parser
             stringAnswers = stringAnswers.substr(0, stringAnswers.length - 1);
-        return question.title + attached + '#a#' + stringAnswers + '#££#';
+        return question.description + attached + '#a#' + stringAnswers + '#££#';
     };
 
     var generateCM = function (question) { // teoricamente ok, da testare casi particolari

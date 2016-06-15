@@ -14,17 +14,28 @@
 angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope',function($scope){
     
     
-    $scope.indexQuestion = 0;
-    $scope.question = null; //GenericQuestion
+    $scope.currentQuestion = 0;
+    $scope.quiz = null;
+    $scope.quizQuestions = [];
     $scope.answerQuiz = null; //new AnswerQuiz();
-    $scope.answer = null;
-    $scope.loadQuestion = function(indexQuestion){
-        //localmente recupero la domanda in posizione indexQuestion e la assegno a $scope.question.
-        //successivamente verifico in $scope.answerQuiz se esiste già una risposta in answerQuiz. Se si carico quella altrimenti ne creo una vuota e la si assegna a $scope.answer
+    $scope.results = []; //bool
+    
+    
+    
+    $scope.loadQuiz = function(){
+        //fare get
+        
     };
     
-    $scope.saveAnswer = function(){
-      //inserisce $scope.asnwer in $scope.answerQuiz nella posizione corretta  
+    
+    
+    $scope.loadQuizQuestions = function(){
+        //fa la get e creiamo gli answer dentro answerQuiz
+    };
+    
+    
+    $scope.changeCurrentQuestion = function(number){ //number = -1 o +1
+        $scope.currentQuestion = $scope.currentQuestion + number;  
     };
     
     $scope.saveQuiz = function(){

@@ -159,7 +159,7 @@ exports.parse = function (qml){
 
     var generateRA = function (question) {  // teoricamente ok
         var stringAttached = generateAttached(question);
-        return question.title + stringAttached + '#a#' + question.correctAnswer + '#££#';
+        return question.description + stringAttached + '#a#' + question.correctAnswer + '#££#';
     };
 
     var generateCL = function (question) { // da sistemare quando il form sarà comprensibile

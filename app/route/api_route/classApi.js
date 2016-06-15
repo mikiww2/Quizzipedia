@@ -33,7 +33,11 @@ module.exports = function (app) {
 
   app.post('/api/class/fetch_class_members',function (req, res, next) {
     classM.fetchClassMembers(req, res);
-  });  
+  });
+
+  app.get('/api/class/fetch_classes_with_quiz',function (req, res, next) {
+    classM.fetchClassesWithQuiz(req, res);
+  }); 
 
   app.post('/api/class/remove_from_class',function (req, res, next) {
     classM.removeFromClass(req, res);

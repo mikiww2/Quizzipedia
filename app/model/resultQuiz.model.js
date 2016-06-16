@@ -45,6 +45,14 @@ var resultQuizSchema = new Schema({
         type: Schema.Types.ObjectId
         ,required: [true, 'quiz is required']
     }
+    ,vote: {
+        type: String
+        ,required: [true, 'vote is required']
+    }
+    ,percentage: {
+        type: Number
+        ,required: [true, 'percentage is required']
+    }
 }, { strict: true });
 
 //export

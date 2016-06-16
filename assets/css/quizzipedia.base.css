@@ -487,6 +487,7 @@ h6.description, h4.description, h3.description{
 .answerBlock audio{
 	vertical-align: bottom;
 	padding-top: 10px;
+	
 }
 
 @media(min-width:768px){
@@ -1487,4 +1488,13 @@ input {
 	max-width: 500px;
 	height: auto;
 	padding: 20px 0;
+}
+
+.attachment audio {
+	width: 300px;
+	padding: 10px 0;
+}
+
+.attachment .well {
+	max-width: 400px;
 }

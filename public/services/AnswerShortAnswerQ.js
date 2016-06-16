@@ -22,7 +22,6 @@ angular.module('QuizSolver').factory('AnswerShortAnswerQ',['AnswerQuestion',func
     AnswerShortAnswerQ.prototype = AnswerQuestion.prototype;
     
     AnswerShortAnswerQ.prototype.checkShortAns = function(){
-        console.log("CHECK SHORTANSWER");
         
         if(this.givenAnswer == this.question.details.correctAnswer){
             return true;

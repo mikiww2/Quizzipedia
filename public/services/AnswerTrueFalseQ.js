@@ -24,7 +24,6 @@ angular.module('QuizSolver').factory('AnswerTrueFalseQ',['AnswerQuestion',functi
     
     
     AnswerTrueFalseQ.prototype.checkTF = function(){
-        console.log(" CHECK DI TRUEFALSE");
         //guardo la givenAnswer e vedo se è uguale alla risposta dentro il riferimento question
         if(this.givenAnswer == this.question.details.correctAnswer){
             return true;

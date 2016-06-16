@@ -127,9 +127,7 @@ angular.module('CreateQuestion').factory('CompletionQ',['GenericQuestion','TextC
     
     CompletionQ.prototype.checkAnswer = function(valueHole){ //verifica che ogni answer sia associata a un solo buco
         var conta = 0;
-        console.log("METODO checkAnswer");
         for(var i =0; i < this.answer.length; i++){
-            console.log("id:"+ this.answer[i].getId() +"valueHole:"+ valueHole);
             
             if(this.answer[i].getId() == valueHole){
                 conta = conta + 1;

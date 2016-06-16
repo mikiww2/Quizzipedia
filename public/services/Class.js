@@ -21,7 +21,7 @@ angular.module('InstClassManager').factory('Class', [function() {
         this.students = []; // array stringhe           
     };
     
-    //definiamo un altro costruttori con parametri in input?    
+  
     
     Class.prototype.getDescription = function () {
         return this.description;

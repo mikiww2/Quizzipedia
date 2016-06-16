@@ -19,9 +19,6 @@ angular.module('Quizzipedia').factory('NoRole',['User', 'AnswerQuiz',function(Us
     };
     
     
-    NoRole.prototype.loadProfileQuiz = function(){
-       //prendiamo la lista di quiz ricevuta dal server e la assegno al quizProfile  
-    };
     
     
     NoRole.prototype.addQuizToProfile = function(quiz){ //quiz:AnswerQuiz

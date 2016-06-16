@@ -142,9 +142,7 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
     };
     
     $scope.saveQuiz = function () { 
-        console.log("Sono in create");
         var request = JSON.stringify($scope.myQuiz);
-        console.log(request);
         $http.post('/api/quiz/save', request)
             .success(function(response) {
                 $scope.myQuiz = new Quiz();

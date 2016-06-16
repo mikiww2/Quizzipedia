@@ -29,7 +29,7 @@ angular.module('QuizSolver').factory('AnswerQuestion',[function(){
     
     AnswerQuestion.prototype.check = function(){
       //metodo astratto ritorna bool
-        console.log("CHECK METODO ASTRATTO");
+        
     };
     
     

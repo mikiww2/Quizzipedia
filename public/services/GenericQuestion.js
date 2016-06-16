@@ -59,9 +59,7 @@ angular.module('CreateQuestion').factory('GenericQuestion',['Attachment',functio
         this.keywords = newArrayKeyword;
     };    
     
-    GenericQuestion.prototype.createStatisticsQuestion = function(){ //return QuestionStatistics
-        
-    };
+    
     
     return GenericQuestion;
     

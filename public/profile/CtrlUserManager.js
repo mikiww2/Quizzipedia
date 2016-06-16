@@ -25,6 +25,8 @@ angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http',
     $scope.loadUser = function() {
        //assegno l'oggetto utente ricevuto dal server a $scope.user  
          $http.get('/api/profile/get_user').success(function(response){
+             console.log(response);
+             $scope.imageProfile = response._img;
              $scope.user = response;            
              if(response.tmpPassword != undefined)  //nel caso ci si trovi nella pagina recuperoPswd
              $scope.recovering = true;
@@ -53,7 +55,7 @@ angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http',
     
     
     $scope.uploadFiles = function(files){
-      console.log(files[0]);
+      
         if (files[0]){
             Upload.upload({
                 url:'/api/upload/update_profile_image',

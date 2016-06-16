@@ -22,9 +22,6 @@ angular.module('CreateQuestion').factory('ShortAnswerQ',['GenericQuestion',funct
     ShortAnswer.prototype = GenericQuestion.prototype;
     
     
-    ShortAnswer.prototype.createAnswerQuestion = function(answer){ //answer:String
-        
-    };
     
     ShortAnswer.prototype.setCorrectAnswer = function(newCorrectAnswer){
         this.correctAnswer = newCorrectAnswer;

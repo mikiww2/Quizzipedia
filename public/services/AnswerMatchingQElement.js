@@ -16,7 +16,6 @@ angular.module('QuizSolver').factory('AnswerMatchingQElement',[function(){
     function AnswerMatchingQElement(){
         this.id = null;
         this.valueAnswer = null;
-        //this.valuAnswerAttachment = null;
     };
     
     AnswerMatchingQElement.prototype.setId = function(id){
@@ -24,14 +23,10 @@ angular.module('QuizSolver').factory('AnswerMatchingQElement',[function(){
     };
     
     AnswerMatchingQElement.prototype.setAnswer = function(value){
-        console.log("SETANSWER DI MATCHINGQE");
         this.valueAnswer = value;
     };
     
-    /*AnswerMatchingQElement.prototype.setValueAnswerAttachment = function(value){
-      this.valuAnswerAttachment = value;  
-    };
-    */
+    
     return AnswerMatchingQElement;
     
     

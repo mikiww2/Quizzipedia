@@ -31,9 +31,7 @@ angular.module('QuizManager').factory('Quiz', [function () {
     };
     
     
-    Quiz.prototype.removeTopic = function(index){
-        
-    };
+    
     
     Quiz.prototype.setDescription = function (newDescr) {
         this.description = newDescr;
@@ -70,13 +68,7 @@ angular.module('QuizManager').factory('Quiz', [function () {
     };
     
     
-    Quiz.prototype.createStatisticsQuiz = function(){
-        
-    };
-    
-    Quiz.prototype.createStatisticsStudents = function(){
-        
-    };
+   
     
     return Quiz;    
         

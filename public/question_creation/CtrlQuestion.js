@@ -43,13 +43,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             this.size = this.size +1;
         },
         remove: function(index){
-            console.log("MyMultipleChoiceQ.remove");
-            if(this.question instanceof MultipleChoiceQ){
-                console.log("sono un MultipleChoiceQ" + (this.question instanceof MultipleChoiceQ) );
-            }
-            else{
-                console.log("non sono un MultipleChoiceQ");
-            }
+            
             this.question.removeAnsw(index);
             this.size = this.size -1;
         },
@@ -78,19 +72,17 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
       
         question: new CompletionQ(),
         initText: function(){
-            console.log("METODO: MyCompletionQ.initText()");
+            
             this.question.insertText("");
             this.question.insertHole(this.question.getSizeText());
         },
         initAnswer: function(){
-            console.log("METODO: MyCompletionQ.initAnswer()");
+            
             this.question.insertAnswer("",-1);
         },
         fixAnswer: function(idHole,value){
-            console.log("METODO: MyCompletionQ.fixAnswer()");
-            console.log('idValue: '+idHole + ' value: ' + value);
+        
             var size = this.question.getSizeAnswer();
-            console.log('elementi da controllare: ' +size);
             
             if(idHole == 'null'){
                 
@@ -102,7 +94,6 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             else{
                 
                 for(var i = 0; i < size;i++){
-                    console.log('sto iterando');
                     if(this.question.answer[i].getId() == idHole){
                         this.question.answer[i].setId(value);
                     }
@@ -112,14 +103,11 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             
         },
         removeAnswer: function(index){
-            console.log("METODO: MyCompletionQ.removeAnswer()");
             this.question.removeAns(index);
             
         },
         removeText: function(index,type){
-            console.log("METODO: MyCompletionQ.removeText()");
             var size = this.question.getSizeText();
-            console.log(size);
             
             if( size == 2){ //ok
                 this.question.removeSomeTextElements(0,size);
@@ -130,24 +118,19 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             if( size >= 4){
                 
                 if(type == 'hole'){
-                    console.log(type);
+                    
                     var left = index - 1;
                     var right = index + 1;
-                    console.log('left: '+ left + ' right: '+ right);
                     
                     if(left >=0 && right< size){ //se true allora fusione dei textarea
-                        console.log('Sto eliminando un buco e left:'+left+ '&&'+ 'right:' +right);
                         
                         var testo = this.question.getTextElement(left);
                         testo = testo + this.question.getAnswerElement(this.question.getTextElement(index)) + this.question.getTextElement(right);
-                        
-                        console.log('testo: ' + testo);
                         
                         this.question.text[left].setValue(testo);
                         
                     }
                     
-                    console.log('eseguo fixAnswer quello nel ramo type = ' + type);
                     this.fixAnswer(this.question.getTextElement(index),-1);
                           
                 }
@@ -157,28 +140,24 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
                 
                 
                 var start = null;
-                console.log('start: ' + start);
-                
-                console.log('condizione 1:' + 'type:' + type+'index:' + (index+1)+'size:'+size);
                 
                 if((type == 'txt') || (type == 'hole' && (index + 1 < size))){
-                    console.log('Rimuovo TextElement con start = '+ index);
+            
                     this.question.removeSomeTextElements(index,2);
                     start = index;
-                    console.log('start: ' +start);
                 }
                 else if((type == 'hole') && (index + 1 >= size)){
                     
                     this.question.removeSomeTextElements(index - 1,2);
                     start = this.question.getSizeText();
-                    console.log('ELSEIF Rimuovo TextElement con start = '+ start);
+                    
                 }
                 
                 
                 //sistemo i value dei buchi e inizio dalla posizione start
                 
                 for(var i = start; i < this.question.getSizeText();i++){
-                    console.log('Sistemo i buchi');
+                    
                     if(this.question.getTypeTextElement(i) == 'id'){
                         var idValue = this.question.getTextElement(i);
                         
@@ -228,7 +207,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             }
         },
         removeTextElement: function(index){
-            console.log('Index remove:' + index);
+            
             this.setNegativeIdAnswer(this.questionMatch.text[index].getId());
             this.questionMatch.removeText(index);
             
@@ -254,8 +233,6 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     
     $scope.createQuestion = function(typeQuestion){
-      console.log("METODO: $scope.createQuestion()");
-        console.log("TypeQuestion:" +typeQuestion);
         switch(typeQuestion){
             case "mtch": $scope.saveMatchingQ($scope.MyGenericQ,$scope.MyMatchingQ.questionMatch); break;
             case "cmpl": $scope.saveCompletionQ($scope.MyGenericQ,$scope.MyCompletionQ.question); break;
@@ -271,7 +248,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     
     var setGenericPart = function(generic,question){
-        console.log("METODO: setGenericPart()");
+        
         question.setAuthor($scope.teacher);
         question.setTitle(generic.title);
         question.setDescription(generic.description);
@@ -302,11 +279,10 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
             var k = 0;
             for(k; k < matching.getSizeText() && !indexNegative; k++){
                 if(matching.text[k].getId() == -1){
-                    console.log('id:'+ matching.text[k].getId() + '== -1');
                     indexNegative = true;
                 }
             }
-            console.log("condition:" + indexNegative);
+            
             
             if(indexNegative){
                 questionIsValid = false;
@@ -382,7 +358,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     };
     
     $scope.saveCompletionQ = function(generic,completion){
-        console.log("SALVO LA DOMANDA");
+        
         //controllare che tutti i buchi del testo abbiano una ed una sola domanda associata
         
         var questionIsValid = true; //suppongo vada tutto bene
@@ -448,7 +424,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     
     
     $scope.uploadFiles = function(files,isQuestion,index){
-        console.log(files[0]);
+        
         $scope.files = files[0];
         var imgRegExp = new RegExp(/^image/g);
         var videoRegExp = new RegExp(/^video/g);
@@ -504,7 +480,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
                     
             }
             
-            console.log(notDuplicate);
+            
                     
             if(!notDuplicate){
                     alert("File con lo stesso nome già presente in questa domanda");
@@ -591,7 +567,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
  
     
     $scope.resetQuestion = function(){
-        console.log("resetQuestion");
+        
         $http.get('/api/upload/remove');
     };
  
@@ -599,7 +575,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
     $scope.save = function(question, type){
       //salvo la domanda creata        
         
-        console.log(question);
+        
         
         var json = {type: type, question: question};
        

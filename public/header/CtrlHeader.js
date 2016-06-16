@@ -25,7 +25,7 @@ angular.module('Quizzipedia').controller('CtrlHeader',['$scope','$http','$window
         email: $scope.email,
         password: $scope.password
       };
-      console.log(userr);
+      
           
       $http.post('/api/auth/signin', userr)
           .success(function(response){
@@ -52,7 +52,7 @@ angular.module('Quizzipedia').controller('CtrlHeader',['$scope','$http','$window
    };
     
     $scope.changeInst = function(orgName){
-      console.log(orgName);
+      
       var name = { organizationName : orgName};
         $http.post('/api/institution/change_inst', name);       
         

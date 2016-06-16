@@ -16,7 +16,7 @@ angular.module('RequestsManager').factory('User',['AuthenticationData',function(
   function User(firstName,lastName,mail,password){
     
     this.authenticationData = new AuthenticationData(firstName,lastName,mail,password);
-    //this.fulfilledQuizs = null; //AnswerQuiz
+    
   };
   
  
@@ -29,16 +29,6 @@ angular.module('RequestsManager').factory('User',['AuthenticationData',function(
   };
   
   
-  /*User.prototype.addQuiz = function(objectAnswerQuiz){
-    
-      this.fulfilledQuizs.push(objectAnswerQuiz);
-  };
-  
-  
-  User.prototype.getFulFilledQuizs = function(){
-    return this.fulfilledQuizs;  
-  };
-  */
   
   return User;
   

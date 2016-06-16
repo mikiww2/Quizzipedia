@@ -33,15 +33,7 @@ angular.module().factory('Teacher',['User',function(User){
        this.ownQuiz.splice(indexQuiz,1);  
     };
     
-    Teacher.prototype.getQuizStatistics = function(quiz){ //quiz: Quiz
-      //uso il metodo createStatisticsQuiz della classe Quiz che ritorna un QuizStatistics    
-        
-    };
-    
-    Teacher.prototype.getStudentStatistics = function(quiz){
-        //uso il metodo createStatisticsStudents della classe Quiz che ritorna un StudentsStatisticsQuiz
-        
-    };
+  
     
     
     

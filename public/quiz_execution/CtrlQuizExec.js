@@ -24,7 +24,6 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
         //fare get
         $http.get('/api/quiz/fetch_quiz_to_execute').success(function(response){
             $scope.quiz = response;
-            console.log($scope.quiz);
         });
         
     };
@@ -39,7 +38,6 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
             $scope.answerQuiz.setIdQuiz($scope.quiz._id);
             
             //popolare l'array answerQuestion dentro a answerQuiz
-            console.log(response);
             
             var size = response.length;
             
@@ -49,19 +47,16 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
                 
                 if(response[i].type == 'trfs'){ //ok
                     answer = new AnswerTrueFalseQ(response[i],null);
-                    console.log(answer);
                 }
                 else if(response[i].type == 'open'){ //ok
                     answer = new AnswerShortAnswerQ(response[i],"");
-                    console.log(answer);
                 }
                 else if(response[i].type == 'mult'){//ok
                     answer = new AnswerMultipleChoiceQ(response[i]);
                     for(var j = 0; j < answer.question.details.arrayAnswer.length;j++){
                         answer.addAnswer(false);    
                     }
-                    
-                    console.log(answer);
+         
                 }
                 else if(response[i].type == 'mtch'){ //ok
                     answer = new AnswerMatchingQ(response[i]);
@@ -82,14 +77,13 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
                         
                         answer.addAnswer(element);
                     }
-                    console.log(answer);
                     
                 }
                 else if(response[i].type == 'cmpl'){//ok
                     answer = new AnswerCompletionQ(response[i]);
                     
                     var array = answer.question.details.text;
-                    console.log(array);
+    
                     for(var k = 0; k < array.length; k++){
                         if(array[k].type == 'id'){
                             answer.addAnswer("");
@@ -99,8 +93,6 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
                         }
                             
                     }
-                    
-                    console.log(answer);
                 }
                 
                 $scope.answerQuiz.addAnswer(answer);
@@ -130,7 +122,6 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
     
     
     $scope.saveQuiz = function(){
-        console.log("SAVEQUIZ");
         $scope.punteggio = 0;
         
         for(var i = 0; i < $scope.answerQuiz.answerQuestion.length; i++){
@@ -165,7 +156,6 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
         
         $http.post('/api/quiz/save_results',$scope.answerQuiz);
         
-        console.log($scope.answerQuiz.answerQuestion);
         $scope.currentPage = -2;
         
         //salvo il quiz localmente dentro a $sope.user e poi invio la richesta al server

@@ -18,11 +18,7 @@ angular.module('RequestsManager').factory('Student',['User',function(User){
         this.quizProfile = []; //AnswerQuiz[]
     };
     
-    /*
-    Student.prototype.loadQuizProfile = function(){
-        //prendiamo la lista di quiz ricevuta dal server e la assegno al quizProfile
-    };
-    */
+    
 
     Student.prototype.addQuizToProfile = function(quiz){ //answerQuiz: AnswerQuiz
         this.quizProfile.push(quiz);

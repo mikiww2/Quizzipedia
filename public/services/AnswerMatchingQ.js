@@ -23,7 +23,6 @@ angular.module('QuizSolver').factory('AnswerMatchingQ',['AnswerQuestion','Answer
     AnswerMatchingQ.prototype = AnswerQuestion.prototype;
     
     AnswerMatchingQ.prototype.addAnswer = function(elem){
-        console.log("addAnswer MATCHING");
         this.givenAnswer.push(elem);
     };
     
@@ -35,8 +34,6 @@ angular.module('QuizSolver').factory('AnswerMatchingQ',['AnswerQuestion','Answer
         nell'answer di question
         
         */
-        
-        console.log("CHECK MATCHING");
         
         var error = true;
         
@@ -74,7 +71,6 @@ angular.module('QuizSolver').factory('AnswerMatchingQ',['AnswerQuestion','Answer
                     }
                 }
             }*/
-            console.log('id_answer: '+ id_answer + ' correct: ' +correct_value_id);
             if(id_answer != correct_value_id){
                 error = false;
             }

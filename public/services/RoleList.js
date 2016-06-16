@@ -34,7 +34,7 @@ angular.module('RequestsManager').factory('RoleList',['RequestRole', function(Re
         if(indexOfStudent >= 0 && indexOfStudent < this.students.length){
             this.students.splice(indexOfStudent,1);
 
-            //faccio la richiesta al server?
+        
         }
     };
     
@@ -43,14 +43,13 @@ angular.module('RequestsManager').factory('RoleList',['RequestRole', function(Re
         if(indexOfTeacher >= 0 && indexOfTeacher < this.teacher.length){
             this.teacher.splice(indexOfTeacher,1);
             
-            //faccio la richiesta al server?
+            
         }
     };
     
     RoleList.prototype.acceptStudent = function(indexOfStudent){
         
-        if(indexOfStudent>= 0 && indexOfStudent < this.students.length){
-            //faccio richiesta al server e faccio diventare questo utente studente 
+        if(indexOfStudent>= 0 && indexOfStudent < this.students.length){ 
             
             this.removeStudent(indexOfStudent);
         }
@@ -61,7 +60,7 @@ angular.module('RequestsManager').factory('RoleList',['RequestRole', function(Re
     RoleList.prototype.acceptTeacher = function(indexOfTeacher){
         
         if(indexOfTeacher>= 0 && indexOfTeacher < this.teacher.length){
-            //faccio richiesta al server e faccio diventare questo utente insegnante
+          
             
             this.removeTeacher(indexOfTeacher);
         }

@@ -15,7 +15,7 @@ angular.module('Quizzipedia').directive('homePageAdmin', function() {
     return {
         restrict: 'E',
         templateUrl: './public/home/homepageAdmin.html',
-        controller: function($scope, $http) {
+        controller: function($scope, $http, $window) {
             
             $scope.communications = [];
             
@@ -29,7 +29,7 @@ angular.module('Quizzipedia').directive('homePageAdmin', function() {
             }
 
             $scope.removeCommunication = function (idOfComm, indexOfComm) {
-                $http.post('/api/admin/remove_comunications').success (function (response) {
+                $http.post('/api/admin/remove_comunications', {_id: idOfComm}).success (function (response) {
                     if(response.code == 0){
                         $scope.communications.splice(indexOfComm, 1);                       
                     }
@@ -43,7 +43,8 @@ angular.module('Quizzipedia').directive('homePageAdmin', function() {
                 
                 $http.post('/api/institution/create_new_institution', newInst).success (function (response) {
                     if(response.code == 0){
-                        alert("Ente creato correttamente")
+                        alert(response.message);
+                        $window.location.href = '/Quizzipedia/home';
                     }
                     else alert(response.message);
                 });

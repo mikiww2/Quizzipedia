@@ -24,4 +24,8 @@ module.exports = function (app) {
     adminM.fetchComunications(req, res);
   });
 
+  app.post('/api/admin/remove_comunications',function (req, res, next) {
+    adminM.removeComunications(req, res);
+  });
+
 }; 

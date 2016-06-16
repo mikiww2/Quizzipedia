@@ -42,3 +42,18 @@ exports.fetchComunications = function (req, res) {
         }
     });
 };
+
+exports.removeComunications = function (req, res) {
+
+    console.log(req.body._id);
+    Comunication.remove({ '_id': req.body._id }, function (err){
+         if (err) {
+            console.log('error: ' + err);
+            res.redirect('/');
+        }
+        else {
+            res.send({ code: 0, message: 'Segnalazione rimossa'});
+        }
+    });
+    
+};

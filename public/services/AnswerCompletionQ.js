@@ -16,7 +16,7 @@ angular.module('QuizSolver').factory('AnswerCompletionQ',['AnswerQuestion',funct
     function AnswerCompletionQ(question){
       
         AnswerQuestion.call(this,question);
-        this.givenAnswer = []; //String[]
+        this.givenAnswer = []; //negli indici dispari ci sono le stringhe dei buchi
         
         
     };

@@ -91,9 +91,7 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
                     var array = answer.question.details.text;
                     
                     for(var k = 0; k < array.length; k++){
-                        if(array[k].type == 'id'){
                             answer.addAnswer("");
-                        }
                     }
                     
                     console.log(answer);

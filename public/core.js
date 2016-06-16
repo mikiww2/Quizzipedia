@@ -20,7 +20,7 @@ angular.module('RecoverPswd',['Quizzipedia']);
 angular.module('Issues',['Quizzipedia']);
 angular.module('QuestionManager',['Quizzipedia', 'CreateQuestion', 'ui.bootstrap']);
 angular.module('CreateQuestion',['Quizzipedia', 'ngFileUpload']);
-angular.module('ProfileManager', ['Quizzipedia']);
+angular.module('ProfileManager', ['Quizzipedia','ngFileUpload']);
 angular.module('RequestsManager', ['Quizzipedia']);
 angular.module('InstClassManager', ['Quizzipedia', 'ui.bootstrap']);
 angular.module('TopicsManager', ['Quizzipedia']);

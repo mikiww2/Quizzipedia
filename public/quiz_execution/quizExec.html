@@ -228,9 +228,9 @@
 									<img ng-src="./{{answer.question.details.questionAttachment.path}}" />
 								</div>
 								<div ng-if = "answer.question.details.questionAttachment.type == 'vid'">
-                                    <video width="50" height="50" >
-                                        <source ng-src="./{{answer.question.details.questionAttachment.path}}">
-                                        <p>Il tuo browser non supporta i video</p>
+                                    <video  ng-src="./{{answer.question.details.questionAttachment.path}}" controls >
+                                        
+                                        
                                     </video>
 								</div>
 								<div ng-if = "answer.question.details.questionAttachment.type == 'aud'">

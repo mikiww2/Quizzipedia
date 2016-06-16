@@ -1,13 +1,12 @@
 	<div class="container">
 		<ul class="nav nav-pills col-md-offset-4 col-sm-offset-3 col-xs-offset-2">
-		  <li class="active"><a data-toggle="pill" href="#inst">Creazione ente</a></li>
-		  <li><a data-toggle="pill" href="#comm">Segnalazioni</a></li>
+			<li class="active"><a data-toggle="pill" href="#comm">Comunicazioni</a></li>
+		  <li><a data-toggle="pill" href="#inst">Creazione ente</a></li>
 		</ul>
 		
 		<div class="tab-content">
 		<!-- panel 1 -->
-			<div id="inst" class="tab-pane fade in active adminPanel">
-				  <h3 class="panel-title">Hai creato <span class="badge">{{Questionlist.length}}</span> domande</h3>
+			<div id="comm" class="tab-pane fade adminPanel">
 				  <table class="table table-hover table-compact qTable">  
 					  <thead>
 						  <th><i class="glyphicon glyphicons-note"></i> Contatto</th>
@@ -27,9 +26,9 @@
 				  <!-- end of table -->
 			</div>
 			<!-- panel 2 -->
-			<div id="comm" class="tab-pane fade answContainer">
+			<div id="inst" class="tab-pane fade in active answContainer">
 				<div class="form">
-					<h3 class="text-center">Segnalazioni</h3>
+					<h3 class="text-center">Comunicazioni</h3>
 					<div class="row">
 					<label class="space">Recapito email:</label>
 					<p class="well">email@gmail.com</p>

@@ -24,6 +24,15 @@ angular.module('Quizzipedia').directive('homePageAdmin', function() {
                     $scope.comunications = response;
                 });
             }
+
+            $scope.removeComunications = function (id) {                
+                $http.post('/api/admin/remove_comunications').success (function (response) {
+                    if(response.code == 0){
+                        $window.location.href = '/';
+                    }
+                    else alert(response.message);
+                });
+            }
             
             $scope.loadComunications();
 

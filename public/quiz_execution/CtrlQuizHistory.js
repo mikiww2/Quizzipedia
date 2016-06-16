@@ -17,7 +17,7 @@ angular.module('QuizManager').controller('CtrlQuizHistory',['$scope','$http', fu
     $scope.quizResult = {rispTot : null, rispCorr : null, esito : null};
     
     $scope.loadUserQuizzes = function(){
-            $http.get('SOME API').success(function(response){
+            $http.get('/api/get_solved_user_quiz').success(function(response){
             $scope.quiz = response;
         });
         
@@ -42,6 +42,8 @@ angular.module('QuizManager').controller('CtrlQuizHistory',['$scope','$http', fu
             passato = true;            
         
         $scope.quizResult = {rispTot : totali, rispCorr : corrette, esito : passato};      
-    };   
+    }; 
+    
+    $scope.loadUserQuizzes();
     
 }]);

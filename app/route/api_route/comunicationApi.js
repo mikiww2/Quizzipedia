@@ -1,11 +1,11 @@
 /*
- * Nome del file: authApi.js
- * Percorso: app/route/api_route/authApi.js
+ * Nome del file: comunicationApi.js
+ * Percorso: app/route/api_route/comunicationApi.js
  * Autore: Vault-Tech
  * Data creazione:
  * E-mail: vaulttech.swe@gmail.com
  *
- *  Api che gestisce l'autenticazione
+ *  Api che gestisce le comunicazioni e creazione di istituto
  *
  * * Diario delle modifiche:
  *
@@ -22,10 +22,6 @@ module.exports = function (app) {
 
   app.get('/api/auth/fetch_comunication',function (req, res, next) {
     adminM.fetchComunications(req, res);
-  });
-
-  app.post('/api/auth/create_new_institution',function (req, res, next) {
-    adminM.createNewInstitution(req, res);
   });
 
 }; 

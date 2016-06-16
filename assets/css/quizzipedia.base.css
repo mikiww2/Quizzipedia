@@ -314,18 +314,18 @@ h6.description, h4.description, h3.description{
 }
 
  .fullscreen:-webkit-full-screen {
-      width: auto !important;
-      height: auto !important;
+      min-width: 100% !important;
+      min-height: 100% !important;
       margin:auto !important;
   }
      .fullscreen:-moz-full-screen {
-      width: auto !important;
-      height: auto !important;
+      min-width: 100% !important;
+      min-height: 100% !important;
       margin:auto !important;
   }
      .fullscreen:-ms-fullscreen {
-      width: auto !important;
-      height: auto !important;
+      min-width: 100% !important;
+      min-height: 100% !important;
       margin:auto !important;
   }     
 
@@ -609,11 +609,40 @@ h6.description, h4.description, h3.description{
 }
 
 
-
 .solveMatching .drag {
 	margin: 10px;
 	display: block;
-	max-width: 150px;
+	width: 100%;
+	max-width: 400px;
+	height: 100%;
+	max-height: 400px;
+}
+
+@media (min-width: 768px) {
+	.solveMatching .drag img{
+		width: 100%;
+		max-width: 400px;
+		height: auto;
+		max-height: 400px;
+	}
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+	.solveMatching .drag img{
+		width: 100%;
+		max-width: 300px;
+		height: auto;
+		max-height: 400px;
+	}
+}
+
+@media (min-width: 240px) and (max-width: 480px) {
+	.solveMatching .drag img{
+		width: 100%;
+		max-width: 200px;
+		height: auto;
+		max-height: 400px;
+	}
 }
 
 .solveMatching .drag input[type="number"]{
@@ -629,6 +658,10 @@ h6.description, h4.description, h3.description{
 	padding: 20px;
 }
 
+
+.qComplContainer .drag{
+	margin: 0 5px;
+}
 
 .drag {
 	display: inline-block;

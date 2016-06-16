@@ -262,7 +262,7 @@ exports.quiz_results = function (req, res) {
 
                     r.classes = [];
 
-                    var array = [];
+                    var array;
 
                     q.classes.forEach(function(cls) { //pubblico o privato
                         Orgs.forEach(function(org) {
@@ -272,19 +272,21 @@ exports.quiz_results = function (req, res) {
                                     console.log(c.name);
                                     console.log(c.academicYear);
 
-                                    if(c._id == cls)
-                                        r.classes.push({
+                                    if(c.name == cls) {
+                                        console.log("dio");
+                                        array = {
                                             name: c.name,
                                             academicYear: c.academicYear
-                                        });
+                                        };
+                                    }
                                 });
                             }
                         });
+                        if(array)
+                            r.classes.push(array);
                     });
 
-                    q.total = q.questions.length;
-
-                    r.total = q.total;
+                    r.total = q.questions.length;
 
                     var sumCorrect = 0,
                         n = 0,
@@ -303,7 +305,7 @@ exports.quiz_results = function (req, res) {
 
                             sumCorrect += t;
 
-                            if (t / q.total >= sup) // se il quiz è superato
+                            if (t / r.total >= sup) // se il quiz è superato
                                 sumPerc++;
                         }
                     });

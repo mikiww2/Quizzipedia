@@ -125,7 +125,7 @@
 				   ngf-select ="uploadFiles($files,'question','null')"
 				   ng-model="files" 
 				   name="file" 
-				   ngf-pattern="'image/*'"
+				   ngf-pattern="image/*,audio/*,video/*"
 				   accept="image/*,audio/*,video/*" 
 				   ngf-max-size="20MB"         
 				   /> <!--   onchange="angular.element(this).scope().readURL(this,'null')"-->

@@ -28,7 +28,7 @@ exports.saveComunication = function (req, res) {
             console.log('segnalazione ok');
             res.send({code: 0, message: 'La segnalazione è andata a buon fine'});
         }
-    };
+    });
 };
 
 exports.fetchComunications = function (req, res) {
@@ -62,7 +62,7 @@ exports.createNewInstitution = function(req, res) {
                 new Organization({
                     name: req.body.orgName,
                     director: req.body.email,
-                    creationDate = date
+                    creationDate: date
                 }).save(function (err) {
                     if (err) {
                         console.log('errore nel salvataggio ente: ' + err);

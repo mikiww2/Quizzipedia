@@ -13,7 +13,7 @@
 
 angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','AnswerQuiz','AnswerQuestion','AnswerTrueFalseQ','AnswerCompletionQ','AnswerShortAnswerQ','AnswerMatchingQ','AnswerMultipleChoiceQ','AnswerMatchingQElement',function($scope,$http,AnswerQuiz,AnswerQuestion,AnswerTrueFalseQ,AnswerCompletionQ,AnswerShortAnswerQ,AnswerMatchingQ,AnswerMultipleChoiceQ,AnswerMatchingQElement){
     
-    $scope.currentQuestion = -1;
+    $scope.currentPage = -1;
     $scope.quiz = null;
     $scope.answerQuiz = new AnswerQuiz(null);
     $scope.results = []; //bool
@@ -110,13 +110,11 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
     };
     
     
-    $scope.changeCurrentQuestion = function(number){ //number = -1 o +1
-        $scope.currentQuestion = $scope.currentQuestion + number;  
-    };
+    $scope.changeCurrentPage = function(number){ //number = -1 o +1
+        $scope.currentPage = $scope.currentPage + number;  
+    };   
     
-    
-    
-    $scope.Succession = function(){
+    $scope.success = function(){
         
         var size = $scope.answerQuiz.answerQuestion.length;
         var correct = $scope.punteggio;
@@ -174,5 +172,7 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
     
     $scope.loadQuiz();
     $scope.loadQuizQuestions();
+
+    
     
 }]);

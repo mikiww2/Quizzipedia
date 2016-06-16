@@ -1497,10 +1497,12 @@ input {
 	padding: 10px 0;
 }
 
-@media(max-width:240px){
-audio {
+@media(max-width:414px){
+audio::-webkit-media-controls-enclosure {
+    max-width: 100px;
+	clear:both;
 	display: block;
-	width: 50px;
+	
 }
 }
 

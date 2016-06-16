@@ -26,11 +26,21 @@ angular.module('QuizSolver').factory('AnswerMultipleChoiceQ',['AnswerQuestion',f
         var correct = true;
     console.log(this.givenAnswer.length);
         for(var i = 0; i < this.givenAnswer.length && correct; i++){
-            console.log('myanswer: '+this.givenAnswer[i]+ ' correct: '+this.question.details.arrayAnswer[i].isTrue);
-            if(this.givenAnswer[i] != this.question.details.arrayAnswer[i].isTrue){
-                console.log("!==");
+            //console.log('myanswer: '+this.givenAnswer[i]+ ' correct: '+this.question.details.arrayAnswer[i].isTrue);
+            
+            var given = this.givenAnswer[i].toString();
+            var correctAnswer = this.question.details.arrayAnswer[i].isTrue.toString();
+            console.log('given: '+ given + 'correctAnswer: '+correctAnswer);
+            
+            if(given != correctAnswer){
                 correct = false;
             }
+            
+            /*
+            if(this.givenAnswer[i] != this.question.details.arrayAnswer[i].isTrue){ //PROBLEMA
+                console.log("diversi");
+                correct = false;
+            }*/
         }
         
         return correct;

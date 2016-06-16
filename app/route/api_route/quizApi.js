@@ -15,6 +15,10 @@ var quizM = require('../../controller/quizManager');
 
 module.exports = function (app) {
 
+  app.get('/api/quiz/get_solved_user_quiz',function (req, res, next) { //quiz creati dal docente loggato
+    quizM.getSolvedUserQuiz(req, res);
+  });
+
   app.get('/api/quiz/fetch_user_quiz',function (req, res, next) { //quiz creati dal docente loggato
     quizM.fetchUserQuiz(req, res);
   });
@@ -49,6 +53,10 @@ module.exports = function (app) {
 
   app.post('/api/quiz/remove',function (req, res, next) { //salvataggio quiz
     quizM.remove(req, res);
+  });
+
+  app.post('/api/quiz/fetch_class_quizzes',function (req, res, next) { //quiz dell'ente pubblici
+    quizM.fetchClassQuizzes(req, res);
   });
 
 }; 

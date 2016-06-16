@@ -20,6 +20,84 @@ var agent = require('./QMLAgent');
 var callback = function () { //mock function per chiamate async
 };
 
+exports.getSolvedUserQuiz = function (req,res) { //quiz creati dal docente loggato nel relativo ente
+
+  var firstsearch = [];
+  var secondsearch = [];
+  var thirdsearch = [];
+
+  if(req.session.user){
+    async.series([
+      function(callback){
+        ResultQuiz.find({ 'user': req.session.user._id }, function (err,quizzes){
+          if (err) {
+                console.log('error: ' + err);
+                res.redirect('/');
+          }
+          else{
+            if(quizzes){
+              firstsearch = quizzes;
+              //console.log(firstsearch);
+              callback();             
+            }
+            else{
+              console.log('Nessun quiz svolto1');
+              callback();
+            }
+          }
+        });
+      },
+
+      function(callback){
+        Quiz.find({ 'institution': req.session.user.institution }, function (err,quizzes){
+          if (err) {
+                console.log('error: ' + err);
+                res.redirect('/');
+          }
+          else{
+            if(quizzes){
+              for(var i=0;i<quizzes.length;i++){
+                for(var j=0;j<firstsearch.length;j++){
+                  if(quizzes[i]._id.equals(firstsearch[j].quiz)){
+                    firstsearch[j].name = quizzes[i].title;
+                    firstsearch[j].topic = quizzes[i].topic;
+                  }
+                }
+              }
+              console.log('firstsearch');
+              console.log(firstsearch);
+              callback();             
+            }
+            else{
+              console.log('Nessun quiz svolto2');
+              callback();
+            }
+          }
+        });
+      }],function(err){
+          if(err)
+            console.log(err);
+          else{
+            res.send({ message: 'Errore a fine async' });
+          }
+      });
+
+    /*ResultQuiz.find({ 'user': req.session.user._id }, function (err,quizzes){
+      if (err) {
+            console.log('error: ' + err);
+            res.redirect('/');
+      }
+      else{
+        if(quizzes){
+          
+        }
+        else{}
+      }
+    });*/
+  }
+  else {}
+}
+
 exports.fetchUserQuiz = function (req,res) { //quiz creati dal docente loggato nel relativo ente
 
 	var results = [];
@@ -336,4 +414,35 @@ exports.remove = function (req,res) { //rimozione quiz
           }
       }
   });
+}
+
+exports.fetchClassQuizzes = function (req,res) { //rimozione quiz
+  
+  var results = [];
+  if(req.session.user && req.session.user.role == 'techer'){
+    Quiz.find({ 'institution': req.session }, function (err, quizzes){
+        if (err) {
+            console.log('error: ' + err);
+            res.redirect('/');
+        }
+        else{
+            if(quizzes){
+              for(var i=0;i<quizzes.length;i++){
+                for(var j=0;j<quizzes[i].classes.length;j++){
+                  if(quizzes[i].classes[j].equals(req.body._id)){
+                    results.push(quizzes[i]);
+                  }
+                }
+              }
+              console.log('Quiz rimosso correttamente');
+              res.send(results);
+            }
+            else{
+                console.log('Nessun quiz trovato');
+                res.send({ code: 1, message: 'Nessun quiz trovato' });
+            }
+        }
+    });
+  }
+  else res.redirect('/');
 }

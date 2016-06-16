@@ -193,6 +193,14 @@ module.exports = function (app) {
   app.route('/Quizzipedia/privateQuizzes').get(function (req, res) {
     res.sendFile(path.resolve('./public/orgManager/privateQuizzesList.html'));
   });
+   
+    app.route('/Quizzipedia/quizHistory').get(function (req, res) {
+      if (req.session.user)
+          res.sendFile(path.resolve('./public/quiz_execution/quizHistory.html'));
+      else
+         res.redirect('/Quizzipedia/home'); 
+  });
+    
       
   // STATISTICS -------------------------------------------------------------------------------------
   app.route('/Quizzipedia/questionStats').get(function (req, res) {

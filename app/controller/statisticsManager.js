@@ -37,14 +37,14 @@ exports.get_students_results = function (req, res) {
                     if(err) {
                         con = false;
                         console.log(err);
-                        res.push({result: 'error'});
+                        res.send({result: 'error'});
                         return done();
                     }
 
                     if(!q) { // non esiste il quiz con id = quiz
                         con = false;
                         console.log("quiz inesistente ");
-                        res.push({result: 'error'});
+                        res.send({result: 'error'});
                         return done();
                     }
 
@@ -57,7 +57,7 @@ exports.get_students_results = function (req, res) {
                     if(!t) { // il quiz non ha la classe con id = clas
                         con = false;
                         console.log("classe inesistente ");
-                        res.push({result: 'error'});
+                        res.send({result: 'error'});
                         return done();
                     }
 
@@ -74,14 +74,14 @@ exports.get_students_results = function (req, res) {
                     if (err) {
                         con = false;
                         console.log(err);
-                        res.push({result: 'error'});
+                        res.send({result: 'error'});
                         return done();
                     }
 
                     if (!quizs || !quizs.length) { // non esistono resultQuiz di quiz
                         con = false;
                         console.log("quiz mai eseguito ");
-                        res.push({result: 'done', students: []});
+                        res.send({result: 'done', students: []});
                         return done();
                     }
 
@@ -98,14 +98,14 @@ exports.get_students_results = function (req, res) {
                     if (err) {
                         con = false;
                         console.log(err);
-                        res.push({result: 'error'});
+                        res.send({result: 'error'});
                         return done();
                     }
 
                     if (!user || !user.length) { // non esistono utenti di quiz
                         con = false;
                         console.log("utenti non presenti ");
-                        res.push({result: 'done', students: []});
+                        res.send({result: 'done', students: []});
                         return done();
                     }
 
@@ -129,7 +129,7 @@ exports.get_students_results = function (req, res) {
                         if(rq.firstName == undefined || rq.lastName == undefined) { // nome e cognome non trovati
                             con = false;
                             console.log("utente non identificato ");
-                            res.push({ result: 'error' });
+                            res.send({ result: 'error' });
                             return done();
                         }
                     });
@@ -159,7 +159,7 @@ exports.get_students_results = function (req, res) {
     else {
         console.log(user + ' non è autorizzato');
 
-        return res.push({ result: 'error' });
+        return res.send({ result: 'error' });
     }
 };
 
@@ -182,14 +182,14 @@ exports.quiz_results = function (req, res) {
                     if (err) {
                         con = false;
                         console.log(err);
-                        res.push({result: 'error'});
+                        res.send({result: 'error'});
                         return done();
                     }
 
                     if (!quizs || !quizs.length) { // non esistono qui di quell'utente
                         con = false;
                         console.log("il docente non ha nessun quiz ");
-                        res.push({result: 'done', quiz: []});
+                        res.send({result: 'done', quiz: []});
                         return done();
                     }
                     Quizs = quizs;
@@ -205,14 +205,14 @@ exports.quiz_results = function (req, res) {
                     if (err) {
                         con = false;
                         console.log(err);
-                        res.push({result: 'error'});
+                        res.send({result: 'error'});
                         return done();
                     }
 
                     if (!quizs || !quizs.length) { // non esistono quiz eseguiti
                         con = false;
                         console.log("non ci sono qui eseguiti");
-                        res.push({result: 'done', quiz: []});
+                        res.send({result: 'done', quiz: []});
                         return done();
                     }
                     rQuiz = quizs;
@@ -228,14 +228,14 @@ exports.quiz_results = function (req, res) {
                     if (err) {
                         con = false;
                         console.log(err);
-                        res.push({result: 'error'});
+                        res.send({result: 'error'});
                         return done();
                     }
 
                     if (!q || !q.length) { // non esistono classi e organizzazioni
                         con = false;
                         console.log("non ci sono qui eseguiti");
-                        res.push({result: 'done', quiz: []});
+                        res.send({result: 'done', quiz: []});
                         return done();
                     }
                     Orgs = q;
@@ -311,119 +311,124 @@ exports.quiz_results = function (req, res) {
     else{
         console.log(user + ' non è autorizzato');
 
-        return res.push({ result: 'error' });
+        return res.send({ result: 'error' });
     }
 };
 
-// exports.question_results = function (req, res) {
-//     var institution = req.session.user.institution
-//         ,user = req.session.user._id
-//         ,role = req.session.user.role;
+exports.question_results = function (req, res) {
+    var institution = req.session.user.institution
+        ,user = req.session.user._id
+        ,role = req.session.user.role;
+
+    if(institution && user && role && role == 'teacher') {
+        console.log(user + ' è autorizzato');
+
+        var result = [],
+            Quizs = null,
+            rQuiz = null,
+            con = true,
+            Ques = null;
+
+        async.series([
+            function (done) { // recupero tutte le domande di quel docente
+                Question.find({ author: user }, function (err, questions) {
+                    if (err) {
+                        con = false;
+                        console.log(err);
+                        res.send({result: 'error'});
+                        return done();
+                    }
+
+                    if (!questions || !questions.length) { // non esistono domande di quell'utente
+                        con = false;
+                        console.log("il docente non ha nessuna domanda ");
+                        res.send({result: 'done', question: []});
+                        return done();
+                    }
+                    Ques = questions;
+
+                    return done();
+                });
+            },
+            function(done) { // recupero tutti i resultQuiz
+                if(!con)
+                    return done();
+
+                ResultQuiz.find({ }, function (err, quizs) {
+                    if (err) {
+                        con = false;
+                        console.log(err);
+                        res.send({result: 'error'});
+                        return done();
+                    }
+
+                    if (!quizs || !quizs.length) { // non esistono quiz eseguiti
+                        con = false;
+                        console.log("non ci sono qui eseguiti");
+                        res.send({result: 'done', question: []});
+                        return done();
+                    }
+                    rQuiz = quizs;
+
+                    return done();
+                });
+            },
+            function (done) { // recupero tutti i quiz
+                if(!con)
+                    return done();
+                Quiz.find({}, function (err, quiz) {
+                    if (err) {
+                        con = false;
+                        console.log(err);
+                        res.send({result: 'error'});
+                        return done();
+                    }
+
+                    if (!quiz || !quiz.length) { // non esistono quiz
+                        con = false;
+                        console.log("non esiste nessun quiz ");
+                        res.send({result: 'done', question: []});
+                        return done();
+                    }
+                    Quizs = quiz;
+
+                    return done();
+                });
+            },
+            function(done) { // per ogni risultato calcolo le info necessarie
+                if (!con)
+                    return done();
+
+                Ques.forEach(function (q) {
+
+                    q.used = 0;
+                    Quizs.forEach(function (quiz) { // uso della domanda sui quiz
+                        var t = false;
+
+                        quiz.questions.forEach(function (qq) {
+                            if (qq == q._id)
+                                t = true;
+                        });
+
+                        if (t)
+                            q.used++;
+                    });
+                    
+                    
+                    
+                    rQuiz.forEach(function(r) {
+                        
+                        
+                        
+                        
+                    });
+
+
+                });
+
+                return done();
 //
-//     if(institution && user && role && role == 'teacher') {
-//         console.log(user + ' è autorizzato');
-//
-//         var result = [],
-//             Quizs = null,
-//             rQuiz = null,
-//             con = true,
-//             Ques = null;
-//
-//         async.series([
-//             function (done) { // recupero tutte le domande di quel docente
-//                 Question.find({ author: user }, function (err, questions) {
-//                     if (err) {
-//                         con = false;
-//                         console.log(err);
-//                         res.push({result: 'error'});
-//                         return done();
-//                     }
-//
-//                     if (!questions || !questions.length) { // non esistono domande di quell'utente
-//                         con = false;
-//                         console.log("il docente non ha nessuna domanda ");
-//                         res.push({result: 'done', question: []});
-//                         return done();
-//                     }
-//                     Ques = questions;
-//
-//                     return done();
-//                 });
-//             },
-//             function(done) { // recupero tutti i resultQuiz
-//                 if(!con)
-//                     return done();
-//
-//                 ResultQuiz.find({ }, function (err, quizs) {
-//                     if (err) {
-//                         con = false;
-//                         console.log(err);
-//                         res.push({result: 'error'});
-//                         return done();
-//                     }
-//
-//                     if (!quizs || !quizs.length) { // non esistono quiz eseguiti
-//                         con = false;
-//                         console.log("non ci sono qui eseguiti");
-//                         res.push({result: 'done', question: []});
-//                         return done();
-//                     }
-//                     rQuiz = quizs;
-//
-//                     return done();
-//                 });
-//             },
-//             function (done) { // recupero tutti i quiz
-//                 if(!con)
-//                     return done();
-//                 Quiz.find({}, function (err, quiz) {
-//                     if (err) {
-//                         con = false;
-//                         console.log(err);
-//                         res.push({result: 'error'});
-//                         return done();
-//                     }
-//
-//                     if (!quiz || !quiz.length) { // non esistono quiz
-//                         con = false;
-//                         console.log("non esiste nessun quiz ");
-//                         res.push({result: 'done', question: []});
-//                         return done();
-//                     }
-//                     Quizs = quiz;
-//
-//                     return done();
-//                 });
-//             },
-//             function(done) { // per ogni risultato calcolo le info necessarie
-//                 if(!con)
-//                     return done();
-//
-//                 Ques.forEach(function(q) {
-//
-//
-//
-//                     Quizs.forEach(function(quiz) {
-//
-//
-//
-//                     });
-//
-//                     var ar = [];
-// //
-// //                     q.classes.forEach(function(cls) { //pubblico o privato
-// //                         Orgs.forEach(function(org) {
-// //                             if(org.name == q.institution){
-// //                                 org.classes.forEach(function(c) {
-// //                                     if(c._id == cls)
-// //                                         ar.push({
-// //                                             name: c.name,
-// //                                             accademicYear: c.accademicYear
-// //                                         });
-// //                                 });
-// //                             }
-// //                         });
-// //                     });
+
 // //
 // //                     q.classes = ar;
 // //
@@ -459,21 +464,21 @@ exports.quiz_results = function (req, res) {
 // //                 });
 // //
 // //                 return done();
-// //             },
-// //             function(done) {
-// //                 if (c)
-// //                     res.send({ result: "done", quiz: result });
-// //
-// //                 return done();
-// //             }
-// //         ]);
-// //     }
-// //     else{
-// //         console.log(user + ' non è autorizzato');
-// //
-// //         return res.push({ result: 'error' });
-// //     }
-// // };
+            },
+            function(done) {
+                if (c)
+                    res.send({ result: "done", quiz: result });
+
+                return done();
+            }
+        ]);
+    }
+    else{
+        console.log(user + ' non è autorizzato');
+
+        return res.send({ result: 'error' });
+    }
+};
 
 
 
@@ -628,7 +633,7 @@ exports.quiz_results = function (req, res) {
 //     else{
 //         console.log(user + ' non è autorizzato');
 //
-//         return res.push({ result: 'error' });
+//         return res.send({ result: 'error' });
 //     }
 // };
 //
@@ -651,14 +656,14 @@ exports.quiz_results = function (req, res) {
 // //                     if (err) {
 // //                         con = false;
 // //                         console.log(err);
-// //                         res.push({result: 'error'});
+// //                         res.send({result: 'error'});
 // //                         return done();
 // //                     }
 // //
 // //                     if (!quizs || !quizs.length) { // non esistono qui di quell'utente
 // //                         con = false;
 // //                         console.log("il docente non ha nessun quiz ");
-// //                         res.push({result: 'done', quiz: []});
+// //                         res.send({result: 'done', quiz: []});
 // //                         return done();
 // //                     }
 // //                     Quizs = quizs;
@@ -674,14 +679,14 @@ exports.quiz_results = function (req, res) {
 // //                     if (err) {
 // //                         con = false;
 // //                         console.log(err);
-// //                         res.push({result: 'error'});
+// //                         res.send({result: 'error'});
 // //                         return done();
 // //                     }
 // //
 // //                     if (!quizs || !quizs.length) { // non esistono quiz eseguiti
 // //                         con = false;
 // //                         console.log("non ci sono qui eseguiti");
-// //                         res.push({result: 'done', quiz: []});
+// //                         res.send({result: 'done', quiz: []});
 // //                         return done();
 // //                     }
 // //                     rQuiz = quizs;
@@ -697,14 +702,14 @@ exports.quiz_results = function (req, res) {
 // //                     if (err) {
 // //                         con = false;
 // //                         console.log(err);
-// //                         res.push({result: 'error'});
+// //                         res.send({result: 'error'});
 // //                         return done();
 // //                     }
 // //
 // //                     if (!q || !q.length) { // non esistono classi e organizzazioni
 // //                         con = false;
 // //                         console.log("non ci sono qui eseguiti");
-// //                         res.push({result: 'done', quiz: []});
+// //                         res.send({result: 'done', quiz: []});
 // //                         return done();
 // //                     }
 // //                     Orgs = q;

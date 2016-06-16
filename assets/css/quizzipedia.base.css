@@ -314,18 +314,18 @@ h6.description, h4.description, h3.description{
 }
 
  .fullscreen:-webkit-full-screen {
-      width: auto !important;
-      height: auto !important;
+      min-width: 100% !important;
+      min-height: 100% !important;
       margin:auto !important;
   }
      .fullscreen:-moz-full-screen {
-      width: auto !important;
-      height: auto !important;
+      min-width: 100% !important;
+      min-height: 100% !important;
       margin:auto !important;
   }
      .fullscreen:-ms-fullscreen {
-      width: auto !important;
-      height: auto !important;
+      min-width: 100% !important;
+      min-height: 100% !important;
       margin:auto !important;
   }     
 
@@ -629,6 +629,10 @@ h6.description, h4.description, h3.description{
 	padding: 20px;
 }
 
+
+.qComplContainer .drag{
+	margin: 0 5px;
+}
 
 .drag {
 	display: inline-block;

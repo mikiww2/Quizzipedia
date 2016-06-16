@@ -130,8 +130,7 @@
 						</div>
 						<div class="tinybox center-div">
 							<p class="text-center" ng-if = "quiz.topic != null">{{quiz.topic}}</p>
-							<p class="text-center" ng-if = "quiz.topic == null">Generale</p>
-							<p class="text-center" ng-if = "quiz.topic == null">Generale</p>
+							<p class="text-center" ng-if = "quiz.topic == null">Argomento non specificato</p>
 							<!-- custom stars according to difficulty -->
 							<span class="diffStars">
 								<span class="yellow-glyphs" ng-if="quiz.difficulty=='Facile'">
@@ -227,16 +226,7 @@
 							<div class="clearfix attachment text-center" ng-if = "answer.question.details.questionAttachment != null">
 								<div ng-if = "answer.question.details.questionAttachment.type == 'img'">
 									<img ng-src="./{{answer.question.details.questionAttachment.path}}" />
-								</div>
-
-                                <video width="50" height="50" controls ng-if = "answer.question.details.questionAttachment.type == 'vid'">
-                                        <source ng-src="./{{answer.question.details.questionAttachment.path}}"/>
-                                        <p>Il tuo browser non supporta i video</p>
-                                </video>
-                                <audio controls ng-if = "answer.question.details.questionAttachment.type == 'aud'">
-                                    <source  ng-src="./{{answer.question.details.questionAttachment.path}}">
-                                    <p>Il tuo browser non supporta gli audio</p>
-                                </audio> 						
+								</div>						
 
 								<div ng-if = "answer.question.details.questionAttachment.type == 'vid'">
                                     <video  ng-src="./{{answer.question.details.questionAttachment.path}}" controls >

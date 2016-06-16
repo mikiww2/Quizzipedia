@@ -78,7 +78,7 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
     
     $scope.removeQuiz = function(){
         
-        $http.post('SOME API', $scope.quizzes[$scope.deleteQuiz]).success(function(response){
+        $http.post('/api/quiz/remove', $scope.quizzes[$scope.deleteQuiz]).success(function(response){
             $scope.quizzes.splice($scope.deleteQuiz, 1);
            $scope.deleteQuiz = null;
        }).error(function() {

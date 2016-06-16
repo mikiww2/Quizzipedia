@@ -7,13 +7,13 @@
 					<span type = "textarea" ng-if = "option.textAnswer != null">{{option.textAnswer}}</span>
 					<span type = "textarea" ng-if = "(option.textAnswer == null) && (option.attachment != null)">
 						<span ng-if = "option.attachment.type == 'img'"> <!-- sostituito div con span sennò va a capo dopo la checkbox -->
-							<img ng-src="./{{option.attachment.path}}" class="fullscreen" onClick="makeFullScreen()" />
+							<img ng-src="{{getIframeSrc(option.attachment.path)}}" />
 						</span>
 						<span ng-if = "option.attachment.type == 'vid'">
-							<source ng-src="./{{option.attachment.path}}" />
+							<video  ng-src="{{getIframeSrc(option.attachment.path)}}" controls >
 						</span>
 						<span ng-if = "option.attachment.type == 'aud'">
-							<source ng-src="./{{option.attachment.path}}" />
+							<audio ng-src="{{getIframeSrc(option.attachment.path)}}"  controls />
 						</span>
 					</span>
 				</div>						

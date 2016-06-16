@@ -403,11 +403,15 @@ exports.saveResults = function (req,res) { //salvataggio risultati quiz
     var date = new Date();
     var gettedAns = [];
 
-    for(var i=0;i<req.body.answerQuestion.length;i++){
+    console.log('-----------------------------');
+    console.log(req.body);
+    console.log('-----------------------------');
+
+    for(var i=0;i<req.body.quiz.answerQuestion.length;i++){
       gettedAns.push({
-        question: req.body.answerQuestion[i].question._id,
+        question: req.body.quiz.answerQuestion[i].question._id,
         qml: 'Not available', //da modificare in caso di implementazione modifica domande
-        solution: req.body.answerQuestion[i].isCorrect
+        solution: req.body.quiz.answerQuestion[i].isCorrect
       });
     }
 
@@ -415,7 +419,7 @@ exports.saveResults = function (req,res) { //salvataggio risultati quiz
       user: req.session.user._id,
       date: date,
       answers: gettedAns,
-      quiz: req.body.quiz
+      quiz: req.body.quiz.quiz
     })
     
     resultQuiz.save(function (err){

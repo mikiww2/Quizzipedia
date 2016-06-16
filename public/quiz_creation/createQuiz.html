@@ -95,13 +95,13 @@
             <!-- title -->
             <div class="form-group row">
                 <label for="inputTitle" class=" form-control-label">Titolo</label>
-                <input type="text" class="form-control" id="inputTitle" placeholder="Titolo"  ng-model = "myQuiz.title" required autofocus>
+                <input type="text" class="form-control" id="inputTitle" placeholder="Inserire il titolo del quiz"  ng-model = "myQuiz.title" required autofocus>
             </div>
             
             <!-- description -->
             <div class="form-group row">
                 <label for="inputDescription" class=" form-control-label">Descrizione</label>
-                <textarea class="form-control" type="textarea" id="inputDescription" placeholder="Descrizione" maxlength="140" rows="7" ng-model = "myQuiz.description"></textarea>
+                <textarea class="form-control" type="textarea" id="inputDescription" placeholder="Inserire la descrizione" maxlength="140" rows="7" ng-model = "myQuiz.description"></textarea>
             </div>
             
             <!-- permission-->
@@ -177,7 +177,7 @@
                         $('#inputTags').select2({
                             tags: true,
                             tokenSeparators: [','], 
-                            placeholder: "Aggiungi parole chiave"
+                            placeholder: "Aggiungi qui le parole chiave"
                         });
                     </script>
                 </fieldset>

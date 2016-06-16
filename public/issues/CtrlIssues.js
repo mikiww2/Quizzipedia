@@ -1,6 +1,6 @@
 /*
- * Nome del file: CtrlSelectionQuiz.js
- * Percorso: public/CtrlSelectionQuiz.js
+ * Nome del file: CtrlIssues.js
+ * Percorso: public/issues/CtrlIssues.js
  * Autore: Vault-Tech
  * Data creazione:
  * E-mail: vaulttech.swe@gmail.com

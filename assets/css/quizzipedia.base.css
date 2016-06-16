@@ -458,10 +458,25 @@ h6.description, h4.description, h3.description{
 }
 
 .answerBlock img{
-	max-width: 100px; 
+	width: 100%;
+	max-width: 200px; 
 	height: auto;
 	overflow: hidden;
 	display:inline;
+}
+
+@media(min-width:768px){
+	.answerBlock img {
+		width: 100%;
+		max-width: 300px;
+	}
+}
+
+@media(min-width:480px) and (max-width:768px){
+	.answerBlock img {
+		width: 100%;
+		max-width: 250px;
+	}
 }
 
 .answerBlock .btn {
@@ -531,6 +546,17 @@ h6.description, h4.description, h3.description{
 
 .space {
 	padding-left: 10px;
+}
+
+@media(min-width:768px){
+	.qOpenContainer .space{
+		padding-left: 20px;
+	}
+}
+
+.space-vertical {
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .important{
@@ -776,6 +802,12 @@ h6.description, h4.description, h3.description{
 	padding: 5px;
 	display: block;
 	float: left;
+}
+
+.thumbnail-big img{
+	width:100%;
+	max-width: 100px;
+
 }
 
 .form input[type="password"] {

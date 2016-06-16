@@ -91,7 +91,8 @@ exports.prepareQuizExecution = function (req,res) { //storage delle informazioni
             institution: quiz.institution,
             title: quiz.title,
             author: quiz.author,
-            _id: quiz._id
+            _id: quiz._id,
+            classes: quiz.classes
           };
           if(quiz.difficulty == 1)
             req.session.quiz.difficulty = 'Facile';
@@ -282,29 +283,41 @@ exports.save = function (req,res) { //salvataggio quiz
 
 exports.saveResults = function (req,res) { //salvataggio risultati quiz
 
-  console.log(req.body);
-  var qml = agent.generate(req.body);
-  //var answers = 
-  var resultQuiz = new ResultQuiz({
-    user: req.session.user._id,
-    date: new Date(),
-    answers: answers,
-    quiz: req.body.topic
-  });
+  if(req.session.user && req.session.quiz && (req.session.quiz.classes.length!=0)){
+    var date = new Date();
+    var gettedAns = [];
+
+    for(var i=0;i<req.body.answerQuestion.length;i++){
+      gettedAns.push({
+        question: req.body.answerQuestion[i].question._id,
+        qml: 'Not available', //da modificare in caso di implementazione modifica domande
+        solution: req.body.answerQuestion[i].isCorrect
+      });
+    }
+
+    var resultQuiz = new ResultQuiz({
+      user: req.session.user._id,
+      date: date,
+      answers: gettedAns,
+      quiz: req.body.quiz
+    })
+    
+    resultQuiz.save(function (err){
+      if (err) {
+        console.log('errore nel salvataggio dei risultati del quiz: ' + err);
+        res.send({ code: 1, message: 'Errore nel salvataggio dei risultati del quiz: ' + err });
+      }
+      else{
+        console.log('Risultati del quiz salvati correttamente!');
+        res.send({ code: 0, message: 'Risultati del quiz salvati correttamente!' });
+      }
+
+    });
+  }
+  else console.log('I quiz pubblici non vengono salvati!');
   
-  resultQuiz.save(function (err){
-    if (err) {
-      console.log('errore nel salvataggio dei risultati del quiz: ' + err);
-      res.send({ code: 1, message: 'Errore nel salvataggio dei risultati del quiz: ' + err });
-    }
-    else{
-      console.log('Risultati del quiz salvati correttamente!');
-      res.send({ code: 0, message: 'Risultati del quiz salvati correttamente!' });
-    }
 
-  });
-
-}; // da finire quando arriva json
+};
 
 exports.remove = function (req,res) { //rimozione quiz
   Quiz.remove({ '_id': req.body._id }, function (err, quiz){

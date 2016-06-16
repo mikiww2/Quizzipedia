@@ -173,5 +173,7 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
     
     $scope.loadQuiz();
     $scope.loadQuizQuestions();
+
+    
     
 }]);

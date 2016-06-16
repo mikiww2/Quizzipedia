@@ -129,7 +129,8 @@
 							<p class="text-center">{{quiz.author}}</p>
 						</div>
 						<div class="tinybox center-div">
-							<p class="text-center">{{quiz.topic}}</p>
+							<p class="text-center" ng-if = "quiz.topic != null">{{quiz.topic}}</p>
+							<p class="text-center" ng-if = "quiz.topic == null">Generale</p>
 							<!-- custom stars according to difficulty -->
 							<span class="diffStars">
 								<span class="yellow-glyphs" ng-if="quiz.difficulty=='Facile'">

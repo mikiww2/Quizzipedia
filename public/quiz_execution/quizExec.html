@@ -223,13 +223,13 @@
 								<div class="well">{{answer.question.description}}</div>
 							</div>
 							
-							<!--attachment-->
+							<!--ATTACHMENT QUESTION-->
 							<div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-12 col-xs-offset-3 attachment" ng-if = "answer.question.details.questionAttachment != null">
 								<div ng-if = "answer.question.details.questionAttachment.type == 'img'">
 									<img ng-src="./{{answer.question.details.questionAttachment.path}}" />
 								</div>
 								<div ng-if = "answer.question.details.questionAttachment.type == 'vid'">
-                                    <video width="320" height="240" controls>
+                                    <video width="50" height="50" >
                                         <source ng-src="./{{answer.question.details.questionAttachment.path}}">
                                         <p>Il tuo browser non supporta i video</p>
                                     </video>

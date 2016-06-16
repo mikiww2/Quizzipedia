@@ -154,7 +154,22 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
         
         //devo inviare al server il answerQuiz
         
-        $http.post('/api/quiz/save_results',$scope.answerQuiz);
+        var voto = $scope.punteggio + "/" + $scope.answerQuiz.answerQuestion.length; 
+        
+        
+         var size = $scope.answerQuiz.answerQuestion.length;
+        var correct = $scope.punteggio;
+        
+        var percentuale = (correct * 100) / size;
+        
+        var json = {
+            quiz: $scope.answerQuiz,
+            voto: voto,
+            percentuale: percentuale,
+            
+        };
+        
+        $http.post('/api/quiz/save_results',json);
         
         $scope.currentPage = -2;
         

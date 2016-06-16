@@ -50,7 +50,7 @@
                                 <textarea ng-if="answer.textAnswer != null " type="textarea" placeholder="Risposta..." name="ta1" id="ta1" cols="15" rows="1" ng-model="answer.textAnswer"></textarea>
                                 
                                 
-                                <input ng-if="answer.attachment != null" type="file" ngf-select="uploadFiles($files,'answer',{{$index}})" name="file+{{$index}}" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" >
+                                <input ng-if="answer.attachment != null" type="file" ngf-select="uploadFiles($files,'answer',{{$index}})" name="file+{{$index}}" ngf-pattern="image/*,video/*,audio/*" accept="image/*,video/*,audio/*" ngf-max-size="20MB" >
                                 
                                 <!-- onchange="angular.element(this).scope().readURL(this,{{$index}})"-->
                                
@@ -69,45 +69,7 @@
 				</div> 
 		</div>
 	
-  	<script language="javascript" type="text/javascript">
-	/*$(document).ready(function() {
-		$('.drag').draggable(); //aggiunto
-	});*/
-	// fullscreen toggle for video
-	/*function toggleFullScreen() {
-		var elem = document.getElementById("video1");
-		if (elem.requestFullscreen) {
-		  elem.requestFullscreen();
-		} else if (elem.msRequestFullscreen) {
-		  elem.msRequestFullscreen();
-		} else if (elem.mozRequestFullScreen) {
-		  elem.mozRequestFullScreen();
-		} else if (elem.webkitRequestFullscreen) {
-		  elem.webkitRequestFullscreen();
-		}
-	};*///aggiunto
-
-	/*function createTextarea() { //value="answ0"
-		$("#newBlock").append($('<div class="answerBlock"><div class="drag" id="index"><input type="checkbox" ng-model="MyMultipleChoiceQ.question.correctAnswer[0]"><textarea type="textarea" placeholder="Answer..." name="ta1" id="ta1" cols="15" rows="1" ng-model="MyMultipleChoiceQ.question.answers[0]"></textarea><a href="#"><i class="glyphicon glyphicon-remove"></i></a></div></div>'));
-		$('.drag').draggable(); //ogni nuovo elemento è reso draggable
-        
-	   }; //aggiunto*/
-        
-	/*var loadFile = function(event) {
-		$("#newBlock").append($( '<div class="drag" id="drag1"><input type="checkbox" value="answ0"><img id="output1" class="img-responsive"/>'));
-		var reader = new FileReader();
-		reader.onload = function(){
-		  var output = document.getElementById('output1');
-		  output.src = reader.result;
-		};
-        
-        reader.readAsDataURL(event.target.files[0]);
-		$("#drag1").append($( '<a href="#"><i class="glyphicon glyphicon-remove"></i></a></div>'));    
-		
-		$('.drag').draggable(); //ogni nuovo elemento è reso draggable
-	  };*/
-
-	</script>
+  
 
 
 

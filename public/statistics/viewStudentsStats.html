@@ -73,10 +73,11 @@
 				<fieldset class="form-group">
 				<label for="inst">Classi</label><br>
 				<!-- load all classes the teacher belongs to -->
-				<select id="classSelect" name="class" class="form-control"><br>
+				<select id="classSelect" name="class" class="form-control" ng-model="classSelected"><br>
 				  <option value="">--</option>
-				  <option value="chm">Chimica</option>
-				  <option value="ing">Inglese</option>
+                    <option ng-repeat="class in classes track by $index" value="{{class._id}}">{{class.name}}</option>
+				  <!--<option value="chm">Chimica</option>
+				  <option value="ing">Inglese</option>-->
 				</select>
 				</fieldset>
 				

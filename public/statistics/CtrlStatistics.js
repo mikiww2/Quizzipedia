@@ -13,7 +13,7 @@
 
 angular.module('StatisticManager').controller('CtrlStatistics',['$scope','$http','$window',function($scope,$http,$window){
     
-    
+    /*
     $scope.classSelected = null;
     $scope.classes = null;
     
@@ -28,7 +28,7 @@ angular.module('StatisticManager').controller('CtrlStatistics',['$scope','$http'
     
     
     $scope.loadClasses();
-    
+    */
     
     
     $scope.quiz = null;

@@ -1437,3 +1437,10 @@ input {
 	max-width: 500px;
 	height: auto;
 }
+
+.attachment video{
+	width:100%;
+	max-width: 500px;
+	height: auto;
+	padding: 20px 0;
+}

@@ -51,8 +51,8 @@
                                     <button class="btn btn-sm"> <a href = "/Quizzipedia/searchQuiz"><i class="glyphicon glyphicon-search"></i>Cerca quiz </a></button>
                                 </div>
                                 
-                                <div class="list-group" ng-if = "userQuizzes.length != 0" ng-repeat = "(index, quiz) in userQuizzes | orderBy: 'date': true | limitTo: 5 "> 
-									<span class="list-group-item">
+                                <div class="list-group" ng-if = "userQuizzes.length != 0"> 
+									<span class="list-group-item" ng-repeat = "(index, quiz) in userQuizzes | orderBy: 'date': true | limitTo: 5 ">
 										<i class="glyphicon glyphicon-th-list"></i> {{quiz.name}}
                                         <div class="pull-right">
                                             <span class="label label-success" ng-if = "success(quiz.percentage) == true ">

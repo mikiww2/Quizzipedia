@@ -23,7 +23,7 @@
 								    <input id="answNumber+{{$index}}" type="number" min="-1" step="1" placeholder="1" ng-model="element.id" required />
 								    <textarea ng-if="element.txt != null" type="textarea" placeholder="Answer..." name="ta1" id="ta+{{$index}}" cols="8" rows="1" ng-model="element.txt"></textarea>
                                      <!-- QUI VA L'INPUT PER GLI ALLEGATI-->
-                                     <input ng-if="element.attachment != null" type="file" ng-click="MyMatchingQ.setDestination('text')" ngf-select="uploadFiles($files,'answer',{{$index}})" name="file+{{$index}}" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB">
+                                     <input ng-if="element.attachment != null" type="file" ng-click="MyMatchingQ.setDestination('text')" ngf-select="uploadFiles($files,'answer',{{$index}})" name="file+{{$index}}" ngf-pattern="image/*,video/*,audio/*" accept="image/*,video/*,audio/*" ngf-max-size="20MB">
 								    <span class="btn btn-xs" ng-click="MyMatchingQ.removeTextElement($index)"><i class="glyphicon glyphicon-remove"></i></span>
 							     </div>
                             
@@ -46,7 +46,7 @@
 							     <div class="drag ui-widget-content">
 								    <input id="answNumber+{{$index}}" type="number" min="-1" step="1" placeholder="1" ng-model="element.id" required />
 								    <textarea ng-if="element.txt != null" type="textarea" placeholder="Answer..." name="ta+{{$index}}" id="ta1" cols="8" rows="1" ng-model="element.txt"></textarea>
-                                     <input ng-if="element.attachment != null" type="file" ng-click="MyMatchingQ.setDestination('answer')" ngf-select="uploadFiles($files,'answer',{{$index}})" name="file+{{$index}}" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" >
+                                     <input ng-if="element.attachment != null" type="file" ng-click="MyMatchingQ.setDestination('answer')" ngf-select="uploadFiles($files,'answer',{{$index}})" name="file+{{$index}}" ngf-pattern="image/*,video/*,audio/*" accept="image/*,video/*,audio/*" ngf-max-size="20MB" >
 								    <span class="btn btn-xs" ng-click="MyMatchingQ.removeAnswerElement($index)"><i class="glyphicon glyphicon-remove"></i></span>
 							     </div>
                             </div>

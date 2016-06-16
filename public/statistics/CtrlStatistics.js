@@ -14,6 +14,33 @@
 angular.module('StatisticManager').controller('CtrlStatistics',['$scope','$http','$window',function($scope,$http,$window){
     
     
+    $scope.classSelected = null;
+    $scope.classes = null;
+    
+    $scope.loadClasses = function(){
+        $http.get('/api/class/fetch_classes_list').success(function(response){
+            
+            $scope.classes = response;
+            
+            
+        });
+    };
+    
+    
+    
+    
+    $scope.loadClasses();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
      $scope.fetchQuizzesStats = function(){
          $http.get('/api/statistic/quiz').success(function(response){
              
@@ -51,5 +78,5 @@ angular.module('StatisticManager').controller('CtrlStatistics',['$scope','$http'
     $scope.fetchQuestionsStats();
     $scope.fetchStudentsStats();
     $scope.fetchTeachersStats();
-    
+    */
 }]); 

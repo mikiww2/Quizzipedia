@@ -14,13 +14,13 @@
 									<span ng-if = "firstPart.txt != null">{{firstPart.txt}}</span>
 									<span ng-if = "firstPart.attachment != null">
 										<span ng-if = "firstPart.attachment.type == 'img'">
-											<img ng-src="./{{firstPart.attachment.path}}" />
+											<img ng-src="{{getIframeSrc(firstPart.attachment.path)}}" />
 										</span>
 										<span ng-if = "firstPart.attachment.type == 'vid'">
-											<img ng-src="./{{firstPart.attachment.path}}" />
+											<video  ng-src="{{getIframeSrc(firstPart.attachment.path)}}" controls >
 										</span>
 										<span ng-if = "firstPart.attachment.type == 'aud'">
-											<img ng-src="./{{firstPart.attachment.path}}" />
+											<audio ng-src="{{getIframeSrc(firstPart.attachment.path)}}"  controls />
 										</span>
 									</span>
 								</div>						
@@ -37,13 +37,13 @@
 									<span ng-if = "secondPart.txt != null">{{secondPart.txt}}</span>
 									<span ng-if = "secondPart.attachment != null">
 										<span ng-if = "secondPart.attachment.type == 'img'">
-											<img ng-src="./{{secondPart.attachment.path}}" />
+											<img ng-src="{{getIframeSrc(secondPart.attachment.path)}}" />
 										</span>
 										<span ng-if = "secondPart.attachment.type == 'vid'">
-											<source ng-src="./{{secondPart.attachment.path}}" />
+											<video  ng-src="{{getIframeSrc(secondPart.attachment.path)}}" controls >
 										</span>
 										<span ng-if = "secondPart.attachment.type == 'aud'">
-											<source ng-src="./{{secondPart.attachment.path}}" />
+											<audio ng-src="{{getIframeSrc(secondPart.attachment.path)}}"  controls />
 										</span>
 									</span>
 								</div>
@@ -58,7 +58,7 @@
 <p>PATH: {{answer.question.details.text[0].attachment.path}}</p>
 <p>RISULTATO: {{answer.givenAnswer}}</p>
 -->
-                        <p>{{answerQuiz.answerQuestion}}</p>
+                    
 					</div>
 
 

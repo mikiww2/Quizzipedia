@@ -410,7 +410,7 @@ exports.remove = function (req,res) { //rimozione quiz
           }
           else{
               console.log('Nessun quiz trovato');
-              res.send({ number: 0, message: '/Quizzipedia/quizMgmt' });
+              res.send({ code: 0, message: '/Quizzipedia/quizMgmt' });
           }
       }
   });

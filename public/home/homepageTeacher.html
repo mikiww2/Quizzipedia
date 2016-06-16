@@ -115,8 +115,8 @@
                                     <button class="btn btn-sm"> <a href = "/Quizzipedia/sendRequest"><i class="glyphicon glyphicon-send"></i>Invia richiesta </a></button>
                                 </div>
                                 <div ng-if = "classes.length != 0">
-                                    <div class="list-group" ng-repeat = "class in classes | limitTo: 5">
-                                        <p class="list-group-item">
+                                    <div class="list-group">
+                                        <p class="list-group-item" ng-repeat = "class in classes | limitTo: 5">
                                             <i class="glyphicon glyphicon-book"></i> {{class.name}}
                                         </p>
                                     </div>

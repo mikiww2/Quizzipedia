@@ -481,13 +481,13 @@ h6.description, h4.description, h3.description{
 	max-width: 200px; 
 	height: auto;
 	overflow: hidden;
-	display:inline-block;
+	display:inline;
 }
 
 .answerBlock audio{
+	display: inline-block;
 	vertical-align: bottom;
-	padding-top: 10px;
-	
+	margin-top: 30px;
 }
 
 @media(min-width:768px){

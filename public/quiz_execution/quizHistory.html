@@ -81,7 +81,7 @@
                 </p>
             </div>
             
-            <div class="list-group" id="classList" ng-if = "userQuizzes.length != 0" ng-repeat = "(index, quiz) in userQuizzes">
+            <div class="list-group" id="classList" ng-if = "userQuizzes.length != 0" ng-repeat = "(index, quiz) in userQuizzes | orderBy: 'date': true">
                 <div class = "list-group-item">
                     <a href = "#{{index}}" data-toggle = "collapse">
                         <span class="important">

@@ -243,7 +243,8 @@ h6.description, h4.description, h3.description{
 
 .tinybox {
 	width: 150px;
-	height: 80px;
+	min-height: 80px;
+	max-height: 160px;
 	border: 1px solid #d6d6d6;
 	border-radius: 5px;
 	margin-top: 5px;

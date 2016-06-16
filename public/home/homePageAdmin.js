@@ -20,12 +20,12 @@ angular.module('Quizzipedia').directive('homePageAdmin', function() {
             $scope.comunications = [];
             
             $scope.loadComunications = function () {                
-                $http.get('/api/class/fetch_classes_list').success (function (response) {
-                    $scope.classes = response;
+                $http.get('/api/admin/fetch_comunications').success (function (response) {
+                    $scope.comunications = response;
                 });
             }
             
-            //$scope.loadClasses();
+            $scope.loadComunications();
 
         }
     };    

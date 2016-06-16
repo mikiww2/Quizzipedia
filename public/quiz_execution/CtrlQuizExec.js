@@ -166,4 +166,8 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
 
     
     
+}]).filter('trusted', ['$sce', function ($sce) {
+    return function(url) {
+        return $sce.trustAsResourceUrl(url);
+    };
 }]);

@@ -20,7 +20,7 @@ module.exports = function (app) {
     adminM.saveComunication(req, res);
   });
 
-  app.get('/api/auth/fetch_comunication',function (req, res, next) {
+  app.get('/api/admin/fetch_comunications',function (req, res, next) {
     adminM.fetchComunications(req, res);
   });
 

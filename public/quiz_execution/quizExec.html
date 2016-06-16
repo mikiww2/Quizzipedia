@@ -130,7 +130,7 @@
 						</div>
 						<div class="tinybox center-div">
 							<p class="text-center" ng-if = "quiz.topic != null">{{quiz.topic}}</p>
-							<p class="text-center" ng-if = "quiz.topic == null">Generale</p>
+							<p class="text-center" ng-if = "quiz.topic == null">Argomento non specificato</p>
 							<!-- custom stars according to difficulty -->
 							<span class="diffStars">
 								<span class="yellow-glyphs" ng-if="quiz.difficulty=='Facile'">
@@ -225,17 +225,19 @@
 							<!--ATTACHMENT QUESTION-->
 							<div class="clearfix attachment text-center" ng-if = "answer.question.details.questionAttachment != null">
 								<div ng-if = "answer.question.details.questionAttachment.type == 'img'">
-									<img ng-src="./{{answer.question.details.questionAttachment.path}}" />
-								</div>
+									<img ng-src="./{{answer.question.details.questionAttachment.path | trusted}}" />
+								</div>						
+
 								<div ng-if = "answer.question.details.questionAttachment.type == 'vid'">
-                                    <video  ng-src="./{{answer.question.details.questionAttachment.path}}" controls >
+                                    <video  ng-src="./{{answer.question.details.questionAttachment.path | trusted}}" controls >
                                         
                                         
                                     </video>
 								</div>
 								<div ng-if = "answer.question.details.questionAttachment.type == 'aud'">
-									<source ng-src="./{{answer.question.details.questionAttachment.path}}" />
+									<source ng-src="./{{answer.question.details.questionAttachment.path | trusted}}" />
 								</div>							
+
 							</div>              
 						</div>                    
 						<!-- end of row -->              

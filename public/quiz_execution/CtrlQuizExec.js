@@ -18,7 +18,9 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
     $scope.answerQuiz = new AnswerQuiz(null);
     $scope.results = []; //bool
     
-    
+    $scope.getIframeSrc = function (videoId) {
+    return videoId;
+    };
     
     $scope.loadQuiz = function(){
         //fare get

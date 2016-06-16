@@ -316,7 +316,7 @@ exports.remove = function (req,res) { //rimozione quiz
       }
       else{
           if(quiz){
-              console.log('Quiz rimosso correttamente: '+question);
+              console.log('Quiz rimosso correttamente');
               res.send({ code: 0, message: 'Quiz rimosso correttamente!' });
           }
           else{

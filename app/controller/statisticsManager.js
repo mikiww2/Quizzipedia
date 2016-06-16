@@ -229,7 +229,7 @@ exports.quiz_results = function (req, res) {
                 if(!con)
                     return done();
 
-                Organization.find({ }, 'classes', function (err, q) {
+                Organization.find({ }, 'name classes', function (err, q) {
                     if (err) {
                         con = false;
                         console.log(err);
@@ -260,27 +260,31 @@ exports.quiz_results = function (req, res) {
                         difficulty: q.difficulty
                     };
 
-                    var ar = [];
+                    r.classes = [];
+
+                    var array = [];
 
                     q.classes.forEach(function(cls) { //pubblico o privato
                         Orgs.forEach(function(org) {
                             if(org.name == q.institution){
                                 org.classes.forEach(function(c) {
+
+                                    console.log(c.name);
+                                    console.log(c.academicYear);
+
                                     if(c._id == cls)
-                                        ar.push({
+                                        r.classes.push({
                                             name: c.name,
-                                            accademicYear: c.accademicYear
+                                            academicYear: c.academicYear
                                         });
                                 });
                             }
                         });
                     });
 
-                    r.classes = ar;
-
                     q.total = q.questions.length;
 
-                    r.classes = q.total;
+                    r.total = q.total;
 
                     var sumCorrect = 0,
                         n = 0,
@@ -292,7 +296,7 @@ exports.quiz_results = function (req, res) {
                             n++;
 
                             var t = 0;
-                            r.answers.forEach(function (an) {
+                            rr.answers.forEach(function (an) {
                                 if (an.solution)
                                     t++;
                             });

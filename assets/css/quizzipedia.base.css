@@ -514,10 +514,12 @@ h6.description, h4.description, h3.description{
 	max-width:300px;
 }
 
-@media (min-width: 120px) and (max-width: 240px){
-	 .answerBlock video, .answerBlock audio {
-		 width:100%;
+@media (max-width: 240px){
+	 .answerBlock video {
 		max-width: 100px;
+	 }
+	 .answerBlock audio{
+		 max-width: 60px;
 	 }
 }
 
@@ -685,7 +687,7 @@ h6.description, h4.description, h3.description{
 		max-height: 400px;
 	}
 	.solveMatching .drag audio{
-		max-width: 300px;
+		max-width: 250px;
 	}
 }
 
@@ -1491,10 +1493,17 @@ input {
 }
 
 .attachment audio {
-	width: 300px;
+	max-width: 300px;
 	padding: 10px 0;
+}
+
+@media(max-width:240px){
+.attachment audio {
+	width: 100px;
+}
 }
 
 .attachment .well {
 	max-width: 400px;
+	margin-top: 40px;
 }

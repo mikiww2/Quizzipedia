@@ -7,7 +7,7 @@
 					<span type = "textarea" ng-if = "option.textAnswer != null">{{option.textAnswer}}</span>
 					<span type = "textarea" ng-if = "(option.textAnswer == null) && (option.attachment != null)">
 						<span ng-if = "option.attachment.type == 'img'"> <!-- sostituito div con span sennò va a capo dopo la checkbox -->
-							<img ng-src="./{{option.attachment.path}}" />
+							<img ng-src="./{{option.attachment.path}}" class="fullscreen" onClick="makeFullScreen()" />
 						</span>
 						<span ng-if = "option.attachment.type == 'vid'">
 							<source ng-src="./{{option.attachment.path}}" />
@@ -26,6 +26,28 @@
 <p>DOMANDA: {{answer}}</p>
 <p>RISULTATO: {{answer.givenAnswer}}</p>
 					<!-- end of question body -->
+
+<!-- <script>
+	 function makeFullScreen() {
+        var elem = document.document.getElementsByClassName("fullscreen");
+		for(int i=0; i<elem.length; i++){
+		  if (elem[i].requestFullscreen) {
+			elem[i].requestFullscreen();
+		  }
+		  else if (elem[i].msRequestFullscreen) {
+			elem[i].msRequestFullscreen();               
+		  }
+		  else if (elem[i].mozRequestFullScreen) {
+			elem[i].mozRequestFullScreen();      
+		  }
+		  else if (elem[i].webkitRequestFullscreen) {
+			elem[i].webkitRequestFullscreen();       
+		  } else {
+			console.log("Fullscreen API is not supported");
+		  } 
+		}
+    }
+</script> -->
 		
 
 

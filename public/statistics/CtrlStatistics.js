@@ -42,7 +42,7 @@ angular.module('StatisticManager').controller('CtrlStatistics',['$scope','$http'
     };
     
     
-    //$scope.loadStatQuiz();
+    $scope.loadStatQuiz();
     
     
     

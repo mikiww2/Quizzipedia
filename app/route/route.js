@@ -159,7 +159,10 @@ module.exports = function (app) {
 
   //QUESTIONS ---------------------------------------------------------------------------------------
   app.route('/Quizzipedia/createQuestion').get(function (req, res) {
-    res.sendFile(path.resolve('./public/question_creation/createQuestionBase.html'));
+    if (req.session.user)
+      res.sendFile(path.resolve('./public/question_creation/createQuestionBase.html'));
+    else
+      res.redirect('/Quizzipedia/home');
   });    
     
   //QUESTIONS MANAGE------------------------------------------------------------------------    

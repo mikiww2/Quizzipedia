@@ -47,5 +47,9 @@ module.exports = function (app) {
     institutionM.removeFromInst(req, res);
   });
 
+  app.post('/api/institution/create_new_institution',function (req, res, next) {
+    adminM.createNewInstitution(req, res);
+  });
+
 };  
  

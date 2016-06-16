@@ -41,7 +41,8 @@ angular.module('Quizzipedia').directive('homePageAdmin', function() {
                 
                 var newInst = {email : $scope.instDir, orgName : $scope.instName};
                 
-                $http.post('/api/institution/create_new_institution', newInst).success (function (response) {
+                $http.post('/api/institution/create_new_institution', newInst)
+                    .success (function (response) {
                     if(response.code == 0){
                         alert(response.message);
                         $window.location.href = '/Quizzipedia/home';

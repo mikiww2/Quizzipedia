@@ -17,24 +17,40 @@ angular.module('Quizzipedia').directive('homePageAdmin', function() {
         templateUrl: './public/home/homepageAdmin.html',
         controller: function($scope, $http) {
             
-            $scope.comunications = [];
+            $scope.communications = [];
             
-            $scope.loadComunications = function () {                
+            $scope.instDir = null;
+            $scope.InstName = null;
+            
+            $scope.loadCommunications = function () {                
                 $http.get('/api/admin/fetch_comunications').success (function (response) {
-                    $scope.comunications = response;
+                    $scope.communications = response;
                 });
             }
 
-            $scope.removeComunications = function (id) {                
+            $scope.removeCommunication = function (idOfComm, indexOfComm) {
                 $http.post('/api/admin/remove_comunications').success (function (response) {
                     if(response.code == 0){
-                        $window.location.href = '/';
+                        $scope.communications.splice(indexOfComm, 1);                       
                     }
                     else alert(response.message);
                 });
-            }
+            };
             
-            $scope.loadComunications();
+            $scope.createInst = function () {
+                
+                var newInst = {email : $scope.instDir, orgName : $scope.instName};
+                
+                $http.post('/api/institution/create_new_institution', newInst).success (function (response) {
+                    if(response.code == 0){
+                        alert("Ente creato correttamente")
+                    }
+                    else alert(response.message);
+                });
+                
+            };
+            
+            $scope.loadCommunications();
 
         }
     };    

@@ -1,12 +1,33 @@
 	<div class="container">
 		<ul class="nav nav-pills col-md-offset-4 col-sm-offset-3 col-xs-offset-2">
-			<li class="active"><a data-toggle="pill" href="#comm">Comunicazioni</a></li>
-		  <li><a data-toggle="pill" href="#inst">Creazione ente</a></li>
+			<li class="active"><a data-toggle="pill" href="#createInst">Creazione ente</a></li>
+		  <li><a data-toggle="pill" href="#comm">Comunicazioni</a></li>
 		</ul>
 		
 		<div class="tab-content">
 		<!-- panel 1 -->
-			<div id="comm" class="tab-pane fade adminPanel">
+            <div id="createInst" class="tab-pane fade in active answContainer">
+				<div class="form">
+                    <form ng-submit = "createInst()">
+					<h3 class="text-center">Creazione ente</h3>
+					<div class="row">
+                        <label class="space">Mail del responsabile:</label>
+                        <p class = "well">
+                            <input type="email" placeholder = "Inserire mail" required autofocus ng-model = "instDir">
+                        </p>
+                        <label class="space">Nome ente:</label>
+                        <p class="well">
+                            <input type = "text" placeholder = "Inserire nome ente" ng-model = "instName" required>
+                        </p>
+                         <span data-placement="top"  data-toggle="tooltip" title="Crea"><button type = "submit" class="btn pull-right" data-title="Crea"><span class="glyphicon glyphicon-plus"></span> Crea</button></span>
+					</div>
+                    </form>
+				</div>
+			</div>  
+			
+			<!-- panel 2 -->            
+            <div id="comm" class="tab-pane fade adminPanel">
+                <h3 class="text-center">Comunicazioni</h3>
 				  <table class="table table-hover table-compact qTable">  
 					  <thead>
 						  <th><i class="glyphicon glyphicons-note"></i> Contatto</th>
@@ -14,28 +35,17 @@
 						  <th></th>
 					  </thead>
 					  <tbody>
-						<tr ng-repeat="msg in comunications"><!-- for each quiz -->
+						<tr ng-repeat="(index, msg) in communications"><!-- for each quiz -->
 							<td>{{msg.email}}</td>
 							<td>{{msg.message}}</td>
 							<td>
-								<span data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger  pull-right" data-title="Elimina" data-toggle="modal" data-target="#delete" ng-click="setDeleteQ(((currentPage-1)*itemsPerPage)+index)" ><span class="glyphicon glyphicon-trash"></span> Elimina</button></span>
+								<span data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger  pull-right" data-title="Elimina" ng-click="removeCommunication(msg._id, index)" ><span class="glyphicon glyphicon-trash"></span> Elimina</button></span>
 							</td>
 						</tr>
 					  </tbody>
 				  </table>
 				  <!-- end of table -->
 			</div>
-			<!-- panel 2 -->
-			<div id="inst" class="tab-pane fade in active answContainer">
-				<div class="form">
-					<h3 class="text-center">Comunicazioni</h3>
-					<div class="row">
-					<label class="space">Recapito email:</label>
-					<p class="well">email@gmail.com</p>
-					<label class="space">Problema:</label>
-					<p class="well">blabla descrizione problema</p>
-					</div>
-				</div>
-			</div>  
+			
 	</div>
 </div>

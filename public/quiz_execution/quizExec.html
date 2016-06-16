@@ -89,9 +89,9 @@
   </head>
 
   <body>
-	<div class="pagewrap" ng-controller="CtrlExecutionQuiz">
+	<div ng-controller="CtrlExecutionQuiz">
         
-        <div class="pagewrap" ng-controller="CtrlHeader"> 
+        <div ng-controller="CtrlHeader"> 
           
           <header-not-logged ng-if="user.role== null"></header-not-logged>          
           <header-Logged ng-if="user.role == 'noRole'"></header-Logged>
@@ -114,170 +114,200 @@
                   <li class = "active"><i class="glyphicon glyphicon-pencil"> </i> Risoluzione quiz </li>       
               </ol>
           </div> 
+        
+		<div class="container">
+			<!-- first page panel -->
+			<div class="panel panel-default qPanel">
+				<!-- panel heading -->
+				<div class="panel-heading">
+					<!-- if quiz is private -->
+					<div class="row instClass">
+						<p class="col-md-6 col-sm-6 col-xs-6">{{quiz.institution}}</p>
+						<p class="col-md-6 col-sm-6 col-xs-6 text-right" ng-if="quiz.classes.length == 0">Quiz pubblico</p>
+						<p class="col-md-6 col-sm-6 col-xs-6 text-right" ng-if="quiz.classes.length > 0">Quiz privato</p>
+					</div>
+					<div class="row">
+						<div class="quizTitle">
+							<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> {{quiz.title}}</h3>
+							<p class="text-center">{{quiz.author}}</p>
+						</div>
+						<div class="tinybox center-div">
+							<p class="text-center">{{quiz.topic}}</p>
+							<!-- custom stars according to difficulty -->
+							<span class="diffStars">
+								<span class="yellow-glyphs" ng-if="quiz.difficulty=='Facile'">
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star-empty"></i>
+									<i class="glyphicon glyphicon-star-empty"></i>
+									<i class="glyphicon glyphicon-star-empty"></i>
+								</span>
+								 <span class="yellow-glyphs" ng-if="quiz.difficulty=='Medio'">
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star-empty"></i>
+									<i class="glyphicon glyphicon-star-empty"></i>
+								</span>
+								 <span class="yellow-glyphs" ng-if="quiz.difficulty=='Difficile'">
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star-empty"></i>
+								</span>
+								 <span class="yellow-glyphs" ng-if="quiz.difficulty=='Molto difficile'">
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star"></i>
+									<i class="glyphicon glyphicon-star"></i>
+								</span>
+							</span>
+						</div>
+					</div>
+				</div>
+				<!-- end of panel heading -->
+				<!-- beginning of body -->
+				<div class="panel-body" ng-if = "currentPage == -1"> 
+					
+					<!-- description -->
+					<div class="panel panel-default quizDescr" ng-if = "quiz.description != null">
+						<div class="panel-heading">
+							<h6 class="text-center">Descrizione</h6>
+						</div>
+						<div class="panel-body">
+							<p class="text-center">{{quiz.description[0]}} </p>
+						</div>
+					</div>
+					<!-- end of description -->
+					<div class="clearfix"></div> <!-- DA TOGLIERE -->
+					<div class="text-center">Questo quiz contiene <span class="label-as-badge label-blue">{{quiz.questions.length}}</span> domande.</div>
+					<div class="text-center pull-bottom"><button class="btn btn-lg btn-primary" id="startQuiz" type="button" ng-click = "changeCurrentPage(1)">Inizia</button></div>
+					<!-- end of canvas -->
+				</div>
+							
+				<div ng-repeat = "(index, answer) in answerQuiz.answerQuestion track by $index">  
+					<div class="panel-body" ng-if = "currentPage == index">
+						<div class="row"> 
+							<!-- title -->
+							<div class="col-md-3">							
+								<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i>{{answer.question.title}}</h4>
+								<h6 class="text-center">{{answer.question.topic}}</h6>
+									<p class="diffStars"> 
+										<span class="yellow-glyphs" ng-if="quiz.difficulty=='1'">
+											<i class="glyphicon glyphicon-star"></i>
+											<i class="glyphicon glyphicon-star-empty"></i>
+											<i class="glyphicon glyphicon-star-empty"></i>
+											<i class="glyphicon glyphicon-star-empty"></i>
+										</span>
+										 <span class="yellow-glyphs" ng-if="quiz.difficulty=='2'">
+											<i class="glyphicon glyphicon-star"></i>
+											<i class="glyphicon glyphicon-star"></i>
+											<i class="glyphicon glyphicon-star-empty"></i>
+											<i class="glyphicon glyphicon-star-empty"></i>
+										</span>
+										 <span class="yellow-glyphs" ng-if="quiz.difficulty=='3'">
+											<i class="glyphicon glyphicon-star"></i>
+											<i class="glyphicon glyphicon-star"></i>
+											<i class="glyphicon glyphicon-star"></i>
+											<i class="glyphicon glyphicon-star-empty"></i>
+										</span>
+										 <span class="yellow-glyphs" ng-if="quiz.difficulty=='4'">
+											<i class="glyphicon glyphicon-star"></i>
+											<i class="glyphicon glyphicon-star"></i>
+											<i class="glyphicon glyphicon-star"></i>
+											<i class="glyphicon glyphicon-star"></i>
+										</span>
+                                </p>
+							</div>
+							
+							<!-- description -->                        
+							<div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-12">
+								<div class="well">{{answer.question.description}}</div>
+							</div>
+							
+							<!--attachment-->
+							<div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-12 col-xs-offset-3 attachment" ng-if = "answer.question.details.questionAttachment != null">
+								<div ng-if = "answer.question.details.questionAttachment.type == 'img'">
+									<img ng-src="./{{answer.question.details.questionAttachment.path}}" />
+								</div>
+								<div ng-if = "answer.question.details.questionAttachment.type == 'vid'">
+                                    <video width="320" height="240" controls>
+                                        <source ng-src="./{{answer.question.details.questionAttachment.path}}">
+                                        <p>Il tuo browser non supporta i video</p>
+                                    </video>
+								</div>
+								<div ng-if = "answer.question.details.questionAttachment.type == 'aud'">
+									<source ng-src="./{{answer.question.details.questionAttachment.path}}" />
+								</div>							
+							</div>              
+						</div>                    
+						<!-- end of row -->              
+						<!-- question body - variable structure depending on qtype -->	       
+		   
+
+					
+					<div ng-if="answer.question.type == 'trfs'">
+						<quiz-exec-true-false></quiz-exec-true-false>
+					</div>
+					<div class="panel-body" ng-if="answer.question.type == 'mult'">
+						<quiz-exec-multiple></quiz-exec-multiple>
+					</div>
+					<div class="panel-body"  ng-if="answer.question.type == 'open'">
+						<quiz-exec-open></quiz-exec-open>
+					</div>
+					<div class="panel-body" ng-if="answer.question.type == 'cmpl'">
+						<quiz-exec-completion></quiz-exec-completion>
+					</div>
+					<div class="panel-body"  ng-if="answer.question.type == 'mtch'">
+						<quiz-exec-matching></quiz-exec-matching>
+					</div>
+						
+						<div class="clearfix"></div>
+							<div class="row qFooting">
+								<div class="center-div text-center">
+									
+								<span class="badge qNumber"><span class="qCurrent">{{index+1}}</span>/{{answerQuiz.answerQuestion.length}}</span>
+									
+								<span data-placement="top" data-toggle="tooltip" title="Previous" ng-if = "index != 0"><button class="btn btn-lg btn-primary nextBtn pull-left" type="button" ng-click = "changeCurrentPage(-1)"><i class="glyphicon glyphicon-arrow-left"></i></button></span>
+								 
+								<span data-placement="top" data-toggle="tooltip" title="Finish" ng-if = "(index + 1) == answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-success nextBtn pull-right" type="button" ng-click = "saveQuiz(); changeCurrentPage(1)"><i class="glyphicon glyphicon-ok"></i> Correggi</button></span>
+								<span data-placement="top" data-toggle="tooltip" title="Next" ng-if = "(index+1) != answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button" ng-click = "changeCurrentPage(1)"><i class="glyphicon glyphicon-arrow-right"></i></button></span>
+									
+								</div>
+						 </div>
+					</div>
+				</div>
             
-		<!-- first page panel -->
-		<div class="panel panel-default qPanel">
-			<!-- panel heading -->
-			<div class="panel-heading">
-				<!-- if quiz is private -->
-				<div class="row instClass">
-					<p class="col-md-6 col-sm-6 col-xs-6">{{quiz.institution}}</p>
-					<p class="col-md-6 col-sm-6 col-xs-6 text-right" ng-if="quiz.classes.length == 0">Quiz pubblico</p>
-                    <p class="col-md-6 col-sm-6 col-xs-6 text-right" ng-if="quiz.classes.length > 0">Quiz privato</p>
-				</div>
-				<div class="row">
-					<div class="quizTitle">
-						<h3 class="panel-title text-center"><i class="glyphicon glyphicon-th-list"></i> {{quiz.title}}</h3>
-						<p class="text-center">{{quiz.author}}</p>
-					</div>
-					<div class="tinybox center-div">
-						<p class="text-center">{{quiz.topic}}</p>
-						<!-- custom stars according to difficulty -->
-						<span class="diffStars">
-							<span class="yellow-glyphs" ng-if="quiz.difficulty=='Facile'">
-								<i class="glyphicon glyphicon-star"></i>
-								<i class="glyphicon glyphicon-star-empty"></i>
-								<i class="glyphicon glyphicon-star-empty"></i>
-								<i class="glyphicon glyphicon-star-empty"></i>
-							</span>
-							 <span class="yellow-glyphs" ng-if="quiz.difficulty=='Medio'">
-								<i class="glyphicon glyphicon-star"></i>
-								<i class="glyphicon glyphicon-star"></i>
-								<i class="glyphicon glyphicon-star-empty"></i>
-								<i class="glyphicon glyphicon-star-empty"></i>
-							</span>
-							 <span class="yellow-glyphs" ng-if="quiz.difficulty=='Difficile'">
-								<i class="glyphicon glyphicon-star"></i>
-								<i class="glyphicon glyphicon-star"></i>
-								<i class="glyphicon glyphicon-star"></i>
-								<i class="glyphicon glyphicon-star-empty"></i>
-							</span>
-							 <span class="yellow-glyphs" ng-if="quiz.difficulty=='Molto difficile'">
-								<i class="glyphicon glyphicon-star"></i>
-								<i class="glyphicon glyphicon-star"></i>
-								<i class="glyphicon glyphicon-star"></i>
-								<i class="glyphicon glyphicon-star"></i>
-							</span>
-						</span>
-					</div>
-				</div>
-			</div>
-			<!-- end of panel heading -->
-			<!-- beginning of body -->
-			<div class="panel-body" ng-if = "currentQuestion == -1"> 
-                
-				<!-- description -->
-				<div class="panel panel-default quizDescr" ng-if = "quiz.description != null">
+            <div class="panel-body qResult" ng-if = "currentPage ==  answerQuiz.answerQuestion.length">
+			<!-- grade -->
+				<div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3">
+				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h6 class="text-center">Descrizione</h6>
+						<h3 class="panel-title text-center">
+							<i class="glyphicon glyphicon-pencil"></i> RISULTATO
+							<span class="label label-success" ng-if = "success() === true">{{punteggio}}/{{answerQuiz.answerQuestion.length}}</span>
+                            <span class="label label-danger" ng-if = "success() === false">{{punteggio}}/{{answerQuiz.answerQuestion.length}}</span>
+						</h3>
 					</div>
 					<div class="panel-body">
-						<p class="text-center">{{quiz.description[0]}} </p>
+						<div class="list-group">
+							<span class="list-group-item">
+								<i class="success glyphicon glyphicon-ok pull-right" style="color: #179917;"></i> 1. Title
+							</span>
+							<a href="#" class="list-group-item">
+								<i class="danger glyphicon glyphicon-remove pull-right" style="color: #e14825;"></i> 2. Title
+							</a>
+						</div>
 					</div>
 				</div>
-				<!-- end of description -->
-				<div class="clearfix"></div> <!-- DA TOGLIERE -->
-				<div class="text-center">Questo quiz contiene <span class="label-as-badge label-blue">{{quiz.questions.length}}</span> domande.</div>
-				<div class="text-center pull-bottom"><button class="btn btn-lg btn-primary" id="startQuiz" type="button" ng-click = "changeCurrentQuestion(1)">Inizia</button></div>
-				<!-- end of canvas -->
 			</div>
-                        
-            <div ng-repeat = "(index, answer) in answerQuiz.answerQuestion track by $index">  
-                <div class="panel-body" ng-if = "currentQuestion == index">
-					<div class="row"> 
-						<!-- title -->
-						<div class="col-md-3">							
-							<h4 class="text-center"><i class="glyphicon glyphicon-question-sign"></i>{{answer.question.title}}</h4>
-                            <h6 class="text-center">{{answer.question.topic}}</h6>
-								<p class="diffStars"> 
-                                    <span class="yellow-glyphs" ng-if="quiz.difficulty=='1'">
-										<i class="glyphicon glyphicon-star"></i>
-										<i class="glyphicon glyphicon-star-empty"></i>
-										<i class="glyphicon glyphicon-star-empty"></i>
-										<i class="glyphicon glyphicon-star-empty"></i>
-									</span>
-									 <span class="yellow-glyphs" ng-if="quiz.difficulty=='2'">
-										<i class="glyphicon glyphicon-star"></i>
-										<i class="glyphicon glyphicon-star"></i>
-										<i class="glyphicon glyphicon-star-empty"></i>
-										<i class="glyphicon glyphicon-star-empty"></i>
-									</span>
-									 <span class="yellow-glyphs" ng-if="quiz.difficulty=='3'">
-										<i class="glyphicon glyphicon-star"></i>
-										<i class="glyphicon glyphicon-star"></i>
-										<i class="glyphicon glyphicon-star"></i>
-										<i class="glyphicon glyphicon-star-empty"></i>
-									</span>
-									 <span class="yellow-glyphs" ng-if="quiz.difficulty=='4'">
-										<i class="glyphicon glyphicon-star"></i>
-										<i class="glyphicon glyphicon-star"></i>
-										<i class="glyphicon glyphicon-star"></i>
-										<i class="glyphicon glyphicon-star"></i>
-									</span>
-								</p>
-							</h6>
-						</div>
-                        
-						<!-- description -->                        
-						<div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-3 col-xs-12">
-							<div class="well">{{answer.question.description}}</div>
-						</div>
-                        
-						<!--attachment-->
-						<div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-12 col-xs-offset-3 attachment" ng-if = "answer.question.details.questionAttachment != null">
-                            <div ng-if = "answer.question.details.questionAttachment.type == 'img'">
-                                <img ng-src="./{{answer.question.details.questionAttachment.path}}" />
-                            </div>
-                            <div ng-if = "answer.question.details.questionAttachment.type == 'vid'">
-                                <source ng-src="./{{answer.question.details.questionAttachment.path}}" />
-                            </div>
-                            <div ng-if = "answer.question.details.questionAttachment.type == 'aud'">
-                                <source ng-src="./{{answer.question.details.questionAttachment.path}}" />
-                            </div>							
-						</div>              
-					</div>                    
-					<!-- end of row -->              
-					<!-- question body - variable structure depending on qtype -->	       
-       
-
-                
-                <div ng-if="answer.question.type == 'trfs'">
-                    <quiz-exec-true-false></quiz-exec-true-false>
-                </div>
-                <div class="panel-body" ng-if="answer.question.type == 'mult'">
-                    <quiz-exec-multiple></quiz-exec-multiple>
-                </div>
-                <div class="panel-body"  ng-if="answer.question.type == 'open'">
-                    <quiz-exec-open></quiz-exec-open>
-                </div>
-                <div class="panel-body" ng-if="answer.question.type == 'cmpl'">
-                    <quiz-exec-completion></quiz-exec-completion>
-                </div>
-                <div class="panel-body"  ng-if="answer.question.type == 'mtch'">
-                    <quiz-exec-matching></quiz-exec-matching>
-                </div>
-                    
-                    <div class="clearfix"></div>
-					<div class="row qFooting">
-						<div class="center-div text-center">
-                            
-						<span class="badge qNumber"><span class="qCurrent">{{index+1}}</span>/{{answerQuiz.answerQuestion.length}}</span>
-                            
-                        <span data-placement="top" data-toggle="tooltip" title="Previous" ng-if = "index != 0"><button class="btn btn-lg btn-primary nextBtn pull-left" type="button" ng-click = "changeCurrentQuestion(-1)"><i class="glyphicon glyphicon-arrow-left"></i></button></span>
-                         
-                        <span data-placement="top" data-toggle="tooltip" title="Finish" ng-if = "(index + 1) == answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-success nextBtn pull-right" type="button" ng-click = "saveQuiz()"><i class="glyphicon glyphicon-ok"></i> Correggi</button></span>
-						<span data-placement="top" data-toggle="tooltip" title="Next" ng-if = "(index+1) != answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button" ng-click = "changeCurrentQuestion(1)"><i class="glyphicon glyphicon-arrow-right"></i></button></span>
-                            
-						</div>
-				 </div>
-                </div>
-            </div>
-            
-		</div>      
-		<!-- end of panel body -->
-	</div>
-      </div>
-      <!--<page-footer></page-footer>-->
+			</div>
+				
+			</div>      
+			<!-- end of panel body -->
+		</div>
+		</div>
+		<div class="footer-fix">
+			<page-footer></page-footer>
+		</div>
   </body>
 </html>
 

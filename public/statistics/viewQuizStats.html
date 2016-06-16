@@ -26,6 +26,7 @@
       
     <script type="text/javascript" src="./public/core.js"></script>
 	<script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
+	<script type="text/javascript" src="./public/statistics/CtrlStatistics.js" ></script>
 	
     <!-- select2.js -->
 	<link href="./assets/js/select2-4.0.2/dist/css/select2.min.css" rel="stylesheet" />
@@ -64,7 +65,7 @@
             </ol>
         </div>
 		
-		<div class="container">
+		<div class="container" ng-controller="CtrlStatistics">
 			<h4 class="description text-center"><i class="glyphicon glyphicon-th-list"></i> <i class="glyphicon glyphicon-stats"></i> Statistiche dei quiz</h4>
 			<div class="pull-right dropOrder">
 				<span>Ordina:</span>

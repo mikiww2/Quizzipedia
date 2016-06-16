@@ -17,7 +17,7 @@ var adminM = require('../../controller/adminManager');
 module.exports = function (app) {
 
   app.post('/api/admin/save_comunication',function (req, res, next) {
-    adminM.saveComunications(req, res);
+    adminM.saveComunication(req, res);
   });
 
   app.get('/api/auth/fetch_comunication',function (req, res, next) {

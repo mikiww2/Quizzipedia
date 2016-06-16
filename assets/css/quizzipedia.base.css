@@ -209,7 +209,7 @@ h6.description, h4.description, h3.description{
 	margin-top:20px;
 	max-width:800px;
 	margin: 10px auto;
-	max-height: 800px;
+	height: 100%;
 	font-size: 1.1em;
 }
 
@@ -312,6 +312,22 @@ h6.description, h4.description, h3.description{
 .qPanel .well {
 	background-color: white;
 }
+
+ .fullscreen:-webkit-full-screen {
+      width: auto !important;
+      height: auto !important;
+      margin:auto !important;
+  }
+     .fullscreen:-moz-full-screen {
+      width: auto !important;
+      height: auto !important;
+      margin:auto !important;
+  }
+     .fullscreen:-ms-fullscreen {
+      width: auto !important;
+      height: auto !important;
+      margin:auto !important;
+  }     
 
 /*
 .panel-blue > .panel-heading {
@@ -1112,6 +1128,8 @@ ul.alert-dropdown {
 	border-top: 1px solid #e7e7e7;
 	padding: 5px 0;
 }
+
+
 
 /* profile */
 .team{

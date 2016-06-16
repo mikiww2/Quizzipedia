@@ -76,11 +76,14 @@ angular.module('QuizManager').controller('CtrlQuizManager',['Quiz', '$scope', '$
         $scope.deleteQuiz = index;
     };
     
-    $scope.removeQuiz = function(){
-        
+    $scope.removeQuiz = function(){        
         $http.post('/api/quiz/remove', $scope.quizzes[$scope.deleteQuiz]).success(function(response){
-            $scope.quizzes.splice($scope.deleteQuiz, 1);
-           $scope.deleteQuiz = null;
+            if (response.code == 0) {
+                $scope.quizzes.splice($scope.deleteQuiz, 1);
+                $scope.deleteQuiz = null;
+            }
+            if (response.code == 1) 
+                alert(response.message);
        }).error(function() {
            alert("Errore nell'eliminazione");
        });       

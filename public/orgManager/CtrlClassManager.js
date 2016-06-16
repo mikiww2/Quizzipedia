@@ -11,7 +11,7 @@
  *
  */
 
-angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$scope', '$http', function (Class, $scope, $http){
+angular.module('InstClassManager').controller('CtrlClassManager',['Class', '$scope', '$http', '$window', function (Class, $scope, $http, $window){
     
     $scope.classes = [];
     $scope.userClasses = [];

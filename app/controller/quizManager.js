@@ -307,3 +307,22 @@ exports.saveResults = function (req,res) { //salvataggio risultati quiz
   });
 
 }; // da finire quando arriva json
+
+exports.remove = function (req,res) { //rimozione quiz
+  Quiz.remove({ '_id': req.body._id }, function (err, quiz){
+      if (err) {
+          console.log('error: ' + err);
+          res.redirect('/');
+      }
+      else{
+          if(quiz){
+              console.log('Quiz rimosso correttamente: '+question);
+              res.send({ code: 0, message: 'Quiz rimosso correttamente!' });
+          }
+          else{
+              console.log('Nessun quiz trovato');
+              res.send({ number: 0, message: '/Quizzipedia/quizMgmt' });
+          }
+      }
+  });
+}

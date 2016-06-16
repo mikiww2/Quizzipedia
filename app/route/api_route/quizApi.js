@@ -47,5 +47,9 @@ module.exports = function (app) {
     quizM.saveResults(req, res);
   });
 
+  app.post('/api/quiz/remove',function (req, res, next) { //salvataggio quiz
+    quizM.remove(req, res);
+  });
+
 }; 
  

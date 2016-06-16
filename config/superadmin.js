@@ -43,14 +43,14 @@ async.series([
     function(done) {
         fs.access(path + filename, function(err) { // default fs.F_OK, se il file è visibile
             if(err) {
-                console.log(filename + ' non trovato, lo ricreo');
+                // console.log(filename + ' non trovato, lo ricreo');
 
                 file = false;
 
                 done();
             }
             else {
-                console.log(filename + ' trovato');
+                // console.log(filename + ' trovato');
 
                 file = true;
 
@@ -119,8 +119,7 @@ async.series([
             stream.write("###################################################################\n");
             stream.end();
         });
-
-        console.log();
+        
         console.log('username : ' + mail);
         console.log('password : ' + password);
         console.log();

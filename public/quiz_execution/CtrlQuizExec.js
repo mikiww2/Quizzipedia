@@ -133,6 +133,9 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
             else if($scope.answerQuiz.answerQuestion[i].question.type == 'mult'){
                 $scope.answerQuiz.answerQuestion[i].isCorrect = $scope.answerQuiz.answerQuestion[i].checkMultiple();
             }
+            else if($scope.answerQuiz.answerQuestion[i].question.type == 'cmpl'){
+                $scope.answerQuiz.answerQuestion[i].isCorrect = $scope.answerQuiz.answerQuestion[i].checkCompletion();
+            }
            
         }
         

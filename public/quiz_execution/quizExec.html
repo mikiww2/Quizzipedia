@@ -165,12 +165,13 @@
 				<div class="panel-body" ng-if = "currentPage == -1"> 
 					
 					<!-- description -->
-					<div class="panel panel-default quizDescr" ng-if = "quiz.description != null">
+					<div class="panel panel-default quizDescr">
 						<div class="panel-heading">
 							<h6 class="text-center">Descrizione</h6>
 						</div>
 						<div class="panel-body">
-							<p class="text-center">{{quiz.description[0]}} </p>
+							<p class="text-center" ng-if = "quiz.description != null">{{quiz.description[0]}} </p>
+							<p class="text-center" ng-if = "quiz.description == null">Non sono state fornite istruzioni per lo svolgimento di questo quiz.</p>
 						</div>
 					</div>
 					<!-- end of description -->

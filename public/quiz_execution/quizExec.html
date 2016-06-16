@@ -165,7 +165,7 @@
 				</div>
 				<!-- end of panel heading -->
 				<!-- beginning of body -->
-				<div class="panel-body" ng-if = "currentQuestion == -1"> 
+				<div class="panel-body" ng-if = "currentPage == -1"> 
 					
 					<!-- description -->
 					<div class="panel panel-default quizDescr" ng-if = "quiz.description != null">
@@ -179,12 +179,12 @@
 					<!-- end of description -->
 					<div class="clearfix"></div> <!-- DA TOGLIERE -->
 					<div class="text-center">Questo quiz contiene <span class="label-as-badge label-blue">{{quiz.questions.length}}</span> domande.</div>
-					<div class="text-center pull-bottom"><button class="btn btn-lg btn-primary" id="startQuiz" type="button" ng-click = "changeCurrentQuestion(1)">Inizia</button></div>
+					<div class="text-center pull-bottom"><button class="btn btn-lg btn-primary" id="startQuiz" type="button" ng-click = "changeCurrentPage(1)">Inizia</button></div>
 					<!-- end of canvas -->
 				</div>
 							
 				<div ng-repeat = "(index, answer) in answerQuiz.answerQuestion track by $index">  
-					<div class="panel-body" ng-if = "currentQuestion == index">
+					<div class="panel-body" ng-if = "currentPage == index">
 						<div class="row"> 
 							<!-- title -->
 							<div class="col-md-3">							
@@ -215,8 +215,7 @@
 											<i class="glyphicon glyphicon-star"></i>
 											<i class="glyphicon glyphicon-star"></i>
 										</span>
-									</p>
-								</h6>
+                                </p>
 							</div>
 							
 							<!-- description -->                        
@@ -230,7 +229,10 @@
 									<img ng-src="./{{answer.question.details.questionAttachment.path}}" />
 								</div>
 								<div ng-if = "answer.question.details.questionAttachment.type == 'vid'">
-									<source ng-src="./{{answer.question.details.questionAttachment.path}}" />
+                                    <video width="320" height="240" controls>
+                                        <source ng-src="./{{answer.question.details.questionAttachment.path}}">
+                                        <p>Il tuo browser non supporta i video</p>
+                                    </video>
 								</div>
 								<div ng-if = "answer.question.details.questionAttachment.type == 'aud'">
 									<source ng-src="./{{answer.question.details.questionAttachment.path}}" />
@@ -264,15 +266,40 @@
 									
 								<span class="badge qNumber"><span class="qCurrent">{{index+1}}</span>/{{answerQuiz.answerQuestion.length}}</span>
 									
-								<span data-placement="top" data-toggle="tooltip" title="Previous" ng-if = "index != 0"><button class="btn btn-lg btn-primary nextBtn pull-left" type="button" ng-click = "changeCurrentQuestion(-1)"><i class="glyphicon glyphicon-arrow-left"></i></button></span>
+								<span data-placement="top" data-toggle="tooltip" title="Previous" ng-if = "index != 0"><button class="btn btn-lg btn-primary nextBtn pull-left" type="button" ng-click = "changeCurrentPage(-1)"><i class="glyphicon glyphicon-arrow-left"></i></button></span>
 								 
-								<span data-placement="top" data-toggle="tooltip" title="Finish" ng-if = "(index + 1) == answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-success nextBtn pull-right" type="button" ng-click = "saveQuiz()"><i class="glyphicon glyphicon-ok"></i> Correggi</button></span>
-								<span data-placement="top" data-toggle="tooltip" title="Next" ng-if = "(index+1) != answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button" ng-click = "changeCurrentQuestion(1)"><i class="glyphicon glyphicon-arrow-right"></i></button></span>
+								<span data-placement="top" data-toggle="tooltip" title="Finish" ng-if = "(index + 1) == answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-success nextBtn pull-right" type="button" ng-click = "saveQuiz(); changeCurrentPage(1)"><i class="glyphicon glyphicon-ok"></i> Correggi</button></span>
+								<span data-placement="top" data-toggle="tooltip" title="Next" ng-if = "(index+1) != answerQuiz.answerQuestion.length"><button class="btn btn-lg btn-primary nextBtn pull-right" type="button" ng-click = "changeCurrentPage(1)"><i class="glyphicon glyphicon-arrow-right"></i></button></span>
 									
 								</div>
 						 </div>
 					</div>
 				</div>
+            
+            <div class="panel-body qResult" ng-if = "currentPage ==  answerQuiz.answerQuestion.length">
+			<!-- grade -->
+				<div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title text-center">
+							<i class="glyphicon glyphicon-pencil"></i> RISULTATO
+							<span class="label label-success" ng-if = "success() === true">{{punteggio}}/{{answerQuiz.answerQuestion.length}}</span>
+                            <span class="label label-danger" ng-if = "success() === false">{{punteggio}}/{{answerQuiz.answerQuestion.length}}</span>
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div class="list-group">
+							<span class="list-group-item">
+								<i class="success glyphicon glyphicon-ok pull-right" style="color: #179917;"></i> 1. Title
+							</span>
+							<a href="#" class="list-group-item">
+								<i class="danger glyphicon glyphicon-remove pull-right" style="color: #e14825;"></i> 2. Title
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
 				
 			</div>      
 			<!-- end of panel body -->

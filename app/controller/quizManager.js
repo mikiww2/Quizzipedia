@@ -20,11 +20,9 @@ var agent = require('./QMLAgent');
 var callback = function () { //mock function per chiamate async
 };
 
-exports.getSolvedUserQuiz = function (req,res) { //quiz creati dal docente loggato nel relativo ente
+exports.getSolvedUserQuiz = function (req,res) {
 
   var firstsearch = [];
-  var secondsearch = [];
-  var thirdsearch = [];
 
   if(req.session.user){
     async.series([
@@ -36,7 +34,15 @@ exports.getSolvedUserQuiz = function (req,res) { //quiz creati dal docente logga
           }
           else{
             if(quizzes){
-              firstsearch = quizzes;
+              for(var i=0;i<quizzes.length;i++){
+                firstsearch.push({
+                  answers: quizzes[i].answers,
+                  quiz: quizzes[i].quiz,
+                  date: quizzes[i].date,
+                  user: quizzes[i].user,
+                  _id: quizzes[i]._id
+                });
+              }
               //console.log(firstsearch);
               callback();             
             }
@@ -64,8 +70,40 @@ exports.getSolvedUserQuiz = function (req,res) { //quiz creati dal docente logga
                   }
                 }
               }
-              console.log('firstsearch');
-              console.log(firstsearch);
+              callback();             
+            }
+            else{
+              console.log('Nessun quiz svolto2');
+              callback();
+            }
+          }
+        });
+      },
+
+      function(callback){
+        Question.find({ 'institution': req.session.user.institution }, function (err,questions){
+          if (err) {
+                console.log('error: ' + err);
+                res.redirect('/');
+          }
+          else{
+            if(questions){
+              for(var i=0;i<questions.length;i++){
+                for(var j=0;j<firstsearch.length;j++){
+                  var tmp = [];
+                  for(var k=0;k<firstsearch[j].answers.length;k++){
+                    if(questions[i]._id.equals(firstsearch[j].answers[k].question)){
+                      tmp.push({
+                        title: questions[i].title,
+                        solution: firstsearch[j].answers[k].solution
+                      });
+                    }
+                  }
+                  firstsearch[i].answers = tmp;
+                }
+              }
+              console.log('**************************************');
+              console.log(firstsearch[0].answers);
               callback();             
             }
             else{
@@ -78,7 +116,7 @@ exports.getSolvedUserQuiz = function (req,res) { //quiz creati dal docente logga
           if(err)
             console.log(err);
           else{
-            res.send({ message: 'Errore a fine async' });
+            res.send(firstsearch);
           }
       });
 

@@ -235,7 +235,8 @@
                                         
                                     </video>
 								</div>
-								<div ng-if = "answer.question.details.questionAttachment.type == 'aud'">
+								<div class="col-lg-12 col-md-12 well" ng-if = "answer.question.details.questionAttachment.type == 'aud'">
+									<p class="text-center space-vertical">Allegato audio: </p>
 									<audio ng-src="{{getIframeSrc(answer.question.details.questionAttachment.path)}}"  controls />
 								</div>							
 

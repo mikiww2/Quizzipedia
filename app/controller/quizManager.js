@@ -64,12 +64,18 @@ exports.getSolvedUserQuiz = function (req,res) {
           }
           else{
             if(quizzes){
-              for(var i=0;i<quizzes.length;i++){
-                for(var j=0;j<firstsearch.length;j++){
-                  if(quizzes[i]._id.equals(firstsearch[j].quiz)){
-                    firstsearch[j].name = quizzes[i].title;
-                    firstsearch[j].topic = quizzes[i].topic;
+              for(var i=0;i<firstsearch.length;i++){
+                var found = false;
+                for(var j=0;j<quizzes.length;j++){
+                  if(quizzes[j]._id.equals(firstsearch[i].quiz)){
+                    found = true;
+                    firstsearch[i].name = quizzes[j].title;
+                    firstsearch[i].topic = quizzes[j].topic;
                   }
+                }
+                if(!found){
+                  firstsearch.splice(i,1);
+                  i--;
                 }
               }
               callback();             

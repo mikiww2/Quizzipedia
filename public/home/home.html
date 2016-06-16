@@ -30,12 +30,14 @@
     <script type="text/javascript"src="./public/services/Class.js" ></script>
       
     <!-- Directive angular (HEADER)-->
+    <script type="text/javascript" src="./public/header/headerSuperAdmin.js"></script>
     <script type="text/javascript" src="./public/header/headerNotLogged.js"></script>
     <script type="text/javascript" src="./public/header/headerLogged.js"></script>
     <script type="text/javascript" src="./public/header/headerLoggedStudent.js"></script>
     <script type="text/javascript" src="./public/header/headerLoggedTeacher.js"></script>
     <script type="text/javascript" src="./public/header/headerLoggedDirector.js"></script>
     <!-- Directive angular (HOMEPAGE) -->  
+    <script type="text/javascript" src="./public/home/homePageAdmin.js"></script>
     <script type="text/javascript" src="./public/home/homePageGeneric.js"></script>
     <script type="text/javascript" src="./public/home/homePageDirector.js"></script>
     <script type="text/javascript" src="./public/home/homePageStudent.js"></script>
@@ -62,6 +64,7 @@
           <header-logged-student ng-if="user.role == 'student'"></header-logged-student>
           <header-logged-teacher ng-if="user.role == 'teacher'"></header-logged-teacher>          
           <header-logged-director ng-if="user.role == 'director'"></header-logged-director>
+          <header-logged-admin ng-if="user.role == 'admin'"></header-logged-admin>
           
           <div class="row-fluid breadcrumb-div">
               <ol class="breadcrumb" id="breadcrumb">
@@ -75,7 +78,8 @@
 			  <home-page-generic ng-if="user.role== null || user.role == 'noRole'"></home-page-generic>
 			  <home-page-student ng-if="user.role == 'student'"></home-page-student>          
 			  <home-page-teacher ng-if="user.role == 'teacher'"></home-page-teacher>         
-			  <home-page-director ng-if="user.role == 'director'"></home-page-director>         
+			  <home-page-director ng-if="user.role == 'director'"></home-page-director>  
+        <home-page-admin ng-if="user.role == 'admin'"></home-page-admin>       
            </div>
       </div>
       

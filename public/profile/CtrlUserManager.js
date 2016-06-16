@@ -11,7 +11,7 @@
  *
  */
 
-angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http',function($scope,$http){
+angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http','Upload',function($scope,$http,Upload){
     
     $scope.institutions = { 'Ancora in nessun ente' : 'Nessun ruolo assegnato' };
     $scope.oldPsw = null;
@@ -19,6 +19,8 @@ angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http',
     $scope.cNewPsw = null;
     $scope.recovering = false;  //indica se è un cambio pswd normale o un recuperoPswd
     $scope.emptystring = "";  //necessaria in caso cambio pswd normale
+    $scope.imageProfile = null;
+    
     
     $scope.loadUser = function() {
        //assegno l'oggetto utente ricevuto dal server a $scope.user  
@@ -47,6 +49,25 @@ angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http',
             });
         })        
    };
+    
+    
+    
+    $scope.uploadFiles = function(files){
+      console.log(files[0]);
+        if (files[0]){
+            Upload.upload({
+                url:'/api/upload/update_profile_image',
+                data: {file: files[0]}
+            }).then(function(response){
+                
+            });
+            
+                
+            
+        }
+        
+        
+    };
     
     $scope.loadInstitutions();
     $scope.loadUser();

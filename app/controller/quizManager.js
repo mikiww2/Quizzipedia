@@ -40,7 +40,9 @@ exports.getSolvedUserQuiz = function (req,res) {
                   quiz: quizzes[i].quiz,
                   date: quizzes[i].date,
                   user: quizzes[i].user,
-                  _id: quizzes[i]._id
+                  _id: quizzes[i]._id,
+                  vote: quizzes[i].vote,
+                  percentage: quizzes[i].percentage
                 });
               }
               //console.log(firstsearch);
@@ -88,22 +90,20 @@ exports.getSolvedUserQuiz = function (req,res) {
           }
           else{
             if(questions){
-              for(var i=0;i<questions.length;i++){
-                for(var j=0;j<firstsearch.length;j++){
-                  var tmp = [];
-                  for(var k=0;k<firstsearch[j].answers.length;k++){
-                    if(questions[i]._id.equals(firstsearch[j].answers[k].question)){
+              for(var i=0;i<firstsearch.length;i++){
+                var tmp = [];
+                for(var j=0;j<firstsearch[i].answers.length;j++){
+                  for(var k=0;k<questions.length;k++){
+                    if(questions[k]._id.equals(firstsearch[i].answers[j].question)){
                       tmp.push({
-                        title: questions[i].title,
-                        solution: firstsearch[j].answers[k].solution
+                        title: questions[k].title,
+                        solution: firstsearch[i].answers[j].solution
                       });
                     }
                   }
-                  firstsearch[i].answers = tmp;
                 }
+                firstsearch[i].answers = tmp;
               }
-              console.log('**************************************');
-              console.log(firstsearch[0].answers);
               callback();             
             }
             else{
@@ -119,21 +119,8 @@ exports.getSolvedUserQuiz = function (req,res) {
             res.send(firstsearch);
           }
       });
-
-    /*ResultQuiz.find({ 'user': req.session.user._id }, function (err,quizzes){
-      if (err) {
-            console.log('error: ' + err);
-            res.redirect('/');
-      }
-      else{
-        if(quizzes){
-          
-        }
-        else{}
-      }
-    });*/
   }
-  else {}
+  else res.redirect('/');
 }
 
 exports.fetchUserQuiz = function (req,res) { //quiz creati dal docente loggato nel relativo ente
@@ -419,8 +406,10 @@ exports.saveResults = function (req,res) { //salvataggio risultati quiz
       user: req.session.user._id,
       date: date,
       answers: gettedAns,
-      quiz: req.body.quiz.quiz
-    })
+      quiz: req.body.quiz.quiz,
+      vote: req.body.voto,
+      percentage: req.body.percentuale
+    });
     
     resultQuiz.save(function (err){
       if (err) {

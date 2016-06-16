@@ -596,6 +596,16 @@ h6.description, h4.description, h3.description{
 	box-shadow: 0 0 3px #d3d3d3;
 }
 
+.adminPanel {
+	padding: 20px;
+	margin: 0 auto;
+	margin-bottom: 15px;
+	background-color: #ededed;
+	border: 1px solid #d3d3d3;
+	border-radius: 5px;
+	box-shadow: 0 0 3px #d3d3d3;
+}
+
 .qtfContainer {
 	width: 150px;
 	background-color: white;

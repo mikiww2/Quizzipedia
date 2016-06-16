@@ -48,5 +48,8 @@ angular.module('StatisticManager').controller('CtrlStatistics',['$scope','$http'
     };
 
     $scope.fetchQuizzesStats();
+    $scope.fetchQuestionsStats();
+    $scope.fetchStudentsStats();
+    $scope.fetchTeachersStats();
     
 }]); 

@@ -5,37 +5,38 @@
 		</ul>
 		
 		<div class="tab-content">
-			<div id="inst" class="tab-pane fade in active answContainer">
-				<div class="form-area">
-					<div class = "container">              
-          
-          <h3 class="panel-title">Hai creato <span class="badge">{{Questionlist.length}}</span> domande</h3>
-          
-              <table class="table table-hover table-compact qTable" id="questionTable">
-                  
-                  <thead>
-                      <th><i class="glyphicon glyphicons-note"></i> Contatto</th>
-                      <th><i class="glyphicon glyphicons-message-plus"></i> Messaggio</th>
-                      <th></th>
-                  </thead>
-                  
-                  <tbody>
-                    <tr ng-repeat="msg in comunications"><!-- for each quiz -->
-                        <td>{{msg.email}}</td>
-                        <td>{{msg.message}}</td>
-                        <td>
-                            <span data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger  pull-right" data-title="Elimina" data-toggle="modal" data-target="#delete" ng-click="setDeleteQ(((currentPage-1)*itemsPerPage)+index)" ><span class="glyphicon glyphicon-trash"></span> Elimina</button></span>
-                        </td>
-                    </tr>
-                  </tbody>
-              </table>
-              <!-- end of table -->
-     </div>
-		<div id="comm" class="tab-pane fade answContainer">
-			<div class="form-area">
-					<h3 class="text-center">Segnalazioni</h3>
-			<div class="row"></div>
+		<!-- panel 1 -->
+			<div id="inst" class="tab-pane fade in active adminPanel">
+				  <h3 class="panel-title">Hai creato <span class="badge">{{Questionlist.length}}</span> domande</h3>
+				  <table class="table table-hover table-compact qTable">  
+					  <thead>
+						  <th><i class="glyphicon glyphicons-note"></i> Contatto</th>
+						  <th><i class="glyphicon glyphicons-message-plus"></i> Messaggio</th>
+						  <th></th>
+					  </thead>
+					  <tbody>
+						<tr ng-repeat="msg in comunications"><!-- for each quiz -->
+							<td>{{msg.email}}</td>
+							<td>{{msg.message}}</td>
+							<td>
+								<span data-placement="top" data-toggle="tooltip" title="Elimina"><button class="btn btn-danger  pull-right" data-title="Elimina" data-toggle="modal" data-target="#delete" ng-click="setDeleteQ(((currentPage-1)*itemsPerPage)+index)" ><span class="glyphicon glyphicon-trash"></span> Elimina</button></span>
+							</td>
+						</tr>
+					  </tbody>
+				  </table>
+				  <!-- end of table -->
 			</div>
-		</div>  
+			<!-- panel 2 -->
+			<div id="comm" class="tab-pane fade answContainer">
+				<div class="form">
+					<h3 class="text-center">Segnalazioni</h3>
+					<div class="row">
+					<label class="space">Recapito email:</label>
+					<p class="well">email@gmail.com</p>
+					<label class="space">Problema:</label>
+					<p class="well">blabla descrizione problema</p>
+					</div>
+				</div>
+			</div>  
 	</div>
 </div>

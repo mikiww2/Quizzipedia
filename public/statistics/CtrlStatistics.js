@@ -31,14 +31,18 @@ angular.module('StatisticManager').controller('CtrlStatistics',['$scope','$http'
     
     
     
+    $scope.quiz = null;
+    
+    
     $scope.loadStatQuiz = function(){
         $http.get('/api/statistic/quiz').success(function(response){
             console.log(response);
+            $scope.quiz = response;
         });
     };
     
     
-    $scope.loadStatQuiz();
+    //$scope.loadStatQuiz();
     
     
     

@@ -97,46 +97,24 @@
 				<th class="text-center">Risultato medio</th>
 				</tr>
 				</thead>
-				<tbody class="text-center">
+				<tbody class="text-center" ng-repeat="element in quiz track by $index">
 				<!-- row -->
-				<tr data-toggle="collapse" data-target="#001" class="accordion-toggle"> <!-- se quiz privato mostra classi -->
-					<td>Struttura della materia</td>
-					<td>Chimica</td>
-					<td>2</td>
+				<tr data-toggle="collapse" data-target="#001" class="accordion-toggle" > <!-- se quiz privato mostra classi -->
+					<td>{{element.title}}</td>
+					<td>{{element.topic}}</td>
+					<td>{{element.difficulty}}</td>
 					<td>Privato</td>
-					<td>5</td>
-					<td>80%</td>
-					<td>25/30</td>
+					<td>{{element.executed}}</td>
+					<td>{{element.percentual}}%</td>
+					<td>{{element.avg}}/{{element.total}}</td>
 				</tr>
 				<tr><!-- accordion classi-->
 					<td colspan="7" class="hiddentablerow">
-						<div class="accordian-body collapse" id="001"><span class="important">Classi:</span> classe1 - classe2 - classe3 - classe4</div> 
+						<div class="accordian-body collapse" id="001"><span class="important">Classi:</span> <span ng-repeat="name in element">{{name}}</span></div> 
 					</td>
 				</tr><!-- fine classi -->
 
-				<tr>
-					<td>Grammatica inglese</td>
-					<td>Inglese</td>
-					<td>1</td>
-					<td>Pubblico</td>
-					<td>15</td>
-					<td>90%</td>
-					<td>27/30</td>
-				</tr>
-				<tr data-toggle="collapse" data-target="#002" class="accordion-toggle"> <!-- se quiz privato mostra classi -->
-					<td>Struttura della materia</td>
-					<td>Chimica</td>
-					<td>2</td>
-					<td>Privato</td>
-					<td>5</td>
-					<td>80%</td>
-					<td>25/30</td>
-				</tr>
-				<tr><!-- accordion classi-->
-					<td colspan="7" class="hiddentablerow">
-						<div class="accordian-body collapse" id="002"><span class="important">Classi:</span> classe1 - classe2 - classe3 - classe4</div> 
-					</td>
-				</tr><!-- fine classi -->
+				
 				</tbody>
 			</table>
 		</div>

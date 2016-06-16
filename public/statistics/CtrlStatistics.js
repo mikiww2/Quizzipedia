@@ -14,7 +14,7 @@
 angular.module('StatisticManager').controller('CtrlStatistics',['$scope','$http','$window',function($scope,$http,$window){
     
     
-    $scope.classSelected = "";
+    $scope.classSelected = null;
     $scope.classes = null;
     
     $scope.loadClasses = function(){

@@ -129,7 +129,9 @@
 							<p class="text-center">{{quiz.author}}</p>
 						</div>
 						<div class="tinybox center-div">
-							<p class="text-center">{{quiz.topic}}</p>
+							<p class="text-center" ng-if = "quiz.topic != null">{{quiz.topic}}</p>
+							<p class="text-center" ng-if = "quiz.topic == null">Generale</p>
+							<p class="text-center" ng-if = "quiz.topic == null">Generale</p>
 							<!-- custom stars according to difficulty -->
 							<span class="diffStars">
 								<span class="yellow-glyphs" ng-if="quiz.difficulty=='Facile'">
@@ -222,10 +224,11 @@
 							</div>
 							
 							<!--ATTACHMENT QUESTION-->
-							<div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-3 col-sm-offset-0 col-xs-12 col-xs-offset-3 attachment" ng-if = "answer.question.details.questionAttachment != null">
+							<div class="clearfix attachment text-center" ng-if = "answer.question.details.questionAttachment != null">
 								<div ng-if = "answer.question.details.questionAttachment.type == 'img'">
 									<img ng-src="./{{answer.question.details.questionAttachment.path}}" />
 								</div>
+
                                 <video width="50" height="50" controls ng-if = "answer.question.details.questionAttachment.type == 'vid'">
                                         <source ng-src="./{{answer.question.details.questionAttachment.path}}"/>
                                         <p>Il tuo browser non supporta i video</p>
@@ -234,6 +237,17 @@
                                     <source  ng-src="./{{answer.question.details.questionAttachment.path}}">
                                     <p>Il tuo browser non supporta gli audio</p>
                                 </audio> 						
+
+								<div ng-if = "answer.question.details.questionAttachment.type == 'vid'">
+                                    <video  ng-src="./{{answer.question.details.questionAttachment.path}}" controls >
+                                        
+                                        
+                                    </video>
+								</div>
+								<div ng-if = "answer.question.details.questionAttachment.type == 'aud'">
+									<source ng-src="./{{answer.question.details.questionAttachment.path}}" />
+								</div>							
+
 							</div>              
 						</div>                    
 						<!-- end of row -->              
@@ -304,7 +318,7 @@
 							<div class="row qFooting">
 								<div class="center-div text-center">
 									
-                                    <span  class= "btn btn-default"  data-placement="top" data-toggle="tooltip" title="Home"><a href = "/Quizzipedia/home"> Torna alla Home</a></span>
+                                    <span  class= "btn btn-primary"  data-placement="top" data-toggle="tooltip" title="Home"><a href = "/Quizzipedia/home"> Torna alla Home</a></span>
                                     
 								</div>
 						 </div>

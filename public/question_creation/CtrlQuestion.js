@@ -452,6 +452,7 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
         $scope.files = files[0];
         var imgRegExp = new RegExp(/^image/g);
         var videoRegExp = new RegExp(/^video/g);
+        var audioRegExp = new RegExp(/^audio/g);
         
         var notDuplicate = true;
         
@@ -530,6 +531,9 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
                 else if(files[0].type.search(videoRegExp) != -1){
                     $scope.MyGenericQ.attachment.setType('vid');
                 }
+                else if(files[0].type.search(audioRegExp) != -1){
+                    $scope.MyGenericQ.attachment.setType('aud');
+                }
                 
                 
             }
@@ -545,6 +549,9 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
                     else if(files[0].type.search(videoRegExp) != -1){
                         $scope.MyMultipleChoiceQ.question.setTypeAttachment(index,'vid');
                     }
+                    else if(files[0].type.search(audioRegExp) != -1){
+                        $scope.MyMultipleChoiceQ.question.setTypeAttachment(index,'aud');
+                    }
                     
                 }
                 else if($scope.MyGenericQ.questionType == 'mtch'){
@@ -556,6 +563,8 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
                             }
                             else if(files[0].type.search(videoRegExp) != -1){
                                 $scope.MyMatchingQ.questionMatch.text[index].setTypeAttachment('vid');
+                            }else if(files[0].type.search(audioRegExp) != -1){
+                                $scope.MyMatchingQ.questionMatch.text[index].setTypeAttachment('aud');
                             }
                         }
                         else{ // answer
@@ -566,6 +575,9 @@ angular.module('CreateQuestion').controller('CtrlQuestion',['$scope','$http','Tr
                             }
                             else if(files[0].type.search(videoRegExp) != -1){
                                 $scope.MyMatchingQ.questionMatch.answer[index].setTypeAttachment('vid');
+                            }
+                            else if(files[0].type.search(audioRegExp) != -1){
+                                $scope.MyMatchingQ.questionMatch.answer[index].setTypeAttachment('aud');
                             }
                         }
                 }

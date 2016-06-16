@@ -27,13 +27,18 @@ angular.module('StatisticManager').controller('CtrlStatistics',['$scope','$http'
     };
     
     
-    
-    
     $scope.loadClasses();
     
     
     
+    $scope.loadStatQuiz = function(){
+        $http.get('/api/statistic/quiz').success(function(response){
+            console.log(response);
+        });
+    };
     
+    
+    $scope.loadStatQuiz();
     
     
     

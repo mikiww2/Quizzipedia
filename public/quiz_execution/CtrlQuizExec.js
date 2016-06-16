@@ -139,6 +139,11 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
            
         }
         
+        
+        //devo inviare al server il answerQuiz
+        
+        $http.post('/api/quiz/save_results',$scope.answerQuiz);
+        
         console.log($scope.answerQuiz.answerQuestion);
         
         //salvo il quiz localmente dentro a $sope.user e poi invio la richesta al server

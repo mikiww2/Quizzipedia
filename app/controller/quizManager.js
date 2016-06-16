@@ -195,8 +195,6 @@ exports.search = function (req,res) { //ricerca quiz
                   }
               }
           }      
-          console.log(results);
-          console.log(results.length);
           res.send(results);
         }
         else res.send({ code: 0, message: 'Nessun quiz trovato'});

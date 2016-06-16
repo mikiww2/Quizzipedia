@@ -358,34 +358,70 @@ exports.removeFromInst = function (req, res) {
 exports.createNewInstitution = function(req, res) {
 
 
-    Organization.find({ $or:[ {'director': req.body.email}, {'name': req.body.orgName} ]}, function (err, orgs) {
+    Organization.find(function (err, orgs) {
         if (err) {
             console.log('error: ' + err);
             res.redirect('/Quizzipedia/signin');
         }
         else {
             if (orgs) { //SE LA EMAIL è GIA PRESENTE NEL DB
-                console.log('Ente o responsabile già esistente');
-                res.send({ code: 1, message: 'Ente o responsabile già esistente!' });
+            	var found = false;
+            	async.series([
+            		function(callback){
+            			for(var i=0;i<orgs.length;i++){
+		            		if( orgs[i].director == req.body.email || orgs[i].name == req.body.orgName )
+		            			found = true;
+		            	}
+		            	callback();
+            		},
+
+            		function(callback){
+            			if(!found){
+		            		var date = new Date();
+		                new Organization({
+		                    name: req.body.orgName,
+		                    director: req.body.email,
+		                    creationDate: date
+		                }).save(function (err) {
+		                    if (err) {
+		                        console.log('errore nel salvataggio ente: ' + err);
+		                        res.send({ code: 1, message: err });
+		                    }
+		                    else {
+		                        console.log('salvato ente');
+		                        res.send({code: 0, message: 'La creazione dell\'ente è andata a buon fine'});
+		                    }
+		                });
+		            	}
+		            	else{
+		            		console.log('Ente o responsabile già esistente');
+		                res.send({ code: 1, message: 'Ente o responsabile già esistente!' });
+		            	}
+            		}],function(err){
+									if(err)
+										console.log(err);
+									else{
+										console.log('ok');
+									}
+								});
             }
-            else {
-                var date = new Date();
-                new Organization({
-                    name: req.body.orgName,
-                    director: req.body.email,
-                    creationDate: date
-                }).save(function (err) {
-                    if (err) {
-                        console.log('errore nel salvataggio ente: ' + err);
-                        res.send({ code: 1, message: err });
-                    }
-                    else {
-                        console.log('salvato ente: ' + email);
-                        res.send({code: 0, message: 'Lacreazione dell\'ente è andata a buon fine'});
-                    }
-                });
-                
-            }
+            else{
+            	var date = new Date();
+              new Organization({
+                  name: req.body.orgName,
+                  director: req.body.email,
+                  creationDate: date
+              }).save(function (err) {
+                  if (err) {
+                      console.log('errore nel salvataggio ente: ' + err);
+                      res.send({ code: 1, message: err });
+                  }
+                  else {
+                      console.log('salvato ente');
+                      res.send({code: 0, message: 'La creazione dell\'ente è andata a buon fine'});
+                  }
+              });
+        		}
         }
     });
 };

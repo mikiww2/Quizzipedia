@@ -89,9 +89,15 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
                     answer = new AnswerCompletionQ(response[i]);
                     
                     var array = answer.question.details.text;
-                    
+                    console.log(array);
                     for(var k = 0; k < array.length; k++){
+                        if(array[k].type == 'id'){
                             answer.addAnswer("");
+                        }
+                        else if(array[k].type == 'txt'){
+                            answer.addAnswer(array[k].value);
+                        }
+                            
                     }
                     
                     console.log(answer);

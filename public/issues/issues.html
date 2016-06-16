@@ -27,6 +27,7 @@
     <script type="text/javascript" src="./public/core.js"></script>
 	<script type="text/javascript" src="./public/authentic/CtrlData.js" ></script>
     <script type="text/javascript" src="./public/header/CtrlHeader.js" ></script>
+    <script type="text/javascript" src="./public/issues/CtrlIssues.js" ></script>
       
     <!-- Directive angular (HEADER)-->
     <script type="text/javascript" src="./public/header/headerNotLogged.js"></script>
@@ -68,16 +69,16 @@
         </div>
 		
 		
-	<div class="container">
-		  <form class="form">
+	   <div class="container" ng-controller="CtrlIssues">
+		  <form class="form" ng-submit="sendComunications()">
 			 <h3 class="form-heading description text-center">Segnalazioni</h3>
        <div class="spacer"></div>
         <label for="email" class="sr-only">Recapito email</label>
-        <input type="text" class="form-control" id="inputEmail" name= "email" placeholder="Inserire un proprio recapito email" required>
+        <input type="email" class="form-control" id="inputEmail" name= "email" placeholder="Recapito e-mail" required>
       
 			 <div class="spacer"></div>
 			<label for="issues" class="sr-only">Descrivi il problema riscontrato </label>
-			<textarea class="form-control" type="textarea" id="inputIssue" name= "issue" placeholder="Descrizione del problema riscontrato" maxlength="140" rows="7"></textarea>
+			<textarea class="form-control" type="textarea" id="inputIssue" name= "issue" placeholder="Messaggio" maxlength="140" rows="7"></textarea>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Invia</button>
 		  </form>
 		</div>

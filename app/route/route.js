@@ -149,7 +149,7 @@ module.exports = function (app) {
 
   //ISSUES
   app.route('/Quizzipedia/issues').get(function (req, res) {
-    res.sendFile(path.resolve('./public/issues.html'));
+    res.sendFile(path.resolve('./public/issues/issues.html'));
   });
 
   //SEARCH ---------------------------------------------------------------------------------------

@@ -114,15 +114,34 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
         $scope.currentQuestion = $scope.currentQuestion + number;  
     };
     
+    
+    
+    $scope.Succession = function(){
+        
+        var size = $scope.answerQuiz.answerQuestion.length;
+        var correct = $scope.punteggio;
+        
+        var percentuale = (correct * 100) / size;
+        if(percentuale >= 60){
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    
+    
     $scope.saveQuiz = function(){
         console.log("SAVEQUIZ");
-        
+        $scope.punteggio = 0;
         
         for(var i = 0; i < $scope.answerQuiz.answerQuestion.length; i++){
             
             if($scope.answerQuiz.answerQuestion[i].question.type == 'trfs'){
                 
-                $scope.answerQuiz.answerQuestion[i].isCorrect = $scope.answerQuiz.answerQuestion[i].checkTF(); 
+                $scope.answerQuiz.answerQuestion[i].isCorrect = $scope.answerQuiz.answerQuestion[i].checkTF();
+                        
+                
             }
             else if($scope.answerQuiz.answerQuestion[i].question.type == 'mtch'){
                 $scope.answerQuiz.answerQuestion[i].isCorrect = $scope.answerQuiz.answerQuestion[i].checkMatching();
@@ -135,6 +154,10 @@ angular.module('QuizSolver').controller('CtrlExecutionQuiz',['$scope','$http','A
             }
             else if($scope.answerQuiz.answerQuestion[i].question.type == 'cmpl'){
                 $scope.answerQuiz.answerQuestion[i].isCorrect = $scope.answerQuiz.answerQuestion[i].checkCompletion();
+            }
+            
+            if($scope.answerQuiz.answerQuestion[i].isCorrect){
+                    $scope.punteggio = $scope.punteggio + 1;
             }
            
         }

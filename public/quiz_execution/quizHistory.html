@@ -81,33 +81,36 @@
                 </p>
             </div>
             
-            <div class="list-group" id="quizList" ng-if = "userQuizzes.length != 0" ng-repeat = "(index, quiz) in userQuizzes">
+            <div class="list-group" id="classList" ng-if = "userQuizzes.length != 0" ng-repeat = "(index, quiz) in userQuizzes">
                 <div class = "list-group-item">
                     <a href = "#{{index}}" data-toggle = "collapse">
-                        <span class="important" ng-click = "loadResults(index)">
-                            <i class="glyphicon glyphicon-th-list"></i> {{quiz.title}} -
-                            <i class="glyphicon glyphicon-list-alt"></i> {{quiz.topic}}
+                        <span class="important">
+                            <i class="glyphicon glyphicon-th-list"></i> {{quiz.name}} -
+                            <i class="glyphicon glyphicon-list-alt"></i> {{quiz.topic}} -
+                            Esito:
                         </span>
-                    </a>
+                        <span class="label label-success" ng-if = "success(quiz.percentage) == true ">{{quiz.vote}}</span>
+                        <span class="label label-danger" ng-if = "success(quiz.percentage) == false">{{quiz.vote}}</span>  
                     <span class="pull-right">
-                        Vedi dettagli                        
+                        <p>Vedi dettagli</p>                                              
                     </span>
+                    </a>
                 </div>
                 
                 <!--Collapsable-->
                 <div id="{{index}}" class = "collapse">
+                    <p></p>
                     <h5 class="panel-title text-center">                        
-                        <i class="glyphicon glyphicon-pencil"></i> RISULTATO
-                        <span class="label label-success" ng-if = "quizResult.esito === true">{{quizResult.respCorr}}/{{quizResult.rispTot}}</span>
-                        <span class="label label-danger" ng-if = "quizResult.esito === false">{{quizResult.respCorr}}/{{quizResult.rispTot}}</span>
+                        <i class="glyphicon glyphicon-pencil"></i> Dettagli
                     </h5>
-                    <span class="list-group-item" ng-repeat = "(index, answer) in quiz[index]">
-                        <span ng-if = "answer.isCorrect == false">
-                            <i class="danger glyphicon glyphicon-remove pull-right" style="color: #e14825;"></i> {{index+1}}.
+                    
+                    <span class="list-group-item" ng-repeat = "(index, answer) in quiz.answers">
+                        <span ng-if = "answer.solution == false">
+                            <i class="danger glyphicon glyphicon-remove pull-right" style="color: #e14825;"></i> {{index+1}}. {{answer.title}}
                         </span>
-                        <span ng-if = "answer.isCorrect == true">
+                        <span ng-if = "answer.solution == true">
                             <i class="success glyphicon glyphicon-ok pull-right" style="color: #179917;"></i>
-                            {{$index+1}}. 
+                            {{$index+1}}.  {{answer.title}}
                         </span>
                     </span>
                 </div>

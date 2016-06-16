@@ -18,7 +18,8 @@ exports.get_students_results = function (req, res) {
     if(institution && user && role && role == 'teacher') {
         console.log(user + ' è autorizzato');
 
-        var con = true,
+        var result = [],
+            con = true,
             rQuiz = null,
             Users = null;
 
@@ -119,14 +120,15 @@ exports.get_students_results = function (req, res) {
                     return done();
 
                 rQuiz.forEach(function(rq) {
+                    var rrr = {};
 
                     Users.forEach(function(u) { // recupero nome e cognome
                         if(u._id == rq.user){
-                            rq.firstName = u.firstName;
-                            rq.lastName = u.lastName;
+                            rrr.firstName = u.firstName;
+                            rrr.lastName = u.lastName;
                         }
 
-                        if(rq.firstName == undefined || rq.lastName == undefined) { // nome e cognome non trovati
+                        if(rrr.firstName == undefined || rrr.lastName == undefined) { // nome e cognome non trovati
                             con = false;
                             console.log("utente non identificato ");
                             res.send({ result: 'error' });
@@ -134,23 +136,25 @@ exports.get_students_results = function (req, res) {
                         }
                     });
 
-                    rq.total = rq.answers.length;
+                    rrr.total = rq.answers.length;
 
-                    rq.correct = 0;
+                    rrr.correct = 0;
 
                     rq.answers.forEach(function(ans) {
                         if(ans.solution)
-                            rq.correct++;
+                            rrr.correct++;
                     });
 
-                    rq.percentual = rq.correct / rq.total * 100;
+                    rrr.percentual = rrr.correct / rrr.total * 100;
+
+                    result.push(rrr);
                 });
 
                 return done();
             },
             function(done) {
                 if (c)
-                    res.send({ result: "done", students: rQuiz });
+                    res.send({ result: "done", students: result });
 
                 return done();
             }
@@ -171,7 +175,8 @@ exports.quiz_results = function (req, res) {
     if(institution && user && role && role == 'teacher') {
         console.log(user + ' è autorizzato');
 
-        var Quizs = null,
+        var result = [],
+            Quizs = null,
             rQuiz = null,
             con = true,
             Orgs = null;
@@ -249,6 +254,12 @@ exports.quiz_results = function (req, res) {
 
                 Quizs.forEach(function(q) {
 
+                    var r = {
+                        title: q.title,
+                        topic: q.topic,
+                        difficulty: q.difficulty
+                    };
+
                     var ar = [];
 
                     q.classes.forEach(function(cls) { //pubblico o privato
@@ -265,17 +276,19 @@ exports.quiz_results = function (req, res) {
                         });
                     });
 
-                    q.classes = ar;
+                    r.classes = ar;
 
                     q.total = q.questions.length;
+
+                    r.classes = q.total;
 
                     var sumCorrect = 0,
                         n = 0,
                         sup = 0.6,
                         sumPerc = 0;
 
-                    rQuiz.forEach(function(r) { //valori per ogni singolo quiz eseguito
-                        if (r.quiz == q._id) {
+                    rQuiz.forEach(function(rr) { //valori per ogni singolo quiz eseguito
+                        if (rr.quiz == q._id) {
                             n++;
 
                             var t = 0;
@@ -291,18 +304,20 @@ exports.quiz_results = function (req, res) {
                         }
                     });
 
-                    q.percentual = sumPerc/n * 100;
+                    r.percentual = sumPerc/n * 100;
 
-                    q.executed = n;
+                    r.executed = n;
 
-                    q.avg = sumCorrect / n;
+                    r.avg = sumCorrect / n;
+
+                    result.push(r);
                 });
 
                 return done();
             },
             function(done) {
-                if (c)
-                    res.send({ result: "done", quiz: Quizs });
+                if (con)
+                    res.send({ result: "done", quiz: result });
 
                 return done();
             }
@@ -401,7 +416,13 @@ exports.question_results = function (req, res) {
 
                 Ques.forEach(function (q) {
 
-                    q.used = 0;
+                    var rrr = {
+                        title: q.title,
+                        topic: q.topic,
+                        difficulty: q.difficulty
+                    };
+
+                    rrr.used = 0;
                     Quizs.forEach(function (quiz) { // uso della domanda sui quiz
                         var t = false;
 
@@ -411,62 +432,33 @@ exports.question_results = function (req, res) {
                         });
 
                         if (t)
-                            q.used++;
+                            rrr.used++;
                     });
-                    
-                    
-                    
-                    rQuiz.forEach(function(r) {
-                        
-                        
-                        
-                        
+//
+                    var sumCorrect = 0,
+                        n = 0;
+
+                    rQuiz.forEach(function(r) { //valori per ogni singolo quiz eseguito
+                        r.answers.forEach(function (a) {
+                            if (a.question == q._id) {
+                                n++;
+                                if (a.solution)
+                                    sumCorrect++;
+                            }
+                        });
                     });
 
+                    rrr.executed = n;
 
+                    rrr.percentual = sumCorrect/n * 100;
+
+                    result.push(rrr);
                 });
 
                 return done();
-//
-
-// //
-// //                     q.classes = ar;
-// //
-// //                     q.total = q.questions.length;
-// //
-// //                     var sumCorrect = 0,
-// //                         n = 0,
-// //                         sup = 0.6,
-// //                         sumPerc = 0;
-// //
-// //                     rQuiz.forEach(function(r) { //valori per ogni singolo quiz eseguito
-// //                         if (r.quiz == q._id) {
-// //                             n++;
-// //
-// //                             var t = 0;
-// //                             r.answers.forEach(function (an) {
-// //                                 if (an.solution)
-// //                                     t++;
-// //                             });
-// //
-// //                             sumCorrect += t;
-// //
-// //                             if (t / q.total >= sup) // se il quiz è superato
-// //                                 sumPerc++;
-// //                         }
-// //                     });
-// //
-// //                     q.percentual = sumPerc/n * 100;
-// //
-// //                     q.executed = n;
-// //
-// //                     q.avg = sumCorrect / n;
-// //                 });
-// //
-// //                 return done();
             },
             function(done) {
-                if (c)
+                if (con)
                     res.send({ result: "done", quiz: result });
 
                 return done();
@@ -479,100 +471,6 @@ exports.question_results = function (req, res) {
         return res.send({ result: 'error' });
     }
 };
-
-
-
-// };
-//     var institution = req.session.user.institution
-//         ,user = req.session.user._id
-//         ,role = req.session.user.role;
-//
-//     if(institution && user && role && role == 'teacher') {
-//         console.log(user + ' è autorizzato');
-//
-//         return Question.find({
-//             author: user
-//             ,institution: institution
-//         }, ['_id', 'title', 'topic', 'difficulty'])
-//         .exec(function(err, questions) {
-//             if(err)
-//                 return show_error(res, 'errore in question.find ' + err, { result: 'error' });
-//
-//             if(questions && questions.length) {
-//                 console.log(user + ' ha creato ' + questions.length +' domande');
-//                 var result = [];
-//
-//                 questions.forEach(function(question) {
-//                     var q = {
-//                         title: question.title
-//                         ,topic: question.topic
-//                         ,difficulty: question.difficulty
-//                     };
-//                     q.use = question_use(question._id);
-//
-//                     var stat = question_stat(question._id);
-//
-//                     q.execution = stat.total;
-//                     q.percentual = stat.correct / stat.total * 100;
-//
-//                     result.push(q);
-//                 });
-//
-//                 return res.send({ result: 'done', questions: result });
-//             }
-//             else
-//                 return show_error(res, user + ' non ha creato domande', { result: 'done', questions: null });
-//         });
-//     }
-//     else
-//         return show_error(res, user + ' non è autorizzato', { result: 'error' });
-// };
-
-// var question_use =  function(id) {
-//     if(id) {
-//         return Quiz.count({ questions: id }) // forse non trova id così
-//         .exec(function(err,n) {
-//             if(err)
-//                 return show_error(null, err, null);
-//
-//             return n;
-//         });
-//     }
-//     else
-//         return show_error(null, 'question_use errore con id vuoto', null);
-// };
-
-// var question_stat = function(id) {
-//     var result = {
-//         correct: 0
-//         ,total: 0
-//     };
-//
-//     if(id) {
-//         return ResultQuiz.find({ answers: { $in: { question: id }} })
-//         .exec(function(err, quizs) {
-//             if(err)
-//                 return show_error(null, err, result);
-//
-//             if(quizs && quizs.length) {
-//
-//                 quizs.forEach(function(quiz) {
-//                     quiz.answers.findOne({ question: id }, 'solution', function(err, s) {
-//                         if(err)
-//                             return show_error(null, err, null);
-//
-//                         result.total++;
-//                         if(s.solution) //o così o s diretto
-//                             result.correct++;
-//                     });
-//                 });
-//             }
-//
-//             return result;
-//         });
-//     }
-//     else
-//         return show_error(null, 'question_stat errore con id vuoto', result);
 
 // exports.teacher = function (req, res) {
 //     var institution = req.session.user.institution,

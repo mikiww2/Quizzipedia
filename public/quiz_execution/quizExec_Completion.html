@@ -4,7 +4,7 @@
 				<p class="answerBlock bluebg">
                     <span ng-repeat = "(index, textChunk) in answer.question.details.text">
                         <span ng-if = "textChunk.type == 'txt'">{{textChunk.value}}</span>
-                        <input ng-if = "textChunk.type == 'id'" type="text" class="limit-width" placeholder=" inserisci parola esatta" ng-model = "answer.givenAnswer[index -1]" required />
+                        <input ng-if = "textChunk.type == 'id'" type="text" class="limit-width" placeholder=" inserisci parola esatta" ng-model = "answer.givenAnswer[index]" required />
                     </span>
 				.</p>
                 

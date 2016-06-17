@@ -314,8 +314,8 @@ exports.quiz_results = function (req, res) {
                     }
 
 
-
-                    result.push(r);
+                    if(r.classes != [])
+                        result.push(r);
                 });
 
                 return done();

@@ -11,7 +11,7 @@
  *
  */
 
-angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http','Upload',function($scope,$http,Upload){
+angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http',function($scope,$http){
     
     $scope.institutions = { 'Ancora in nessun ente' : 'Nessun ruolo assegnato' };
     $scope.oldPsw = null;
@@ -51,25 +51,6 @@ angular.module('ProfileManager').controller('CtrlUserManager',['$scope','$http',
             });
         })        
    };
-    
-    
-    
-    $scope.uploadFiles = function(files){
-      
-        if (files[0]){
-            Upload.upload({
-                url:'/api/upload/update_profile_image',
-                data: {file: files[0]}
-            }).then(function(response){
-                
-            });
-            
-                
-            
-        }
-        
-        
-    };
     
     $scope.loadInstitutions();
     $scope.loadUser();

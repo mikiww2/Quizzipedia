@@ -105,8 +105,10 @@
 					<td>{{element.difficulty}}</td>
 					<td>Privato</td>
 					<td>{{element.executed}}</td>
-					<td>{{element.percentual}}%</td>
-					<td>{{element.avg}}/{{element.total}}</td>
+					<td ng-if = "element.executed != 0">{{element.percentual}}%</td>
+                    <td ng-if = "element.executed == 0">--</td>
+					<td ng-if = "element.executed != 0">{{element.avg}}/{{element.total}}</td>
+                    <td ng-if = "element.executed == 0">--</td>
 				</tr>
 				<tr><!-- accordion classi-->
 					<td colspan="7" class="hiddentablerow">

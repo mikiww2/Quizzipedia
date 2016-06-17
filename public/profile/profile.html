@@ -76,34 +76,17 @@
           <div class="row pt-md">
           <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 profile">
               <div class="img-box">
-                <img ng-src="./imageProfile" class="img-responsive">
-				
-				<!-- only show if user is looking at OWN profile-->
-				<!--<ul class="text-center" id="showText">
-                    
-				<a href="#" data-title="Change" data-toggle="modal" data-target="#change"><li><i class="glyphicon glyphicon-upload"></i></li></a><p class="hiddenText">Cambia immagine</p>
-                    
-                    
-				</ul>
-                  
-				<!-- -->
+                <img src="./assets/img/portraits/usr2.jpg" class="img-responsive">
 				
 				<!-- only show if user is looking at profile of ANOTHER user -->
-                <!--<ul class="text-center">
-                <!-- <a href="#"><li><i class="glyphicon glyphicon-earphone"></i></li></a><a href="#"><li><i class="glyphicon glyphicon-envelope"></i></li></a>
-                </ul>-->
+                <ul class="text-center">
+                <!-- <a href="#"><li><i class="glyphicon glyphicon-earphone"></i></li></a><a href="#"><li><i class="glyphicon glyphicon-envelope"></i></li></a>-->
+                </ul>
 				<!-- -->
 				
+				
               </div>
-             <!-- <input 
-				   type="file" 
-				   ngf-select ="uploadFiles($files)"
-				   ng-model="files" 
-				   name="file" 
-				   ngf-pattern="image/*"
-				   accept="image/*" 
-				   ngf-max-size="20MB"         
-				   /> -->
+
               <h1 class="text-center">{{user.firstName }} {{user.lastName }}</h1>
 			<p class="text-center">
                 <a href="mailto:{{user._id}}">{{user._id}}</a> 
@@ -136,15 +119,6 @@
 					<div class="fileupload fileupload-new" data-provides="fileupload">
 					  <div class="fileupload-preview thumbnail"></div>
 					  <div>
-						<input 
-				   type="file" 
-				   ngf-select ="uploadFiles($files)"
-				   ng-model="files" 
-				   name="file" 
-				   ngf-pattern="image/*"
-				   accept="image/*" 
-				   ngf-max-size="20MB"         
-				   />
 					  </div>
 					  <!-- end of upload image -->
 					</div>
